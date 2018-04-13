@@ -1,14 +1,22 @@
 <template>
   <div>
     <div class="book">
-      <p class="fairy-letter">Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius <span class="box"></span> reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his, <span class="box"></span> mei eros civibus lobortis ne. Lorem feugiat <span class="box"></span> sanctus nam no, et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne. </p>
+      <p class="fairy-letter">Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius <span class="box" @click="showOptions = true"></span> reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his, <span class="box" @click="showOptions = true"></span> mei eros civibus lobortis ne. Lorem feugiat <span class="box" @click="showOptions = true"></span> sanctus nam no, et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne. </p>
+    </div>
+
+    <div v-if="showOptions">
+      <div class="defocus" @click="showOptions = false"></div>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
 export default {
-  name: 'BookselectGame'
+  name: 'BookselectGame',
+
+  data: () => ({
+    showOptions: false
+  })
 }
 </script>
 
@@ -27,6 +35,18 @@ export default {
   margin: 0.4em 0.4em;
   background: #ffffff;
   border-radius: 5px
+}
+
+.defocus {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
 }
 
 .box:hover{
