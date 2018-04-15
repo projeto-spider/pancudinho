@@ -19,6 +19,7 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.1",
     "@storybook/addon-centered": "^3.4.1",
     "@storybook/addon-knobs": "^3.4.1",
     "@storybook/vue": "^3.4.1",
