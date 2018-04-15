@@ -1,5 +1,5 @@
 <template>
-  <div class="Card" :class="classes">
+  <div class="Card" :class="classes" @click="handleClick">
     <div v-if="flip">{{ content }}</div>
   </div>
 </template>
@@ -17,6 +17,11 @@ export default {
     content: {
       type: String,
       required: true,
+    },
+
+    handleClick: {
+      type: Function,
+      default: () => ({})
     }
   },
 
