@@ -28,12 +28,12 @@ export default {
   props: {
     flip: {
       type: Boolean,
-      default: false,
+      default: false
     },
 
     content: {
       type: String,
-      required: true,
+      required: true
     },
 
     handleClick: {
@@ -43,11 +43,11 @@ export default {
   },
 
   data: () => ({
-    inZoom: false,
+    inZoom: false
   }),
 
   computed: {
-    classes() {
+    classes () {
       return {
         flipped: this.flip
       }
@@ -58,20 +58,20 @@ export default {
 
 <style scoped>
 .Card {
-    display: inline-block;
-    width: 3.3em;
-    height: 4.6em;
-    border: 1px solid #666;
-    border-radius: .3em;
-    padding: .25em;
-    margin: 0 .5em .5em 0;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: normal;
-    font-family: Arial, sans-serif;
-    position: relative;
-    background-color: #003570;
-    box-shadow: .2em .2em .5em #333;
+  display: inline-block;
+  width: 3.3em;
+  height: 4.6em;
+  border: 1px solid #666;
+  border-radius: .3em;
+  padding: .25em;
+  margin: 0 .5em .5em 0;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: normal;
+  font-family: Arial, sans-serif;
+  position: relative;
+  background-color: #003570;
+  box-shadow: .2em .2em .5em #333;
 }
 
 .Card.flipped {
