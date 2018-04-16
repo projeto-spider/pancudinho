@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
 import { boolean, text, withKnobs } from '@storybook/addon-knobs/vue'
