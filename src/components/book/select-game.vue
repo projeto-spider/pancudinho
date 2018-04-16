@@ -1,17 +1,22 @@
 <template>
   <div>
     <div class="book">
-      <p class="fairy-letter">Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius <span class="box" @click.prevent="(words[0].selected_gap=true) && (showOptions=true)">{{words[0].word_in_the_gap}}</span> reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his, <span class="box" @click.prevent="(words[1].selected_gap=true) && (showOptions=true)">{{words[1].word_in_the_gap}}</span> mei eros civibus lobortis ne. Lorem feugiat <span class="box" @click.prevent="(words[2].selected_gap=true) && (showOptions=true)">{{words[2].word_in_the_gap}}</span> sanctus nam no, et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne. </p>
+      <p class="fairy-letter">Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius <span class="box" @click.prevent="(words[0].selected_gap=true) && (showOptions=true)">{{words[0].word_in_the_gap}}</span> reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his, <span class="box" @click.prevent="(words[1].selected_gap=true) && (showOptions=true)">{{words[1].word_in_the_gap}}</span> mei eros civibus lobortis ne. Lorem feugiat <span class="box" @click.prevent="(words[2].selected_gap=true) && (showOptions=true)">{{words[2].word_in_the_gap}}</span> sanctus nam no, et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne. <div class="box five" @click="showTips=true">Tips</div> </p>
     </div>
 
-    <div v-if="showOptions===true">
-      <div class="defocus" @click="showOptions = false">
+    <div v-if="showOptions">
+      <div class="defocus">
+        <button  @click="showTips=true">Tips</button> <button  @click="delet()">Again</button> <button  @click="showOptions = false">X</button>
         <div class="box one" @click="((words[0].selected_word=true) && select())"> {{word1}} </div>
         <div class="box three" @click="((words[2].selected_word=true) && select())"> {{word3}} </div>
         <div class="box two" @click="((words[1].selected_word=true) && select())"> {{word2}} </div>
-        <button @click="delet()"> Again </button>
       </div>
-
+    </div>
+    <div v-if="showTips">
+      <div class=defocus>
+        <button style="margin-left:330px;" @click="showTips=false">X</button>
+        <div class="box four fairy-letter">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.</div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,7 +30,7 @@ export default {
     word2: "Praesent blandit",
     word3: "Nullam et",
     showOptions: false,
-
+    showTips: false,
     words:[
         {
         word1: "Lorem ",
@@ -76,7 +81,7 @@ export default {
 
 <style type="text/css">
 .book {
-  padding: 1.6em 2.3em 10.4em;
+  padding: 1.6em 2.3em 1.4em;
   margin: 4.6em 20em;
   border : 4mm ridge rgb(170, 50, 220, .6);
   border-radius: 3px;
@@ -88,15 +93,15 @@ export default {
   padding: 0.1em 2em;
   margin: 0.4em 0.4em;
   background: #ffffff;
-  border-radius: 5px
+  border-radius: 5px;
 }
 
 .box.one {
   padding: 1em 2em;
   margin: 0.4em 1em;
+  margin-top: 4cm;
   width: 60px;
-  margin-left: 190px;
-  margin-top: 160px;
+  margin-left: 150px;
   background: plum;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
   font: 400 23px/1.3 'Arizonia', Helvetica, sans-serif;
@@ -109,7 +114,7 @@ export default {
   padding: 1em 2em;
   margin: 0.4em 1em;
   width: 170px;
-  margin-left: 460px;
+  margin-left: 400px;
   margin-top: 40px;
   background: plum;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
@@ -133,12 +138,31 @@ export default {
   color: black
 }
 
+.box.four{
+  padding: 0.1em 2em;
+  margin: 0.4em 0.4em;
+  background: #ffffff;
+  border-radius: 5px;
+  margin-top: 2.5cm;
+}
+
+.box.five{
+  width: 90px;
+  border-radius: 10px;
+  margin-left: 4.4cm;
+  background: MediumOrchid;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
+  font: 30px 'Arizonia', Helvetica, sans-serif;
+  color: black;
+  text-align: center;
+}
+
 button{
   width: 90px;
-  margin-top:180px;
-  margin-left: 930px;
+  margin-top:50px;
+  margin-left: 50px;
   border-radius: 10px;
-  background: plum;
+  background: MediumOrchid;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
   font: 400 30px/1.3 'Arizonia', Helvetica, sans-serif;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
@@ -159,7 +183,6 @@ button{
 .box:hover{
   background: #cceeff
 }
-
 .fairy-letter{
   font: 400 40px/1.3 'Arizonia', Helvetica, sans-serif;
   color: #2b2b2b;
