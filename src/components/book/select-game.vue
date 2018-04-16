@@ -57,18 +57,18 @@ export default {
           }
         }
       }
-      this.words[0].selected_word=false
-      this.words[1].selected_word=false
-      this.words[2].selected_word=false
-      this.words[0].selected_gap=false
-      this.words[1].selected_gap=false
-      this.words[2].selected_gap=false
+      for(var i=0; i<this.words.length;i++){
+        this.words[i].selected_gap=false
+        this.words[i].selected_word=false
+      }
     },
 
     delet(){
-      this.words[0].word_in_the_gap="?"
-      this.words[1].word_in_the_gap="?"
-      this.words[2].word_in_the_gap="?"
+      for(var i=0; i<this.words.length;i++){
+        this.words[i].selected_gap=false
+        this.words[i].selected_word=false
+        this.words[i].word_in_the_gap="?"
+      }
     },
   }
 }
