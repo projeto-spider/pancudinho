@@ -1,7 +1,24 @@
 <template>
   <div>
     <div class="book">
-      <p class="fairy-letter">Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius <span class="box" @click.prevent="(words[0].selected_gap = true) && (showOptions = true)">{{words[0].word_in_the_gap}}</span> reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his, <span class="box" @click.prevent="(words[1].selected_gap = true) && (showOptions = true)">{{words[1].word_in_the_gap}}</span> mei eros civibus lobortis ne. Lorem feugiat <span class="box" @click.prevent="(words[2].selected_gap = true) && (showOptions = true)">{{words[2].word_in_the_gap}}</span> sanctus nam no, et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne. <div class="box five" @click="showTips = true">Tips</div> <div class="box five"  @click="delet()">Again</div></p>
+      <p class="fairy-letter">
+        Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius
+        <span class="box" @click.prevent="(words[0].selected_gap = true) && (showOptions = true)">
+          {{words[0].word_in_the_gap}}
+        </span> reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,
+        <span class="box" @click.prevent="(words[1].selected_gap = true) && (showOptions = true)">
+          {{words[1].word_in_the_gap}}
+        </span> mei eros civibus lobortis ne. Lorem feugiat
+        <span class="box" @click.prevent="(words[2].selected_gap = true) && (showOptions = true)">
+          {{words[2].word_in_the_gap}}
+        </span> sanctus nam no, et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne.
+      </p>
+      <div class="box five" @click="showTips = true">
+        Tips
+      </div>
+      <div class="box five"  @click="delet()">
+        Again
+      </div>
     </div>
 
     <div v-if="showOptions">
