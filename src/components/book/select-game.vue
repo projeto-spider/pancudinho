@@ -60,9 +60,9 @@ export default {
           }
         }
       }
-      for (var i = 0; i < this.words.length; i++) {
-        this.words[i].selected_gap = false
-        this.words[i].selected_word = false
+      for (var k = 0; k < this.words.length; k++) {
+        this.words[k].selected_gap = false
+        this.words[k].selected_word = false
       }
     },
     delet () {
