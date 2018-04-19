@@ -1,12 +1,13 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { boolean, text, object, withKnobs } from '@storybook/addon-knobs/vue'
+import { boolean, text, object, withKnobs, number } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 import { action } from '@storybook/addon-actions'
 
 import Card from '../components/memory-game/Card.vue'
 import Board from '../components/memory-game/Board.vue'
+import Deck from '../components/memory-game/Deck.vue'
 
 const stories = storiesOf('Memory Game', module)
 
@@ -47,4 +48,9 @@ stories
         console.log('a')
       }
     }
+  }))
+  .add('Deck', (h) => ({
+    render: h => h(Deck, { props: {
+      nCards: number('Cards Number', 5)
+    } })
   }))
