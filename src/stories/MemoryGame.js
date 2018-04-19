@@ -10,6 +10,7 @@ import Board from '../components/memory-game/Board.vue'
 import Deck from '../components/memory-game/Deck.vue'
 import Pancudinho from '../components/memory-game/Pancudinho.vue'
 import Message from '../components/memory-game/Message.vue'
+import Game from '../components/memory-game/Game.vue'
 
 const stories = storiesOf('Memory Game', module)
 
@@ -115,5 +116,9 @@ stories
       }, 'tip1'),
       open: boolean('Open Message', false),
       handleClose: action('Closing window')
+    } })
+  }))
+  .add('Game', (h) => ({
+    render: h => h(Game, { props: {
     } })
   }))
