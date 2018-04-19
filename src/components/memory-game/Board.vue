@@ -5,7 +5,7 @@
       :key="card.id"
       :flip="card.flip"
       :content="card.content"
-      :handle-click="() => clickedOne(card)"
+      :handle-click="() => handleClickCard(card)"
     ></Card>
   </div>
 </template>
@@ -24,15 +24,9 @@ export default {
       default: () => []
     },
 
-    handleClickOne: {
+    handleClickCard: {
       type: Function,
       default: () => {}
-    }
-  },
-
-  methods: {
-    clickedOne (card) {
-      this.handleClickOne(card)
     }
   }
 }

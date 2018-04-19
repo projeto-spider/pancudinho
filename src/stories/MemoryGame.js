@@ -27,7 +27,7 @@ stories
     template: `
       <Board
         :cards="cards"
-        :handle-click-one="handleClickOne"
+        :handle-click-card="handleClickCard"
       ></Board>
     `,
 
@@ -38,14 +38,53 @@ stories
         id: i + 1,
         flip: false,
         content: String.fromCharCode('A'.charCodeAt(0) + i)
-      })))
+      }))),
+
+      clickedCards: []
     }),
 
+    computed: {
+      canClick () {
+        return this.clickedCards.length < 2
+      }
+    },
+
     methods: {
+      handleClickCard (card) {
+        if (!this.canClick) return
+
+        const countClickedCards = this.clickedCards.length
+        if (countClickedCards === 0) {
+          this.handleClickOne(card)
+        } else if (countClickedCards === 1) {
+          this.handleClickTwo(card)
+        } else {
+          console.error('Failed to count card clicks')
+        }
+      },
+
       handleClickOne (card) {
         card.flip = !card.flip
-        action('Clicked on Card')(card)
-        console.log('a')
+        action('Clicked on first Card')(card)
+        this.clickedCards.push(card)
+      },
+
+      handleClickTwo (card) {
+        if (card.id === this.clickedCards[0].id) return
+
+        card.flip = !card.flip
+        action('Clicked on second Card')(card)
+        this.clickedCards.push(card)
+
+        action('Matched two cards')(...this.clickedCards)
+
+        setTimeout(() => {
+          for (let card of this.clickedCards) {
+            card.flip = false
+          }
+
+          this.clickedCards = []
+        }, 1500)
       }
     }
   }))
