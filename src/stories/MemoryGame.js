@@ -1,7 +1,7 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { boolean, text, object, withKnobs, number } from '@storybook/addon-knobs/vue'
+import { boolean, text, object, withKnobs, number, select } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 import { action } from '@storybook/addon-actions'
 
@@ -9,6 +9,7 @@ import Card from '../components/memory-game/Card.vue'
 import Board from '../components/memory-game/Board.vue'
 import Deck from '../components/memory-game/Deck.vue'
 import Pancudinho from '../components/memory-game/Pancudinho.vue'
+import Message from '../components/memory-game/Message.vue'
 
 const stories = storiesOf('Memory Game', module)
 
@@ -96,5 +97,17 @@ stories
   }))
   .add('Pancudinho', (h) => ({
     render: h => h(Pancudinho, { props: {
+    } })
+  }))
+  .add('Message', (h) => ({
+    render: h => h(Message, { props: {
+      tipsChoice: select('Tip ID', {
+        tip1: 'Tip One',
+        tip2: 'Tip Two',
+        tip3: 'Tip Three',
+        tip4: 'Premium Tip'
+      }, 'tip1'),
+      open: boolean('Open Message', false),
+      handleClose: action('Closing window')
     } })
   }))
