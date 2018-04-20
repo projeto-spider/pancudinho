@@ -97,6 +97,12 @@ stories
   }))
   .add('Pancudinho', (h) => ({
     render: h => h(Pancudinho, { props: {
+      tipsChoice: select('Tip ID', {
+        tip1: 'Tip One',
+        tip2: 'Tip Two',
+        tip3: 'Tip Three',
+        tip4: 'Premium Tip'
+      }, 'tip1')
     } })
   }))
   .add('Message', (h) => ({
