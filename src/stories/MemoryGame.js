@@ -8,6 +8,7 @@ import { action } from '@storybook/addon-actions'
 import Card from '../components/memory-game/Card.vue'
 import Board from '../components/memory-game/Board.vue'
 import Deck from '../components/memory-game/Deck.vue'
+import Pancudinho from '../components/memory-game/Pancudinho.vue'
 
 const stories = storiesOf('Memory Game', module)
 
@@ -91,5 +92,9 @@ stories
   .add('Deck', (h) => ({
     render: h => h(Deck, { props: {
       nCards: number('Cards Number', 5)
+    } })
+  }))
+  .add('Pancudinho', (h) => ({
+    render: h => h(Pancudinho, { props: {
     } })
   }))
