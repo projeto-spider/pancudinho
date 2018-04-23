@@ -4,7 +4,7 @@
       v-for="(card, i) in Array(realNCards)"
       :key="i"
       class="Card"
-      :style="{bottom: (i*2)+'px', left: (i*2)+'px'}"
+      :style="{top:  `-${i * 2}px`, left: `${i * 2}px`}"
     ></div>
   </div>
 </template>
