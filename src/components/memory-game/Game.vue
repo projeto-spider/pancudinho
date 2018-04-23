@@ -1,27 +1,30 @@
 <template>
   <div class="MemoryGame">
-    <div class="left-side">
-      <Board
-        :cards="cardsInGame"
-        :handle-click-card="handleClickCard"
-      ></Board>
-    </div>
 
-    <div class="right-side">
-
+    <div class="row">
+      <div class="column column-75">
+        <Board
+          :cards="cardsInGame"
+          :handle-click-card="handleClickCard"
+        ></Board>
+      </div>
+      <div class="column is-centered">
+        <Deck :n-cards="Math.max(cardsInDeck.length, 1)"></Deck>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Board from './Board.vue'
+import Deck from './Deck.vue'
 
 const FLIP_WAIT_TIME = 1500
 
 export default {
   name: 'MemoryGame',
 
-  components: { Board },
+  components: { Board, Deck },
 
   data: () => ({
     // This part is currently mocked
@@ -31,7 +34,8 @@ export default {
       flip: false,
       content: String.fromCharCode('A'.charCodeAt(0) + i) + `(${Math.floor(i % 13)})`,
       group: Math.floor(i % 13)
-    })).sort(() => Math.random() - Math.random()),
+    }))
+    .sort(() => Math.random() - Math.random()),
 
     cardsInDeck: [],
 
@@ -92,9 +96,30 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+html, body {
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
 .MemoryGame {
   width: 100%;
-  height: 100%;
+  margin: 15px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
 }
+
+.is-centered {
+  text-align: center;
+}
+
 </style>

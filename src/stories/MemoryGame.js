@@ -118,6 +118,9 @@ stories
       handleClose: action('Closing window')
     } })
   }))
+
+storiesOf('Memory Game', module)
+  .addDecorator(withKnobs)
   .add('Game', (h) => ({
     render: h => h(Game, { props: {
     } })
