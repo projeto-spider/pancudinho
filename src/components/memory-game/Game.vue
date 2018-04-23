@@ -50,7 +50,7 @@ export default {
       content: String.fromCharCode('A'.charCodeAt(0) + i) + `(${Math.floor(i % 13)})`,
       group: Math.floor(i % 13)
     }))
-    .sort(() => Math.random() - Math.random()),
+      .sort(() => Math.random() - Math.random()),
 
     cardsInDeck: [],
 
@@ -111,7 +111,7 @@ export default {
       }
     },
 
-    changeTip() {
+    changeTip () {
       this.currentTip = `tip${Math.round(Math.random() * (4 - 1) + 1)}`
     }
   }

@@ -35,7 +35,7 @@ export default {
   },
 
   methods: {
-    closeMessage() {
+    closeMessage () {
       this.open = false
       this.handleClose()
     }
