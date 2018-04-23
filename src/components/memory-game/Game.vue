@@ -8,8 +8,22 @@
           :handle-click-card="handleClickCard"
         ></Board>
       </div>
-      <div class="column is-centered">
-        <Deck :n-cards="Math.max(cardsInDeck.length, 1)"></Deck>
+
+      <div class="column is-centered control-column">
+        <div class="row deck-block">
+          <div class="column">
+            <Deck :n-cards="Math.max(cardsInDeck.length, 1)"></Deck>
+          </div>
+        </div>
+
+        <div class="row pancudinho-block">
+          <div class="column">
+            <Pancudinho
+              :tips-choice="currentTip"
+              :handle-close="changeTip"
+            ></Pancudinho>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -18,13 +32,14 @@
 <script>
 import Board from './Board.vue'
 import Deck from './Deck.vue'
+import Pancudinho from './Pancudinho.vue'
 
 const FLIP_WAIT_TIME = 1500
 
 export default {
   name: 'MemoryGame',
 
-  components: { Board, Deck },
+  components: { Board, Deck, Pancudinho },
 
   data: () => ({
     // This part is currently mocked
@@ -39,7 +54,10 @@ export default {
 
     cardsInDeck: [],
 
-    clickedCards: []
+    clickedCards: [],
+
+    // As we don't have real tips, we are mocking this
+    currentTip: 'tip1'
   }),
 
   computed: {
@@ -91,6 +109,10 @@ export default {
           this.clickedCards = []
         }, FLIP_WAIT_TIME)
       }
+    },
+
+    changeTip() {
+      this.currentTip = `tip${Math.round(Math.random() * (4 - 1) + 1)}`
     }
   }
 }
@@ -120,6 +142,12 @@ html, body {
 
 .is-centered {
   text-align: center;
+}
+
+.row .column.control-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 </style>

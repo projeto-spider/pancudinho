@@ -4,7 +4,7 @@
     <Message
       :open="open"
       :tips-choice="tipsChoice"
-      :handle-close="() => { open = false }"
+      :handle-close="closeMessage"
     ></Message>
   </div>
 </template>
@@ -14,15 +14,30 @@ import Message from './Message.vue'
 
 export default {
   name: 'Pancudinho',
+
   components: { Message },
+
   props: {
     tipsChoice: {
       type: String
+    },
+
+    handleClose: {
+      type: Function,
+      default: () => {}
     }
   },
+
   data () {
     return {
       open: false
+    }
+  },
+
+  methods: {
+    closeMessage() {
+      this.open = false
+      this.handleClose()
     }
   }
 }
