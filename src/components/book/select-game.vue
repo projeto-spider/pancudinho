@@ -1,23 +1,38 @@
 <template>
   <div>
     <div class="book">
+       <div v-if="inputOn==false" class="box five" @click.prevent="(inputOn=true) && (input=true) && (delet())">
+        Input Mode
+        </div>
+        <div v-if="inputOn==true" class="box five" @click.capture="input=false" @click="cleanAnswers()" @click.prevent="inputOn=false">
+        Select Mode
+        </div>
       <p class="fairy-letter">
         Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius
-        <span class="box" @click.prevent="(words[0].selected_gap = true) && (showOptions = true)">
-          {{words[0].word_in_the_gap}}
-        </span> reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,
-        <span class="box" @click.prevent="(words[1].selected_gap = true) && (showOptions = true)">
-          {{words[1].word_in_the_gap}}
-        </span> mei eros civibus lobortis ne. Lorem feugiat
-        <span class="box" @click.prevent="(words[2].selected_gap = true) && (showOptions = true)">
-          {{words[2].word_in_the_gap}}
-        </span> sanctus nam no, et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne.
+        <span v-if= "input===false" class="box" @click.prevent="(words[0].selected_gap = true) && (showOptions = true)">
+          {{words[0].word_in_the_gap}}</span>
+        <input v-if="input===true" v-model="words[0].typedAnswer" class="text"> <span class="check" v-if="(words[0].showCheck) && inputOn">✓</span> <span class="X" v-if="words[0].showX && inputOn">X</span>
+        reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,
+        <span v-if= "input===false" class="box" @click.prevent="(words[1].selected_gap = true) && (showOptions = true)">
+          {{words[1].word_in_the_gap}}</span>
+        <input v-if="input===true" v-model="words[1].typedAnswer" class="text"> <span class="check" v-if="(words[1].showCheck) && inputOn">✓</span> <span class="X" v-if="words[1].showX && inputOn">X</span>
+        mei eros civibus lobortis ne. Lorem feugiat
+        <span v-if= "input===false" class="box" @click.prevent="(words[2].selected_gap = true) && (showOptions = true)">
+          {{words[2].word_in_the_gap}}</span>
+        <input v-if="input===true" v-model="words[2].typedAnswer" class="text"> <span class="check" v-if="(words[2].showCheck) && inputOn">✓</span> <span class="X" v-if="words[2].showX && inputOn">X</span>
+        sanctus nam no,et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne.
       </p>
+      <div v-if="inputOn" class="box five" @click="(verifyAnswers())">
+        Submit
+      </div>
+      <div class="box five" v-if="!inputOn"  @click="delet()">
+        Again
+      </div>
+      <div class="box five" v-if="inputOn"  @click="cleanAnswers()">
+        Again
+      </div>
       <div class="box five" @click="showTips = true">
         Tips
-      </div>
-      <div class="box five"  @click="delet()">
-        Again
       </div>
     </div>
 
@@ -31,7 +46,7 @@
     </div>
     <div v-if="showTips">
       <div class=defocus>
-        <button style="margin-left:190px;" @click = "showTips=false">X</button>
+        <button style="margin-left:190px;" @click="showTips=false">X</button>
         <div class="box four fairy-letter">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.</div>
       </div>
     </div>
@@ -47,24 +62,35 @@ export default {
     word3: 'Nullam et',
     showOptions: false,
     showTips: false,
+    input: true,
+    inputOn: true,
     words: [
       {
-        word1: 'Lorem',
+        word1: 'lorem',
         selected_word: false,
         selected_gap: false,
-        word_in_the_gap: '?'
+        word_in_the_gap: '?',
+        typedAwnser: '',
+        showCheck: false,
+        showX: false
       },
       {
-        word1: 'Praesent blandit',
+        word1: 'praesent blandit',
         selected_word: false,
         selected_gap: false,
-        word_in_the_gap: '?'
+        word_in_the_gap: '?',
+        typedAnswer: '',
+        showCheck: false,
+        showX: false
       },
       {
-        word1: 'Nullam et',
+        word1: 'nullam et',
         selected_word: false,
         selected_gap: false,
-        word_in_the_gap: '?'
+        word_in_the_gap: '?',
+        typedAwnser: '',
+        showCheck: false,
+        showX: false
       }
     ]
   }),
@@ -87,6 +113,24 @@ export default {
         this.words[i].selected_gap = false
         this.words[i].selected_word = false
         this.words[i].word_in_the_gap = '?'
+      }
+    },
+    verifyAnswers () {
+      for (var i = 0; i < this.words.length; i++) {
+        if (this.words[i].word1 === this.words[i].typedAnswer.toLowerCase()) {
+          this.words[i].showCheck = true
+          this.words[i].showX = false
+        } else {
+          this.words[i].showCheck = false
+          this.words[i].showX = true
+        }
+      }
+    },
+    cleanAnswers () {
+      for (var i = 0; i < this.words.length; i++) {
+        this.words[i].typedAnswer = ''
+        this.words[i].showCheck = false
+        this.words[i].showX = false
       }
     }
   }
@@ -162,7 +206,7 @@ export default {
 .box.five{
   width: 90px;
   border-radius: 10px;
-  margin-left: 4.4cm;
+  margin-left: 3.8cm;
   background: MediumOrchid;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
   font: 30px 'Arizonia', Helvetica, sans-serif;
@@ -182,6 +226,17 @@ button{
   font: 400 30px/1.3 'Arizonia', Helvetica, sans-serif;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
 }
+input{
+  padding: 0.2em 0.1em;
+  margin: 0.2em 0.2em;
+  width:266px;
+  background: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+  font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
+  color: #2b2b2b;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
 .defocus {
   position: fixed;
   z-index: 2;
@@ -196,10 +251,18 @@ button{
 
 .box:hover{
   background: #cceeff
+
 }
 .fairy-letter{
   font: 400 40px/1.3 'Arizonia', Helvetica, sans-serif;
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
+.check{
+  color: green;
+}
+.X{
+  color: red;
+}
+
 </style>
