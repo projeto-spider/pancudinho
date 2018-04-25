@@ -9,6 +9,7 @@ function loadStories() {
   require('../src/stories/GqimGame')
   require('../src/stories/GqimGamePhaser')
   require('../src/stories/Animation')
+  require('../src/stories/BookDragDropGame')
 }
 
 configure(loadStories, module);
