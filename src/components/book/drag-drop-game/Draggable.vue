@@ -12,10 +12,10 @@
 </template>
 
 <script type="text/javascript">
-import Vue from 'vue';
-import { Drag } from 'vue-drag-drop';
+import Vue from 'vue'
+import { Drag } from 'vue-drag-drop'
 
-Vue.component('drag', Drag);
+Vue.component('drag', Drag)
 
 export default {
   name: 'Draggable',
