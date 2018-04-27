@@ -17,20 +17,27 @@ stories
   .add('Graph', (h) => ({
     render: h => h(Graph, { props: {
       initialNodes: object('Initial Nodes', [
-        {id: 1, label: 'Node 1'},
-        {id: 2, label: 'Node 2'},
-        {id: 3, label: 'Node 3'},
-        {id: 4, label: 'Node 4'},
-        {id: 5, label: 'Node 5'},
-        {id: 6, label: 'Node 6'}
+        { id: 'goal-1', label: 'Melhorar o desempenho do aluno' },
+        { id: 'question-1', label: 'Qual a média dos alunos?' },
+        { id: 'question-2', label: 'Quais notas obtidas em cada módulo da disciplina?' },
+        { id: 'question-3', label: 'Qual é a frequência do aluno?' },
+        { id: 'indicator-ma', label: 'MA – Média dos alunos' },
+        { id: 'indicator-naocmd', label: 'NAOCMD – Nota do aluno obtida em cada módulo da disciplina' },
+        { id: 'indicator-fa', label: 'FA – Frequência do aluno' },
+        { id: 'metric-1', label: 'Nota' },
+        { id: 'metric-2', label: 'Frequência' }
       ]),
 
       initialEdges: object('Initial Edges', [
-        {from: 1, to: 3},
-        {from: 1, to: 2},
-        {from: 2, to: 4},
-        {from: 2, to: 5},
-        {from: 3, to: 3}
+        { from: 'goal-1', to: 'question-1', arrows: 'to' },
+        { from: 'goal-1', to: 'question-2', arrows: 'to' },
+        { from: 'goal-1', to: 'question-3', arrows: 'to' },
+        { from: 'question-1', to: 'indicator-ma', arrows: 'to' },
+        { from: 'question-2', to: 'indicator-naocmd', arrows: 'to' },
+        { from: 'question-3', to: 'indicator-fa', arrows: 'to' },
+        { from: 'indicator-ma', to: 'metric-1', arrows: 'to' },
+        { from: 'indicator-naocmd', to: 'metric-1', arrows: 'to' },
+        { from: 'indicator-fa', to: 'metric-2', arrows: 'to' },
       ])
     } })
   }))
