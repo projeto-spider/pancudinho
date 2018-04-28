@@ -17,18 +17,16 @@ stories
 stories
   .add('Tips', (h) => ({
     render: h => h(Tips, { props: {
-      Tip: text('Content', 'Lorem inpsun dolor')
+      Tip: text('Tip', 'Lorem inpsun dolor')
     } })
   }))
   .add('VerificationSystem', (h) => ({
     render: h => h(VerificationSystem, { props: {
-      AnswerCorrect: text('Correct Answer:', 'Lorem')
-
+      AnswerCorrect: text('Answer Correct', 'Lorem')
     } })
   }))
   .add('VisualNovel', (h) => ({
     render: h => h(VisualNovel, { props: {
-      Tip: text('Content', 'Lorem inpsun dolor')
-
+      Tip: text('Tip:', 'Lorem inpsun dolor')
     } })
   }))
