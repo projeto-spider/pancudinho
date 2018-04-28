@@ -4,8 +4,8 @@
     <div v-if="showTips===true">
       <div class=defocus @click="showTips=false">
         <div class="box tip"> {{ Tip }} </div>
+      </div>
     </div>
-  </div>
 </div>
 </template>
 
@@ -22,12 +22,10 @@ export default {
       type: String,
       required: true
     }
-
   },
 
   data: () => ({
     showTips: false,
-
   }),
 
 }
@@ -47,7 +45,7 @@ export default {
 }
 button{
   width: 100px;
-  margin-top:200px;
+  margin-top:100px;
   margin-left: 800px;
   border-radius: 15px;
   background: plum;
