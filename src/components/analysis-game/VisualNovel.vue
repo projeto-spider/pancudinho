@@ -111,12 +111,5 @@ button{
   border-radius: 100px;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
 }
-/*
-.VisualNovel{
-	width: 400px;
-	height: 300px;
-  background-image: url(../../assets/academia.jpg)
 
-}
-*/
 </style>
