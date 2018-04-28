@@ -4,27 +4,25 @@
     <div class="box two"> personal </div>
       <div class="box baloom" v-if="talkThree==false">
         <div class="text"> {{talkList[1].task}} </div>
-        <button @click="nextTalk=true">>></button>
+        <button class="next" @click="nextTalk=true">>></button>
       </div>
       <div class="box baloom" v-if="talkThree==true">
         <div class="text"> {{talkList[2].task}} </div>
-        <button @click="Game=true">>></button>
+        <button class="next" @click="Game=true">>></button>
       </div>
   </div>
   <div v-if="nextTalk==true && Game==false">
     <div class="box two"> pancud </div>
       <div class="box baloom">
         <div class="text"> {{talkList[0].task}} </div>
-        <button @click.prevent="(talkThree=true)" @click="(nextTalk=false)" >>></button>
+        <button class="next" @click.prevent="(talkThree=true)" @click="(nextTalk=false)" >>></button>
       </div>
   </div>
-
-<Tips
-  v-if="Game==true"
-  :showTips="showTips"
-  :Tip="Tip">
-</Tips>
-
+  <Tips
+    v-if="Game==true"
+    :showTips="showTips"
+    :Tip="Tip"
+  ></Tips>
 </div>
 
 </template>
@@ -42,21 +40,19 @@ export default {
     talkThree: {
       type: Boolean,
       default: false
-    },
+    }
   },
 
   data: () => ({
-    talkList: [
-      {task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'},
-      {task: 'usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'},
-      {task: 'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'},
-    ],
     nextTalk: false,
     talkThree: false,
     Game: false,
-
+    talkList: [
+      {task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'},
+      {task: 'usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'},
+      {task: 'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'}
+    ]
   }),
-
 }
 </script>
 
@@ -73,13 +69,13 @@ export default {
   transition: opacity .3s ease;
 }
 
-button{
+.next{
   width: 100px;
-  margin-top:80px;
-  margin-left: 700px;
+  margin-top:0.1px;
+  margin-left: 670px;
   border-radius: 15px;
   background: plum;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.0);
   font: 400 30px/1.3 'Arizonia', Helvetica, sans-serif;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
   text-align: center;
