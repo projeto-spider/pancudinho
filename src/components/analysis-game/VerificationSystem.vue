@@ -11,8 +11,6 @@
 
 <script type="text/javascript">
 
-import Vue from 'vue'
-
 export default {
   name: 'VerificationSystem',
 
@@ -23,31 +21,34 @@ export default {
     },
   },
 
-  data: () => ({ //coloquei lista caso for necessário, mas só a primeira posição é funcional, já eu só tem um input simples
-    talkList:[
-      {talk:'lorem',
-      correct:false,
-      wrong:false,
-      Answer:'lorem'
+  data: () => ({ // coloquei lista caso for necessário, mas só a primeira posição é funcional, já eu só tem um input simples
+    correct: false,
+    wrong: false,
+    Answer: '',
+    talkList: [
+      {
+        talk: 'lorem',
+        correct: false,
+        wrong: false,
+        Answer: 'lorem'
       },
-      {talk:'Ipsum',
-      correct:false,
-      wrong:false,
-      Answer:''
+      {
+        talk: 'Ipsum',
+        correct: false,
+        wrong: false,
+        Answer: ''
       },
-      {talk:'lalala',
-      correct:false,
-      wrong:false,
-      Answer:'sada'
+      {
+        talk: 'lalala',
+        correct: false,
+        wrong: false,
+        Answer: 'sada'
       }
-    ],
-    correct:false,
-    wrong:false,
-    Answer:'',
+    ]
   }),
 
-  methods:{
-      verification() {
+  methods: {
+      verification () {
       for (var i = 0 ; i < this.talkList.length; i++) {
         if (this.talkList[i].talk === this.Answer.toLowerCase()) { // ou talkList[i].Answer
           this.talkList[i].correct = true

@@ -32,13 +32,11 @@
 <script type="text/javascript">
 
 import Tips from './Tips.vue'
-import Vue from 'vue'
-
 
 export default {
   name: 'VisualNovel',
 
-  components:{Tips},
+  components: {Tips},
 
   props: {
     talkThree: {
@@ -48,10 +46,10 @@ export default {
   },
 
   data: () => ({
-    talkList:[
-      {task:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'},
-      {task:'usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'},
-      {task:'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'},
+    talkList: [
+      {task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'},
+      {task: 'usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'},
+      {task: 'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'},
     ],
     nextTalk: false,
     talkThree: false,
