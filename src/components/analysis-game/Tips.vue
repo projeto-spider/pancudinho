@@ -1,5 +1,6 @@
 <template>
 <div class="Tips">
+  <p></P>
   <button @click="showTips=true">Tips</button>
     <div v-if="showTips===true">
       <div class=defocus @click="showTips=false">
@@ -23,6 +24,7 @@ export default {
 
   data: () => ({
     showTips: false,
+    Tip1: 'Lorem inpsun dolor'
   }),
 
 }
@@ -42,7 +44,7 @@ export default {
 }
 button{
   width: 100px;
-  margin-top:100px;
+  margin-top:300px;
   margin-left: 800px;
   border-radius: 15px;
   background: plum;
