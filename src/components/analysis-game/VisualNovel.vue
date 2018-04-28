@@ -40,6 +40,11 @@ export default {
     nextTalk: {
       type: Boolean,
       default: false
+    },
+
+    Tip: {
+      type: String,
+      required: true
     }
   },
 
