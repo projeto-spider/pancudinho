@@ -51,7 +51,7 @@ export default {
 
   methods: {
     verification () {
-      for (var i = 0;i < this.talkList.length;i++) {
+      for (var i = 0; i < this.talkList.length; i ++) {
         if (this.talkList[i].talk === this.Answer.toLowerCase()) { // ou talkList[i].Answer
           this.talkList[i].correct = true
           this.talkList[i].wrong = false
@@ -62,7 +62,7 @@ export default {
       }
     },
     again () {
-      for (var i = 0;i < this.talkList.length;i++) {
+      for (var i = 0;i < this.talkList.length ; i ++) {
         this.talkList[i].correct = false
         this.talkList[i].wrong = false
         this.Answer = ''
