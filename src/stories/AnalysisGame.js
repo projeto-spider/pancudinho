@@ -22,11 +22,11 @@ stories
   }))
   .add('VerificationSystem', (h) => ({
     render: h => h(VerificationSystem, { props: {
-      AnswerCorrect: text('Answer Correct', 'Lorem')
+      Tip: text('Answer Correct', 'Lorem' )
     } })
   }))
   .add('VisualNovel', (h) => ({
     render: h => h(VisualNovel, { props: {
-      Tip: text('Tip:', 'Lorem inpsun dolor')
+      Tip: text('Tip:', 'Lorem ipsum')
     } })
   }))

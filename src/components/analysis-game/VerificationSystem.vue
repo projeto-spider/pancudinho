@@ -18,12 +18,12 @@ export default {
 
   props: {
     AnswerCorrect: {
-      type: String,
-      required: true
+      type: Array,
+      default: () => []
     }
   },
 
-  data: () => ({ // coloquei lista caso for necessário, mas só a primeira posição é funcional, já eu só tem um input simples
+  data: () => ({ // coloquei lista caso for necessário, mas só a primeira posição é funcional (só tem um input habilitado)
     correct: false,
     wrong: false,
     Answer: '',
@@ -81,7 +81,7 @@ export default {
   border-radius: 500px;
   text-align: center;
   font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
-  color: #2b2b2b;
+  color: #000000;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
 }
@@ -93,7 +93,7 @@ export default {
   border-radius: 500px;
   text-align: center;
   font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
-  color: #080404;
+  color: #f3eaea;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
 }
@@ -105,7 +105,7 @@ export default {
   border-radius: 500px;
   text-align: center;
   font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
-  color: #030101;
+  color: #ffffff;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
 }
@@ -115,9 +115,9 @@ export default {
   border-radius: 15px;
   background: rgb(237, 180, 247);
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
-  font: 400 30px/1.3 'Arizonia', Helvetica, sans-serif;
+  font: 400 30px/0.8 'Arizonia', Helvetica, sans-serif;
   font: 13px 'Arizonia', Helvetica, sans-serif;
-  color: black;
+  color: rgb(0, 0, 0);
   text-align: center;
   padding: 0.7em 2em;
   margin: 0.7em 0.4em;
