@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import vis, { DataSet, Network } from 'vis'
+import { DataSet, Network } from 'vis'
 
 let network
 const UP_DOWN = 'UD'
@@ -22,11 +22,10 @@ export default {
       default: () => []
     },
 
-
     initialEdges: {
       type: Array,
       default: () => []
-    },
+    }
   },
 
   mounted () {
@@ -46,10 +45,23 @@ export default {
       const $container = this.$refs.el
       const data = { nodes: this.nodes, edges: this.edges }
       const options = {
+        nodes: {
+          shape: 'box',
+          widthConstraint: {
+            maximum: 100
+          }
+        },
+
         layout: {
           hierarchical: {
-            direction: UP_DOWN
+            sortMethod: 'directed',
+            direction: UP_DOWN,
+            nodeSpacing: 150
           }
+        },
+
+        physics: {
+          enabled: false
         }
       }
 
