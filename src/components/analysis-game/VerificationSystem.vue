@@ -17,8 +17,8 @@ export default {
   props: {
     AnswerCorrect: {
       type: String,
-      default: false
-    },
+      required: true
+    }
   },
 
   data: () => ({ // coloquei lista caso for necessário, mas só a primeira posição é funcional, já eu só tem um input simples
@@ -48,7 +48,7 @@ export default {
   }),
 
   methods: {
-      verification () {
+    verification () {
       for (var i = 0 ; i < this.talkList.length; i++) {
         if (this.talkList[i].talk === this.Answer.toLowerCase()) { // ou talkList[i].Answer
           this.talkList[i].correct = true
@@ -74,6 +74,7 @@ export default {
   font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
 }
 .text.correct{
   padding: 0.2em 0.1em;
@@ -85,6 +86,7 @@ export default {
   font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
   color: #080404;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
 }
 .text.wrong{
   padding: 0.2em 0.1em;
@@ -96,6 +98,7 @@ export default {
   font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
   color: #030101;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
 }
 
 .box.submit{
