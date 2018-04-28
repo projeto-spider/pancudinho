@@ -6,6 +6,7 @@ import Centered from '@storybook/addon-centered'
 
 import Draggable from '../components/book/drag-drop-game/Draggable.vue'
 import Droppable from '../components/book/drag-drop-game/Droppable.vue'
+import BookPage from '../components/book/drag-drop-game/BookPage.vue'
 
 const stories = storiesOf('Book Drag n Drop', module)
 
@@ -21,4 +22,7 @@ stories
   }))
   .add('Droppable', (h) => ({
     render: h => h(Droppable, { props: {} })
+  }))
+  .add('Book Page', (h) => ({
+    render: h => h(BookPage, { props: {} })
   }))
