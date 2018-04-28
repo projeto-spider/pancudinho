@@ -52,7 +52,7 @@ export default {
       {task: 'usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'},
       {task: 'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'}
     ]
-  }),
+  })
 }
 </script>
 
