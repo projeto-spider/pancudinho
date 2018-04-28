@@ -1,10 +1,12 @@
 <template>
 <div>
   <div class="VerificationSystem">
+    <button class="box submit" @click="(again())">Again</button>
     <input v-if="talkList[0].correct==false && talkList[0].wrong==false" v-model="Answer" class="text normal">
     <input v-if="talkList[0].correct==true" v-model="Answer" class="text correct">
     <input v-if="talkList[0].wrong==true" v-model="Answer" class="text wrong">
     <button class="box submit" @click="(verification())">Submit</button>
+
   </div>
 </div>
 </template>
@@ -57,6 +59,13 @@ export default {
           this.talkList[i].correct = false
           this.talkList[i].wrong = true
         }
+      }
+    },
+    again () {
+      for (var i = 0 ; i < this.talkList.length ; i++) {
+          this.talkList[i].correct = false
+          this.talkList[i].wrong = false
+          this.Answer = ''
       }
     }
   }
