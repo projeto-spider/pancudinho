@@ -25,6 +25,11 @@ export default {
     initialEdges: {
       type: Array,
       default: () => []
+    },
+
+    handleEdgeAdded: {
+      type: Function,
+      default: () => {}
     }
   },
 
@@ -41,6 +46,8 @@ export default {
 
       this.nodes = new DataSet(this.initialNodes.copyWithin())
       this.edges = new DataSet(this.initialEdges.copyWithin())
+
+      this.edges.on('add', (_event, props) => this.handleEdgeAdded(this.edges.get(props.items[0])))
 
       const $container = this.$refs.el
       const data = { nodes: this.nodes, edges: this.edges }
@@ -66,6 +73,15 @@ export default {
       }
 
       network = new Network($container, data, options)
+      window.network = network
+    },
+
+    addNode (node) {
+      this.nodes.add(node)
+    },
+
+    addEdgeMode () {
+      network.addEdgeMode()
     }
   }
 }

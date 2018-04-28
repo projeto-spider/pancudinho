@@ -1,11 +1,11 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { boolean, text, object, withKnobs, number, select } from '@storybook/addon-knobs/vue'
+import { object, withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
-import { action } from '@storybook/addon-actions'
 
 import Graph from '../components/gqim-game/Graph.vue'
+import Game from '../components/gqim-game/Game.vue'
 
 const stories = storiesOf('GQIM Game', module)
 
@@ -37,7 +37,11 @@ stories
         { from: 'question-3', to: 'indicator-fa', arrows: 'to' },
         { from: 'indicator-ma', to: 'metric-1', arrows: 'to' },
         { from: 'indicator-naocmd', to: 'metric-1', arrows: 'to' },
-        { from: 'indicator-fa', to: 'metric-2', arrows: 'to' },
+        { from: 'indicator-fa', to: 'metric-2', arrows: 'to' }
       ])
+    } })
+  }))
+  .add('Game', (h) => ({
+    render: h => h(Game, { props: {
     } })
   }))
