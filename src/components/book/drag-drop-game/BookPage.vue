@@ -23,14 +23,15 @@ export default {
 
 <style type="text/css">
 .book {
-  padding: 1.6em 2.3em 1.4em;
-  margin: 4.6em 20em;
+  padding: 5em 3em 3em 3em;
+  margin: 1em 5em;
   border-radius: 3px;
   text-align: left;
-  background: #fff6d1 /*Alternative color: #f3eded*/
+  background: #fff6d1; /*Alternative color: #f3eded*/
+  box-shadow: .2em .2em .5em #333
 }
 .fairy-letter{
-  font: 400 32px/1.3 'Arizonia', Helvetica, sans-serif;
+  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
