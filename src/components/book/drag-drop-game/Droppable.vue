@@ -1,6 +1,6 @@
 <template>
   <div>
-    <drop class="droppable" @drop="handleDrop" ref="el">
+    <drop :class="{'droppable': !dropped, 'dropcontain': dropped}" @drop="handleDrop" ref="el">
       <template v-if="dropped" slot-scope="props">
         <div class="dropped">
           {{ dropData }}
@@ -39,6 +39,12 @@ export default {
   border-left: 2px solid #ddd;
   padding: 25px 90px;
   border-radius: 5px;
+.dropcontain {
+  background: #eee;
+  border-top: 2px solid #ccc;
+  border-left: 2px solid #ddd;
+  padding: 10px 10px;
+  border-radius: 5px
 }
 .dropped {
   background: #bdbdbd;
