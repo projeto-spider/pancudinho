@@ -1,12 +1,23 @@
 <template>
   <div class="book">
-    <p class="fairy-letter">Lorem ipsum dolor sit amet, id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo. Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad. Est mediocrem vituperata in.</p>
+    <p class="fairy-letter">Lorem ipsum dolor sit amet,
+      <droppable></droppable>
+      id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.
+      <droppable></droppable>
+      Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.
+      <droppable></droppable>
+      id quo paulo scaevola
+    </p>
   </div>
 </template>
 
 <script type="text/javascript">
+import Droppable from './Droppable.vue'
+
 export default {
-  name: 'BookPage'
+  name: 'BookPage',
+
+  components: { Droppable }
 }
 </script>
 
