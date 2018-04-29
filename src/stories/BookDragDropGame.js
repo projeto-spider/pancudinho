@@ -10,6 +10,7 @@ import Droppable from '../components/book/drag-drop-game/Droppable.vue'
 import BookPage from '../components/book/drag-drop-game/BookPage.vue'
 import Tip from '../components/book/drag-drop-game/Tip.vue'
 import TipButton from '../components/book/drag-drop-game/TipButton.vue'
+import BookDragDropGame from '../components/book/drag-drop-game/Game.vue'
 
 const stories = storiesOf('Book Drag n Drop', module)
 
@@ -38,4 +39,8 @@ stories
   }))
   .add('Tip Button', (h) => ({
     render: h => h(TipButton, { props: {} })
+  }))
+  .add('Game', (h) => ({
+    render: h => h(BookDragDropGame, { props: {
+    } })
   }))
