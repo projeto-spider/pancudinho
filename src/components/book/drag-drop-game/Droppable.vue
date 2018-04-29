@@ -48,8 +48,7 @@ export default {
 }
 .dropped {
   background: #bdbdbd;
-  margin: -1em !important;
-  padding: 0.5em !important;
+  padding: 1em !important;
   border-radius: 5px;
   opacity: 0.5;
   display: block;
