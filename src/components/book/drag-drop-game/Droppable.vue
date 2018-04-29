@@ -38,7 +38,8 @@ export default {
   border-top: 2px solid #ccc;
   border-left: 2px solid #ddd;
   padding: 25px 90px;
-  border-radius: 5px;
+  border-radius: 5px
+}
 .dropcontain {
   background: #eee;
   border-top: 2px solid #ccc;
@@ -52,6 +53,6 @@ export default {
   border-radius: 5px;
   opacity: 0.5;
   display: block;
-  margin: 0;
+  margin: 0
 }
 </style>
