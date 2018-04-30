@@ -10,6 +10,7 @@ import VerificationSystem from '../components/analysis-game/VerificationSystem.v
 import Draggable from '../components/analysis-game/Draggable.vue'
 import Droppable from '../components/analysis-game/Droppable.vue'
 import Goal from '../components/analysis-game/Goal.vue'
+import AnalysisGame from '../components/analysis-game/Game.vue'
 
 const stories = storiesOf('Analysis Game', module)
 
@@ -45,4 +46,7 @@ stories
     render: h => h(Goal, { props: {
       goal: text('Goal', 'Loren inpsun dolor')
     } })
+  }))
+  .add('Game', (h) => ({
+    render: h => h(AnalysisGame, { props: {} })
   }))
