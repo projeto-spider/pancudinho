@@ -3,6 +3,7 @@
     <div class="goalbox s1">
       {{ goal }}
     </div>
+    <div class="pacman"></div>
   </div>
 </template>
 
@@ -41,5 +42,14 @@ export default {
   border-bottom: 10px solid transparent;
   left: 19px;
   bottom: -19px;
+}
+.pacman{
+  display:block;
+  width:0px;
+  height:0px;
+  border: 30px solid #ff0;
+  border-right: 30px solid transparent;
+  border-radius:50%;
+  position:relative;
 }
 </style>
