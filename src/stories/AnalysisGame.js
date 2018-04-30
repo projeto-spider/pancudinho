@@ -9,6 +9,7 @@ import VisualNovel from '../components/analysis-game/VisualNovel.vue'
 import VerificationSystem from '../components/analysis-game/VerificationSystem.vue'
 import Draggable from '../components/analysis-game/Draggable.vue'
 import Droppable from '../components/analysis-game/Droppable.vue'
+import Goal from '../components/analysis-game/Goal.vue'
 
 const stories = storiesOf('Analysis Game', module)
 
@@ -39,4 +40,9 @@ stories
   }))
   .add('Droppable', (h) => ({
     render: h => h(Droppable, { props: {} })
+  }))
+  .add('Goal', (h) => ({
+    render: h => h(Goal, { props: {
+      goal: text('Goal', 'Loren inpsun dolor')
+    } })
   }))
