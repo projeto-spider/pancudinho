@@ -42,9 +42,6 @@ export default {
   transition: opacity .3s ease;
 }
 button{
-  width: 100px;
-  margin-top:300px;
-  margin-left: 800px;
   border-radius: 15px;
   background: plum;
   padding: 0.1px 16px;
