@@ -1,6 +1,6 @@
 <template>
 <div class="VisualNovel">
-  <div  v-if="Talk==false && Game==false">
+  <div  v-if="Talk==false">
     <div class="box character"> personal </div>
       <div class="box balloon" v-if="nextTalk==false">
         <div class="text"> {{talkList[0].task}} </div>
@@ -8,50 +8,35 @@
       </div>
       <div class="box balloon" v-if="nextTalk==true">
         <div class="text"> {{talkList[2].task}} </div>
-        <button class="next" @click="Game=true">>></button>
+        <button class="next">>></button>
       </div>
   </div>
-  <div v-if="Talk==true && Game==false">
+  <div v-if="Talk==true">
     <div class="box character"> pancud </div>
       <div class="box balloon">
         <div class="text"> {{talkList[1].task}} </div>
         <button class="next" @click.prevent="(nextTalk=true)" @click="(Talk=false)" >>></button>
       </div>
   </div>
-  <Tips
-    v-if="Game==true"
-    :showTips="showTips"
-    :Tip="Tip"
-  ></Tips>
 </div>
 
 </template>
 
 <script type="text/javascript">
 
-import Tips from './Tips.vue'
-
 export default {
   name: 'VisualNovel',
-
-  components: {Tips},
 
   props: {
     nextTalk: {
       type: Boolean,
       default: false
-    },
-
-    Tip: {
-      type: String,
-      required: true
     }
   },
 
   data: () => ({
     Talk: false,
     nextTalk: false,
-    Game: false,
     talkList: [
       {task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'},
       {task: 'Usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'},
@@ -62,18 +47,6 @@ export default {
 </script>
 
 <style>
-.defocus {
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: table;
-  transition: opacity .3s ease;
-  background-color: rgba(0, 0, 0, .7);
-}
-
 .next{
   width: 100px;
   border: none;
