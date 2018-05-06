@@ -89,7 +89,7 @@ export default {
   padding: 0.2em 0.1em;
   margin: 0.2em 0.2em;
   width:266px;
-  background: #1fdd0e;
+  background: #21a814;
   border-radius: 500px;
   text-align: center;
   font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
@@ -101,7 +101,7 @@ export default {
   padding: 0.2em 0.1em;
   margin: 0.2em 0.2em;
   width:266px;
-  background: #d41919;
+  background: #cc1919;
   border-radius: 500px;
   text-align: center;
   font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
