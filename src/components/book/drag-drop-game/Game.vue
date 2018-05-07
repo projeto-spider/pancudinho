@@ -1,7 +1,9 @@
 <template>
   <div class="game">
     <div class="bookpage">
-      <bookPage></bookPage>
+      <bookPage
+        :contents="contents"
+      ></bookPage>
     </div>
     <tipButton class="margin-layout"></tipButton>
     <div class="draggablearea">
@@ -30,6 +32,35 @@ export default {
       'Loren impsun',
       'Lurest farm',
       'Tomes net'
+    contents: [
+      {
+        type: 'text',
+        text: 'Lorem ipsum dolor sit amet,'
+      },
+      {
+        type: 'answer',
+        answer: 'Lurest farm'
+      },
+      {
+        type: 'text',
+        text: 'id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.'
+      },
+      {
+        type: 'answer',
+        answer: 'Loren impsun'
+      },
+      {
+        type: 'text',
+        text: 'Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.'
+      },
+      {
+        type: 'answer',
+        answer: 'Tomes net'
+      },
+      {
+        type: 'text',
+        text: 'id quo paulo scaevola'
+      }
     ]
   })
 }
