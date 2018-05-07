@@ -1,13 +1,15 @@
 <template>
   <div class="book">
-    <p class="fairy-letter">Lorem ipsum dolor sit amet,
-      <droppable></droppable>
-      id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.
-      <droppable></droppable>
-      Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.
-      <droppable></droppable>
-      id quo paulo scaevola
-    </p>
+    <div v-for="(content, i) in contents" :key="i">
+      <p v-if="content.type === 'text'">
+        <span class="fairy-letter">{{content.text}}</span>
+      </p>
+      <div v-else>
+        <droppable
+          :checkDrop="buildAswers"
+        ></droppable>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,7 +19,14 @@ import Droppable from './Droppable.vue'
 export default {
   name: 'BookPage',
 
-  components: { Droppable }
+  components: { Droppable },
+
+  props: {
+    contents: {
+      type: Array,
+      default: () => []
+    }
+  }
 }
 </script>
 
