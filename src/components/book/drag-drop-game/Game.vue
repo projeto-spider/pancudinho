@@ -9,7 +9,7 @@
     <div class="draggablearea">
       <div v-for="(option, i) in options" :key="i">
         <draggable
-          :content="option"
+          :content="option.text"
         >
         </draggable>
       </div>
@@ -29,9 +29,19 @@ export default {
 
   data: () => ({
     options: [
-      'Loren impsun',
-      'Lurest farm',
-      'Tomes net'
+      {
+        text: 'Loren impsun',
+        id: 1
+      },
+      {
+        text: 'Lurest farm',
+        id: 2
+      },
+      {
+        text: 'Tomes net',
+        id: 3
+      }
+    ],
     contents: [
       {
         type: 'text',
