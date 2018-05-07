@@ -1,7 +1,7 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { text, withKnobs, boolean } from '@storybook/addon-knobs/vue'
+import { text, withKnobs, boolean, object } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 import { action } from '@storybook/addon-actions'
 
@@ -28,7 +28,38 @@ stories
     render: h => h(Droppable, { props: {} })
   }))
   .add('Book Page', (h) => ({
-    render: h => h(BookPage, { props: {} })
+    render: h => h(BookPage, { props: {
+      contents: object('Content', [
+        {
+          type: 'text',
+          text: 'Lorem ipsum dolor sit amet,'
+        },
+        {
+          type: 'answer',
+          answer: ''
+        },
+        {
+          type: 'text',
+          text: 'id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.'
+        },
+        {
+          type: 'answer',
+          answer: ''
+        },
+        {
+          type: 'text',
+          text: 'Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.'
+        },
+        {
+          type: 'answer',
+          answer: ''
+        },
+        {
+          type: 'text',
+          text: 'id quo paulo scaevola'
+        }
+      ])
+    } })
   }))
   .add('Tip', (h) => ({
     render: h => h(Tip, { props: {
