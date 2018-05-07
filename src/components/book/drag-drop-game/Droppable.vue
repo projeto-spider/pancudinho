@@ -18,6 +18,13 @@ export default {
 
   components: { Drop },
 
+  props: {
+    checkDrop: {
+      type: Function,
+      default: () => {}
+    }
+  },
+
   data: () => ({
     dropData: '',
     dropped: false
@@ -27,6 +34,7 @@ export default {
     handleDrop () {
       this.dropData = this.$refs.el.transferData
       this.dropped = true
+      this.checkDrop(this.dropData)
     }
   }
 }
