@@ -22,4 +22,18 @@ export default class GqimNode extends Phaser.GameObjects.Text {
   setDraggable (value = true) {
     this.scene.input.setDraggable(this, value)
   }
+
+  enterDropZone = (dropZone) => {
+    this.setData('droppedIn', dropZone)
+    this.setPosition(dropZone.x, dropZone.y)
+  }
+
+  leaveDropZone = () => {
+    const currentDropZone = this.getData('droppedIn')
+
+    if (currentDropZone) {
+      currentDropZone.onDropOut(this)
+      this.setData('droppedIn', false)
+    }
+  }
 }

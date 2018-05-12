@@ -490,11 +490,7 @@ stories
               paddingDrag.x = pointer.x - gameObject.x
               paddingDrag.y = pointer.y - gameObject.y
 
-              const currentDropZone = gameObject.getData('droppedIn')
-              if (currentDropZone) {
-                currentDropZone.setData('dropped', false)
-                gameObject.setData('droppedIn', false)
-              }
+              gameObject.leaveDropZone()
             })
             this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
               isDraggingSomething = true
@@ -537,13 +533,7 @@ stories
             })
 
             this.input.on('drop', function drop (pointer, gameObject, dropZone) {
-              const droppedThere = dropZone.getData('dropped')
-              if (!droppedThere) {
-                gameObject.x = dropZone.x
-                gameObject.y = dropZone.y
-                dropZone.setData('dropped', gameObject)
-                gameObject.setData('droppedIn', dropZone)
-              }
+              dropZone.onDropIn(gameObject)
             })
           },
           update () {}
