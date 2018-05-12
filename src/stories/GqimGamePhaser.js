@@ -165,14 +165,230 @@ stories
             })
             this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
               isDraggingSomething = true
-              if (camera.zoom < 0.7) {
-                const { x, y } = camera.getWorldPoint(pointer.position.x, pointer.position.y)
-                gameObject.x = x - (paddingDrag.x * Math.min(camera.zoom, 1))
-                gameObject.y = y - (paddingDrag.y * Math.min(camera.zoom, 1))
+              const { x, y } = camera.getWorldPoint(pointer.position.x, pointer.position.y)
+              gameObject.x = x
+              gameObject.y = y
+            })
+
+            this.input.on('dragend', function dragend (pointer, gameObject, dropped) {
+              isDraggingSomething = false
+            })
+
+            let lastPointerPosition = { x: 0, y: 0 }
+
+            this.sys.canvas.onmousewheel = function onmousewheel ({ deltaY }) {
+              camera.setZoom(
+                camera.zoom - (deltaY / 2000)
+              )
+            }
+
+            let originDragPoint = null
+
+            this.input.on('pointermove', function pointermove (pointer, objects) {
+              if (isDraggingSomething) return
+              lastPointerPosition.x = pointer.x
+              lastPointerPosition.y = pointer.y
+
+              if (pointer.isDown) {
+                if (originDragPoint) {
+                  camera.setScroll(
+                    camera.scrollX + (originDragPoint.x - pointer.x),
+                    camera.scrollY + (originDragPoint.y - pointer.y)
+                  )
+                }
+
+                originDragPoint = Object.assign({}, lastPointerPosition)
               } else {
-                gameObject.x = dragX
-                gameObject.y = dragY
+                originDragPoint = null
               }
+            })
+
+            this.input.on('drop', function drop (pointer, gameObject, dropZone) {
+              const droppedThere = dropZone.getData('dropped')
+              if (!droppedThere) {
+                gameObject.x = dropZone.x
+                gameObject.y = dropZone.y
+                dropZone.setData('dropped', gameObject)
+                gameObject.setData('droppedIn', dropZone)
+              }
+            })
+          },
+          update () {}
+        }
+      }
+    } })
+  }))
+  .add('Game', (h) => ({
+    render: h => h(Phaser, { props: {
+      config: {
+        physics: {
+          default: 'arcade'
+        },
+        scene: {
+          preload () {},
+          create () {
+            const camera = this.cameras.main
+            camera.setBackgroundColor('#bdbdbd')
+
+            const tree = {
+              goal: {
+                id: 'goal-1',
+                label: 'Melhorar o desempenho do aluno',
+                x: -70,
+                y: 100
+              },
+
+              questions: [
+                {
+                  id: 'question-1',
+                  label: 'Qual a média dos alunos?'
+                },
+                {
+                  id: 'question-2',
+                  label: 'Quais notas obtidas em cada módulo da disciplina?'
+                },
+                {
+                  id: 'question-3',
+                  label: 'Qual é a frequência do aluno?'
+                }
+              ],
+
+              indicators: [
+                {
+                  id: 'indicator-ma',
+                  label: 'MA – Média dos alunos'
+                },
+                {
+                  id: 'indicator-naocmd',
+                  label: 'NAOCMD – Nota do aluno obtida em cada módulo da disciplina'
+                },
+                {
+                  id: 'indicator-fa',
+                  label: 'FA – Frequência do aluno'
+                },
+                {
+                  id: 'metric-1',
+                  label: 'Nota'
+                }
+              ],
+
+              metrics: [
+                {
+                  id: 'metric-1',
+                  label: 'Nota'
+                },
+                {
+                  id: 'metric-2',
+                  label: 'Frequência'
+                }
+              ]
+            }
+
+            const NODE_HORIZONTAL_MARGIN = 100
+            const NODE_VERTICAL_MARGIN = 100
+
+            const goalNode = new GqimNode(this, 0, 0, tree.goal.label) // eslint-disable-line
+
+            const questionNodes = tree.questions.map(question =>
+              new GqimNode(this, 0, 0, question.label) // eslint-disable-line
+            )
+
+            const indicatorNodes = tree.indicators.map(indicator =>
+              new GqimNode(this, 0, 0, indicator.label) // eslint-disable-line
+            )
+
+            const metricNodes = tree.metrics.map(metric =>
+              new GqimNode(this, 0, 0, metric.label) // eslint-disable-line
+            )
+
+            centralizeVerticallyGroups([goalNode], questionNodes, indicatorNodes, metricNodes)
+            centralizeHorizontalyNodes(questionNodes)
+            centralizeHorizontalyNodes(indicatorNodes)
+            centralizeHorizontalyNodes(metricNodes)
+
+            function centralizeHorizontalyNodes (nodes) {
+              const middleIndex = Math.ceil(nodes.length / 2)
+
+              let lefts = nodes.slice(0, middleIndex)
+              let rights = []
+
+              if (nodes.length % 2 === 0) {
+                const leftMiddleNode = nodes[middleIndex - 1]
+                const rightMiddleNode = nodes[middleIndex]
+
+                const leftMiddleNodeX =
+                  -(NODE_HORIZONTAL_MARGIN / 2) - (leftMiddleNode.width / 2)
+                const rightMiddleNodeX =
+                  (NODE_HORIZONTAL_MARGIN / 2) + (rightMiddleNode.width / 2)
+                leftMiddleNode.setPosition(leftMiddleNodeX, leftMiddleNode.y)
+                rightMiddleNode.setPosition(rightMiddleNodeX, rightMiddleNode.y)
+
+                // Includes the right middle node
+                rights = nodes.slice(middleIndex)
+              } else {
+                const middleNode = nodes[middleIndex]
+                middleNode.setPosition(0, middleNode.y)
+
+                // Include middle node
+                rights = nodes.slice(middleIndex - 1)
+              }
+
+              lefts.reverse().forEach((node, i, nodes) => {
+                if (!nodes[i - 1]) return
+
+                const neighborBounds = nodes[i - 1].getBounds()
+                const x = neighborBounds.x - NODE_HORIZONTAL_MARGIN - node.width / 2
+                node.setPosition(x, node.y)
+              })
+
+              rights.forEach((node, i, nodes) => {
+                if (!nodes[i - 1]) return
+
+                const neighborBounds = nodes[i - 1].getBounds()
+                const x = neighborBounds.x + neighborBounds.width + NODE_HORIZONTAL_MARGIN + node.width / 2
+                node.setPosition(x, node.y)
+              })
+            }
+
+            function centralizeVerticallyGroups (...groups) {
+              groups.forEach((group, i) => {
+                if (!groups[i - 1]) return
+
+                const prev = groups[i - 1]
+                const prevHighestYBound = Math.max(
+                  ...prev.map(node => {
+                    const { y, height } = node.getBounds()
+                    return y + height
+                  })
+                )
+                const baseY = prevHighestYBound + NODE_VERTICAL_MARGIN
+
+                group.forEach(node =>
+                  node.setPosition(node.x, baseY + node.getBounds().height / 2)
+                )
+              })
+            }
+
+            centralizeHorizontalyNodes(questionNodes)
+
+            let isDraggingSomething = false
+            let paddingDrag = { x: 0, y: 0 }
+
+            this.input.on('dragstart', function dragstart (pointer, gameObject) {
+              paddingDrag.x = pointer.x - gameObject.x
+              paddingDrag.y = pointer.y - gameObject.y
+
+              const currentDropZone = gameObject.getData('droppedIn')
+              if (currentDropZone) {
+                currentDropZone.setData('dropped', false)
+                gameObject.setData('droppedIn', false)
+              }
+            })
+            this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+              isDraggingSomething = true
+              const { x, y } = camera.getWorldPoint(pointer.position.x, pointer.position.y)
+              gameObject.x = x
+              gameObject.y = y
             })
 
             this.input.on('dragend', function dragend (pointer, gameObject, dropped) {
