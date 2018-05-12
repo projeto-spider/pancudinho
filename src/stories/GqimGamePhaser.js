@@ -305,12 +305,25 @@ stories
               ]
             }
 
+            const draggableNodes = []
+
+            const createDraggableNode = element => {
+              const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
+              node.setData('id', element.id)
+              node.setData('edges', element.edges)
+
+              draggableNodes.push(node)
+            }
+
             const createNode = element => {
               if (element.toDrop) {
-                const node = new DropZone(this, 0, 0) // eslint-disable-line
-                node.setData('id', element.id)
-                node.setData('edges', element.edges)
-                return node
+                const dropZone = new DropZone(this, 0, 0) // eslint-disable-line
+                dropZone.setData('id', element.id)
+                dropZone.setData('edges', element.edges)
+
+                createDraggableNode(element)
+
+                return dropZone
               } else {
                 const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
                 node.setDraggable(false)
@@ -339,6 +352,7 @@ stories
             centralizeHorizontalyNodes(questionNodes)
             centralizeHorizontalyNodes(indicatorNodes)
             centralizeHorizontalyNodes(metricNodes)
+            positionDraggableNodesBesidesTree(treeNodes, draggableNodes)
 
             camera.setScroll(goalNode.x - this.sys.game.canvas.width / 2, goalNode.y - 100)
 
@@ -430,6 +444,38 @@ stories
                 group.forEach(node =>
                   node.setPosition(node.x, baseY + node.getBounds().height / 2)
                 )
+              })
+            }
+
+            function positionDraggableNodesBesidesTree (treeNodes, nodes) {
+              const rightmostTreePosition =
+                Math.max(...Object.values(treeNodes)
+                  // Force be array for goalNode
+                  .map(x => Array.isArray(x) ? x : [x])
+                  .map(nodes =>
+                    Math.max(...nodes.map(node => {
+                      const { x, width } = node.getBounds()
+                      return x + width
+                    }))
+                  )
+                )
+
+              const baseX = rightmostTreePosition + NODE_HORIZONTAL_MARGIN
+
+              const largestNodeWidth = Math.max(...draggableNodes.map(node => node.width))
+
+              nodes.forEach((node, i) => {
+                const prev = nodes[i - 1]
+
+                const x = baseX + largestNodeWidth / 2
+
+                if (!prev) {
+                  return node.setPosition(x, goalNode.getBounds().y)
+                }
+
+                const prevBounds = prev.getBounds()
+                const y = prevBounds.y + prevBounds.height + NODE_VERTICAL_MARGIN
+                return node.setPosition(x, y)
               })
             }
 
