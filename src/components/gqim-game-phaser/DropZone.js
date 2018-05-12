@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 
 export default class DropZone extends Phaser.GameObjects.Zone {
   constructor (scene, x, y) {
-    super(scene, x, y, 400, 250)
+    super(scene, x, y, 400, 100)
     this.setDropZone()
     scene.add.existing(this)
 

@@ -130,9 +130,26 @@ stories
             const camera = this.cameras.main
             camera.setBackgroundColor('#bdbdbd')
             const lorem = 'NAOCMD – Nota do aluno obtida em cada módulo da disciplina'
-            new DropZone(this, 400, 250) // eslint-disable-line
-            new GqimNode(this, 300, 500, lorem) // eslint-disable-line
-            new GqimNode(this, 600, 500, '2' + lorem) // eslint-disable-line
+            new DropZone(this, 200, 100) // eslint-disable-line
+            new DropZone(this, -70, -100) // eslint-disable-line
+            new DropZone(this, -300, 100) // eslint-disable-line
+            new DropZone(this, 500, 300) // eslint-disable-line
+            new DropZone(this, 0, 300) // eslint-disable-line
+            new DropZone(this, -500, 300) // eslint-disable-line
+            new DropZone(this, -700, 500) // eslint-disable-line
+            new DropZone(this, 250, 500) // eslint-disable-line
+            new DropZone(this, -250, 500) // eslint-disable-line
+            new DropZone(this, 700, 500) // eslint-disable-line
+            new GqimNode(this, 600, -10, lorem) // eslint-disable-line
+            new GqimNode(this, 600, -60, '2' + lorem) // eslint-disable-line
+            new GqimNode(this, 600, -110, '3' + lorem) // eslint-disable-line
+            new GqimNode(this, 600, -160, '4' + lorem) // eslint-disable-line
+            new GqimNode(this, 600, -210, '5' + lorem) // eslint-disable-line
+            new GqimNode(this, 600, -260, '6' + lorem) // eslint-disable-line
+            new GqimNode(this, 600, -310, '7' + lorem) // eslint-disable-line
+            new GqimNode(this, 600, -360, '8' + lorem) // eslint-disable-line
+            new GqimNode(this, 600, -410, '9' + lorem) // eslint-disable-line
+            new GqimNode(this, 600, -460, '10' + lorem) // eslint-disable-line
             let isDraggingSomething = false
             let paddingDrag = { x: 0, y: 0 }
 
