@@ -313,6 +313,7 @@ stories
                 return node
               } else {
                 const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
+                node.setDraggable(false)
                 node.setData('id', element.id)
                 node.setData('edges', element.edges)
                 return node

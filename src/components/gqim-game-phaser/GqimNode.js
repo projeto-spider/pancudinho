@@ -18,4 +18,8 @@ export default class GqimNode extends Phaser.GameObjects.Text {
     scene.physics.add.existing(this)
     scene.input.setDraggable(this)
   }
+
+  setDraggable (value = true) {
+    this.scene.input.setDraggable(this, value)
+  }
 }
