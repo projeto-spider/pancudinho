@@ -483,6 +483,10 @@ stories
             let paddingDrag = { x: 0, y: 0 }
 
             this.input.on('dragstart', function dragstart (pointer, gameObject) {
+              draggableNodes.forEach(node => {
+                node.setDepth(node === gameObject ? 1 : 0)
+              })
+
               paddingDrag.x = pointer.x - gameObject.x
               paddingDrag.y = pointer.y - gameObject.y
 
