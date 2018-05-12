@@ -3,6 +3,7 @@ import Vue from 'vue' // eslint-disable-line
 import { storiesOf } from '@storybook/vue'
 import { withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
+import PhaserEngine from 'phaser'
 
 import Phaser from '../components/gqim-game-phaser/Phaser.vue'
 import GqimNode from '../components/gqim-game-phaser/GqimNode'
@@ -233,51 +234,76 @@ stories
             const tree = {
               goal: {
                 id: 'goal-1',
-                label: 'Melhorar o desempenho do aluno'
+                label: 'Melhorar o desempenho do aluno',
+                edges: [
+                  'question-1',
+                  'question-2',
+                  'question-3'
+                ]
               },
 
               questions: [
                 {
                   id: 'question-1',
-                  label: 'Qual a média dos alunos?'
+                  label: 'Qual a média dos alunos?',
+                  edges: [
+                    'indicator-ma'
+                  ]
                 },
                 {
                   id: 'question-2',
-                  label: 'Quais notas obtidas em cada módulo da disciplina?'
+                  label: 'Quais notas obtidas em cada módulo da disciplina?',
+                  edges: [
+                    'indicator-naocmd'
+                  ]
                 },
                 {
                   id: 'question-3',
-                  label: 'Qual é a frequência do aluno?'
+                  label: 'Qual é a frequência do aluno?',
+                  edges: [
+                    'indicator-fa'
+                  ]
                 }
               ],
 
               indicators: [
                 {
                   id: 'indicator-ma',
-                  label: 'MA – Média dos alunos'
+                  label: 'MA – Média dos alunos',
+                  edges: [
+                    'metric-1'
+                  ]
                 },
                 {
                   id: 'indicator-naocmd',
-                  label: 'NAOCMD – Nota do aluno obtida em cada módulo da disciplina'
+                  label: 'NAOCMD – Nota do aluno obtida em cada módulo da disciplina',
+                  edges: [
+                    'metric-1'
+                  ]
                 },
                 {
                   id: 'indicator-fa',
-                  label: 'FA – Frequência do aluno'
-                },
-                {
-                  id: 'metric-1',
-                  label: 'Nota'
+                  label: 'FA – Frequência do aluno',
+                  edges: [
+                    'metric-2'
+                  ]
                 }
               ],
 
               metrics: [
                 {
                   id: 'metric-1',
-                  label: 'Nota'
+                  label: 'Nota',
+                  edges: [
+
+                  ]
                 },
                 {
                   id: 'metric-2',
-                  label: 'Frequência'
+                  label: 'Frequência',
+                  edges: [
+
+                  ]
                 }
               ]
             }
@@ -285,6 +311,7 @@ stories
             const createNode = element => {
               const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
               node.setData('id', element.id)
+              node.setData('edges', element.edges)
               return node
             }
 
@@ -292,6 +319,8 @@ stories
             const questionNodes = tree.questions.map(createNode)
             const indicatorNodes = tree.indicators.map(createNode)
             const metricNodes = tree.metrics.map(createNode)
+            // connectBetweenTreeLevels(questionNodes, indicatorNodes)
+            // connectBetweenTreeLevels(indicatorNodes, metricNodes)
 
             const treeNodes = {
               goalNode,
@@ -307,6 +336,34 @@ stories
             centralizeHorizontalyNodes(questionNodes)
             centralizeHorizontalyNodes(indicatorNodes)
             centralizeHorizontalyNodes(metricNodes)
+
+            connectBetweenTreeLevels(this, [goalNode], questionNodes)
+            connectBetweenTreeLevels(this, questionNodes, indicatorNodes)
+            connectBetweenTreeLevels(this, indicatorNodes, metricNodes)
+
+            function connectBetweenTreeLevels (scene, topNodes, bottomNodes) {
+              topNodes.forEach(topNode => {
+                if (!topNode) return
+                const edges = topNode.getData('edges')
+
+                bottomNodes.forEach(bottomNode => {
+                  const id = bottomNode.getData('id')
+
+                  if (edges.includes(id)) {
+                    const graphics = scene.add.graphics({ lineStyle: { width: 3, color: 0xaa00aa } })
+
+                    const line = new PhaserEngine.Geom.Line(
+                      topNode.x,
+                      topNode.y + topNode.height / 2,
+                      bottomNode.x,
+                      bottomNode.y - bottomNode.height / 2
+                    )
+
+                    graphics.strokeLineShape(line)
+                  }
+                })
+              })
+            }
 
             function centralizeHorizontalyNodes (nodes) {
               const middleIndex = Math.ceil(nodes.length / 2)
