@@ -337,6 +337,8 @@ stories
             centralizeHorizontalyNodes(indicatorNodes)
             centralizeHorizontalyNodes(metricNodes)
 
+            camera.setScroll(goalNode.x - this.sys.game.canvas.width / 2, goalNode.y - 100)
+
             connectBetweenTreeLevels(this, [goalNode], questionNodes)
             connectBetweenTreeLevels(this, questionNodes, indicatorNodes)
             connectBetweenTreeLevels(this, indicatorNodes, metricNodes)
