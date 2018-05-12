@@ -3,7 +3,6 @@ import Vue from 'vue' // eslint-disable-line
 import { storiesOf } from '@storybook/vue'
 import { object, withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
-import PhaserEngine from 'phaser'
 
 import Phaser from '../components/gqim-game-phaser/Phaser.vue'
 import GqimGame from '../components/gqim-game-phaser/GqimGame.vue'

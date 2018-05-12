@@ -13,7 +13,7 @@ export default {
   name: 'GqimGame',
 
   components: {
-    Phaser: PhaserComponent,
+    Phaser: PhaserComponent
   },
 
   props: {
@@ -277,4 +277,3 @@ export default {
   }
 }
 </script>
-
