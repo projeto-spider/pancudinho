@@ -233,9 +233,7 @@ stories
             const tree = {
               goal: {
                 id: 'goal-1',
-                label: 'Melhorar o desempenho do aluno',
-                x: -70,
-                y: 100
+                label: 'Melhorar o desempenho do aluno'
               },
 
               questions: [
@@ -284,22 +282,26 @@ stories
               ]
             }
 
+            const createNode = element => {
+              const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
+              node.setData('id', element.id)
+              return node
+            }
+
+            const goalNode = createNode(tree.goal)
+            const questionNodes = tree.questions.map(createNode)
+            const indicatorNodes = tree.indicators.map(createNode)
+            const metricNodes = tree.metrics.map(createNode)
+
+            const treeNodes = {
+              goalNode,
+              questionNodes,
+              indicatorNodes,
+              metricNodes
+            }
+
             const NODE_HORIZONTAL_MARGIN = 100
             const NODE_VERTICAL_MARGIN = 100
-
-            const goalNode = new GqimNode(this, 0, 0, tree.goal.label) // eslint-disable-line
-
-            const questionNodes = tree.questions.map(question =>
-              new GqimNode(this, 0, 0, question.label) // eslint-disable-line
-            )
-
-            const indicatorNodes = tree.indicators.map(indicator =>
-              new GqimNode(this, 0, 0, indicator.label) // eslint-disable-line
-            )
-
-            const metricNodes = tree.metrics.map(metric =>
-              new GqimNode(this, 0, 0, metric.label) // eslint-disable-line
-            )
 
             centralizeVerticallyGroups([goalNode], questionNodes, indicatorNodes, metricNodes)
             centralizeHorizontalyNodes(questionNodes)
@@ -368,8 +370,6 @@ stories
                 )
               })
             }
-
-            centralizeHorizontalyNodes(questionNodes)
 
             let isDraggingSomething = false
             let paddingDrag = { x: 0, y: 0 }
