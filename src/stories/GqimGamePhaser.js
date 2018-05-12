@@ -244,6 +244,7 @@ stories
 
               questions: [
                 {
+                  toDrop: true,
                   id: 'question-1',
                   label: 'Qual a média dos alunos?',
                   edges: [
@@ -275,6 +276,7 @@ stories
                   ]
                 },
                 {
+                  toDrop: true,
                   id: 'indicator-naocmd',
                   label: 'NAOCMD – Nota do aluno obtida em cada módulo da disciplina',
                   edges: [
@@ -293,34 +295,34 @@ stories
               metrics: [
                 {
                   id: 'metric-1',
-                  label: 'Nota',
-                  edges: [
-
-                  ]
+                  label: 'Nota'
                 },
                 {
+                  toDrop: true,
                   id: 'metric-2',
-                  label: 'Frequência',
-                  edges: [
-
-                  ]
+                  label: 'Frequência'
                 }
               ]
             }
 
             const createNode = element => {
-              const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
-              node.setData('id', element.id)
-              node.setData('edges', element.edges)
-              return node
+              if (element.toDrop) {
+                const node = new DropZone(this, 0, 0) // eslint-disable-line
+                node.setData('id', element.id)
+                node.setData('edges', element.edges)
+                return node
+              } else {
+                const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
+                node.setData('id', element.id)
+                node.setData('edges', element.edges)
+                return node
+              }
             }
 
             const goalNode = createNode(tree.goal)
             const questionNodes = tree.questions.map(createNode)
             const indicatorNodes = tree.indicators.map(createNode)
             const metricNodes = tree.metrics.map(createNode)
-            // connectBetweenTreeLevels(questionNodes, indicatorNodes)
-            // connectBetweenTreeLevels(indicatorNodes, metricNodes)
 
             const treeNodes = {
               goalNode,
