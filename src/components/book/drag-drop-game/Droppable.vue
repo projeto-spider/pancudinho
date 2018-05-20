@@ -1,6 +1,6 @@
 <template>
   <div>
-    <drop :class="{'droppable': !dropped, 'dropcontain': dropped}" @drop="handleDrop" ref="el">
+    <drop :class="{'droppable': !dropped, 'dropcontain': dropped}" @drop="drop" ref="el">
       <template v-if="dropped" slot-scope="props">
         <div class="dropped">
           {{ dropData }}
@@ -19,7 +19,7 @@ export default {
   components: { Drop },
 
   props: {
-    checkDrop: {
+    handleDropped: {
       type: Function,
       default: () => {}
     }
@@ -31,10 +31,10 @@ export default {
   }),
 
   methods: {
-    handleDrop () {
+    drop () {
       this.dropData = this.$refs.el.transferData
       this.dropped = true
-      this.checkDrop(this.dropData)
+      this.handleDropped(this.dropData)
     }
   }
 }

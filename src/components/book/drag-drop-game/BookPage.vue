@@ -6,7 +6,7 @@
       </p>
       <div v-else>
         <droppable
-          :checkDrop="buildAswers"
+          :handle-dropped="droppedText => answered(content, droppedText)"
         ></droppable>
       </div>
     </div>
@@ -25,6 +25,17 @@ export default {
     contents: {
       type: Array,
       default: () => []
+    },
+
+    handleAnswer: {
+      type: Function,
+      default: () => {}
+    }
+  },
+
+  methods: {
+    answered (content, droppedText) {
+      this.handleAnswer(content, droppedText)
     }
   }
 }
