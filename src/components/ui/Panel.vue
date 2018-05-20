@@ -12,6 +12,8 @@ export default {
 
 <style>
 .Panel{
-  background-color: red
+  border-style: solid;
+  border-width: 27px;
+  border-image: url('../../assets/grey_panel.png') 27 fill repeat;
 }
 </style>
