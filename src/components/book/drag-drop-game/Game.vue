@@ -63,7 +63,8 @@ export default {
         text: 'id quo paulo scaevola'
       }
     ],
-    answers: {}
+    answers: {},
+    revealAnswers: false
   }),
 
   computed: {
