@@ -2,11 +2,11 @@
   <div>
     <drag
       :class="{'draggable': !dragging, 'dragging': dragging}"
-      :transfer-data="{ id, text }"
+      :transfer-data="option"
       @dragstart="handleDrag()"
       @dragend="handleEnd()"
     >
-      <p class="centered">{{ text }}</p>
+      <p class="centered">{{ option.text }}</p>
     </drag>
   </div>
 </template>
@@ -21,13 +21,8 @@ export default {
   name: 'Draggable',
 
   props: {
-    id: {
-      type: Number,
-      required: true
-    },
-
-    text: {
-      type: String,
+    option: {
+      type: Object,
       required: true
     }
   },
