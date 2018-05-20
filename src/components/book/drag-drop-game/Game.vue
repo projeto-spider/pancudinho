@@ -66,6 +66,14 @@ export default {
     answers: {}
   }),
 
+  computed: {
+    correctAswers () {
+      return Object.entries(this.answers)
+        .filter(([id, option]) => option && option.id === parseInt(id, 10))
+        .map(([_, option]) => option.id)
+    },
+  },
+
   created () {
     this.options = this.items
       .filter(item => item.isAnswer)
