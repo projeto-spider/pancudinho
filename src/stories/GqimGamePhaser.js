@@ -4,12 +4,12 @@ import { storiesOf } from '@storybook/vue'
 import { object, withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 
-import Phaser from '../components/gqim-game-phaser/Phaser.vue'
+import Scene from '../components/phaser/Scene.vue'
 import GqimGame from '../components/gqim-game-phaser/GqimGame.vue'
 import GqimNode from '../components/gqim-game-phaser/GqimNode'
 import DropZone from '../components/gqim-game-phaser/DropZone'
 
-const stories = storiesOf('GQIM Game Phaser', module)
+const stories = storiesOf('GQIM Game Scene', module)
 
 stories
   .addDecorator(withKnobs)
@@ -17,7 +17,7 @@ stories
 
 stories
   .add('GqimNode', (h) => ({
-    render: h => h(Phaser, { props: {
+    render: h => h(Scene, { props: {
       config: {
         physics: {
           default: 'arcade'
@@ -33,7 +33,7 @@ stories
     } })
   }))
   .add('DropZone', (h) => ({
-    render: h => h(Phaser, { props: {
+    render: h => h(Scene, { props: {
       config: {
         physics: {
           default: 'arcade'

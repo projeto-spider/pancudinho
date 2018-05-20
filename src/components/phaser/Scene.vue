@@ -6,7 +6,7 @@
 import Phaser from 'phaser'
 
 export default {
-  name: 'Phaser',
+  name: 'Scene',
 
   props: {
     config: {
