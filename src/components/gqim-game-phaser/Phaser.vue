@@ -22,6 +22,13 @@ export default {
   mounted () {
     this.config.parent = this.$refs.game
     this.game = new Phaser.Game(this.config)
+  },
+
+  beforeDestroy () {
+    if (this.game) {
+      this.game.destroy()
+      delete this.game
+    }
   }
 }
 </script>
