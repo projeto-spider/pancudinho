@@ -2,16 +2,15 @@
   <div class="game">
     <div class="bookpage">
       <bookPage
-        :contents="contents"
+        :items="items"
         :handle-answer="verifyAnswer"
       ></bookPage>
     </div>
     <tipButton class="margin-layout"></tipButton>
     <div class="draggablearea">
-      <div v-for="(option, i) in options" :key="i">
+      <div v-for="option in options" :key="option.id">
         <draggable
-          :text="option.text"
-          :id="option.id"
+          :option="option"
         >
         </draggable>
       </div>
@@ -30,55 +29,51 @@ export default {
   components: { Draggable, BookPage, TipButton },
 
   data: () => ({
-    options: [
+    options: [],
+    items: [
       {
-        text: 'Loren impsun',
-        id: 1
-      },
-      {
-        text: 'Lurest farm',
-        id: 2
-      },
-      {
-        text: 'Tomes net',
-        id: 3
-      }
-    ],
-    contents: [
-      {
-        type: 'text',
+        id: 1,
         text: 'Lorem ipsum dolor sit amet,'
       },
       {
-        type: 'answer',
-        answer: 2
+        id: 2,
+        text: 'Lurest farm',
+        isAnswer: true
       },
       {
-        type: 'text',
+        id: 3,
         text: 'id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.'
       },
       {
-        type: 'answer',
-        answer: 1
+        id: 4,
+        text: 'Loren impsun',
+        isAnswer: true
       },
       {
-        type: 'text',
+        id: 5,
         text: 'Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.'
       },
       {
-        type: 'answer',
-        answer: 3
+        id: 6,
+        text: 'Tomes net',
+        isAnswer: true
       },
       {
-        type: 'text',
+        id: 7,
         text: 'id quo paulo scaevola'
       }
     ]
   }),
 
+  created () {
+    this.options = this.items
+      .filter(item => item.isAnswer)
+      .sort(() => Math.random() - Math.random())
+  },
+
   methods: {
-    verifyAnswer (content, droppedId) {
-      console.log(droppedId, content.answer === droppedId)
+    verifyAnswer (item, option) {
+      console.log(item, option)
     }
   }
 }

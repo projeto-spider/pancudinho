@@ -1,12 +1,12 @@
 <template>
   <div class="book">
-    <div v-for="(content, i) in contents" :key="i">
-      <p v-if="content.type === 'text'">
-        <span class="fairy-letter">{{content.text}}</span>
+    <div v-for="item in items" :key="item.id">
+      <p v-if="!item.isAnswer">
+        <span class="fairy-letter">{{item.text}}</span>
       </p>
       <div v-else>
         <droppable
-          :handle-dropped="droppedText => answered(content, droppedText)"
+          :handle-dropped="droppedText => answered(item, droppedText)"
         ></droppable>
       </div>
     </div>
@@ -22,7 +22,7 @@ export default {
   components: { Droppable },
 
   props: {
-    contents: {
+    items: {
       type: Array,
       default: () => []
     },
@@ -34,8 +34,8 @@ export default {
   },
 
   methods: {
-    answered (content, droppedText) {
-      this.handleAnswer(content, droppedText)
+    answered (item, droppedText) {
+      this.handleAnswer(item, droppedText)
     }
   }
 }
