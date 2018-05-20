@@ -2,16 +2,16 @@
   <div>
     <drag
       :class="{'draggable': !dragging, 'dragging': dragging}"
-      :transfer-data="content"
+      :transfer-data="{ id, text }"
       @dragstart="handleDrag()"
       @dragend="handleEnd()"
     >
-      <p class="centered">{{ content }}</p>
+      <p class="centered">{{ text }}</p>
     </drag>
   </div>
 </template>
 
-<script type="text/javascript">
+<script>
 import Vue from 'vue'
 import { Drag } from 'vue-drag-drop'
 
@@ -21,7 +21,12 @@ export default {
   name: 'Draggable',
 
   props: {
-    content: {
+    id: {
+      type: Number,
+      required: true
+    },
+
+    text: {
       type: String,
       required: true
     }

@@ -10,7 +10,8 @@
     <div class="draggablearea">
       <div v-for="(option, i) in options" :key="i">
         <draggable
-          :content="option.text"
+          :text="option.text"
+          :id="option.id"
         >
         </draggable>
       </div>
@@ -50,7 +51,7 @@ export default {
       },
       {
         type: 'answer',
-        answer: 'Lurest farm'
+        answer: 2
       },
       {
         type: 'text',
@@ -58,7 +59,7 @@ export default {
       },
       {
         type: 'answer',
-        answer: 'Loren impsun'
+        answer: 1
       },
       {
         type: 'text',
@@ -66,7 +67,7 @@ export default {
       },
       {
         type: 'answer',
-        answer: 'Tomes net'
+        answer: 3
       },
       {
         type: 'text',
@@ -76,8 +77,8 @@ export default {
   }),
 
   methods: {
-    verifyAnswer (content, droppedText) {
-      console.log(content.answer === droppedText)
+    verifyAnswer (content, droppedId) {
+      console.log(droppedId, content.answer === droppedId)
     }
   }
 }

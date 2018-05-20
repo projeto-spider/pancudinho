@@ -32,9 +32,10 @@ export default {
 
   methods: {
     drop () {
-      this.dropData = this.$refs.el.transferData
+      const { id, text } = this.$refs.el.transferData
+      this.dropData = text
       this.dropped = true
-      this.handleDropped(this.dropData)
+      this.handleDropped(id)
     }
   }
 }
