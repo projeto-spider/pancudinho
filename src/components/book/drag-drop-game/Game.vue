@@ -62,18 +62,26 @@ export default {
         id: 7,
         text: 'id quo paulo scaevola'
       }
-    ]
+    ],
+    answers: {}
   }),
 
   created () {
     this.options = this.items
       .filter(item => item.isAnswer)
       .sort(() => Math.random() - Math.random())
+
+    this.answers = this.options
+      .reduce((acc, option) => {
+        acc[option.id] = null
+        return acc
+      }, {})
   },
 
   methods: {
     verifyAnswer (item, option) {
-      console.log(item, option)
+      this.answers[item.id] = option
+      console.log(item, option, this.answers)
     }
   }
 }
