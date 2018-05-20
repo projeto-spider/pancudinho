@@ -3,6 +3,7 @@
     <div class="bookpage">
       <bookPage
         :contents="contents"
+        :handle-answer="verifyAnswer"
       ></bookPage>
     </div>
     <tipButton class="margin-layout"></tipButton>
@@ -72,7 +73,13 @@ export default {
         text: 'id quo paulo scaevola'
       }
     ]
-  })
+  }),
+
+  methods: {
+    verifyAnswer (content, droppedText) {
+      console.log(content.answer === droppedText)
+    }
+  }
 }
 </script>
 
