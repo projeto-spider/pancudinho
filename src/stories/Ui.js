@@ -5,6 +5,7 @@ import { withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 
 import Background from '../components/ui/Background.vue'
+import Panel from '../components/ui/Panel.vue'
 
 const stories = storiesOf('UI', module)
 stories
@@ -15,4 +16,10 @@ stories
   .add('Background', (h) => ({
     render: h => h(Background, { props: {
     } })
+  }))
+  .add('Background with Panel', (h) => ({
+    render: h => h(Background, { props: {
+    } }, [
+      h(Panel, {})
+    ])
   }))
