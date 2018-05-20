@@ -1,6 +1,6 @@
 <template>
   <div class="Panel">
-    Lorem ipsum
+    <slot></slot>
   </div>
 </template>
 

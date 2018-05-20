@@ -20,6 +20,6 @@ stories
   .add('Background with Panel', (h) => ({
     render: h => h(Background, { props: {
     } }, [
-      h(Panel, {})
+      h(Panel, {}, ['Aqui começa o jogo do pançudinho.'])
     ])
   }))
