@@ -19,6 +19,7 @@ export default {
   background-color: #8ec1da;
   width: 100vw;
   height: 100vh;
+  z-index: 0;
 }
 
 .clouds {
@@ -30,6 +31,7 @@ export default {
   background-repeat: repeat-x;
   background-image: url('../../assets/bg-clouds.png');
   animation: animatedBackground 40s linear infinite;
+  z-index: 1;
 }
 
 @keyframes animatedBackground {
@@ -45,5 +47,6 @@ export default {
 * {
   font-family: kenvector_future;
   color:#9f9ea1;
+  z-index: 2;
 }
 </style>
