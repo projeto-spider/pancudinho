@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/vue'
 import { withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 
-import Phaser from '../components/gqim-game-phaser/Phaser.vue'
+import Scene from '../components/phaser/Scene.vue'
 
 import pancudinhoRunAtlas from '../../static/animations/pancudinho-run.json'
 import pancudinhoRunPng from '../../static/animations/pancudinho-run.png'
@@ -16,7 +16,7 @@ stories
 
 stories
   .add('Pançudinho Run', (h) => ({
-    render: h => h(Phaser, { props: {
+    render: h => h(Scene, { props: {
       config: {
         scene: {
           preload () {

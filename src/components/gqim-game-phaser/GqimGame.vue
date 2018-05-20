@@ -1,10 +1,10 @@
 <template>
-  <Phaser v-if="config" :config="config"></Phaser>
+  <Scene v-if="config" :config="config"></Scene>
 </template>
 
 <script>
 import Phaser from 'phaser'
-import PhaserComponent from './Phaser.vue'
+import Scene from '../phaser/Scene.vue'
 
 import GqimNode from './GqimNode'
 import DropZone from './DropZone'
@@ -13,7 +13,7 @@ export default {
   name: 'GqimGame',
 
   components: {
-    Phaser: PhaserComponent
+    Scene
   },
 
   props: {
