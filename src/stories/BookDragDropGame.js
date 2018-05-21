@@ -21,7 +21,7 @@ stories
 stories
   .add('Draggable', (h) => ({
     render: h => h(Draggable, { props: {
-      content: text('Content', 'Lorem inpsun dolor')
+      option: object('Option', {id: 1, text: 'Lorem inpsun dolor'})
     } })
   }))
   .add('Droppable', (h) => ({
@@ -29,33 +29,36 @@ stories
   }))
   .add('Book Page', (h) => ({
     render: h => h(BookPage, { props: {
-      contents: object('Content', [
+      items: object('Items', [
         {
-          type: 'text',
+          id: 1,
           text: 'Lorem ipsum dolor sit amet,'
         },
         {
-          type: 'answer',
-          answer: ''
+          id: 2,
+          text: 'Lurest farm',
+          isAnswer: true
         },
         {
-          type: 'text',
+          id: 3,
           text: 'id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.'
         },
         {
-          type: 'answer',
-          answer: ''
+          id: 4,
+          text: 'Loren impsun',
+          isAnswer: true
         },
         {
-          type: 'text',
+          id: 5,
           text: 'Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.'
         },
         {
-          type: 'answer',
-          answer: ''
+          id: 6,
+          text: 'Tomes net',
+          isAnswer: true
         },
         {
-          type: 'text',
+          id: 7,
           text: 'id quo paulo scaevola'
         }
       ])
