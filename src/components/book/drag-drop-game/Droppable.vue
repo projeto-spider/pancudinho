@@ -22,6 +22,16 @@ export default {
     handleDropped: {
       type: Function,
       default: () => {}
+    },
+
+    revealAnswers: {
+      type: Boolean,
+      required: true
+    },
+
+    correctAnswers: {
+      type: Array,
+      default: () => []
     }
   },
 
