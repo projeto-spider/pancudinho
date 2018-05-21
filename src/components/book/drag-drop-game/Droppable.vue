@@ -1,6 +1,6 @@
 <template>
   <div>
-    <drop :class="{'droppable': !dropped, 'dropcontain': dropped}" @drop="drop" ref="el">
+    <drop :class="computedClasses" @drop="drop" ref="el">
       <template v-if="dropped" slot-scope="props">
         <div class="dropped">
           {{ dropData }}
@@ -35,6 +35,18 @@ export default {
     }
   },
 
+  computed: {
+    computedClasses () {
+      const valid = this.option && this.correctAnswers.includes(this.option.id)
+      return {
+        droppable: !this.dropped,
+        dropcontain: this.dropped,
+        valid: this.revealAnswers && valid,
+        invalid: this.revealAnswers && !valid
+      }
+    }
+  },
+
   data: () => ({
     dropData: '',
     dropped: false,
@@ -61,7 +73,7 @@ export default {
   border-radius: 5px
 }
 .dropcontain {
-  background: #eee;
+  background-color: #eee;
   border-top: 2px solid #ccc;
   border-left: 2px solid #ddd;
   padding: 10px 10px;
@@ -74,5 +86,11 @@ export default {
   opacity: 0.5;
   display: block;
   margin: 0
+}
+.dropcontain.valid {
+  background-color: #12f51963
+}
+.dropcontain.invalid {
+  background-color: #f5121263
 }
 </style>
