@@ -37,15 +37,16 @@ export default {
 
   data: () => ({
     dropData: '',
-    dropped: false
+    dropped: false,
+    option: null
   }),
 
   methods: {
     drop () {
-      const option = this.$refs.el.transferData
-      this.dropData = option.text
+      this.option = this.$refs.el.transferData
+      this.dropData = this.option.text
       this.dropped = true
-      this.handleDropped(option)
+      this.handleDropped(this.option)
     }
   }
 }
