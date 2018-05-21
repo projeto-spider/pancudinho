@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="open = true">
+    <button type="button" @click="open = true">
       Tip
     </button>
     <tip
