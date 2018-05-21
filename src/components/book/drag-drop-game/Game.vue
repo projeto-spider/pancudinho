@@ -4,6 +4,8 @@
       <bookPage
         :items="items"
         :handle-answer="verifyAnswer"
+        :reveal-answers="revealAnswers"
+        :correct-answers="correctAswers"
       ></bookPage>
     </div>
     <tipButton class="margin-layout"></tipButton>

@@ -7,6 +7,8 @@
       <div v-else>
         <droppable
           :handle-dropped="droppedText => answered(item, droppedText)"
+          :reveal-answers="revealAnswers"
+          :correct-answers="correctAnswers"
         ></droppable>
       </div>
     </div>
@@ -30,6 +32,16 @@ export default {
     handleAnswer: {
       type: Function,
       default: () => {}
+    },
+
+    revealAnswers: {
+      type: Boolean,
+      required: true
+    },
+
+    correctAnswers: {
+      type: Array,
+      default: () => []
     }
   },
 
