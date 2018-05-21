@@ -11,7 +11,11 @@
     <tipButton class="margin-layout"></tipButton>
     <button type="button" @click="submitAnswers">Submit</button>
     <div class="draggablearea">
-      <div v-for="option in options" :key="option.id">
+      <div
+        v-for="option in options"
+        v-if="!usedOptions.has(option.id)"
+        :key="option.id"
+      >
         <draggable
           :option="option"
         >
@@ -76,6 +80,13 @@ export default {
         .filter(([id, option]) => option && option.id === parseInt(id, 10))
         .map(([_, option]) => option.id)
     },
+
+    usedOptions () {
+      return new Set(
+        Object.values(this.answers)
+          .map(answer => answer && answer.id)
+      )
+    }
   },
 
   created () {
