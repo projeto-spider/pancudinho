@@ -93,7 +93,6 @@ export default {
   methods: {
     verifyAnswer (item, option) {
       this.answers[item.id] = option
-      console.log(item, option, this.answers)
     },
 
     submitAnswers () {
