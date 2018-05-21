@@ -7,6 +7,7 @@
       ></bookPage>
     </div>
     <tipButton class="margin-layout"></tipButton>
+    <button type="button" @click="submitAnswers">Submit</button>
     <div class="draggablearea">
       <div v-for="option in options" :key="option.id">
         <draggable
@@ -91,6 +92,10 @@ export default {
     verifyAnswer (item, option) {
       this.answers[item.id] = option
       console.log(item, option, this.answers)
+    },
+
+    submitAnswers () {
+      this.revealAnswers = true
     }
   }
 }
