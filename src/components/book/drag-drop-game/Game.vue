@@ -9,20 +9,27 @@
       ></bookPage>
     </div>
     <div class="margin-layout">
-      <tipButton></tipButton>
-      <button type="button" @click="submitAnswers">Submit</button>
+      <div v-if="!revealAnswers">
+        <tipButton></tipButton>
+        <button type="button" @click="submitAnswers">Submit</button>
+      </div>
+      <div v-else>
+        <button type="button">Finalizar</button>
+      </div>
     </div>
     <div class="draggablearea">
-      <div
-        v-for="option in options"
-        v-if="!usedOptions.has(option.id)"
-        :key="option.id"
-      >
-        <draggable
-          :option="option"
+      <div v-if="!revealAnswers">
+        <div
+          v-for="option in options"
+          v-if="!usedOptions.has(option.id)"
+          :key="option.id"
         >
-        </draggable>
-      </div>
+          <draggable
+            :option="option"
+          >
+          </draggable>
+        </div>
+    </div>
     </div>
   </div>
 </template>
