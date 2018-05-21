@@ -8,8 +8,10 @@
         :correct-answers="correctAswers"
       ></bookPage>
     </div>
-    <tipButton class="margin-layout"></tipButton>
-    <button type="button" @click="submitAnswers">Submit</button>
+    <div class="margin-layout">
+      <tipButton></tipButton>
+      <button type="button" @click="submitAnswers">Submit</button>
+    </div>
     <div class="draggablearea">
       <div
         v-for="option in options"
