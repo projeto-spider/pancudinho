@@ -50,3 +50,17 @@ stories
       ])
     ])
   }))
+  .add('Tip you can close', (h) => ({
+    template: `
+      <Background>
+        <Tip :open="open" :handle-close="() => open = false">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo libero et facilisis porta. Morbi molestie est eu augue euismod faucibus. Nullam id laoreet neque, eget placerat urna. Phasellus et odio facilisis purus aliquam pellentesque. Nulla facilisi. Nulla facilisi. Mauris sit amet nisi nec velit feugiat mattis non ut nunc.
+        </Tip>
+        <button @click="() => open = true">Open</button>
+      </Background>
+    `,
+
+    components: { Background, Tip },
+
+    data: () => ({ open: true })
+  }))
