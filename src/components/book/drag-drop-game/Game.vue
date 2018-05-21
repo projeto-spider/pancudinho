@@ -37,41 +37,15 @@ export default {
 
   components: { Draggable, BookPage, TipButton },
 
+  props: {
+    items: {
+      type: Array,
+      default: () => []
+    }
+  },
+
   data: () => ({
     options: [],
-    items: [
-      {
-        id: 1,
-        text: 'Lorem ipsum dolor sit amet,'
-      },
-      {
-        id: 2,
-        text: 'Lurest farm',
-        isAnswer: true
-      },
-      {
-        id: 3,
-        text: 'id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.'
-      },
-      {
-        id: 4,
-        text: 'Loren impsun',
-        isAnswer: true
-      },
-      {
-        id: 5,
-        text: 'Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.'
-      },
-      {
-        id: 6,
-        text: 'Tomes net',
-        isAnswer: true
-      },
-      {
-        id: 7,
-        text: 'id quo paulo scaevola'
-      }
-    ],
     answers: {},
     revealAnswers: false
   }),
