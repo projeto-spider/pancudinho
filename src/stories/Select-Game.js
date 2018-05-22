@@ -44,6 +44,23 @@ stories
         showCheck: false,
         showX: false
       }
+    ]),
+    text: object('text', [
+      {
+        text1: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
+      },
+      {
+        text1: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
+
+      },
+      {
+        text1: 'mei eros civibus lobortis ne. Lorem feugiat',
+
+      },
+      {
+        text1: 'sanctus nam no,et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne.',
+
+      },
     ])
   } })
 }))
