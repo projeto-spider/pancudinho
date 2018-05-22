@@ -2,21 +2,27 @@
   <div>
     <drop :class="computedClasses" @drop="drop" ref="el">
       <template v-if="dropped" slot-scope="props">
-        <div class="dropped">
-          {{ dropData }}
-        </div>
+        <drag @dragstart="cleanDropArea" :draggable="!revealAnswers">
+          <draggable
+            class="dropped"
+            :option="option"
+          >
+            {{option.text}}
+          </draggable>
+        </drag>
       </template>
     </drop>
   </div>
 </template>
 
 <script type="text/javascript">
-import { Drop } from 'vue-drag-drop'
+import { Drop, Drag } from 'vue-drag-drop'
+import Draggable from './Draggable.vue'
 
 export default {
   name: 'Droppable',
 
-  components: { Drop },
+  components: { Drop, Drag, Draggable },
 
   props: {
     handleDropped: {
@@ -59,6 +65,11 @@ export default {
       this.dropData = this.option.text
       this.dropped = true
       this.handleDropped(this.option)
+    },
+
+    cleanDropArea () {
+      this.option = null
+      this.dropped = false
     }
   }
 }
