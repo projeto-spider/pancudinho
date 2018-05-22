@@ -6,6 +6,7 @@
           <draggable
             class="dropped"
             :option="option"
+            :drag="!revealAnswers"
           >
             {{option.text}}
           </draggable>

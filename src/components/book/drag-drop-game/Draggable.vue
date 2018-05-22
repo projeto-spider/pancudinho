@@ -3,6 +3,7 @@
     <drag
       :class="{'draggable': !dragging, 'dragging': dragging}"
       :transfer-data="option"
+      :draggable="drag"
       @dragstart="handleDrag()"
       @dragend="handleEnd()"
     >
@@ -24,6 +25,11 @@ export default {
     option: {
       type: Object,
       required: true
+    },
+
+    drag: {
+      type: Boolean,
+      default: true
     }
   },
 
