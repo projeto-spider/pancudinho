@@ -21,7 +21,8 @@ stories
 stories
   .add('Draggable', (h) => ({
     render: h => h(Draggable, { props: {
-      option: object('Option', {id: 1, text: 'Lorem inpsun dolor'})
+      option: object('Option', {id: 1, text: 'Lorem inpsun dolor'}),
+      drag: boolean('Drag ability', true)
     } })
   }))
   .add('Droppable', (h) => ({
