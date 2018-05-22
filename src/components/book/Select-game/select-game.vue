@@ -184,14 +184,15 @@ export default {
 }
 
 .box.five{
-  width: 90px;
+  width: 110px;
   border-radius: 10px;
-  margin-left: 3.8cm;
+  margin-left: 205px;
   background: MediumOrchid;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
   font: 30px 'Arizonia', Helvetica, sans-serif;
   color: black;
   text-align: center;
+  padding: 0.3em 0.3em;
 }
 
 button{
