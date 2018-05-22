@@ -1,9 +1,9 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { text, withKnobs, boolean, object } from '@storybook/addon-knobs/vue'
+import {withKnobs, object} from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
-import { action } from '@storybook/addon-actions'
+// import { action } from '@storybook/addon-actions'
 
 import BookselectGame from '../components/book/Select-game/select-game.vue'
 
@@ -13,8 +13,7 @@ stories
   .addDecorator(withKnobs)
   .addDecorator(Centered)
 
- stories
- .add('Select-Game', (h) => ({
+stories.add('Select-Game', (h) => ({
   render: h => h(BookselectGame, { props: {
     words: object('words', [
       {
@@ -47,20 +46,17 @@ stories
     ]),
     text: object('text', [
       {
-        text1: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
+        text1: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius'
       },
       {
-        text1: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
-
+        text1: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,'
       },
       {
-        text1: 'mei eros civibus lobortis ne. Lorem feugiat',
-
+        text1: 'mei eros civibus lobortis ne. Lorem feugiat'
       },
       {
-        text1: 'sanctus nam no,et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne.',
-
-      },
+        text1: 'sanctus nam no,et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne.'
+      }
     ])
   } })
 }))

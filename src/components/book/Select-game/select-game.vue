@@ -122,8 +122,8 @@ export default {
 </script>
 <style type="text/css">
 .book {
-  padding: 1.6em 2.3em 1.4em;
-  margin: 4.6em 20em;
+  padding: 1.6em 5.3em 1.4em;
+  margin: 5.9em 40em;
   border : 4mm ridge rgb(170, 50, 220, .6);
   border-radius: 3px;
   text-align: left;
