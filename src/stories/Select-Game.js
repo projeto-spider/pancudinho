@@ -58,5 +58,6 @@ stories.add('Select-Game', (h) => ({
         text1: 'sanctus nam no,et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne.'
       }
     ])
-  } })
+  }
+  })
 }))

@@ -22,7 +22,7 @@
         <input v-if="input===true" v-model="words[2].typedAnswer" class="text"> <span class="check" v-if="(words[2].showCheck) && inputOn">✓</span> <span class="X" v-if="words[2].showX && inputOn">X</span>
         {{text[3].text1}}
       </p>
-      <div v-if="inputOn" class="box five" @click="(verifyAnswers())">
+      <div v-if="inputOn" class="box five" @click="verifyAnswers()">
         Submit
       </div>
       <div class="box five" v-if="!inputOn"  @click="delet()">
@@ -122,7 +122,7 @@ export default {
 </script>
 <style type="text/css">
 .book {
-  padding: 1.6em 5.3em 1.4em;
+  padding: 1.6em 6.3em 1.4em;
   margin: 5.9em 40em;
   border : 4mm ridge rgb(170, 50, 220, .6);
   border-radius: 3px;
