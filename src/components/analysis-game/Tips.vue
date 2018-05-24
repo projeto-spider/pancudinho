@@ -36,7 +36,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .7);
+  background-color: #e7e7e7;
   display: table;
   transition: opacity .3s ease;
 }
@@ -51,12 +51,13 @@ button{
   border: none;
 }
 .box.tip{
-  padding: 0.1em 2em;
-  margin: 0.4em 0.4em;
-  background: #ffffff;
-  border-radius: 5px;
-  margin-top: 2.5cm;
-  text-align: center;
+  background: #bdbdbd;
+  z-index: 101;
+  margin: 18% 24%;
+  width: 50%;
+  height: 30%;
+  border-radius: 30px;
+  padding: 5%;
 }
 
 </style>
