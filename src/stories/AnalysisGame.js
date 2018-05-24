@@ -1,7 +1,7 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { text, withKnobs } from '@storybook/addon-knobs/vue'
+import { text, withKnobs, object, boolean } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 
 import Tips from '../components/analysis-game/Tips.vue'
@@ -36,7 +36,8 @@ stories
   }))
   .add('Draggable', (h) => ({
     render: h => h(Draggable, { props: {
-      content: text('Content', 'Lorem inpsun dolor')
+      option: object('Option', {id: 1, text: 'Lorem impsun dolor'}),
+      drag: boolean('Drag ability', true)
     } })
   }))
   .add('Droppable', (h) => ({
