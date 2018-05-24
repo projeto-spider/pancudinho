@@ -2,7 +2,7 @@
 <div class="Tips">
   <p></P>
   <button @click="showTips=true">Tips</button>
-    <div v-if="showTips===true">
+    <div v-if="showTips">
       <div class=defocus @click="showTips=false">
         <div class="box tip"> {{ tip }} </div>
       </div>
