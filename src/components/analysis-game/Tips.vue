@@ -4,7 +4,7 @@
   <button @click="showTips=true">Tips</button>
     <div v-if="showTips===true">
       <div class=defocus @click="showTips=false">
-        <div class="box tip"> {{ Tip }} </div>
+        <div class="box tip"> {{ tip }} </div>
       </div>
     </div>
 </div>
@@ -16,7 +16,7 @@ export default {
   name: 'Tips',
 
   props: {
-    Tip: {
+    tip: {
       type: String,
       required: true
     }

@@ -21,7 +21,7 @@ stories
 stories
   .add('Tips', (h) => ({
     render: h => h(Tips, { props: {
-      Tip: text('Tip', 'Lorem inpsun dolor')
+      tip: text('Tip', 'Lorem inpsun dolor')
     } })
   }))
   .add('VerificationSystem', (h) => ({
