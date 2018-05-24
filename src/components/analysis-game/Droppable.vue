@@ -5,7 +5,7 @@
         <div v-if="dropped">
             <p class="auxiliartext"> I will... </p>
           <div class="dropped">
-            <p class="droppedtext"> {{ dropData }} </p>
+            <p class="droppedtext"> {{ option.text }} </p>
           </div>
         </div>
         <div v-else>
@@ -36,7 +36,7 @@ export default {
   },
 
   data: () => ({
-    dropData: '',
+    option: null,
     dropped: false,
     wrong: null,
     correct: null
@@ -44,7 +44,7 @@ export default {
 
   methods: {
     handleDrop () {
-      this.dropData = this.$refs.el.transferData
+      this.option = this.$refs.el.transferData
       this.dropped = true
     },
 
