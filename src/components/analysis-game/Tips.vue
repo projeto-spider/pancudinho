@@ -23,8 +23,7 @@ export default {
   },
 
   data: () => ({
-    showTips: false,
-    Tip1: 'Lorem inpsun dolor'
+    showTips: false
   })
 }
 </script>
