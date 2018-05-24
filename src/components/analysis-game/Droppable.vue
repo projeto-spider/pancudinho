@@ -1,6 +1,6 @@
 <template>
   <div>
-    <drop :class="{'droppable': !dropped, 'dropcontain': dropped}" @drop="handleDrop" ref="el">
+    <drop :class="classes" @drop="handleDrop" ref="el">
       <template slot-scope="props">
         <div v-if="dropped">
             <p class="auxiliartext"> I will... </p>
@@ -24,15 +24,36 @@ export default {
 
   components: { Drop },
 
+  computed: {
+    classes () {
+      return {
+        droppable: !this.dropped,
+        dropcontain: this.dropped,
+        correctanswer: this.correct,
+        wronganswer: this.wrong
+      }
+    }
+  },
+
   data: () => ({
     dropData: '',
-    dropped: false
+    dropped: false,
+    wrong: null,
+    correct: null
   }),
 
   methods: {
     handleDrop () {
       this.dropData = this.$refs.el.transferData
       this.dropped = true
+    },
+
+    avaluateAswer (answer) {
+      if (this.dropData === answer) {
+        this.correct = true
+      } else {
+        this.wrong = true
+      }
     }
   }
 }
@@ -66,6 +87,12 @@ export default {
   border-radius: 50%;
   width: 10em;
   height: 10em;
+}
+.dropcontain.wronganswer {
+  background: #ea391c;
+}
+.dropcontain.correctanswer {
+  background: #65ef5c;
 }
 .droppedtext {
   text-align: center;
