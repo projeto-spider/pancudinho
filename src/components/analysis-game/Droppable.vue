@@ -70,7 +70,7 @@ export default {
   height: 18em;
 }
 .dropcontain {
-  background: #fbd9f4;
+  background-color: #fbd9f4;
   border-top: 2px solid #ccc;
   border-left: 2px solid #ddd;
   padding: 10px 10px;
