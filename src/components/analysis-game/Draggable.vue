@@ -7,7 +7,7 @@
       @dragstart="handleDrag()"
       @dragend="handleEnd()"
     >
-      <p class="centered">{{ content }}</p>
+      <p class="centered">{{ option.text }}</p>
     </drag>
   </div>
 </template>
@@ -22,8 +22,8 @@ export default {
   name: 'Draggable',
 
   props: {
-    content: {
-      type: String,
+    option: {
+      type: Object,
       required: true
     },
 
