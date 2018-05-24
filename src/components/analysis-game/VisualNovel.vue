@@ -15,7 +15,7 @@
     <div class="box character"> pancud </div>
       <div class="box balloon">
         <div class="text"> {{talkList[1].task}} </div>
-        <button class="next" @click.prevent="(nextTalk=true)" @click="(Talk=false)" >>></button>
+        <button class="next" @click.prevent="(nextTalk=true)" @click="closeVisualNovel" >>></button>
       </div>
   </div>
 </div>
@@ -28,9 +28,9 @@ export default {
   name: 'VisualNovel',
 
   props: {
-    nextTalk: {
-      type: Boolean,
-      default: false
+    closeVisualNovel: {
+      type: Function,
+      dafault: () => {}
     }
   },
 
