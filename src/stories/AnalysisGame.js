@@ -32,6 +32,11 @@ stories
   .add('VisualNovel', (h) => ({
     render: h => h(VisualNovel, { props: {
       Tip: text('Tip:', 'Lorem ipsum dolor')
+      talks: object('Talks', [
+        {task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'},
+        {task: 'Usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'},
+        {task: 'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'}
+      ])
     } })
   }))
   .add('Draggable', (h) => ({
