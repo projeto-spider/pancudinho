@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .defocus {
   position: fixed;
   z-index: 2;

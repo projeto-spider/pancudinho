@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .goalbox {
   width: 23em;
   margin: 0 15%;

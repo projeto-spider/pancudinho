@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .text.normal{
   padding: 0.2em 0.1em;
   margin: 0.2em 0.2em;
