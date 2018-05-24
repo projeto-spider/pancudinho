@@ -2,6 +2,7 @@
   <div class="game">
     <div class="bookpage">
       <bookPage
+        :handle-drop-leave="handleDropLeave"
         :items="items"
         :handle-answer="verifyAnswer"
         :reveal-answers="revealAnswers"
@@ -91,6 +92,10 @@ export default {
 
     submitAnswers () {
       this.revealAnswers = true
+    },
+
+    handleDropLeave (item) {
+      this.answers[item.id] = null
     }
   }
 }

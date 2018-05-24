@@ -31,6 +31,11 @@ export default {
       default: () => {}
     },
 
+    handleDropLeave: {
+      type: Function,
+      default: () => {}
+    },
+
     revealAnswers: {
       type: Boolean,
       required: true
@@ -71,6 +76,7 @@ export default {
     cleanDropArea () {
       this.option = null
       this.dropped = false
+      this.handleDropLeave(this.option)
     }
   }
 }

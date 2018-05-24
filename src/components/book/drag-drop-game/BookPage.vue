@@ -6,6 +6,7 @@
       </p>
       <div v-else>
         <droppable
+          :handle-drop-leave="() => draggedOut(item)"
           :handle-dropped="droppedText => answered(item, droppedText)"
           :reveal-answers="revealAnswers"
           :correct-answers="correctAnswers"
@@ -34,6 +35,11 @@ export default {
       default: () => {}
     },
 
+    handleDropLeave: {
+      type: Function,
+      default: () => {}
+    },
+
     revealAnswers: {
       type: Boolean,
       required: true
@@ -48,6 +54,10 @@ export default {
   methods: {
     answered (item, droppedText) {
       this.handleAnswer(item, droppedText)
+    },
+
+    draggedOut (item) {
+      this.handleDropLeave(item)
     }
   }
 }
