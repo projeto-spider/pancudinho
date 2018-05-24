@@ -1,6 +1,32 @@
 <template>
-  <div>
-    Hey, I'm here
+  <div class="game">
+    <div v-if="ligthNovel">
+      <visualNovel
+        :closeVisualNovel="closeNovel"
+      ></visualNovel>
+    </div>
+    <div v-else>
+      <div class="goalarea">
+        <goal
+          :goal="goal"
+        >
+        </goal>
+      </div>
+      <div class="dragdroparea">
+        <draggable
+          :content="options[1]"
+        ></draggable>
+        <droppable
+          ref="el"
+        ></droppable>
+      </div>
+      <div style="margin: -5em -10em 0em 30em;">
+        <tips
+          :Tip="tip"
+        ></tips>
+        <button @click="avaluateAnswer">Submit</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,12 +49,33 @@ export default {
   },
 
   data: () => ({
+    options: {
+      1: 'Loren inpsun dolor',
+      2: 'sit amet est',
+      3: 'pro ne alterum'
+    },
+    goal: 'Prepare yourself!',
+    tip: 'Magic is everything!',
+    ligthNovel: true,
+    answer: 'Loren inpsun dolor'
   }),
 
   methods: {
+    closeNovel () {
+      this.ligthNovel = false
+    },
+    avaluateAnswer () {
+      this.$refs.el.avaluateAswer(this.answer)
+    }
   }
 }
 </script>
 
 <style type="text/css">
+.goalarea {
+  margin: 1em 0em -2em -20em
+},
+.tiparea {
+  margin: -5em -10em 0em 30em
+}
 </style>
