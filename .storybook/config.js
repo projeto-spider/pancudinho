@@ -7,7 +7,6 @@ function loadStories() {
   require('../src/stories/Ui')
   require('../src/stories/MemoryGame')
   require('../src/stories/GqimGame')
-  require('../src/stories/GqimGamePhaser')
   require('../src/stories/Animation')
   require('../src/stories/BookDragDropGame')
 }
