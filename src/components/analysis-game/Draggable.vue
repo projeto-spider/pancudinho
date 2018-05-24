@@ -52,6 +52,7 @@ export default {
   width: 9em;
   height: 9em;
   cursor: move;
+  position: relative
 }
 .dragging {
   padding: 0.1em 0.8em;
@@ -60,7 +61,8 @@ export default {
   border-radius: 50%;
   width: 8em;
   height: 8em;
-  opacity: 0.4
+  opacity: 0.4;
+  position: relative;
 }
 .centered{
   text-align: center;
