@@ -3,18 +3,18 @@
   <div  v-if="Talk==false">
     <div class="box character"> personal </div>
       <div class="box balloon" v-if="nextTalk==false">
-        <div class="text"> {{talkList[0].task}} </div>
+        <div class="text"> {{talks[0].task}} </div>
         <button class="next" @click="Talk=true">>></button>
       </div>
       <div class="box balloon" v-if="nextTalk==true">
-        <div class="text"> {{talkList[2].task}} </div>
+        <div class="text"> {{talks[2].task}} </div>
         <button class="next">>></button>
       </div>
   </div>
   <div v-if="Talk==true">
     <div class="box character"> pancud </div>
       <div class="box balloon">
-        <div class="text"> {{talkList[1].task}} </div>
+        <div class="text"> {{talks[1].task}} </div>
         <button class="next" @click.prevent="(nextTalk=true)" @click="closeVisualNovel" >>></button>
       </div>
   </div>
@@ -30,17 +30,17 @@ export default {
     closeVisualNovel: {
       type: Function,
       dafault: () => {}
+    },
+
+    talks: {
+      type: Array,
+      default: () => []
     }
   },
 
   data: () => ({
     Talk: false,
-    nextTalk: false,
-    talkList: [
-      {task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'},
-      {task: 'Usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'},
-      {task: 'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'}
-    ]
+    nextTalk: false
   })
 }
 </script>
