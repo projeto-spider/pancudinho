@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .book {
   padding: 5em 3em 3em 3em;
   margin: 1em 5em;

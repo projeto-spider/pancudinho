@@ -49,7 +49,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .draggable {
   padding: 0.1em 2em;
   margin: 0.4em 0.4em;

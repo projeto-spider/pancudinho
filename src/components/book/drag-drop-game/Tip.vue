@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .tip {
   background: #bdbdbd;
   z-index: 101;

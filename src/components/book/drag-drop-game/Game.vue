@@ -101,7 +101,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .game {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

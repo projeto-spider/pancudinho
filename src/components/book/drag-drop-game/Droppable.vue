@@ -82,7 +82,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style type="text/css" scoped>
 .droppable {
   background: #eee;
   border-top: 2px solid #ccc;
