@@ -2,7 +2,7 @@
   <div>
     <drag
       :class="{'draggable': !dragging, 'dragging': dragging}"
-      :transfer-data="content"
+      :transfer-data="option"
       :draggable="drag"
       @dragstart="handleDrag()"
       @dragend="handleEnd()"
