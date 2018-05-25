@@ -13,6 +13,7 @@ function loadStories() {
   require('../src/stories/Animation')
   require('../src/stories/BookDragDropGame')
   require('../src/stories/AnalysisGame')
+  require('../src/stories/BookSelectFillGame')
 }
 
 configure(loadStories, module);
