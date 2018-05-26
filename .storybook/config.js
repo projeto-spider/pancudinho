@@ -1,6 +1,7 @@
 import { configure } from '@storybook/vue'
 
 import Vue from 'vue'
+import '../src/assets/global-fonts.css'
 
 function loadStories() {
   require('../src/stories/Ui')

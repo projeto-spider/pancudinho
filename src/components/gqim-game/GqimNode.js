@@ -15,7 +15,8 @@ const style = {
     right: 27,
     top: 27,
     bottom: 27
-  }
+  },
+  fontFamily: 'kenvector_future'
 }
 
 export default class GqimNode extends Phaser.GameObjects.Text {

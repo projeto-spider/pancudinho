@@ -43,15 +43,4 @@ export default {
   from { background-position: 0 bottom; }
   to { background-position: 100% bottom; }
 }
-
-@font-face {
-  font-family: kenvector_future;
-  src: url('../../assets/font/kenvector_future.ttf');
-}
-
-* {
-  font-family: kenvector_future;
-  color:#9f9ea1;
-  z-index: 2;
-}
 </style>
