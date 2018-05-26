@@ -8,8 +8,7 @@ import Scene from '../components/phaser/Scene.vue'
 import GqimGame from '../components/gqim-game/GqimGame.vue'
 import GqimNode from '../components/gqim-game/GqimNode'
 import DropZone from '../components/gqim-game/DropZone'
-
-import greyPanel from '../assets/grey_panel.png'
+import preloadGqimGame from '../components/gqim-game/preload-gqim-game'
 
 const stories = storiesOf('GQIM Game', module)
 
@@ -26,7 +25,7 @@ stories
         },
         scene: {
           preload () {
-            this.load.image('greyPanel', greyPanel)
+            preloadGqimGame(this)
           },
           create () {
             new GqimNode(this, this.sys.canvas.width / 2, this.sys.canvas.height / 2, 'Olá mundo Olá mundo Olá mundo Olá mundoOlá mundo Olá mundo') // eslint-disable-line

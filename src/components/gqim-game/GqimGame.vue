@@ -8,7 +8,7 @@ import Scene from '../phaser/Scene.vue'
 
 import GqimNode from './GqimNode'
 import DropZone from './DropZone'
-import greyPanel from '../../assets/grey_panel.png'
+import preloadGqimGame from './preload-gqim-game'
 
 export default {
   name: 'GqimGame',
@@ -34,7 +34,7 @@ export default {
         },
         scene: {
           preload () {
-            this.load.image('greyPanel', greyPanel)
+            preloadGqimGame(this)
           },
 
           create () {

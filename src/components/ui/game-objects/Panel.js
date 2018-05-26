@@ -6,42 +6,35 @@ const frameKeys = [
   ['bottomLeft', 'bottom', 'bottomRight']  // eslint-disable-line
 ]
 
+const PADDING = 27
+
 export default class Panel extends Phaser.GameObjects.RenderTexture {
-  constructor (scene, parent, textureKey) {
+  constructor (scene, parent, panel) {
     const { x, y, width, height } = parent.getBounds()
 
     super(scene, x, y, width, height)
 
     this.parent = parent
-
-    const frame = scene.textures.getFrame(textureKey)
-    const { texture } = frame
-    const frameNames = new Set(texture.getFrameNames())
-
-    this.padding = {
-      top: 27,
-      left: 27,
-      right: 27,
-      bottom: 27
-    }
-
-    const ys = [0, this.padding.top, frame.height - this.padding.bottom]
-    const xs = [0, this.padding.left, frame.width - this.padding.right]
-    const heights = [this.padding.top, frame.height - this.padding.top - this.padding.bottom, this.padding.bottom]
-    const widths = [this.padding.left, frame.width - this.padding.left - this.padding.right, this.padding.right]
-
-    frameKeys.forEach((row, yi) =>
-      row.forEach((key, xi) => {
-        if (!frameNames.has(key)) {
-          texture.add(key, frame.sourceIndex, xs[xi], ys[yi], widths[xi], heights[yi])
-        }
-      })
-    )
+    this.textureKey = `${panel}Panel`
 
     this.frames = frameKeys.map((row, yi) =>
       row.map((key, xi) =>
-        this.scene.add.image(0, 0, 'greyPanel', key)
+        scene.add.image(0, 0, this.textureKey, key)
       )
+    )
+
+    this.positionFrames()
+  }
+
+  setPanel = (panel) => {
+    this.textureKey = `${panel}Panel`
+
+    this.frames = this.frames.map((row) =>
+      row.map((frame) => {
+        const key = frame.frame.name
+        frame.destroy()
+        return this.scene.add.image(0, 0, this.textureKey, key)
+      })
     )
 
     this.positionFrames()
@@ -60,23 +53,23 @@ export default class Panel extends Phaser.GameObjects.RenderTexture {
   positionFrames = () => {
     const ys = [
       this.y,
-      this.y + this.padding.top,
-      this.y + this.height - this.padding.top
+      this.y + PADDING,
+      this.y + this.height - PADDING
     ]
     const xs = [
       this.x,
-      this.x + this.padding.left,
-      this.x + this.width - this.padding.right
+      this.x + PADDING,
+      this.x + this.width - PADDING
     ]
     const heights = [
-      this.padding.top,
-      this.height - this.padding.top - this.padding.bottom,
-      this.padding.bottom
+      PADDING,
+      this.height - PADDING - PADDING,
+      PADDING
     ]
     const widths = [
-      this.padding.left,
-      this.width - this.padding.left - this.padding.right,
-      this.padding.right
+      PADDING,
+      this.width - PADDING - PADDING,
+      PADDING
     ]
 
     this.frames.forEach((row, yi) =>
