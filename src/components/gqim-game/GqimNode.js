@@ -4,7 +4,7 @@ import Panel from '../ui/game-objects/Panel'
 
 const style = {
   fontSize: 18,
-  fill: '#000',
+  fill: '#b2b2b2',
   align: 'center',
   wordWrap: {
     width: 300
