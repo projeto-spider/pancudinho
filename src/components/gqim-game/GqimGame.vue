@@ -8,6 +8,7 @@ import Scene from '../phaser/Scene.vue'
 
 import GqimNode from './GqimNode'
 import DropZone from './DropZone'
+import greyPanel from '../../assets/grey_panel.png'
 
 export default {
   name: 'GqimGame',
@@ -32,7 +33,10 @@ export default {
           default: 'arcade'
         },
         scene: {
-          preload () {},
+          preload () {
+            this.load.image('greyPanel', greyPanel)
+          },
+
           create () {
             const camera = this.cameras.main
             camera.setBackgroundColor('#bdbdbd')
@@ -229,8 +233,7 @@ export default {
             this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
               isDraggingSomething = true
               const { x, y } = camera.getWorldPoint(pointer.position.x, pointer.position.y)
-              gameObject.x = x
-              gameObject.y = y
+              gameObject.setPosition(x, y)
             })
 
             this.input.on('dragend', function dragend (pointer, gameObject, dropped) {

@@ -1,12 +1,20 @@
 import Phaser from 'phaser'
 
+import Panel from '../ui/game-objects/Panel'
+
 const style = {
-  fontSize: 16,
+  fontSize: 18,
   fill: '#000',
   align: 'center',
-  backgroundColor: '#74b9ff',
   wordWrap: {
     width: 300
+  },
+  // TODO: don't hardcode here and in Panel
+  padding: {
+    left: 27,
+    right: 27,
+    top: 27,
+    bottom: 27
   }
 }
 
@@ -17,6 +25,13 @@ export default class GqimNode extends Phaser.GameObjects.Text {
     scene.add.existing(this).setInteractive()
     scene.physics.add.existing(this)
     scene.input.setDraggable(this)
+
+    this.panel = new Panel(scene, this, 'greyPanel')
+  }
+
+  setPosition = (x, y) => {
+    this.constructor.prototype.setPosition.call(this, x, y)
+    this.panel.setPosition(x, y)
   }
 
   setDraggable (value = true) {
