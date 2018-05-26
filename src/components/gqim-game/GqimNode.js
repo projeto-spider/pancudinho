@@ -1,42 +1,39 @@
 import Phaser from 'phaser'
 
-import Panel from '../ui/game-objects/Panel'
+import withPanel from '../ui/mixins/with-panel'
+
+const FILL_DARK = '#b2b2b2'
+const FILL_LIGHT = '#fff'
 
 const style = {
   fontSize: 18,
-  fill: '#b2b2b2',
+  fill: FILL_LIGHT,
   align: 'center',
   wordWrap: {
     width: 300
   },
-  // TODO: don't hardcode here and in Panel
-  padding: {
-    left: 27,
-    right: 27,
-    top: 27,
-    bottom: 27
-  },
   fontFamily: 'kenvector_future'
 }
 
-export default class GqimNode extends Phaser.GameObjects.Text {
+export default withPanel(class GqimNode extends Phaser.GameObjects.Text {
   constructor (scene, x, y, text) {
     super(scene, x, y, text, style)
     this.setOrigin()
     scene.add.existing(this).setInteractive()
     scene.physics.add.existing(this)
     scene.input.setDraggable(this)
-
-    this.panel = new Panel(scene, this, 'greyPanel')
-  }
-
-  setPosition = (x, y) => {
-    this.constructor.prototype.setPosition.call(this, x, y)
-    this.panel.setPosition(x, y)
   }
 
   setDraggable (value = true) {
     this.scene.input.setDraggable(this, value)
+
+    if (!value) {
+      this.panel.setPanel('grey')
+      this.style.setFill(FILL_DARK)
+    } else {
+      this.panel.setPanel('blue')
+      this.style.setFill(FILL_LIGHT)
+    }
   }
 
   enterDropZone = (dropZone) => {
@@ -52,4 +49,4 @@ export default class GqimNode extends Phaser.GameObjects.Text {
       this.setData('droppedIn', false)
     }
   }
-}
+})
