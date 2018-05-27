@@ -1,13 +1,14 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { boolean, withKnobs } from '@storybook/addon-knobs/vue'
-import { action } from '@storybook/addon-actions'
+import { withKnobs, text, boolean } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
+import { action } from '@storybook/addon-actions'
 
 import Background from '../components/ui/Background.vue'
 import Panel from '../components/ui/Panel.vue'
 import Tip from '../components/ui/Tip.vue'
+import Button from '../components/ui/Button.vue'
 
 const stories = storiesOf('UI', module)
 stories
@@ -63,4 +64,10 @@ stories
     components: { Background, Tip },
 
     data: () => ({ open: true })
+  }))
+  .add('Button', (h) => ({
+    render: h => h(Button, { props: {
+      handleClick: action('Button Pressed'),
+      label: text('Button Name', 'CLICK ME!')
+    }})
   }))
