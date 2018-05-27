@@ -30,8 +30,11 @@ export default {
   border-width: 7px 27px 35px;
   padding: 0 0 5px 0;
   border-image: url('../../assets/grey_button00.png') 7 27 35 repeat;
-  background-color: unset;
+  background-color: #fff;
+}
+.Button:active {
+  margin-top: 1px;
+  border-image: url('../../assets/yellow_button00.png') 7 27 35 repeat;
+  background-color: #ffd948;
 }
 </style>
-
-

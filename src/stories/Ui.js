@@ -71,3 +71,12 @@ stories
       label: text('Button Name', 'CLICK ME!')
     }})
   }))
+  .add('Button with Background', (h) => ({
+    render: h => h(Background, { props: {
+    } }, [
+      h(Button, { props: {
+        handleClick: action('Button Pressed'),
+        label: text('Button Name', 'CLICK ME!')
+      }})
+    ])
+  }))
