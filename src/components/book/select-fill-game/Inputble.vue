@@ -17,6 +17,11 @@ export default {
     tip: {
       type: String,
       default: null
+    },
+
+    typed: {
+      type: String,
+      default: ''
     }
   },
 
@@ -38,10 +43,5 @@ input{
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
-input.valid {
-  background-color: #2cda82
-}
-input.invalid {
-  background-color: #e83737
-}
+
 </style>
