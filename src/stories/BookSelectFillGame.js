@@ -7,6 +7,7 @@ import Centered from '@storybook/addon-centered'
 import Inputble from '../components/book/select-fill-game/Inputble.vue'
 import Selectable from '../components/book/select-fill-game/Selectable.vue'
 import InputbleVerificationSystem from '../components/book/select-fill-game/InputbleVerificationSystem.vue'
+import BookSelectManual from '../components/book/select-fill-game/BookSelectManual.vue'
 
 const stories = storiesOf('Book Select Fill', module)
 
@@ -24,7 +25,16 @@ stories
     render: h => h(Selectable, { props: {
     } })
   }))
+
   .add('Imputble Verification System', (h) => ({
     render: h => h(InputbleVerificationSystem, { props: {
     } })
   }))
+
+  .add('BookSelectManual', (h) => ({
+    render: h => h(BookSelectManual, { props: {
+    } })
+  }))
+
+
+
