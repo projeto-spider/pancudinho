@@ -45,12 +45,13 @@ export default {
   color:#000;
   border-style: solid;
   border-width: 7px 27px 35px;
-  padding: 0 0 5px 0;
+  padding: 0 0 10px 0;
 }
 
 .Button.blue {
   border-image: url('../../assets/blue_button00.png') 7 27 35 repeat;
   background-color: #35baf3;
+  color: #fff;
 }
 .Button.red {
   border-image: url('../../assets/red_button00.png') 7 27 35 repeat;
