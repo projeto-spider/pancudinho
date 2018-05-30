@@ -94,13 +94,14 @@ export default {
 
 .Sidebar .sidebar-profile {
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .Sidebar .sidebar-profile img {
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
 }
 
 .Sidebar .sidebar-profile span {
