@@ -8,6 +8,7 @@ import Inputble from '../components/book/select-fill-game/Inputble.vue'
 import Selectable from '../components/book/select-fill-game/Selectable.vue'
 import InputbleVerificationSystem from '../components/book/select-fill-game/InputbleVerificationSystem.vue'
 import BookSelectManual from '../components/book/select-fill-game/BookSelectManual.vue'
+import SelectFillGame from '../components/book/select-fill-game/SelectFillGame.vue'
 
 const stories = storiesOf('Book Select Fill', module)
 
@@ -31,10 +32,12 @@ stories
     } })
   }))
 
-  .add('BookSelectManual', (h) => ({
+  .add('Book Select Manual', (h) => ({
     render: h => h(BookSelectManual, { props: {
     } })
   }))
 
-
-
+  .add('Select Fill Game', (h) => ({
+    render: h => h(SelectFillGame, { props: {
+    } })
+  }))
