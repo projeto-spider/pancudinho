@@ -2,12 +2,17 @@
   <div class="Background">
     <slot></slot>
     <div class="clouds"></div>
+    <Sidebar></Sidebar>
   </div>
 </template>
 
 <script>
+import Sidebar from './Sidebar.vue'
+
 export default {
-  name: 'Background'
+  name: 'Background',
+
+  components: { Sidebar }
 }
 </script>
 
