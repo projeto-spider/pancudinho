@@ -1,9 +1,15 @@
 <template>
   <div>
-    <Panel class="Sidebar" :class="{ open: open }">
+    <Panel class="Sidebar sliding-transition" :class="{ open: open }">
       Flashbacks
     </Panel>
-    <Panel color="blue" class="Sidebar-Toggler" :class="{ open: open }" @click.native="toggleSidebar">
+
+    <Panel
+      color="blue"
+      class="Sidebar-Toggler sliding-transition"
+      :class="{ open: open }"
+      @click.native="toggleSidebar"
+    >
       <img :src="iconBarsHorizontal" alt="Toggle Sidebar">
     </Panel>
   </div>
@@ -32,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+.sliding-transition {
+  transition: left 0.3s ease;
+}
+
 .Sidebar {
   position: fixed;
   width: 240px;
