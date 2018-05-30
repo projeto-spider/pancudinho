@@ -1,7 +1,10 @@
 <template>
   <div>
     <Panel class="Sidebar sliding-transition" :class="{ open: open }">
-      Flashbacks
+      <div class="sidebar-profile">
+        <img :src="avatarPlaceholderImg" alt="Player avatar">
+        <span>John Doe</span>
+      </div>
     </Panel>
 
     <Panel
@@ -18,6 +21,7 @@
 <script>
 import Panel from './Panel.vue'
 import iconBarsHorizontal from '../../assets/barsHorizontal.png'
+import avatarPlaceholderImg from '../../assets/avatar-placeholder.png'
 
 export default {
   name: 'Sidebar',
@@ -26,6 +30,7 @@ export default {
 
   data: () => ({
     iconBarsHorizontal,
+    avatarPlaceholderImg,
     open: false
   }),
 
@@ -74,6 +79,21 @@ export default {
   height: 32px;
   max-width: unset;
   margin: -10px;
+}
+
+.Sidebar .sidebar-profile {
+  display: flex;
+  align-items: center;
+}
+
+.Sidebar .sidebar-profile img {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.Sidebar .sidebar-profile span {
+  font-size: 14px;
 }
 </style>
 
