@@ -143,4 +143,3 @@ export default {
   max-width: unset;
 }
 </style>
-

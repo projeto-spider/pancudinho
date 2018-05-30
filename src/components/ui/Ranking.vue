@@ -50,7 +50,7 @@ export default {
     topUsers: [
       { name: 'Merlin' },
       { name: 'Waver' },
-      { name: 'Ozymandias' },
+      { name: 'Ozymandias' }
     ],
     userPosition: 33,
     userName: 'Vlad III'
