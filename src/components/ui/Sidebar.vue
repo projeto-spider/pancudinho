@@ -5,6 +5,12 @@
         <img :src="avatarPlaceholderImg" alt="Player avatar">
         <span>John Doe</span>
       </div>
+
+      <div class="Sidebar-Footer">
+        <Button color="blue" label="">
+          <img :src="gearImg" alt="Settings">
+        </Button>
+      </div>
     </Panel>
 
     <Panel
@@ -20,17 +26,20 @@
 
 <script>
 import Panel from './Panel.vue'
+import Button from './Button.vue'
 import iconBarsHorizontal from '../../assets/barsHorizontal.png'
 import avatarPlaceholderImg from '../../assets/avatar-placeholder.png'
+import gearImg from '../../assets/gear.png'
 
 export default {
   name: 'Sidebar',
 
-  components: { Panel },
+  components: { Panel, Button },
 
   data: () => ({
     iconBarsHorizontal,
     avatarPlaceholderImg,
+    gearImg,
     open: false
   }),
 
@@ -54,6 +63,8 @@ export default {
   top: 0;
   left: -240px;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
 }
 
 .Sidebar.open {
@@ -94,6 +105,23 @@ export default {
 
 .Sidebar .sidebar-profile span {
   font-size: 14px;
+}
+
+.Sidebar-Footer {
+  margin-top: auto;
+  text-align: center;
+}
+
+.Sidebar-Footer .Button {
+  width: 100%
+}
+
+.Sidebar-Footer img {
+  width: 32px;
+  height: 32px;
+  margin-left: -25px;
+  margin-right: -25px;
+  max-width: unset;
 }
 </style>
 
