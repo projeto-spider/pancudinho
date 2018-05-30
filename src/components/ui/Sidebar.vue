@@ -6,8 +6,14 @@
         <span>John Doe</span>
       </div>
 
+      <div class="Sidebar-Menu">
+        <Button color="blue" @click.native="rankingOpen = true">
+          Ranking
+        </Button>
+      </div>
+
       <div class="Sidebar-Footer">
-        <Button color="blue" label="">
+        <Button color="blue">
           <img :src="gearImg" alt="Settings">
         </Button>
       </div>
@@ -21,12 +27,19 @@
     >
       <img :src="iconBarsHorizontal" alt="Toggle Sidebar">
     </Panel>
+
+    <Ranking
+      :open="rankingOpen"
+      :handle-close="() => rankingOpen = false"
+    >
+    </Ranking>
   </div>
 </template>
 
 <script>
 import Panel from './Panel.vue'
 import Button from './Button.vue'
+import Ranking from './Ranking.vue'
 import iconBarsHorizontal from '../../assets/barsHorizontal.png'
 import avatarPlaceholderImg from '../../assets/avatar-placeholder.png'
 import gearImg from '../../assets/gear.png'
@@ -34,13 +47,14 @@ import gearImg from '../../assets/gear.png'
 export default {
   name: 'Sidebar',
 
-  components: { Panel, Button },
+  components: { Panel, Button, Ranking },
 
   data: () => ({
     iconBarsHorizontal,
     avatarPlaceholderImg,
     gearImg,
-    open: false
+    open: false,
+    rankingOpen: false
   }),
 
   methods: {
@@ -65,6 +79,7 @@ export default {
   z-index: 100;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .Sidebar.open {
@@ -108,8 +123,11 @@ export default {
   font-size: 14px;
 }
 
+.Sidebar-Menu .Button {
+  width: 100%;
+}
+
 .Sidebar-Footer {
-  margin-top: auto;
   text-align: center;
 }
 
