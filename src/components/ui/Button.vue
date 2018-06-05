@@ -1,7 +1,6 @@
 <template>
   <button class="Button" :class="computedClass" @click="handleClick">
-    {{ label }}
-    <slot></slot>
+    <span>{{ label }}<slot></slot></span>
   </button>
 </template>
 
@@ -40,12 +39,19 @@ export default {
 
 <style scoped>
 .Button {
+  box-sizing: border-box;
   font-family: kenvector_future;
   border-style: solid;
   color:#000;
   border-style: solid;
   border-width: 7px 27px 35px;
-  padding: 0 0 10px 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.Button > * {
+  position: relative;
+  top: 10px;
 }
 
 .Button.blue {
