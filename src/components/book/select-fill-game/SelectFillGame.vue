@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="book">
     <button v-if="selectMode" @click="selectMode=false">Input Mode</button>
     <button v-else @click="selectMode=true">Select Mode</button>
@@ -12,36 +13,31 @@
         <span class="box" @click="defocus = true"></span>
       </p>
 
-    <div v-if="defocus">
-      <div class="defocus" @click="defocus = false">
-        <div v-for="item in options" :key="item.id" >
+      <div v-if="defocus">
+        <div class="defocus" @click="defocus = false">
+          <div v-for="item in options" :key="item.id" >
             <div class="option"> {{item.words}} </div>
+          </div>
         </div>
       </div>
     </div>
-
-    </div>
-    <div v-else>
-      <p>
-        <span class="fairy-letter"> {{item.text}} </span>
-      </p>
-
-      <p>
-        <input>
-      </p>
-    </div>
-
   </div>
+  <div v-if="!selectmode">
+    <FillPage></FillPage>
+  </div>
+</div>
 </template>
 
 <script type="text/javascript">
 
-import InputbleVerificationSystem from './InputbleVerificationSystem.vue'
 import Selectable from './Selectable.vue'
 import Inputble from './Inputble.vue'
+import FillPage from './FillPage.vue'
 
 export default {
   name: 'BookSelectManual',
+
+  components: { FillPage },
 
   props: {
   },
