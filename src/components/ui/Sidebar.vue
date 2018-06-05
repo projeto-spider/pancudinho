@@ -71,6 +71,7 @@ export default {
 }
 
 .Sidebar {
+  box-sizing: border-box;
   position: fixed;
   width: 240px;
   height: 100%;
@@ -88,8 +89,8 @@ export default {
 
 .Sidebar-Toggler {
   position: fixed;
-  width: 64px;
-  height: 74px;
+  width: 18px;
+  height: 18px;
   top: 0;
   left: -10px;
   z-index: 99;
@@ -104,7 +105,7 @@ export default {
   width: 32px;
   height: 32px;
   max-width: unset;
-  margin: -10px;
+  margin: -6px;
 }
 
 .Sidebar .sidebar-profile {
