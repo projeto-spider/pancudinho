@@ -30,11 +30,6 @@ import Inputble from './Inputble.vue'
 import Selectable from './Selectable.vue'
 
 export default {
-  name: 'BookSelectManual',
-
-  props: {
-  },
-
   data: () => ({
         options: [
       {
