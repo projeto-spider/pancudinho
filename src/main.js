@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import 'milligram/dist/milligram.css'
 
 Vue.config.productionTip = false
 
