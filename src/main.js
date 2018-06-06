@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '../src/assets/global-fonts.css'
 
 Vue.config.productionTip = false
 
