@@ -246,7 +246,7 @@ export default {
 
             let isDraggingSomething = false
             let paddingDrag = { x: 0, y: 0 }
-            const scene = this
+
             this.input.on('dragstart', function dragstart (pointer, gameObject) {
               if (canDrag) {
                 draggableNodes.forEach(node => {
@@ -258,7 +258,6 @@ export default {
 
                 gameObject.leaveDropZone()
               }
-
             })
             this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
               if (canDrag) {
