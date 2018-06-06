@@ -1,28 +1,14 @@
 <template>
 <div>
-  <div class="book">
+  <br>
+  <p style="text-align:center;">
     <button v-if="selectMode" @click="selectMode=false">Input Mode</button>
     <button v-else @click="selectMode=true">Select Mode</button>
-    <div v-if="selectMode" v-for="item in options" :key="item.id" >
-
-      <p>
-        <span class="fairy-letter"> {{item.text}} </span>
-      </p>
-
-      <p>
-        <span class="box" @click="defocus = true"></span>
-      </p>
-
-      <div v-if="defocus">
-        <div class="defocus" @click="defocus = false">
-          <div v-for="item in options" :key="item.id" >
-            <div class="option"> {{item.words}} </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  </p>
+  <div v-if="selectMode">
+    <SelectPage></SelectPage>
   </div>
-  <div v-if="!selectmode">
+  <div v-else>
     <FillPage></FillPage>
   </div>
 </div>
@@ -33,11 +19,12 @@
 import Selectable from './Selectable.vue'
 import Inputble from './Inputble.vue'
 import FillPage from './FillPage.vue'
+import SelectPage from './SelectPage.vue'
 
 export default {
   name: 'BookSelectManual',
 
-  components: { FillPage },
+  components: { FillPage, SelectPage },
 
   props: {
   },
