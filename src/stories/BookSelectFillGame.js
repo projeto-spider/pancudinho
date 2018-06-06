@@ -7,7 +7,6 @@ import Centered from '@storybook/addon-centered'
 import Inputble from '../components/book/select-fill-game/Inputble.vue'
 import Selectable from '../components/book/select-fill-game/Selectable.vue'
 import FillPage from '../components/book/select-fill-game/FillPage.vue'
-import BookSelectManual from '../components/book/select-fill-game/BookSelectManual.vue'
 import SelectFillGame from '../components/book/select-fill-game/SelectFillGame.vue'
 import SelectPage from '../components/book/select-fill-game/SelectPage.vue'
 
@@ -28,22 +27,17 @@ stories
     } })
   }))
 
-  .add('Book Select Manual', (h) => ({
-    render: h => h(BookSelectManual, { props: {
-    } })
-  }))
-
   .add('Fill Page', (h) => ({
     render: h => h(FillPage, { props: {
     } })
   }))
 
-  .add('Select Fill Game', (h) => ({
-    render: h => h(SelectFillGame, { props: {
+  .add('Select Page', (h) => ({
+    render: h => h(SelectPage, { props: {
     } })
   }))
 
-  .add('Select Page', (h) => ({
-    render: h => h(SelectPage, { props: {
+  .add('Select Fill Game', (h) => ({
+    render: h => h(SelectFillGame, { props: {
     } })
   }))
