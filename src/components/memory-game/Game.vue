@@ -24,7 +24,6 @@
 
 <script>
 import Background from '../ui/Background.vue'
-import Panel from '../ui/Panel.vue'
 import Board from './Board.vue'
 import Deck from './Deck.vue'
 import Pancudinho from './Pancudinho.vue'
