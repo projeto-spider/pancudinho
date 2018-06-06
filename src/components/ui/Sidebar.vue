@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="Sidebar-Wrapper">
     <Panel class="Sidebar sliding-transition" :class="{ open: open }">
       <div class="sidebar-profile">
         <img :src="avatarPlaceholderImg" alt="Player avatar">
@@ -66,6 +66,10 @@ export default {
 </script>
 
 <style scoped>
+.Sidebar-Wrapper {
+  z-index: 100
+}
+
 .sliding-transition {
   transition: left 0.3s ease;
 }
