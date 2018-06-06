@@ -1,9 +1,15 @@
 <template>
-  <Scene v-if="config" :config="config"></Scene>
+  <Background>
+    <Panel class="ScenePanel">
+      <Scene v-if="config" :config="config"></Scene>
+    </Panel>
+  </Background>
 </template>
 
 <script>
 import Phaser from 'phaser'
+import Background from '../ui/Background.vue'
+import Panel from '../ui/Panel.vue'
 import Scene from '../phaser/Scene.vue'
 
 import GqimNode from './GqimNode'
@@ -14,6 +20,8 @@ export default {
   name: 'GqimGame',
 
   components: {
+    Background,
+    Panel,
     Scene
   },
 
@@ -27,6 +35,15 @@ export default {
   data () {
     const $vm = this
 
+    function resize (width, height) {
+      if (width === undefined) { width = this.sys.game.config.width }
+      if (height === undefined) { height = this.sys.game.config.height }
+
+      if (this.cameras) {
+        this.cameras.resize(width, height)
+      }
+    }
+
     return {
       config: {
         physics: {
@@ -38,6 +55,8 @@ export default {
           },
 
           create () {
+            this.events.on('resize', resize, this)
+
             const camera = this.cameras.main
             camera.setBackgroundColor('#bdbdbd')
 
@@ -273,10 +292,18 @@ export default {
               dropZone.onDropIn(gameObject)
             })
           },
-          update () {}
+          update () {},
+          resize,
         }
       }
     }
   }
 }
 </script>
+
+<style scoped>
+.ScenePanel {
+  width: 90%;
+  height: 90%;
+}
+</style>
