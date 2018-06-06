@@ -89,8 +89,8 @@ export default {
 
 .Sidebar-Toggler {
   position: fixed;
-  width: 18px;
-  height: 18px;
+  width: 68px;
+  height: 72px;
   top: 0;
   left: -10px;
   z-index: 99;
