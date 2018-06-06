@@ -3,15 +3,15 @@
     <div v-for="option in options" :key="option.id">
       <div class="fairy-letter">{{option.text}}</div>
         <div v-if="option.right">
-          <span class='right'> </span>
+          <span class='right'> {{option.word_lac}} </span>
         </div>
         <div v-if="option.wrong">
-          <span class='false'> </span>
+          <span class='false'> {{option.word_lac}} </span>
         </div>
         <div v-if="(!option.right && !option.wrong)">
           {{words[0].lac}} {{words[0].select}} {{option.select_ver}} {{option.word_lac}} {{option.words}}
         <p>
-        <span class="box" @click.prevent="defocus=true"  @click="option.select_ver = true"> {{option.words_lac}}</span>
+        <span class="box" @click.prevent="defocus=true"  @click="option.select_ver = true"> {{option.word_lac}}</span>
         </p>
         <div v-if="defocus">
           <div class="defocus" @click="defocus = false">
@@ -105,7 +105,9 @@ export default {
     },
     doAgain(){
       for (var i=0;i<this.options.length;i++){
-        this.options[i].typed=''
+        this.options[i].word_lac=''
+        this.options[i].select_ver=false
+        this.words[i].select=false
         this.options[i].right=false
         this.options[i].wrong=false
 
