@@ -3,10 +3,14 @@
     <div v-for="option in options" :key="option.id">
       <div class="fairy-letter">{{option.text}}</div>
         <div v-if="option.right">
+          <p>
           <span class='right'> {{option.word_lac}} </span>
+          </p>
         </div>
         <div v-if="option.wrong">
+          <p>
           <span class='false'> {{option.word_lac}} </span>
+          </p>
         </div>
         <div v-if="(!option.right && !option.wrong)">
           {{words[0].lac}} {{words[0].select}} {{option.select_ver}} {{option.word_lac}} {{option.words}}
@@ -44,6 +48,7 @@ export default {
       select: false,
       id: 2
       }
+
     ],
     options: [
       {
@@ -145,13 +150,19 @@ input{
 
 .box {
 
-  background: #bdbdbd;
+  background: #e2dfdf;
   border-radius: 5px;
   opacity: 0.5;
   display: block;
   padding: 20px 110px;
   margin: 0;
+  font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
+  color: black;
+  text-align: center;
+  height: 60px;
+
 }
+
 .right {
 
   background-color:#12f51963;
@@ -159,7 +170,12 @@ input{
   opacity: 0.5;
   display: block;
   padding: 20px 110px;
+  height: 60px;
   margin: 0;
+  font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
+  color: black;
+  text-align: center;
+
 }
 .false {
 
@@ -169,13 +185,18 @@ input{
   display: block;
   padding: 20px 110px;
   margin: 0;
+  height: 60px;
+  font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
+  color: black;
+  text-align: center;
+
 }
 .option {
   padding: 1em 2em;
   margin: 0.4em 1em;
   margin-top: 4cm;
-  width: 60px;
-  margin-left: 130px;
+  width: 200px;
+  margin-left: 280px;
   background: plum;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
   font: 400 23px/1.3 'Arizonia', Helvetica, sans-serif;
@@ -183,6 +204,7 @@ input{
   text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
   color: black;
   float:left;
+  text-align: center;
 }
 
 .defocus {
