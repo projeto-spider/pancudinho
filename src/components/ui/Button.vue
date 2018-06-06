@@ -42,7 +42,6 @@ export default {
   box-sizing: border-box;
   font-family: kenvector_future;
   border-style: solid;
-  color:#000;
   border-style: solid;
   border-width: 7px 27px 35px;
   border-radius: 6px;
@@ -50,16 +49,20 @@ export default {
   cursor: pointer;
 }
 
-.Button > * {
+.Button > span {
   position: relative;
   top: 10px;
+  color:#000;
 }
 
 .Button.blue {
   border-image: url('../../assets/blue_button00.png') 7 27 35 repeat;
   background-color: #35baf3;
+}
+.Button.blue > span {
   color: #fff;
 }
+
 .Button.red {
   border-image: url('../../assets/red_button00.png') 7 27 35 repeat;
   background-color: #e86a17;
