@@ -9,13 +9,15 @@
           <span class='false'> </span>
         </div>
         <div v-if="(!option.right && !option.wrong)">
+          {{words[0].lac}} {{words[0].select}} {{option.select_ver}} {{option.word_lac}} {{option.words}}
         <p>
-        <span class="box" @click.prevent="defocus=true"  @click="option.select_ver = true"> {{option.words}}</span>
+        <span class="box" @click.prevent="defocus=true"  @click="option.select_ver = true"> {{option.words_lac}}</span>
         </p>
         <div v-if="defocus">
           <div class="defocus" @click="defocus = false">
-            <div v-for="option in options" :key="option.id" >
-                <div class="option" @click="option.select = true" > {{option.words}} </div>
+
+            <div v-for="words in words" :key="words.id" >
+                <div class="option" @click="((words.select = true) && (select()))" > {{words.lac}} </div>
             </div>
           </div>
         </div>
@@ -29,8 +31,20 @@
 <script>
 import Selectable from './Selectable.vue'
 export default {
-  components: {Inputble},
+  components: {Selectable},
   data: () => ({
+    words: [
+      {
+      lac: 'lorem',
+      select: false,
+      id: 1
+      },
+      {
+      lac: 'ipsum',
+      select: false,
+      id: 2
+      }
+    ],
     options: [
       {
        text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
@@ -46,6 +60,7 @@ export default {
       {
        text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
        words: 'ipsum',
+       words_lac: '',
        id: 2,
        typed: '',
        right: false,
@@ -61,22 +76,25 @@ export default {
 
   }),
   methods:{
-    select(){
-      for (var i=0;i<this.options.length;i++){
-        if ((this.options[i].select=== true) && (this.options[i].select_ver === true)){
-          this.options[i].right=true
-          this.options[i].wrong=false
-        }else{
-          this.options[i].right=false
-          this.options[i].wrong=true
+  select () {
+      for (var i = 0; i < this.words.length; i++) {
+        for (var j = 0; j < this.options.length; j++) {
+          if (this.words[i].select === true && this.options[j].select_ver === true) {
+            this.options[j].word_lac = this.words[i].lac
+          }
         }
       }
+      for (var k = 0; k < this.words.length; k++) {
+        this.options[k].select_ver = false
+        this.words[k].select = false
+      }
+
     },
 
 
     checkAnswers(){
       for (var i=0;i<this.options.length;i++){
-        if ((this.options[i].select=== true) && (this.options[i].select_ver === true)){
+        if ((this.options[i].words === this.options[i].word_lac)){
           this.options[i].right=true
           this.options[i].wrong=false
         }else{
