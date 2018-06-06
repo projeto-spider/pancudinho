@@ -219,10 +219,10 @@ export default {
 
             let isDraggingSomething = false
             let paddingDrag = { x: 0, y: 0 }
-
+            const scene = this
             this.input.on('dragstart', function dragstart (pointer, gameObject) {
               draggableNodes.forEach(node => {
-                node.setDepth(node === gameObject ? 1 : 0)
+                node.setDepth(node === gameObject ? 15 : 10)
               })
 
               paddingDrag.x = pointer.x - gameObject.x

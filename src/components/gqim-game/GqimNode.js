@@ -24,6 +24,11 @@ export default withPanel(class GqimNode extends Phaser.GameObjects.Text {
     scene.input.setDraggable(this)
   }
 
+  setDepth = (value) => {
+    this.constructor.prototype.setDepth.call(this, value)
+    this.panel.setDepth(value - 1)
+  }
+
   setDraggable (value = true) {
     this.scene.input.setDraggable(this, value)
 

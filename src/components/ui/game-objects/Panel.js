@@ -26,6 +26,15 @@ export default class Panel extends Phaser.GameObjects.RenderTexture {
     this.positionFrames()
   }
 
+  setDepth = (depth) => {
+    this.constructor.prototype.setDepth.call(this, depth)
+    this.frames.forEach(row =>
+      row.forEach(frame => {
+        frame.setDepth(depth)
+      })
+    )
+  }
+
   setPanel = (panel) => {
     this.textureKey = `${panel}Panel`
 
@@ -78,7 +87,6 @@ export default class Panel extends Phaser.GameObjects.RenderTexture {
         image.setOrigin(0, 0)
         image.setSize(widths[xi], heights[yi])
         image.setDisplaySize(widths[xi], heights[yi])
-        image.setDepth(-1)
       })
     )
   }
