@@ -194,7 +194,7 @@ input{
 .option {
   padding: 1em 2em;
   margin: 0.4em 1em;
-  margin-top: 4cm;
+  margin-top: 280px;
   width: 200px;
   margin-left: 280px;
   background: plum;
@@ -205,6 +205,7 @@ input{
   color: black;
   float:left;
   text-align: center;
+
 }
 
 .defocus {
@@ -214,9 +215,12 @@ input{
   left: 0;
   width: 100%;
   height: 100%;
+  /*
   background-color: rgba(162, 162, 162, 1);
+  */
+  opacity: 0.7;
+  background-color: rgba(0, 0, 0, .4);
   display: table;
-  opacity: 0.5;
   transition: opacity .3s ease;
 }
 
