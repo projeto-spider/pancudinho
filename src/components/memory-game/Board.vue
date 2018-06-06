@@ -1,5 +1,5 @@
 <template>
-  <div class="Board">
+  <Panel class="Board">
     <Card
       v-for="card in cards"
       :key="card.id"
@@ -7,16 +7,17 @@
       :content="card.content"
       :handle-click="() => handleClickCard(card)"
     ></Card>
-  </div>
+  </Panel>
 </template>
 
 <script>
+import Panel from '../ui/Panel.vue'
 import Card from './Card.vue'
 
 export default {
   name: 'Board',
 
-  components: { Card },
+  components: { Panel, Card },
 
   props: {
     cards: {
@@ -35,9 +36,9 @@ export default {
 <style scoped>
 .Board {
   display: flex;
-  border: 1px solid #dedede;
   padding: 15px;
   width: 100%;
+  max-width: 1000px;
   height: 95%;
   flex-wrap: wrap;
   justify-content: center

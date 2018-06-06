@@ -1,35 +1,30 @@
 <template>
-  <div class="MemoryGame">
+  <Background>
+    <div class="MemoryGame">
+      <Board
+        :cards="cardsInGame"
+        :handle-click-card="handleClickCard"
+      ></Board>
 
-    <div class="row">
-      <div class="column column-75">
-        <Board
-          :cards="cardsInGame"
-          :handle-click-card="handleClickCard"
-        ></Board>
-      </div>
-
-      <div class="column is-centered control-column">
-        <div class="row deck-block">
-          <div class="column">
-            <Deck :n-cards="Math.max(cardsInDeck.length, 1)"></Deck>
-          </div>
+      <div class="MemoryGame-Aside">
+        <div class="deck-wrapper">
+          <Deck :n-cards="Math.max(cardsInDeck.length, 1)"></Deck>
         </div>
 
         <div class="row pancudinho-block">
-          <div class="column">
-            <Pancudinho
-              :tips-choice="currentTip"
-              :handle-close="changeTip"
-            ></Pancudinho>
-          </div>
+          <Pancudinho
+            :tips-choice="currentTip"
+            :handle-close="changeTip"
+          ></Pancudinho>
         </div>
       </div>
     </div>
-  </div>
+  </Background>
 </template>
 
 <script>
+import Background from '../ui/Background.vue'
+import Panel from '../ui/Panel.vue'
 import Board from './Board.vue'
 import Deck from './Deck.vue'
 import Pancudinho from './Pancudinho.vue'
@@ -39,7 +34,7 @@ const FLIP_WAIT_TIME = 1500
 export default {
   name: 'MemoryGame',
 
-  components: { Board, Deck, Pancudinho },
+  components: { Background, Board, Deck, Pancudinho },
 
   data: () => ({
     // This part is currently mocked
@@ -133,9 +128,9 @@ html, body {
 }
 
 .MemoryGame {
-  width: 100%;
   margin: 15px;
   display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
   align-items: stretch;
 }
@@ -144,10 +139,20 @@ html, body {
   text-align: center;
 }
 
-.row .column.control-column {
+.MemoryGame .MemoryGame-Aside {
+  width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.deck-wrapper {
+  width: 100%;
+  height: 200px;
+  text-align: center;
+}
+
+.deck-wrapper > * {
+  left: 44%
+}
 </style>

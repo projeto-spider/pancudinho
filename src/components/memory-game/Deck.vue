@@ -37,8 +37,8 @@ export default {
   box-shadow: .2em .2em .5em #333;
 }
 .Card {
-  width: 3.3em;
-  height: 4.6em;
+  width: 100px;
+  height: 140px;
   border: 1px solid #dedede;
   background-color: #003570;
   position: absolute;
