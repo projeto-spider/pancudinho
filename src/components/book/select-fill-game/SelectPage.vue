@@ -4,27 +4,25 @@
       <div class="fairy-letter">{{option.text}}</div>
         <div v-if="option.right">
           <p>
-          <span class='right'> {{option.word_lac}} </span>
+            <span class='right'> {{option.word_lac}} </span>
           </p>
         </div>
         <div v-if="option.wrong">
           <p>
-          <span class='false'> {{option.word_lac}} </span>
+            <span class='false'> {{option.word_lac}} </span>
           </p>
         </div>
         <div v-if="(!option.right && !option.wrong)">
-          {{words[0].lac}} {{words[0].select}} {{option.select_ver}} {{option.word_lac}} {{option.words}}
-        <p>
-        <span class="box" @click.prevent="defocus=true"  @click="option.select_ver = true"> {{option.word_lac}}</span>
-        </p>
-        <div v-if="defocus">
-          <div class="defocus" @click="defocus = false">
-
-            <div v-for="words in words" :key="words.id" >
-                <div class="option" @click="((words.select = true) && (select()))" > {{words.lac}} </div>
+          <p>
+            <span class="box" @click.prevent="defocus=true"  @click="option.select_ver = true"> {{option.word_lac}}</span>
+          </p>
+          <div v-if="defocus">
+            <div class="defocus" @click="defocus = false">
+              <div v-for="words in words" :key="words.id" >
+                  <div class="option" @click="((words.select = true) && (select()))" > {{words.lac}} </div>
+              </div>
             </div>
           </div>
-        </div>
         </div>
     </div>
     <button @click="doAgain">Again</button><br>
@@ -48,7 +46,6 @@ export default {
       select: false,
       id: 2
       }
-
     ],
     options: [
       {
@@ -93,7 +90,6 @@ export default {
         this.options[k].select_ver = false
         this.words[k].select = false
       }
-
     },
 
 
@@ -215,9 +211,6 @@ input{
   left: 0;
   width: 100%;
   height: 100%;
-  /*
-  background-color: rgba(162, 162, 162, 1);
-  */
   opacity: 0.7;
   background-color: rgba(0, 0, 0, .4);
   display: table;
