@@ -59,8 +59,8 @@ export default {
 <style scoped>
 .Card {
   display: inline-block;
-  width: 3.3em;
-  height: 4.6em;
+  width: 100px;
+  height: 140px;
   border: 1px solid #666;
   border-radius: .3em;
   padding: .25em;
