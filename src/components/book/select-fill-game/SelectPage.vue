@@ -25,8 +25,10 @@
           </div>
         </div>
     </div>
-    <button @click="doAgain">Again</button><br>
-    <button @click="checkAnswers">Submit</button>
+    <p style="text-align:center;">
+      <button @click="doAgain">Reset</button><br>
+      <button @click="checkAnswers">Submit</button>
+    </p>
   </div>
 </template>
 
@@ -45,6 +47,11 @@ export default {
       lac: 'ipsum',
       select: false,
       id: 2
+      },
+      {
+      lac: 'vehicula',
+      select: false,
+      id: 3
       }
     ],
     options: [
@@ -64,6 +71,17 @@ export default {
        words: 'ipsum',
        words_lac: '',
        id: 2,
+       typed: '',
+       right: false,
+       wrong: false,
+       select_ver: false,
+       select: false
+      },
+      {
+       text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
+       words: 'vehicula',
+       words_lac: '',
+       id: 3,
        typed: '',
        right: false,
        wrong: false,
@@ -111,7 +129,6 @@ export default {
         this.words[i].select=false
         this.options[i].right=false
         this.options[i].wrong=false
-
       }
     }
   }
@@ -128,7 +145,7 @@ export default {
   box-shadow: .2em .2em .5em #333
 }
 .fairy-letter {
-  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+  font: 400 22.5px/1.3 'Arizonia', Helvetica, sans-serif;
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
@@ -189,10 +206,10 @@ input{
 }
 .option {
   padding: 1em 2em;
-  margin: 0.4em 1em;
-  margin-top: 280px;
-  width: 200px;
-  margin-left: 280px;
+  margin: 2px 1px;
+  margin-top: 50px;
+  width: 175px;
+  margin-left: 125px;
   background: plum;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
   font: 400 23px/1.3 'Arizonia', Helvetica, sans-serif;
@@ -201,7 +218,6 @@ input{
   color: black;
   float:left;
   text-align: center;
-
 }
 
 .defocus {

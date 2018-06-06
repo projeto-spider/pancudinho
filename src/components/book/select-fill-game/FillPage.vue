@@ -12,8 +12,10 @@
           <input v-model='option.typed'>
         </div>
     </div>
-    <button @click="doAgain">Again</button><br>
-    <button @click="checkAnswers">Submit</button>
+    <p style="text-align:center;">
+      <button @click="doAgain">Reset</button><br>
+      <button @click="checkAnswers">Submit</button>
+    </p>
   </div>
 </template>
 
@@ -35,6 +37,14 @@ export default {
        text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
        words: 'ipsum',
        id: 2,
+       typed: '',
+       right: false,
+       wrong: false
+      },
+      {
+       text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
+       words: 'vehicula',
+       id: 3,
        typed: '',
        right: false,
        wrong: false
@@ -74,7 +84,7 @@ export default {
   box-shadow: .2em .2em .5em #333
 }
 .fairy-letter {
-  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+  font: 400 22.5px/1.3 'Arizonia', Helvetica, sans-serif;
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }

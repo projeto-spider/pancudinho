@@ -44,6 +44,11 @@ export default {
         text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
         words: 'ipsum',
         id: 2
+      },
+      {
+       text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
+       words: 'vehicula',
+       id: 3
       }
     ],
 
@@ -94,10 +99,10 @@ export default {
 
 .option {
   padding: 1em 2em;
-  margin: 0.4em 1em;
-  margin-top: 4cm;
-  width: 60px;
-  margin-left: 130px;
+  margin: 2px 1px;
+  margin-top: 50px;
+  width: 175px;
+  margin-left: 125px;
   background: plum;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
   font: 400 23px/1.3 'Arizonia', Helvetica, sans-serif;
@@ -105,6 +110,7 @@ export default {
   text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
   color: black;
   float:left;
+  text-align: center;
 }
 
 .fairy-letter {
