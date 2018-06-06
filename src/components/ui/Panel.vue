@@ -57,6 +57,8 @@ export default {
 .Panel {
   border-style: solid;
   border-width: 27px;
+  border-radius: 6px;
+  box-sizing: border-box;
   z-index: 10;
 }
 

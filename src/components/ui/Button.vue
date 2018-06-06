@@ -45,6 +45,7 @@ export default {
   color:#000;
   border-style: solid;
   border-width: 7px 27px 35px;
+  border-radius: 6px;
   padding: 0;
   cursor: pointer;
 }
