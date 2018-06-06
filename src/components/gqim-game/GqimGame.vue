@@ -1,7 +1,10 @@
 <template>
   <Background>
     <Panel class="ScenePanel">
-      <Scene v-if="config" :config="config"></Scene>
+      <Scene v-if="config" :config="config" ref="scene"></Scene>
+      <Button color="blue" class="submit-button" @click.native="submit">
+        Submit
+      </Button>
     </Panel>
   </Background>
 </template>
@@ -10,6 +13,7 @@
 import Phaser from 'phaser'
 import Background from '../ui/Background.vue'
 import Panel from '../ui/Panel.vue'
+import Button from '../ui/Button.vue'
 import Scene from '../phaser/Scene.vue'
 
 import GqimNode from './GqimNode'
@@ -22,6 +26,7 @@ export default {
   components: {
     Background,
     Panel,
+    Button,
     Scene
   },
 
@@ -62,7 +67,9 @@ export default {
 
             const tree = $vm.tree
 
+            let canDrag = true
             const draggableNodes = []
+            const dropZones = []
 
             const createDraggableNode = element => {
               const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
@@ -77,6 +84,7 @@ export default {
                 const dropZone = new DropZone(this, 0, 0) // eslint-disable-line
                 dropZone.setData('id', element.id)
                 dropZone.setData('edges', element.edges)
+                dropZones.push(dropZone)
 
                 createDraggableNode(element)
 
@@ -240,19 +248,24 @@ export default {
             let paddingDrag = { x: 0, y: 0 }
             const scene = this
             this.input.on('dragstart', function dragstart (pointer, gameObject) {
-              draggableNodes.forEach(node => {
-                node.setDepth(node === gameObject ? 15 : 10)
-              })
+              if (canDrag) {
+                draggableNodes.forEach(node => {
+                  node.setDepth(node === gameObject ? 15 : 10)
+                })
 
-              paddingDrag.x = pointer.x - gameObject.x
-              paddingDrag.y = pointer.y - gameObject.y
+                paddingDrag.x = pointer.x - gameObject.x
+                paddingDrag.y = pointer.y - gameObject.y
 
-              gameObject.leaveDropZone()
+                gameObject.leaveDropZone()
+              }
+
             })
             this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-              isDraggingSomething = true
-              const { x, y } = camera.getWorldPoint(pointer.position.x, pointer.position.y)
-              gameObject.setPosition(x, y)
+              if (canDrag) {
+                isDraggingSomething = true
+                const { x, y } = camera.getWorldPoint(pointer.position.x, pointer.position.y)
+                gameObject.setPosition(x, y)
+              }
             })
 
             this.input.on('dragend', function dragend (pointer, gameObject, dropped) {
@@ -291,11 +304,24 @@ export default {
             this.input.on('drop', function drop (pointer, gameObject, dropZone) {
               dropZone.onDropIn(gameObject)
             })
+
+            this.sys.game.events.addListener('submit', () => {
+              canDrag = false
+              dropZones.forEach(dropZone => dropZone.revealStatus())
+            }, this)
           },
           update () {},
-          resize,
+          resize
         }
       }
+    }
+  },
+
+  methods: {
+    submit () {
+      const { scene } = this.$refs
+
+      scene.game.events.emit('submit')
     }
   }
 }
@@ -305,5 +331,9 @@ export default {
 .ScenePanel {
   width: 90%;
   height: 90%;
+}
+
+.submit-button {
+  float: right
 }
 </style>

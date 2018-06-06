@@ -36,8 +36,14 @@ export default class DropZone extends Phaser.GameObjects.Zone {
     this.graphics.strokeRect(this.x + this.input.hitArea.x, this.y + this.input.hitArea.y, this.input.hitArea.width, this.input.hitArea.height)
   }
 
-  setStatus = (status) => {
-    this.status = status
+  revealStatus = () => {
+    const dropped = this.getData('dropped')
+
+    this.status =
+      dropped && dropped.getData('id') === this.getData('id')
+        ? SUCCESS
+        : FAIL
+
     this.updateGraphics()
   }
 
@@ -49,17 +55,10 @@ export default class DropZone extends Phaser.GameObjects.Zone {
     if (this.isEmpty()) {
       node.enterDropZone(this)
       this.setData('dropped', node)
-
-      this.setStatus(
-        node.getData('id') === this.getData('id')
-          ? SUCCESS
-          : FAIL
-      )
     }
   }
 
   onDropOut = () => {
     this.setData('dropped', false)
-    this.setStatus(WAITING)
   }
 }
