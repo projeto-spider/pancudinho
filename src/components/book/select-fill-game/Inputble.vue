@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="" v-model="typed">
+    <input ref="inp" type="" :value="value" @input="updateGivenAnswer($event.target.value)">
   </div>
 </template>
 
@@ -14,8 +14,19 @@ export default {
   },
 
   data: () => ({
-    typed: ''
-  })
+    answer: null
+  }),
+
+  methods: {
+    updateGivenAnswer (answer) {
+      this.answer = answer
+      this.handleAnswered()
+    },
+
+    handleAnswered () {
+      this.handleWord(this.answer)
+    }
+  }
 }
 </script>
 
