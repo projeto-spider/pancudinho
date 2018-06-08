@@ -10,6 +10,13 @@ export default {
 
   props: ['value', 'correctanswer', 'revealAnswers', 'handleWord'],
 
+  computed: {
+    computedClasses () {
+      const valid = this.answer && this.correctAnswers.includes(this.answer)
+      return {
+        valid: this.revealAnswers && valid,
+        invalid: this.revealAnswers && !valid
+      }
     }
   },
 
