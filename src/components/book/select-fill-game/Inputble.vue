@@ -8,20 +8,8 @@
 export default {
   name: 'Inputble',
 
-  props: {
-    correctAnswer: {
-      type: String,
-      default: null
-    },
+  props: ['value', 'correctanswer', 'revealAnswers', 'handleWord'],
 
-    tip: {
-      type: String,
-      default: null
-    },
-
-    typed: {
-      type: String,
-      default: ''
     }
   },
 
