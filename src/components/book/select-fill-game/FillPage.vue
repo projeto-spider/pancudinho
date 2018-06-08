@@ -26,30 +26,33 @@ export default {
   data: () => ({
     options: [
       {
-       text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
-       words: 'lorem',
-       id: 1,
-       typed: '',
-       right: false,
-       wrong: false
+        id: 1,
+        text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius'
       },
       {
-       text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
-       words: 'ipsum',
-       id: 2,
-       typed: '',
-       right: false,
-       wrong: false
+        id: 2,
+        text: 'lorem',
+        isAnswer: true
       },
       {
-       text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
-       words: 'vehicula',
-       id: 3,
-       typed: '',
-       right: false,
-       wrong: false
+        id: 3,
+        text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,'
+      },
+      {
+        id: 4,
+        text: 'ipsum',
+        isAnswer: true
+      },
+      {
+        id: 5,
+        text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod'
+      },
+      {
+        id: 6,
+        text: 'vehicula',
+        isAnswer: true
       }
-   ]
+    ]
   }),
   methods:{
     checkAnswers(){
