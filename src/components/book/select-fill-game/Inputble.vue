@@ -31,5 +31,10 @@ input{
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
-
+.valid{
+  background-color:#12f51963;
+}
+.invalid{
+  background-color:#f5121263;
+}
 </style>
