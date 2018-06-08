@@ -16,7 +16,7 @@
     </div>
     <p style="text-align:center;">
       <button @click="doAgain">Reset</button><br>
-      <button @click="checkAnswers">Submit</button>
+      <button @click="submit">Submit</button>
     </p>
   </div>
 </template>
@@ -74,6 +74,13 @@ export default {
         this.options[i].right=false
         this.options[i].wrong=false
       }
+    },
+
+    submit () {
+      this.revealAnswer = true
+      console.log(this.items)
+    },
+
     }
   }
 }
