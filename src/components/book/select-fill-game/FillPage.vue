@@ -106,6 +106,8 @@ export default {
       console.log(this.items)
     },
 
+    verifyAnswer (option, answer) {
+      this.answer[option.id] = answer
     }
   }
 }
