@@ -25,7 +25,32 @@
 import Inputble from './Inputble.vue'
 export default {
   components: {Inputble},
+
+  created () {
+    this.items = this.options
+      .filter(item => item.isAnswer)
+      .sort(() => Math.random() - Math.random())
+
+    this.answers = this.items
+      .reduce((acc, option) => {
+        acc[option.id] = null
+        return acc
+      }, {})
+  },
+
+  computed: {
+    correctAnswers () {
+      return Object.entries(this.answers)
+        .filter(([id, option]) => option && option.id === parseInt(id, 10))
+        .map(([_, option]) => option)
+    }
+  },
+
   data: () => ({
+    items: [],
+    correctAnswer: [],
+    revealAnswer: false,
+    answers: {},
     options: [
       {
         id: 1,
