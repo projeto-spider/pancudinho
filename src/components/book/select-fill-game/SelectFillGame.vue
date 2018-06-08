@@ -16,8 +16,6 @@
 
 <script type="text/javascript">
 
-import Selectable from './Selectable.vue'
-import Inputble from './Inputble.vue'
 import FillPage from './FillPage.vue'
 import SelectPage from './SelectPage.vue'
 
@@ -30,7 +28,7 @@ export default {
   },
 
   data: () => ({
-        options: [
+    options: [
       {
         text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
         words: 'lorem',
@@ -45,7 +43,7 @@ export default {
     ],
     input: false,
     defocus: false,
-    selectMode: true,
+    selectMode: true
   })
 }
 </script>
@@ -78,8 +76,6 @@ export default {
 
         </div>
        </div>
-
-
   */
   background: #bdbdbd;
   padding: 1em !important;
@@ -87,8 +83,6 @@ export default {
   opacity: 0.5;
   display: block;
   margin: 0;
-
-
 }
 
 .defocus {

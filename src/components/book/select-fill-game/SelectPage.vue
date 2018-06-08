@@ -39,64 +39,64 @@ export default {
   data: () => ({
     words: [
       {
-      lac: 'lorem',
-      select: false,
-      id: 1
+        lac: 'lorem',
+        select: false,
+        id: 1
       },
       {
-      lac: 'ipsum',
-      select: false,
-      id: 2
+        lac: 'ipsum',
+        select: false,
+        id: 2
       },
       {
-      lac: 'vehicula',
-      select: false,
-      id: 3
+        lac: 'vehicula',
+        select: false,
+        id: 3
       }
     ],
     options: [
       {
-       text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
-       words: 'lorem',
-       words_lac: '',
-       id: 1,
-       typed: '',
-       right: false,
-       wrong: false,
-       select: false,
-       select_ver: false
+        text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
+        words: 'lorem',
+        words_lac: '',
+        id: 1,
+        typed: '',
+        right: false,
+        wrong: false,
+        select: false,
+        select_ver: false
       },
       {
-       text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
-       words: 'ipsum',
-       words_lac: '',
-       id: 2,
-       typed: '',
-       right: false,
-       wrong: false,
-       select_ver: false,
-       select: false
+        text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
+        words: 'ipsum',
+        words_lac: '',
+        id: 2,
+        typed: '',
+        right: false,
+        wrong: false,
+        select_ver: false,
+        select: false
       },
       {
-       text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
-       words: 'vehicula',
-       words_lac: '',
-       id: 3,
-       typed: '',
-       right: false,
-       wrong: false,
-       select_ver: false,
-       select: false
+        text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
+        words: 'vehicula',
+        words_lac: '',
+        id: 3,
+        typed: '',
+        right: false,
+        wrong: false,
+        select_ver: false,
+        select: false
       }
-   ],
+    ],
 
     input: false,
     defocus: false,
-    selectMode: true,
+    selectMode: true
 
   }),
-  methods:{
-  select () {
+  methods: {
+    select () {
       for (var i = 0; i < this.words.length; i++) {
         for (var j = 0; j < this.options.length; j++) {
           if (this.words[i].select === true && this.options[j].select_ver === true) {
@@ -110,25 +110,24 @@ export default {
       }
     },
 
-
-    checkAnswers(){
-      for (var i=0;i<this.options.length;i++){
-        if ((this.options[i].words === this.options[i].word_lac)){
-          this.options[i].right=true
-          this.options[i].wrong=false
-        }else{
-          this.options[i].right=false
-          this.options[i].wrong=true
+    checkAnswers () {
+      for (var i = 0; i < this.options.length; i++) {
+        if ((this.options[i].words === this.options[i].word_lac)) {
+          this.options[i].right = true
+          this.options[i].wrong = false
+        } else {
+          this.options[i].right = false
+          this.options[i].wrong = true
         }
       }
     },
-    doAgain(){
-      for (var i=0;i<this.options.length;i++){
-        this.options[i].word_lac=''
-        this.options[i].select_ver=false
-        this.words[i].select=false
-        this.options[i].right=false
-        this.options[i].wrong=false
+    doAgain () {
+      for (var i = 0; i < this.options.length; i++) {
+        this.options[i].word_lac = ''
+        this.options[i].select_ver = false
+        this.words[i].select = false
+        this.options[i].right = false
+        this.options[i].wrong = false
       }
     }
   }
@@ -232,5 +231,4 @@ input{
   display: table;
   transition: opacity .3s ease;
 }
-
 </style>

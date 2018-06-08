@@ -81,23 +81,24 @@ export default {
       }
     ]
   }),
-  methods:{
-    checkAnswers(){
-      for (var i=0;i<this.options.length;i++){
-        if (this.options[i].typed===this.options[i].words){
-          this.options[i].right=true
-          this.options[i].wrong=false
-        }else{
-          this.options[i].right=false
-          this.options[i].wrong=true
+
+  methods: {
+    checkAnswers () {
+      for (var i = 0; i < this.options.length; i++) {
+        if (this.options[i].typed === this.options[i].words) {
+          this.options[i].right = true
+          this.options[i].wrong = false
+        } else {
+          this.options[i].right = false
+          this.options[i].wrong = true
         }
       }
     },
-    doAgain(){
-      for (var i=0;i<this.options.length;i++){
-        this.options[i].typed=''
-        this.options[i].right=false
-        this.options[i].wrong=false
+    doAgain () {
+      for (var i = 0; i < this.options.length; i++) {
+        this.options[i].typed = ''
+        this.options[i].right = false
+        this.options[i].wrong = false
       }
     },
 

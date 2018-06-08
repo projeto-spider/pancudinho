@@ -46,9 +46,9 @@ export default {
         id: 2
       },
       {
-       text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
-       words: 'vehicula',
-       id: 3
+        text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
+        words: 'vehicula',
+        id: 3
       }
     ],
 
@@ -80,8 +80,6 @@ export default {
   display: block;
   padding: 20px 110px;
   margin: 0;
-
-
 }
 
 .defocus {
