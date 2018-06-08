@@ -1,15 +1,17 @@
 <template>
   <div class="book">
     <div v-for="option in options" :key="option.id">
-      <div class="fairy-letter">{{option.text}}</div>
-        <div v-if="option.right">
-          <input class='right' v-model='option.typed'>
+        <div v-if="option.isAnswer">
+          <inputble
+            v-model="option.typed"
+            :correctAnswer="correctAnswer"
+            :revealAnswer="revealAnswer"
+            :handle-word="answer => verifyAnswer(answer)"
+            :id="option.id"
+          ></inputble>
         </div>
-        <div v-if="option.wrong">
-          <input class='wrong' v-model='option.typed'>
-        </div>
-        <div v-if="(!option.right && !option.wrong)">
-          <input v-model='option.typed'>
+        <div v-else>
+          <div class="fairy-letter">{{option.text}}</div>
         </div>
     </div>
     <p style="text-align:center;">
