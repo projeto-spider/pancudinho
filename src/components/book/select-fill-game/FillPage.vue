@@ -3,11 +3,10 @@
     <div v-for="option in options" :key="option.id">
         <div v-if="option.isAnswer">
           <inputble
-            v-model="option.typed"
-            :correctAnswer="correctAnswer"
-            :revealAnswer="revealAnswer"
-            :handle-word="answer => verifyAnswer(answer)"
-            :id="option.id"
+            v-model="typed"
+            :correct-answers="correctAnswers"
+            :reveal-answers="revealAnswer"
+            :handle-word="answer => verifyAnswer(option.id, answer)"
           ></inputble>
         </div>
         <div v-else>
@@ -49,6 +48,7 @@ export default {
     items: [],
     correctAnswer: [],
     revealAnswer: false,
+    typed: '',
     answers: {},
     options: [
       {
