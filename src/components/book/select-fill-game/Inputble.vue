@@ -1,6 +1,9 @@
 <template>
   <div>
-    <input ref="inp" type="" :value="value" @input="updateGivenAnswer($event.target.value)">
+    <input
+      :value="value"
+      @input="updateGivenAnswer($event.target.value)"
+    >
   </div>
 </template>
 
