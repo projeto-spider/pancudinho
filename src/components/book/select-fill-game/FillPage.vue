@@ -29,7 +29,6 @@ export default {
   created () {
     this.items = this.options
       .filter(item => item.isAnswer)
-      .sort(() => Math.random() - Math.random())
 
     this.answers = this.items
       .reduce((acc, option) => {
