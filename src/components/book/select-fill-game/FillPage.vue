@@ -40,8 +40,8 @@ export default {
   computed: {
     correctAnswers () {
       return Object.entries(this.answers)
-        .filter(([id, option]) => option && option.id === parseInt(id, 10))
-        .map(([_, option]) => option)
+        .filter(([id, option]) => option && option[1] && option[1].id === parseInt(id, 10))
+        .map(([_, option]) => option[0])
     }
   },
 
