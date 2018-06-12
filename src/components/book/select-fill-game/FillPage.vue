@@ -103,7 +103,6 @@ export default {
 
     submit () {
       this.revealAnswer = true
-      console.log(this.items)
     },
 
     verifyAnswer (id, answer) {
