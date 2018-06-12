@@ -10,7 +10,7 @@
           ></inputble>
         </div>
         <div v-else>
-          <div class="fairy-letter">{{option.text}}</div>
+          <span class="fairy-letter">{{option.text}}</span>
         </div>
     </div>
     <p style="text-align:center;">
@@ -115,7 +115,7 @@ export default {
 </script>
 
 <style scoped>
-.book{
+.book {
   padding: 5em 3em 3em 3em;
   margin: 1em 5em;
   border-radius: 3px;
@@ -128,11 +128,4 @@ export default {
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
-.right{
-  background-color:#12f51963;
-}
-.wrong{
-  background-color:#f5121263;
-}
-
 </style>

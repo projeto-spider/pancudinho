@@ -8,7 +8,7 @@
 export default {
   name: 'Inputble',
 
-  props: ['value', 'correctanswer', 'revealAnswers', 'handleWord'],
+  props: ['value', 'correctAnswers', 'revealAnswers', 'handleWord'],
 
   computed: {
     computedClasses () {
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style type="text/css" scoped>
-input{
+input {
   padding: 0.2em 0.1em;
   margin: 0.2em 0.2em;
   width:266px;
@@ -49,10 +49,10 @@ input{
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
-.valid{
+.valid {
   background-color:#12f51963;
 }
-.invalid{
+.invalid {
   background-color:#f5121263;
 }
 </style>
