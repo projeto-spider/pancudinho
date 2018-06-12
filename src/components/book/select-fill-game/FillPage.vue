@@ -128,17 +128,6 @@ export default {
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
-input{
-  padding: 0.2em 0.1em;
-  margin: 0.2em 0.2em;
-  width:266px;
-  background: #ffffff;
-  border-radius: 5px;
-  text-align: center;
-  font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
-  color: #2b2b2b;
-  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-}
 .right{
   background-color:#12f51963;
 }
