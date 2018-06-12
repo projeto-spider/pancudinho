@@ -106,8 +106,10 @@ export default {
       console.log(this.items)
     },
 
-    verifyAnswer (option, answer) {
-      this.answer[option.id] = answer
+    verifyAnswer (id, answer) {
+      answer = answer.toLowerCase()
+      var obj = this.items.filter(e => e.text === answer)
+      this.answers[id] = [answer, obj[0]]
     }
   }
 }
