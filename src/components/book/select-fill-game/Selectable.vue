@@ -18,17 +18,15 @@ export default {
   name: 'Selectable',
 
   props: {
-    /*
-      defocus: {
-      type: Boolean,
-      required: false
-    }
+    handleAnswered: {
+      type: Function,
+      default: () => ({})
+    },
 
-      options: {
+    options: {
       type: Array,
       default: () => []
     }
-    */
   },
 
   data: () => ({
