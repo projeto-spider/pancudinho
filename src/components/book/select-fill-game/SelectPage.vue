@@ -37,64 +37,42 @@ import Selectable from './Selectable.vue'
 export default {
   components: {Selectable},
   data: () => ({
-    words: [
-      {
-        lac: 'lorem',
-        select: false,
-        id: 1
-      },
-      {
-        lac: 'ipsum',
-        select: false,
-        id: 2
-      },
-      {
-        lac: 'vehicula',
-        select: false,
-        id: 3
-      }
-    ],
+    answers: {},
+    items: [],
     options: [
       {
-        text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
-        words: 'lorem',
-        words_lac: '',
         id: 1,
-        typed: '',
-        right: false,
-        wrong: false,
-        select: false,
-        select_ver: false
+        text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius'
       },
       {
-        text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
-        words: 'ipsum',
-        words_lac: '',
         id: 2,
-        typed: '',
-        right: false,
-        wrong: false,
-        select_ver: false,
-        select: false
+        text: 'lorem',
+        isAnswer: true
       },
       {
-        text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
-        words: 'vehicula',
-        words_lac: '',
         id: 3,
-        typed: '',
-        right: false,
-        wrong: false,
-        select_ver: false,
-        select: false
+        text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,'
+      },
+      {
+        id: 4,
+        text: 'ipsum',
+        isAnswer: true
+      },
+      {
+        id: 5,
+        text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod'
+      },
+      {
+        id: 6,
+        text: 'vehicula',
+        isAnswer: true
       }
     ],
-
     input: false,
     defocus: false,
     selectMode: true
-
   }),
+
   methods: {
     select () {
       for (var i = 0; i < this.words.length; i++) {
