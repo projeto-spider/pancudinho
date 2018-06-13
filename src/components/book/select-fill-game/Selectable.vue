@@ -52,7 +52,7 @@ export default {
 
 <style type="text/css" scoped>
 
-.book{
+.book {
   padding: 5em 3em 3em 3em;
   margin: 1em 5em;
   border-radius: 3px;

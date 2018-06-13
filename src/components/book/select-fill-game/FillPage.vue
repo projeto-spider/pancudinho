@@ -93,6 +93,7 @@ export default {
         }
       }
     },
+
     doAgain () {
       for (var i = 0; i < this.options.length; i++) {
         this.options[i].typed = ''
