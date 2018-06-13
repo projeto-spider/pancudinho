@@ -35,6 +35,8 @@
 <script>
 import Selectable from './Selectable.vue'
 export default {
+  name: 'SelectPage',
+
   components: {Selectable},
 
   created () {
