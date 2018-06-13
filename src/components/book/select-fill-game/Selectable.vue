@@ -1,16 +1,19 @@
 <template>
-
-<div>
-  <span class="box" @click="defocus = true"></span>
+  <div>
+    <span class="box fairy-letter" @click="defocus = true">
+      {{selected.text}}
+    </span>
     <div v-if="defocus">
       <div class="defocus" @click="defocus = false">
-        <div v-for="option in options" :key="option.id" >
-            <div class="option"> {{option.words}} </div>
-
+        <div v-for="option in options" :key="option.id">
+          <SelectOption
+            :handle-click="() => selectOption(option)"
+            :option="option"
+          ></SelectOption>
         </div>
       </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script type="text/javascript">
@@ -34,8 +37,16 @@ export default {
   },
 
   data: () => ({
+    selected: false,
     defocus: false
-  })
+  }),
+
+  methods: {
+    selectOption (option) {
+      this.selected = option
+      this.handleAnswered(option)
+    }
+  }
 }
 </script>
 
