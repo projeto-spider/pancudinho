@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="box fairy-letter" @click="defocus = true">
+    <span class="box fairy-letter" :class="computedClasses"  @click="defocus = true">
       {{selected.text}}
     </span>
     <div v-if="defocus">
@@ -43,6 +43,16 @@ export default {
     correctAnswers: {
       type: Array,
       default: () => []
+    }
+  },
+
+  computed: {
+    computedClasses () {
+      const valid = this.selected && this.correctAnswers.includes(this.selected.id)
+      return {
+        valid: this.revealAnswers && valid,
+        invalid: this.revealAnswers && !valid
+      }
     }
   },
 
