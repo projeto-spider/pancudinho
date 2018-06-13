@@ -8,6 +8,8 @@
         <Selectable
           :handle-answered="answer => verifyAnswer(option.id, answer)"
           :options="items"
+          :reveal-answers="revealAnswers"
+          :correct-answers="correctAswers"
         ></Selectable>
       </div>
     </div>
@@ -47,6 +49,7 @@ export default {
 
   data: () => ({
     answers: {},
+    revealAnswers: false,
     items: [],
     options: [
       {
