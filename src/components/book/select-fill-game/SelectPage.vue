@@ -1,29 +1,15 @@
 <template>
   <div class="book">
     <div v-for="option in options" :key="option.id">
-      <div class="fairy-letter">{{option.text}}</div>
-        <div v-if="option.right">
-          <p>
-            <span class='right'> {{option.word_lac}} </span>
-          </p>
-        </div>
-        <div v-if="option.wrong">
-          <p>
-            <span class='false'> {{option.word_lac}} </span>
-          </p>
-        </div>
-        <div v-if="(!option.right && !option.wrong)">
-          <p>
-            <span class="box" @click.prevent="defocus=true"  @click="option.select_ver = true"> {{option.word_lac}}</span>
-          </p>
-          <div v-if="defocus">
-            <div class="defocus" @click="defocus = false">
-              <div v-for="words in words" :key="words.id" >
-                  <div class="option" @click="((words.select = true) && (select()))" > {{words.lac}} </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div v-if="!option.isAnswer">
+        <span class="fairy-letter">{{option.text}}</span>
+      </div>
+      <div v-else>
+        <Selectable
+          :handle-answered="answer => verifyAnswer(option.id, answer)"
+          :options="items"
+        ></Selectable>
+      </div>
     </div>
     <p style="text-align:center;">
       <button @click="doAgain">Reset</button><br>
