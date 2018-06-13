@@ -95,7 +95,6 @@ export default {
 
     verifyAnswer (id, answer) {
       this.answers[id] = answer
-      console.log(this.answers)
     }
   }
 }
