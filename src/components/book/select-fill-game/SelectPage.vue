@@ -83,31 +83,6 @@ export default {
   }),
 
   methods: {
-    select () {
-      for (var i = 0; i < this.words.length; i++) {
-        for (var j = 0; j < this.options.length; j++) {
-          if (this.words[i].select === true && this.options[j].select_ver === true) {
-            this.options[j].word_lac = this.words[i].lac
-          }
-        }
-      }
-      for (var k = 0; k < this.words.length; k++) {
-        this.options[k].select_ver = false
-        this.words[k].select = false
-      }
-    },
-
-    checkAnswers () {
-      for (var i = 0; i < this.options.length; i++) {
-        if ((this.options[i].words === this.options[i].word_lac)) {
-          this.options[i].right = true
-          this.options[i].wrong = false
-        } else {
-          this.options[i].right = false
-          this.options[i].wrong = true
-        }
-      }
-    },
     doAgain () {
       for (var i = 0; i < this.options.length; i++) {
         this.options[i].word_lac = ''
