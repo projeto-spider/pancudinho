@@ -116,6 +116,11 @@ export default {
         this.options[i].right = false
         this.options[i].wrong = false
       }
+    },
+
+    verifyAnswer (id, answer) {
+      this.answers[id] = answer
+      console.log(this.answers)
     }
   }
 }
