@@ -75,22 +75,6 @@ export default {
   transition: opacity .3s ease;
 }
 
-.option {
-  padding: 1em 2em;
-  margin: 2px 1px;
-  margin-top: 50px;
-  width: 175px;
-  margin-left: 125px;
-  background: plum;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
-  font: 400 23px/1.3 'Arizonia', Helvetica, sans-serif;
-  font-weight: bold;
-  text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
-  color: black;
-  float:left;
-  text-align: center;
-}
-
 .fairy-letter {
   font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
   color: #2b2b2b;
