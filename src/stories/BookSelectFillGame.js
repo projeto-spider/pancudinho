@@ -38,6 +38,24 @@ stories
 
   .add('Selectable', (h) => ({
     render: h => h(Selectable, { props: {
+      handleClick: action('Click'),
+      options: object('Items', [
+        {
+          id: 2,
+          text: 'lorem',
+          isAnswer: true
+        },
+        {
+          id: 4,
+          text: 'ipsum',
+          isAnswer: true
+        },
+        {
+          id: 6,
+          text: 'vehicula',
+          isAnswer: true
+        }
+      ])
     } })
   }))
 
