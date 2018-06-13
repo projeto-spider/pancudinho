@@ -62,11 +62,6 @@ export default {
 }
 
 .box {
-  /*
-  padding: 20px 110px;
-  background: rgba(219, 201, 201, 0.133);
-  border-radius: 5px;
-  */
   background: #bdbdbd;
   border-radius: 5px;
   opacity: 0.5;
