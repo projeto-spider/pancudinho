@@ -92,6 +92,7 @@ export default {
   font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  text-align: center
 }
 
 </style>
