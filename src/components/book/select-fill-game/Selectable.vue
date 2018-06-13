@@ -33,6 +33,16 @@ export default {
     options: {
       type: Array,
       default: () => []
+    },
+
+    revealAnswers: {
+      type: Boolean,
+      default: false
+    },
+
+    correctAnswers: {
+      type: Array,
+      default: () => []
     }
   },
 
