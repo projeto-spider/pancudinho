@@ -32,26 +32,6 @@ export default {
   },
 
   data: () => ({
-
-    options: [
-      {
-        text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
-        words: 'lorem',
-        id: 1
-      },
-
-      {
-        text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
-        words: 'ipsum',
-        id: 2
-      },
-      {
-        text: 'Curabitur feugiat sed ligula ac tempor. Ut id facilisis massa. Mauris pretium lacus sem, et scelerisque dui euismod',
-        words: 'vehicula',
-        id: 3
-      }
-    ],
-
     defocus: false
   })
 }
