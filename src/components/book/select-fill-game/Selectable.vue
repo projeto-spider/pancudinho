@@ -14,8 +14,12 @@
 </template>
 
 <script type="text/javascript">
+import SelectOption from './SelectOption.vue'
+
 export default {
   name: 'Selectable',
+
+  components: {SelectOption},
 
   props: {
     handleAnswered: {
