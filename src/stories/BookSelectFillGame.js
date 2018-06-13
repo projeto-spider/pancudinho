@@ -1,11 +1,13 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { withKnobs } from '@storybook/addon-knobs/vue'
+import { withKnobs, object } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
+import { action } from '@storybook/addon-actions'
 
 import Inputble from '../components/book/select-fill-game/Inputble.vue'
 import Selectable from '../components/book/select-fill-game/Selectable.vue'
+import SelectOption from '../components/book/select-fill-game/SelectOption.vue'
 import FillPage from '../components/book/select-fill-game/FillPage.vue'
 import SelectFillGame from '../components/book/select-fill-game/SelectFillGame.vue'
 import SelectPage from '../components/book/select-fill-game/SelectPage.vue'
@@ -20,6 +22,17 @@ stories
 stories
   .add('Inputble', (h) => ({
     render: h => h(Inputble, { props: {
+    } })
+  }))
+
+  .add('Select Option', (h) => ({
+    render: h => h(SelectOption, { props: {
+      option: object('Option', {
+        id: 2,
+        text: 'lorem',
+        isAnswer: true
+      }),
+      handleClick: action('Click')
     } })
   }))
 
