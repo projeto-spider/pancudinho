@@ -13,7 +13,7 @@
     </div>
     <p style="text-align:center;">
       <button @click="doAgain">Reset</button><br>
-      <button @click="checkAnswers">Submit</button>
+      <button @click="submit">Submit</button>
     </p>
   </div>
 </template>
@@ -95,6 +95,10 @@ export default {
 
     verifyAnswer (id, answer) {
       this.answers[id] = answer
+    },
+
+    submit () {
+      this.revealAnswers = true
     }
   }
 }
