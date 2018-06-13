@@ -70,6 +70,14 @@ export default {
   margin: 0;
 }
 
+.box.valid {
+  background-color:#12f51963;
+}
+
+.box.invalid {
+  background-color:#f5121263;
+}
+
 .defocus {
   position: fixed;
   z-index: 2;
