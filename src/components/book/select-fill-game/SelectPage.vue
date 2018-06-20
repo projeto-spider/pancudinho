@@ -9,7 +9,7 @@
           :handle-answered="answer => verifyAnswer(option.id, answer)"
           :options="items"
           :reveal-answers="revealAnswers"
-          :correct-answers="correctAswers"
+          :correct-answers="correctAnswers"
         ></Selectable>
       </div>
     </div>
@@ -80,20 +80,27 @@ export default {
         isAnswer: true
       }
     ],
-    input: false,
-    defocus: false,
-    selectMode: true
+    defocus: false
   }),
+
+  props: {
+    selected:{
+      type: Boolean,
+      default: false
+    }
+  },
 
   methods: {
     doAgain () {
-      for (var i = 0; i < this.options.length; i++) {
+      /*for (var i = 0; i < this.options.length; i++) {
         this.options[i].word_lac = ''
         this.options[i].select_ver = false
         this.words[i].select = false
         this.options[i].right = false
         this.options[i].wrong = false
-      }
+      }*/
+      this.revealAnswers=false
+      this.selected=false
     },
 
     verifyAnswer (id, answer) {

@@ -1,7 +1,7 @@
 <template>
   <div class="book">
     <div v-for="option in options" :key="option.id">
-        <div v-if="option.isAnswer">
+        <div v-if="fixed">
           <inputble
             v-model="typed"
             :correct-answers="correctAnswers"
@@ -9,13 +9,22 @@
             :handle-word="answer => verifyAnswer(option.id, answer)"
           ></inputble>
         </div>
-        <div v-else>
+        <div v-if="option.isAnswer && !option.right && !option.wrong">
+          <input v-model="option.typedAnswer">
+        </div>
+        <div v-if="option.isAnswer && option.right">
+          <input style="background-color:#12f51963;" v-model="option.typedAnswer">
+        </div>
+        <div v-if="option.isAnswer && option.wrong">
+          <input style="background-color:#f5121263;" v-model="option.typedAnswer">
+        </div>
+        <div v-if="!option.isAnswer">
           <span class="fairy-letter">{{option.text}}</span>
         </div>
     </div>
     <p style="text-align:center;">
       <button @click="doAgain">Reset</button><br>
-      <button @click="submit">Submit</button>
+      <button @click="checkAnswers">Submit</button>
     </p>
   </div>
 </template>
@@ -50,6 +59,7 @@ export default {
     revealAnswer: false,
     typed: '',
     answers: {},
+    fixed: false,
     options: [
       {
         id: 1,
@@ -58,7 +68,10 @@ export default {
       {
         id: 2,
         text: 'lorem',
-        isAnswer: true
+        isAnswer: true,
+        typedAnswer:'',
+        right: false,
+        wrong: false
       },
       {
         id: 3,
@@ -67,7 +80,10 @@ export default {
       {
         id: 4,
         text: 'ipsum',
-        isAnswer: true
+        isAnswer: true,
+        typedAnswer:'',
+        right: false,
+        wrong: false
       },
       {
         id: 5,
@@ -76,15 +92,18 @@ export default {
       {
         id: 6,
         text: 'vehicula',
-        isAnswer: true
+        isAnswer: true,
+        typedAnswer:'',
+        right: false,
+        wrong: false
       }
     ]
   }),
 
   methods: {
     checkAnswers () {
-      for (var i = 0; i < this.options.length; i++) {
-        if (this.options[i].typed === this.options[i].words) {
+      for (var i = 1; i < this.options.length; i+=2) {
+        if (this.options[i].typedAnswer.toLowerCase() === this.options[i].text) {
           this.options[i].right = true
           this.options[i].wrong = false
         } else {
@@ -95,8 +114,8 @@ export default {
     },
 
     doAgain () {
-      for (var i = 0; i < this.options.length; i++) {
-        this.options[i].typed = ''
+      for (var i = 1; i < this.options.length; i+=2) {
+        this.options[i].typedAnswer = ''
         this.options[i].right = false
         this.options[i].wrong = false
       }
@@ -126,6 +145,17 @@ export default {
 }
 .fairy-letter {
   font: 400 22.5px/1.3 'Arizonia', Helvetica, sans-serif;
+  color: #2b2b2b;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+input {
+  padding: 0.2em 0.1em;
+  margin: 0.2em 0.2em;
+  width:266px;
+  background: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+  font: 40 35px/0.1 'Arizonia', Helvetica, sans-serif;
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
