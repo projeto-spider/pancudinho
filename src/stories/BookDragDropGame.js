@@ -74,6 +74,17 @@ stories
     } })
   }))
 
+  .add('Tip with background', (h) => ({
+    render: h => h(Background, { props: {
+    } }, [
+    h(Tip, { props: {
+      tip: text('Tip', 'Lorem ipsum dolor sit amet, an pro eruditi prodesset tincidunt.'),
+      showTip: boolean('Show tip', false),
+      closeTip: action('Closing window')
+    }})
+  ])
+}))
+
   .add('Tip Button', (h) => ({
     render: h => h(TipButton, { props: {} })
   }))
