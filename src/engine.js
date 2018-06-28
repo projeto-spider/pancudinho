@@ -2,7 +2,8 @@ const GAME_STATE = 'pancudinho/game-state'
 
 export const PAGE = {
   START: 'pancudinho/PAGE_START',
-  ABOUT: 'pancudinho/PAGE_ABOUT'
+  ABOUT: 'pancudinho/PAGE_ABOUT',
+  AUTHENTICATION: 'pancudinho/AUTHENTICATION'
 }
 
 const validPages = new Set(Object.values(PAGE))
@@ -60,7 +61,7 @@ export class State {
     return true
   }
 
-  isAuthorized () {
+  isAuthenticated () {
     return !this.newGame && this.playerName != null
   }
 
@@ -70,6 +71,12 @@ export class State {
     }
 
     this.page = pageName
+  }
+
+  authenticate (playerName) {
+    this.newGame = false
+    this.playerName = playerName
+    this.goTo(PAGE.START)
   }
 }
 

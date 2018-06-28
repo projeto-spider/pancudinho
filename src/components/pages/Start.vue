@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p v-if="state.isAuthenticated()">User: {{ state.playerName }}</p>
     <div class="margin-layout" v-for="option in options" :key="option.id">
       <Button color="blue" @click="action(option.action)">{{option.text}}</Button>
     </div>
@@ -31,7 +32,8 @@ export default {
       },
       {
         id: 3,
-        text: 'Créditos'
+        text: 'Créditos',
+        action: 'about'
       }
     ]
   }),
@@ -40,6 +42,9 @@ export default {
     action (type) {
       switch (type) {
         case 'start':
+          return this.state.goTo(this.PAGE.AUTHENTICATION)
+
+        case 'about':
           return this.state.goTo(this.PAGE.ABOUT)
       }
     }
