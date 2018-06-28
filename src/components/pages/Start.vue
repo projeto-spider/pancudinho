@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="margin-layout" v-for="option in options" :key="option.id">
-      <Button color="blue">{{option.text}}</Button>
+      <Button color="blue" @click="action(option.action)">{{option.text}}</Button>
     </div>
   </div>
 </template>
@@ -14,11 +14,16 @@ export default {
 
   componets: { Button },
 
+  props: {
+    state: Object
+  },
+
   data: () => ({
     options: [
       {
         id: 1,
-        text: 'Começar jogo'
+        text: 'Começar jogo',
+        action: 'start'
       },
       {
         id: 2,
@@ -29,7 +34,16 @@ export default {
         text: 'Créditos'
       }
     ]
-  })
+  }),
+
+  methods: {
+    action (type) {
+      switch (type) {
+        case 'start':
+          return this.state.goTo(this.PAGE.ABOUT)
+      }
+    }
+  }
 }
 </script>
 

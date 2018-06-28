@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '../src/assets/global-fonts.css'
+import '../src/inject-globals'
 
 Vue.config.productionTip = false
 
