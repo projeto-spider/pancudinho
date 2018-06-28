@@ -3,7 +3,7 @@
     <Panel class="Sidebar sliding-transition" :class="{ open: open }">
       <div class="sidebar-profile">
         <img :src="avatarPlaceholderImg" alt="Player avatar">
-        <span>John Doe</span>
+        <span>{{ state.playerName }}</span>
       </div>
 
       <div class="Sidebar-Menu">
@@ -48,6 +48,10 @@ export default {
   name: 'Sidebar',
 
   components: { Panel, Button, Ranking },
+
+  props: {
+    state: Object
+  },
 
   data: () => ({
     iconBarsHorizontal,
