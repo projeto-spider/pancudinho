@@ -64,7 +64,7 @@ export default {
   background: #fbd9f4;
   border-top: 2px solid #ccc;
   border-left: 2px solid #ddd;
-  padding: 25px 90px;
+  padding: 30px 30px;
   border-radius: 50%;
   width: 18em;
   height: 18em;
