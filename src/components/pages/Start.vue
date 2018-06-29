@@ -1,9 +1,11 @@
 <template>
   <div>
     <p v-if="state.isAuthenticated()">User: {{ state.playerName }}</p>
-    <div class="margin-layout" v-for="option in options" :key="option.id">
-      <Button color="blue" @click="action(option.action)">{{option.text}}</Button>
-    </div>
+    <div><Button color="blue" @click="action('start')">Começar jogo</Button></div>
+    <br/>
+    <div><Button color="blue" @click="">Configurações</Button></div>
+    <br/>
+    <div><Button color="blue" @click="action('about')">Créditos</Button></div>
   </div>
 </template>
 
