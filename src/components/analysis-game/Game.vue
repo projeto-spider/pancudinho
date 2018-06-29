@@ -15,7 +15,7 @@
       </div>
       <div class="dragdroparea">
         <draggable
-          :content="options[1]"
+          :option="options[1]"
         ></draggable>
         <droppable
           ref="el"
