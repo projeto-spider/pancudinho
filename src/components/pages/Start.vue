@@ -19,24 +19,7 @@ export default {
     state: Object
   },
 
-  data: () => ({
-    options: [
-      {
-        id: 1,
-        text: 'Começar jogo',
-        action: 'start'
-      },
-      {
-        id: 2,
-        text: 'Configurações'
-      },
-      {
-        id: 3,
-        text: 'Créditos',
-        action: 'about'
-      }
-    ]
-  }),
+  data: () => ({}),
 
   methods: {
     action (type) {
