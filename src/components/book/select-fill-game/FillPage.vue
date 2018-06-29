@@ -69,7 +69,7 @@ export default {
         id: 2,
         text: 'lorem',
         isAnswer: true,
-        typedAnswer:'',
+        typedAnswer: '',
         right: false,
         wrong: false
       },
@@ -81,7 +81,7 @@ export default {
         id: 4,
         text: 'ipsum',
         isAnswer: true,
-        typedAnswer:'',
+        typedAnswer: '',
         right: false,
         wrong: false
       },
@@ -93,7 +93,7 @@ export default {
         id: 6,
         text: 'vehicula',
         isAnswer: true,
-        typedAnswer:'',
+        typedAnswer: '',
         right: false,
         wrong: false
       }
@@ -102,7 +102,7 @@ export default {
 
   methods: {
     checkAnswers () {
-      for (var i = 1; i < this.options.length; i+=2) {
+      for (var i = 1; i < this.options.length; i += 2) {
         if (this.options[i].typedAnswer.toLowerCase() === this.options[i].text) {
           this.options[i].right = true
           this.options[i].wrong = false
@@ -114,7 +114,7 @@ export default {
     },
 
     doAgain () {
-      for (var i = 1; i < this.options.length; i+=2) {
+      for (var i = 1; i < this.options.length; i += 2) {
         this.options[i].typedAnswer = ''
         this.options[i].right = false
         this.options[i].wrong = false

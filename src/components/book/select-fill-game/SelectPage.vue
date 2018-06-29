@@ -84,7 +84,7 @@ export default {
   }),
 
   props: {
-    selected:{
+    selected: {
       type: Boolean,
       default: false
     }
@@ -92,15 +92,8 @@ export default {
 
   methods: {
     doAgain () {
-      /*for (var i = 0; i < this.options.length; i++) {
-        this.options[i].word_lac = ''
-        this.options[i].select_ver = false
-        this.words[i].select = false
-        this.options[i].right = false
-        this.options[i].wrong = false
-      }*/
-      this.revealAnswers=false
-      this.selected=false
+      this.revealAnswers = false
+      this.selected = false
     },
 
     verifyAnswer (id, answer) {
