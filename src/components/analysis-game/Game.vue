@@ -23,7 +23,7 @@
       </div>
       <div style="margin: -5em -10em 0em 30em;">
         <tips
-          :Tip="tip"
+          :tip="tip"
         ></tips>
         <button @click="avaluateAnswer">Submit</button>
       </div>
