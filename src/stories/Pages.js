@@ -6,6 +6,7 @@ import Centered from '@storybook/addon-centered'
 
 import Start from '../components/pages/Start.vue'
 
+
 const stories = storiesOf('Pages', module)
 
 stories
@@ -17,3 +18,4 @@ stories
     render: h => h(Start, { props: {
     } })
   }))
+
