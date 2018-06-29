@@ -17,7 +17,6 @@
           :options="currentGame.data.options"
           :goal="currentGame.data.goal"
           :tip="currentGame.data.tip"
-          :ligthNovel="currentGame.data.ligthNovel"
           :answer="currentGame.data.answer"
           :talks="currentGame.data.talks"
         ></GameAnalysis>

@@ -7,7 +7,7 @@
       @dragstart="handleDrag()"
       @dragend="handleEnd()"
     >
-      <p class="centered">{{ option.text }}</p>
+      <p class="centered">{{ option }}</p>
     </drag>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
 
   props: {
     option: {
-      type: Object,
+      type: String,
       required: true
     },
 

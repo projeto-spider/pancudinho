@@ -5,7 +5,7 @@
         <div v-if="dropped">
             <p class="auxiliartext"> I will... </p>
           <div class="dropped">
-            <p class="droppedtext"> {{ option.text }} </p>
+            <p class="droppedtext"> {{ option }} </p>
           </div>
         </div>
         <div v-else>
@@ -49,7 +49,7 @@ export default {
     },
 
     avaluateAswer (answer) {
-      if (this.dropData === answer) {
+      if (this.option === answer) {
         this.correct = true
       } else {
         this.wrong = true

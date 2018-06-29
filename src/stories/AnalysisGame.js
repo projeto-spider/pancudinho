@@ -61,7 +61,6 @@ stories
       },
       goal: 'Prepare yourself!',
       tip: 'Magic is everything!',
-      ligthNovel: true,
       answer: 'Loren inpsun dolor',
       talks: [
         {

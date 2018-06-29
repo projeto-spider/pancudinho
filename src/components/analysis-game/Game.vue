@@ -15,7 +15,7 @@
       </div>
       <div class="dragdroparea">
         <draggable
-          :content="options[1]"
+          :option="options[1]"
         ></draggable>
         <droppable
           ref="el"
@@ -23,7 +23,7 @@
       </div>
       <div style="margin: -5em -10em 0em 30em;">
         <tips
-          :Tip="tip"
+          :tip="tip"
         ></tips>
         <button @click="avaluateAnswer">Submit</button>
       </div>
@@ -62,10 +62,6 @@ export default {
       type: String,
       required: true
     },
-    ligthNovel: {
-      type: Boolean,
-      required: true
-    },
     answer: {
       type: String,
       required: true
@@ -75,6 +71,10 @@ export default {
       required: true
     }
   },
+
+  data: () => ({
+    ligthNovel: true
+  }),
 
   methods: {
     closeNovel () {
