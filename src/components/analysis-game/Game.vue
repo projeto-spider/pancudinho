@@ -96,7 +96,7 @@ export default {
   align-items: center;
 }
 .goalarea {
-  margin: 1em 0em -2em -20em
+  margin: 1px 0px -2px -180px
 },
 .tiparea {
   margin: -5em -10em 0em 30em
