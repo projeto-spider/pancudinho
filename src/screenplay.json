@@ -1,0 +1,123 @@
+[
+  {
+    "id": 1,
+    "type": "memory-game",
+    "data": {
+      "cards": [
+        {
+          "id": 1,
+          "flip": false,
+          "content": "A(0)",
+          "group": 0
+        },
+        {
+          "id": 14,
+          "flip": false,
+          "content": "N(0)",
+          "group": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "type": "gqim-game",
+    "data": {
+      "tree": {
+        "goal": {
+          "id": "goal-1",
+          "label": "Melhorar o desempenho do aluno",
+          "edges": [
+            "question-1",
+            "question-2",
+            "question-3"
+          ]
+        },
+        "questions": [
+          {
+            "toDrop": true,
+            "id": "question-1",
+            "label": "Qual a média dos alunos?",
+            "edges": [
+              "indicator-ma"
+            ]
+          },
+          {
+            "id": "question-2",
+            "label": "Quais notas obtidas em cada módulo da disciplina?",
+            "edges": [
+              "indicator-naocmd"
+            ]
+          },
+          {
+            "id": "question-3",
+            "label": "Qual é a frequência do aluno?",
+            "edges": [
+              "indicator-fa"
+            ]
+          }
+        ],
+        "indicators": [
+          {
+            "id": "indicator-ma",
+            "label": "MA – Média dos alunos",
+            "edges": [
+              "metric-1"
+            ]
+          },
+          {
+            "toDrop": true,
+            "id": "indicator-naocmd",
+            "label": "NAOCMD – Nota do aluno obtida em cada módulo da disciplina",
+            "edges": [
+              "metric-1"
+            ]
+          },
+          {
+            "id": "indicator-fa",
+            "label": "FA – Frequência do aluno",
+            "edges": [
+              "metric-2"
+            ]
+          }
+        ],
+        "metrics": [
+          {
+            "id": "metric-1",
+            "label": "Nota"
+          },
+          {
+            "toDrop": true,
+            "id": "metric-2",
+            "label": "Frequência"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": 3,
+    "type": "analysis-game",
+    "data": {
+      "options": {
+        "1": "Loren inpsun dolor",
+        "2": "sit amet est",
+        "3": "pro ne alterum"
+      },
+      "goal": "Prepare yourself!",
+      "tip": "Magic is everything!",
+      "answer": "Loren inpsun dolor",
+      "talks": [
+        {
+          "task": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie."
+        },
+        {
+          "task": "Usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt."
+        },
+        {
+          "task": "Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum."
+        }
+      ]
+    }
+  }
+]

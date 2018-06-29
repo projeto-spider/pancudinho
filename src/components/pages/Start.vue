@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div class="margin-layout" v-for="option in options" :key="option.id">
-      <Button color="blue">{{option.text}}</Button>
-    </div>
+    <p v-if="state.isAuthenticated()">User: {{ state.playerName }}</p>
+    <div><Button color="blue" @click="startGame">Começar jogo</Button></div>
+    <br/>
+    <div><Button color="blue">Configurações</Button></div>
+    <br/>
+    <div><Button color="blue" @click="state.goTo(PAGE.ABOUT)">Créditos</Button></div>
   </div>
 </template>
 
@@ -14,22 +17,21 @@ export default {
 
   componets: { Button },
 
-  data: () => ({
-    options: [
-      {
-        id: 1,
-        text: 'Começar jogo'
-      },
-      {
-        id: 2,
-        text: 'Configurações'
-      },
-      {
-        id: 3,
-        text: 'Créditos'
+  props: {
+    state: Object
+  },
+
+  data: () => ({}),
+
+  methods: {
+    startGame () {
+      if (this.state.isAuthenticated()) {
+        return this.state.play()
       }
-    ]
-  })
+
+      return this.state.goTo(this.PAGE.AUTHENTICATION)
+    }
+  }
 }
 </script>
 

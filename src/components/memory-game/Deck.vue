@@ -18,7 +18,7 @@ export default {
       type: Number,
       default: 1,
       validator (value) {
-        return value > 1
+        return value >= 1
       }
     }
   },

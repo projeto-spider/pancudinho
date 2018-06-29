@@ -1,12 +1,12 @@
 <template>
-  <Background>
+  <div class="aligner">
     <Panel class="ScenePanel">
       <Scene v-if="config" :config="config" ref="scene"></Scene>
       <Button color="blue" class="submit-button" @click.native="submit">
         Submit
       </Button>
     </Panel>
-  </Background>
+  </div>
 </template>
 
 <script>
@@ -274,9 +274,11 @@ export default {
             let lastPointerPosition = { x: 0, y: 0 }
 
             this.sys.canvas.onmousewheel = function onmousewheel ({ deltaY }) {
-              camera.setZoom(
-                camera.zoom - (deltaY / 2000)
-              )
+              if ((camera.zoom - (deltaY / 2000)) >= 0) {
+                camera.setZoom(
+                  camera.zoom - (deltaY / 2000)
+                )
+              }
             }
 
             let originDragPoint = null
@@ -327,6 +329,14 @@ export default {
 </script>
 
 <style scoped>
+.aligner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .ScenePanel {
   width: 90%;
   height: 90%;
