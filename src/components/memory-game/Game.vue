@@ -165,4 +165,8 @@ html, body {
   justify-content: center;
   align-items: center;
 }
+
+.Panel.grey{
+  z-index: 1;
+}
 </style>
