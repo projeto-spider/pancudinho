@@ -1,11 +1,11 @@
 <template>
   <div>
     <p v-if="state.isAuthenticated()">User: {{ state.playerName }}</p>
-    <div><Button color="blue" @click="action('start')">Começar jogo</Button></div>
+    <div><Button color="blue" @click="startGame">Começar jogo</Button></div>
     <br/>
     <div><Button color="blue">Configurações</Button></div>
     <br/>
-    <div><Button color="blue" @click="action('about')">Créditos</Button></div>
+    <div><Button color="blue" @click="state.goTo(PAGE.ABOUT)">Créditos</Button></div>
   </div>
 </template>
 
@@ -24,18 +24,12 @@ export default {
   data: () => ({}),
 
   methods: {
-    action (type) {
-      switch (type) {
-        case 'start':
-          if (this.state.isAuthenticated()) {
-            return this.state.play()
-          }
-
-          return this.state.goTo(this.PAGE.AUTHENTICATION)
-
-        case 'about':
-          return this.state.goTo(this.PAGE.ABOUT)
+    startGame () {
+      if (this.state.isAuthenticated()) {
+        return this.state.play()
       }
+
+      return this.state.goTo(this.PAGE.AUTHENTICATION)
     }
   }
 }
