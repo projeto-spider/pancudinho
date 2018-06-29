@@ -274,9 +274,11 @@ export default {
             let lastPointerPosition = { x: 0, y: 0 }
 
             this.sys.canvas.onmousewheel = function onmousewheel ({ deltaY }) {
-              camera.setZoom(
-                camera.zoom - (deltaY / 2000)
-              )
+              if ((camera.zoom - (deltaY / 2000)) >= 0) {
+                camera.setZoom(
+                  camera.zoom - (deltaY / 2000)
+                )
+              }
             }
 
             let originDragPoint = null
