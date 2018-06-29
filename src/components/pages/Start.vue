@@ -42,6 +42,10 @@ export default {
     action (type) {
       switch (type) {
         case 'start':
+          if (this.state.isAuthenticated()) {
+            return this.state.play()
+          }
+
           return this.state.goTo(this.PAGE.AUTHENTICATION)
 
         case 'about':

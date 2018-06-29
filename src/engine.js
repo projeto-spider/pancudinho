@@ -1,3 +1,5 @@
+import screenplay from './screenplay.json'
+
 const GAME_STATE = 'pancudinho/game-state'
 
 export const PAGE = {
@@ -7,10 +9,13 @@ export const PAGE = {
 }
 
 const validPages = new Set(Object.values(PAGE))
+const validGames = new Set(Object.values(screenplay).map(({ id }) => id))
 
 export class State {
   playerName = null
   newGame = true
+  currentlyInGame = false
+  currentStage = 1
   page = PAGE.START
 
   constructor (state = {}) {
@@ -58,6 +63,14 @@ export class State {
       return false
     }
 
+    if (typeof state.currentlyInGame !== 'boolean') {
+      return false
+    }
+
+    if (!isFinite(state.currentStage) || !validGames.has(state.currentStage)) {
+      return false
+    }
+
     return true
   }
 
@@ -77,6 +90,14 @@ export class State {
     this.newGame = false
     this.playerName = playerName
     this.goTo(PAGE.START)
+  }
+
+  play () {
+    this.currentlyInGame = true
+  }
+
+  getGame () {
+    return this.currentlyInGame && screenplay.find(({ id }) => id === this.currentStage)
   }
 }
 

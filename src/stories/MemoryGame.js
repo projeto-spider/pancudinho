@@ -123,5 +123,11 @@ storiesOf('Memory Game', module)
   .addDecorator(withKnobs)
   .add('Game', (h) => ({
     render: h => h(Game, { props: {
+      cards: Array.from(Array(26), (_, i) => ({
+        id: i + 1,
+        flip: false,
+        content: String.fromCharCode('A'.charCodeAt(0) + i) + `(${Math.floor(i % 13)})`,
+        group: Math.floor(i % 13)
+      }))
     } })
   }))

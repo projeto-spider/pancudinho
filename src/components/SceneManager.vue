@@ -1,24 +1,40 @@
 <template>
   <Background>
-    <PageStart
-      v-if="state.page === PAGE.START"
-      :state="state"
-    ></PageStart>
+    <template>
+      <div v-if="state.currentlyInGame && currentGame" style="width: 100%; height: 100%">
+        <GameMemory
+          v-if="currentGame.type === 'memory-game'"
+          :cards="currentGame.data.cards"
+        ></GameMemory>
 
-    <PageAbout
-      v-else-if="state.page === PAGE.ABOUT"
-      :state="state"
-    ></PageAbout>
+        <GameGqim
+          v-if="currentGame.type === 'gqim-game'"
+          :tree="currentGame.data.tree"
+        ></GameGqim>
+      </div>
 
-    <PageAuthentication
-      v-else-if="state.page === PAGE.AUTHENTICATION"
-      :state="state"
-    ></PageAuthentication>
+      <div v-else>
+        <PageStart
+          v-if="state.page === PAGE.START"
+          :state="state"
+        ></PageStart>
 
-    <Sidebar
-      v-if="state.isAuthenticated()"
-      :state="state"
-    ></Sidebar>
+        <PageAbout
+          v-else-if="state.page === PAGE.ABOUT"
+          :state="state"
+        ></PageAbout>
+
+        <PageAuthentication
+          v-else-if="state.page === PAGE.AUTHENTICATION"
+          :state="state"
+        ></PageAuthentication>
+
+        <Sidebar
+          v-if="state.isAuthenticated()"
+          :state="state"
+        ></Sidebar>
+      </div>
+    </template>
   </Background>
 </template>
 
@@ -27,6 +43,9 @@ import * as engine from '../engine'
 
 import Background from './ui/Background.vue'
 import Sidebar from './ui/Sidebar.vue'
+
+import GameMemory from './memory-game/Game.vue'
+import GameGqim from './gqim-game/GqimGame.vue'
 
 import PageStart from './pages/Start.vue'
 import PageAbout from './pages/About.vue'
@@ -38,6 +57,9 @@ export default {
   components: {
     Background,
     Sidebar,
+
+    GameMemory,
+    GameGqim,
 
     PageStart,
     PageAbout,
@@ -55,6 +77,12 @@ export default {
   }),
 
   methods: {
+  },
+
+  computed: {
+    currentGame () {
+      return this.state.getGame()
+    }
   }
 }
 </script>

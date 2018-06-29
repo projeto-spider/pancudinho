@@ -1,5 +1,5 @@
 <template>
-  <Background>
+  <div>
     <div class="MemoryGame">
       <Board
         :cards="cardsInGame"
@@ -19,11 +19,10 @@
         </div>
       </div>
     </div>
-  </Background>
+  </div>
 </template>
 
 <script>
-import Background from '../ui/Background.vue'
 import Board from './Board.vue'
 import Deck from './Deck.vue'
 import Pancudinho from './Pancudinho.vue'
@@ -33,18 +32,17 @@ const FLIP_WAIT_TIME = 1500
 export default {
   name: 'MemoryGame',
 
-  components: { Background, Board, Deck, Pancudinho },
+  components: { Board, Deck, Pancudinho },
+
+  props: {
+    cards: {
+      type: Array,
+      default: () => []
+    }
+  },
 
   data: () => ({
-    // This part is currently mocked
-    // TODO: fetch the real game
-    cardsInGame: Array.from(Array(26), (_, i) => ({
-      id: i + 1,
-      flip: false,
-      content: String.fromCharCode('A'.charCodeAt(0) + i) + `(${Math.floor(i % 13)})`,
-      group: Math.floor(i % 13)
-    }))
-      .sort(() => Math.random() - Math.random()),
+    cardsInGame: [],
 
     cardsInDeck: [],
 
@@ -53,6 +51,11 @@ export default {
     // As we don't have real tips, we are mocking this
     currentTip: 'tip1'
   }),
+
+  created () {
+    this.cardsInGame = this.cards
+      .sort(() => Math.random() - Math.random())
+  },
 
   computed: {
     canClick () {
