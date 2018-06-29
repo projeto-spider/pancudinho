@@ -1,5 +1,5 @@
 <template>
-  <div class="game">
+  <div class="aligner">
     <div v-if="ligthNovel">
       <visualNovel
         :closeVisualNovel="closeNovel"
@@ -88,6 +88,13 @@ export default {
 </script>
 
 <style type="text/css">
+.aligner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
 .goalarea {
   margin: 1em 0em -2em -20em
 },
