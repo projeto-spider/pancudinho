@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="MemoryGame">
+  <div class="aligner">
+    <div class="MemoryGame" style="width: 90%; height: 80%">
       <Board
         :cards="cardsInGame"
         :handle-click-card="handleClickCard"
@@ -156,5 +156,13 @@ html, body {
 
 .deck-wrapper > * {
   left: 44%
+}
+
+.aligner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 </style>
