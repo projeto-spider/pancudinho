@@ -3,7 +3,7 @@
     <p v-if="state.isAuthenticated()">User: {{ state.playerName }}</p>
     <div><Button color="blue" @click="action('start')">Começar jogo</Button></div>
     <br/>
-    <div><Button color="blue" @click="">Configurações</Button></div>
+    <div><Button color="blue">Configurações</Button></div>
     <br/>
     <div><Button color="blue" @click="action('about')">Créditos</Button></div>
   </div>
