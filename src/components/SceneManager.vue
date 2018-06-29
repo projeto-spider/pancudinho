@@ -11,6 +11,16 @@
           v-if="currentGame.type === 'gqim-game'"
           :tree="currentGame.data.tree"
         ></GameGqim>
+
+        <GameAnalysis
+          v-if="currentGame.type === 'analysis-game'"
+          :options="currentGame.data.options"
+          :goal="currentGame.data.goal"
+          :tip="currentGame.data.tip"
+          :ligthNovel="currentGame.data.ligthNovel"
+          :answer="currentGame.data.answer"
+          :talks="currentGame.data.talks"
+        ></GameAnalysis>
       </div>
 
       <div v-else>
@@ -46,6 +56,7 @@ import Sidebar from './ui/Sidebar.vue'
 
 import GameMemory from './memory-game/Game.vue'
 import GameGqim from './gqim-game/GqimGame.vue'
+import GameAnalysis from './analysis-game/Game.vue'
 
 import PageStart from './pages/Start.vue'
 import PageAbout from './pages/About.vue'
@@ -60,6 +71,7 @@ export default {
 
     GameMemory,
     GameGqim,
+    GameAnalysis,
 
     PageStart,
     PageAbout,
