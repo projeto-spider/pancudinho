@@ -62,10 +62,6 @@ export default {
       type: String,
       required: true
     },
-    ligthNovel: {
-      type: Boolean,
-      required: true
-    },
     answer: {
       type: String,
       required: true
@@ -75,6 +71,10 @@ export default {
       required: true
     }
   },
+
+  data: () => ({
+    ligthNovel: true
+  }),
 
   methods: {
     closeNovel () {
