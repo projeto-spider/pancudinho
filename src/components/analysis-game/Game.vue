@@ -3,6 +3,7 @@
     <div v-if="ligthNovel">
       <visualNovel
         :closeVisualNovel="closeNovel"
+        :talks="talks"
       ></visualNovel>
     </div>
     <div v-else>
@@ -57,7 +58,12 @@ export default {
     goal: 'Prepare yourself!',
     tip: 'Magic is everything!',
     ligthNovel: true,
-    answer: 'Loren inpsun dolor'
+    answer: 'Loren inpsun dolor',
+    talks: [
+      {task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'},
+      {task: 'Usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'},
+      {task: 'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'}
+    ]
   }),
 
   methods: {
