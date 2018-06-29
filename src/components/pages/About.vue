@@ -52,7 +52,8 @@ export default {
 
 <style scoped>
 .text{
-  padding: 30%
+  padding: 430px;
+  text-align: justify
 }
 .margin-layout {
   margin: 20px
