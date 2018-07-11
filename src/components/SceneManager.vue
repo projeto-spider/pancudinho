@@ -5,15 +5,18 @@
         <GameMemory
           v-if="currentGame.type === 'memory-game'"
           :cards="currentGame.data.cards"
+          :state="state"
         ></GameMemory>
 
         <GameGqim
           v-if="currentGame.type === 'gqim-game'"
           :tree="currentGame.data.tree"
+          :state="state"
         ></GameGqim>
 
         <GameAnalysis
           v-if="currentGame.type === 'analysis-game'"
+          :state="state"
           :options="currentGame.data.options"
           :goal="currentGame.data.goal"
           :tip="currentGame.data.tip"
