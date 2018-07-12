@@ -13,10 +13,15 @@
         ></Selectable>
       </div>
     </div>
-    <p style="text-align:center;">
-      <button @click="doAgain">Reset</button><br>
-      <button @click="submit">Submit</button>
-    </p>
+    <div style="text-align:center;">
+      <div v-if="revealAnswers">
+        <button @click="closeGame">Continuar</button><br>
+      </div>
+      <template v-else>
+        <button @click="doAgain">Reset</button><br>
+        <button @click="submit">Submit</button>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -84,6 +89,11 @@ export default {
   }),
 
   props: {
+    state: {
+      type: Object,
+      required: true
+    },
+
     selected: {
       type: Boolean,
       default: false
@@ -102,6 +112,10 @@ export default {
 
     submit () {
       this.revealAnswers = true
+    },
+
+    closeGame () {
+      this.state.closeGame()
     }
   }
 }

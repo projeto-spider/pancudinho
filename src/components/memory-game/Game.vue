@@ -19,6 +19,11 @@
         </div>
       </div>
     </div>
+
+    <Button
+      v-if="gameFinished"
+      @click.native="closeGame"
+    >Continue</Button>
   </div>
 </template>
 
@@ -26,18 +31,24 @@
 import Board from './Board.vue'
 import Deck from './Deck.vue'
 import Pancudinho from './Pancudinho.vue'
+import Button from '../ui/Button.vue'
 
 const FLIP_WAIT_TIME = 1500
 
 export default {
   name: 'MemoryGame',
 
-  components: { Board, Deck, Pancudinho },
+  components: { Board, Deck, Pancudinho, Button },
 
   props: {
     cards: {
       type: Array,
       default: () => []
+    },
+
+    state: {
+      type: Object,
+      required: true
     }
   },
 
@@ -60,6 +71,10 @@ export default {
   computed: {
     canClick () {
       return this.clickedCards.length < 2
+    },
+
+    gameFinished () {
+      return !this.cardsInGame.length
     }
   },
 
@@ -110,6 +125,10 @@ export default {
 
     changeTip () {
       this.currentTip = `tip${Math.round(Math.random() * (4 - 1) + 1)}`
+    },
+
+    closeGame () {
+      this.state.closeGame()
     }
   }
 }

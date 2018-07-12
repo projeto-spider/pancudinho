@@ -25,7 +25,10 @@
         <tips
           :tip="tip"
         ></tips>
-        <button @click="avaluateAnswer">Submit</button>
+        <template>
+          <button v-if="gameFinished" @click="closeGame">Continue</button>
+          <button v-else @click="avaluateAnswer">Submit</button>
+        </template>
       </div>
     </div>
   </div>
@@ -50,6 +53,10 @@ export default {
   },
 
   props: {
+    state: {
+      type: Object,
+      required: true
+    },
     options: {
       type: Object,
       required: true
@@ -73,7 +80,8 @@ export default {
   },
 
   data: () => ({
-    ligthNovel: true
+    ligthNovel: true,
+    gameFinished: false
   }),
 
   methods: {
@@ -82,6 +90,10 @@ export default {
     },
     avaluateAnswer () {
       this.$refs.el.avaluateAswer(this.answer)
+      this.gameFinished = true
+    },
+    closeGame () {
+      this.state.closeGame()
     }
   }
 }

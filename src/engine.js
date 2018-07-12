@@ -99,6 +99,10 @@ export class State {
   getGame () {
     return this.currentlyInGame && screenplay.find(({ id }) => id === this.currentStage)
   }
+
+  closeGame () {
+    this.currentStage++
+  }
 }
 
 export function defaultState () {

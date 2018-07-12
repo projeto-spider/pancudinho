@@ -6,10 +6,10 @@
     <button v-else @click="selectMode=true">Select Mode</button>
   </p>
   <div v-if="selectMode">
-    <SelectPage></SelectPage>
+    <SelectPage :state="state"></SelectPage>
   </div>
   <div v-else>
-    <FillPage></FillPage>
+    <FillPage :state="state"></FillPage>
   </div>
 </div>
 </template>
@@ -25,6 +25,10 @@ export default {
   components: { FillPage, SelectPage },
 
   props: {
+    state: {
+      type: Object,
+      required: true
+    }
   },
 
   data: () => ({
