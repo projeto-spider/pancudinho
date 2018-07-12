@@ -7,8 +7,12 @@
       <h2>Password</h2><br>
       <input type="password" v-model="typedPassword"><br><br><br>
       <button @click="verifyUsers" @click.prevent="login">Login</button><br>
-      <!--<p>This page is mocked up.</p>
-      <p>You're going to be automatically logged-in.</p>-->
+      <div class="centered" v-if="displayNotRealUser">
+        <h4>This user doesn't exist</h4>
+      </div>
+      <div class="centered" v-if="displayWrongPassword">
+        <h4>Wrong Password</h4>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +25,8 @@ export default {
     typedPassword: '',
     realUser: false,
     loginPermission: false,
+    displayNotRealUser: false,
+    displayWrongPassword: false,
     users: [
       {
         id: 1,
@@ -42,6 +48,10 @@ export default {
           this.loginPermission = true
         } else if ((this.typedUser === this.users[i].user) && (this.typedPassword !== this.users[i].password)) {
           this.realUser = true
+          this.loginPermission = false
+        } else {
+          this.realUser = false
+          this.loginPermission = false
         }
       }
     },
@@ -49,9 +59,11 @@ export default {
       if (this.realUser && this.loginPermission) {
         this.state.authenticate(this.typedUser)
       } else if (this.realUser && !this.loginPermission) {
-        alert('Wrong Password')
+        this.displayWrongPassword = true
+        this.displayNotRealUser = false
       } else {
-        alert('This user does not exist')
+        this.displayNotRealUser = true
+        this.displayWrongPassword = false
       }
     }
   }
@@ -73,15 +85,8 @@ input{
   color: #2b2b2b;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
-.authenticated {
-  border-color: #00ff00;
-  border-style: groove;
-  border-width: 4px;
-}
-.not-authenticated {
-  border-color: #ff0000;
-  border-style: groove;
-  border-width: 4px;
+h4{
+  color: #ff0000;
 }
 .centered{
   text-align: center;
