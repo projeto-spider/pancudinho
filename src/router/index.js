@@ -13,7 +13,7 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/book/select-game',
+      path: '/book/Select-game/select-game',
       name: 'BookSelectGame',
       component: BookSelectGame
     }
