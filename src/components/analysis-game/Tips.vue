@@ -1,29 +1,23 @@
 <template>
-<div class="Tips">
-  <p></P>
-  <button @click="showTips=true">Tips</button>
-    <div v-if="showTips">
-      <div class=defocus @click="showTips=false">
-        <div class="box tip"> {{ tip }} </div>
-      </div>
-    </div>
-</div>
+  <div>
+    <Tip :open="open" :handle-close="() => open = false">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo libero et facilisis porta. Morbi molestie est eu augue euismod faucibus. Nullam id laoreet neque, eget placerat urna. Phasellus et odio facilisis purus aliquam pellentesque. Nulla facilisi. Nulla facilisi. Mauris sit amet nisi nec velit feugiat mattis non ut nunc.
+    </Tip>
+    <Button :label="'Dicas'" :handle-click="() => open = true"></Button>
+  </div>
 </template>
 
 <script type="text/javascript">
+import Tip from '../ui/Tip.vue'
+import Button from '../ui/Button.vue'
 
 export default {
   name: 'Tips',
 
-  props: {
-    tip: {
-      type: String,
-      required: true
-    }
-  },
+  components: { Tip, Button },
 
   data: () => ({
-    showTips: false
+    open: false
   })
 }
 </script>
