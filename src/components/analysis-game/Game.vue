@@ -26,8 +26,16 @@
           :tip="tip"
         ></tips>
         <template>
-          <button v-if="gameFinished" @click="closeGame">Continue</button>
-          <button v-else @click="avaluateAnswer">Submit</button>
+          <Button 
+            v-if="gameFinished" 
+            :label="'Continuar'" 
+            :handle-click="closeGame"
+          ></Button>
+          <Button 
+            v-else 
+            :label="'Enviar'" 
+            :handle-click="avaluateAnswer"
+          ></Button>
         </template>
       </div>
     </div>
@@ -40,6 +48,7 @@ import VisualNovel from './VisualNovel.vue'
 import Draggable from './Draggable.vue'
 import Droppable from './Droppable'
 import Goal from './Goal.vue'
+import Button from '../ui/Button.vue'
 
 export default {
   name: 'AnalysisGame',
@@ -49,7 +58,8 @@ export default {
     VisualNovel,
     Draggable,
     Droppable,
-    Goal
+    Goal,
+    Button
   },
 
   props: {
