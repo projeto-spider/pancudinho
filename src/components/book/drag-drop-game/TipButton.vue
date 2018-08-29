@@ -3,17 +3,14 @@
     <button type="button" @click="open = true">
       Tip
     </button>
-    <tip
-      :showTip="open"
-      :tip="tip"
-      :closeTip="closeTip"
-    >
-    </tip>
-</div>
+    <Tip :open="open" :handle-close="() => open = false">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo libero et facilisis porta. Morbi molestie est eu augue euismod faucibus. Nullam id laoreet neque, eget placerat urna. Phasellus et odio facilisis purus aliquam pellentesque. Nulla facilisi. Nulla facilisi. Mauris sit amet nisi nec velit feugiat mattis non ut nunc.
+    </Tip>
+  </div>
 </template>
 
 <script type="text/javascript">
-import Tip from './Tip.vue'
+import Tip from '../../ui/Tip.vue'
 
 export default {
   name: 'TipButton',
@@ -21,7 +18,6 @@ export default {
   components: { Tip },
 
   data: () => ({
-    tip: 'Lorem inpsun dolor',
     open: false
   }),
 
