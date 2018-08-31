@@ -19,7 +19,7 @@
       </div>
       <template v-else>
         <Button :handle-click="doAgain" :label="'Reset'"></Button><br>
-        <button @click="submit">Submit</button>
+        <Button :handle-click="submit" :label="'Submit'"></Button>
       </template>
     </div>
   </div>
