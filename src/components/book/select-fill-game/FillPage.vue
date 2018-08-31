@@ -24,7 +24,7 @@
     </div>
     <div style="text-align:center;">
       <div v-if="revealAnswer">
-        <button @click="closeGame">Continue</button><br>
+        <Button :handle-click="closeGame" :label="'Continue'"></button><br>
       </div>
       <template v-else>
         <Button :handle-click="doAgain" :label="'Reset'"></Button><br>
