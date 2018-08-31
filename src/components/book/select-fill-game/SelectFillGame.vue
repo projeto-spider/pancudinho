@@ -2,9 +2,10 @@
 <div>
   <br>
   <p style="text-align:center;">
-    <Button v-if="selectMode" :handle-click="selectMode=false" :label="'Input Mode'"></Button>
-    <Button v-else :handle-click="selectMode=true" :label="'Select Mode'"></Button>
-  </p>
+
+    <Button v-if="selectMode" :handle-click="() => selectMode = false" :label="'Input Mode'"></Button>
+    <Button v-else :handle-click="() => selectMode = true" :label="'Select Mode'"></Button>
+
   <div v-if="selectMode">
     <SelectPage :state="state"></SelectPage>
   </div>
