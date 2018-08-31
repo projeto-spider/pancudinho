@@ -18,7 +18,7 @@
         <Button :handle-click="closeGame" :label="'Continue'"></Button><br>
       </div>
       <template v-else>
-        <button @click="doAgain">Reset</button><br>
+        <Button :handle-click="doAgain" :label="'Reset'"></Button><br>
         <button @click="submit">Submit</button>
       </template>
     </div>
