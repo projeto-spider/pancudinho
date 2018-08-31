@@ -27,8 +27,8 @@
         <button @click="closeGame">Continue</button><br>
       </div>
       <template v-else>
-        <button @click="doAgain">Reset</button><br>
-        <button @click="checkAnswers">Submit</button>
+        <Button :handle-click="doAgain" :label="'Reset'"></Button><br>
+        <Button :handle-click="checkAnswers" :label="'Submit'"></Button>
       </template>
     </div>
   </div>
@@ -36,8 +36,10 @@
 
 <script>
 import Inputble from './Inputble.vue'
+import Button from '../../ui/Button.vue'
+
 export default {
-  components: {Inputble},
+  components: {Inputble, Button},
 
   created () {
     this.items = this.options
