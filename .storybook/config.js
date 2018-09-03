@@ -15,6 +15,7 @@ function loadStories() {
   require('../src/stories/AnalysisGame')
   require('../src/stories/BookSelectFillGame')
   require('../src/stories/Select-Game')
+  require('../src/stories/SeesawGame')
 }
 
 configure(loadStories, module);
