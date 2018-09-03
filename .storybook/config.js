@@ -14,6 +14,7 @@ function loadStories() {
   require('../src/stories/BookDragDropGame')
   require('../src/stories/AnalysisGame')
   require('../src/stories/BookSelectFillGame')
+  require('../src/stories/HeightGame')
 }
 
 configure(loadStories, module);
