@@ -13,8 +13,13 @@ module.exports = (baseConfig, env, defaultConfig) => {
     include: path.resolve(__dirname, '../node_modules'),
     use: 'raw-loader'
   })
+  defaultConfig.module.rules.push({
+    test: /\.(ogg|mp3)$/,
+    include: path.resolve(__dirname, '../src/assets'),
+    use: 'file-loader'
+  })
 
-  defaultConfig.resolve.extensions.push('.vert', '.frag')
+  defaultConfig.resolve.extensions.push('.vert', '.frag', '.ogg', '.mp3')
 
   defaultConfig.plugins.push(
     new webpack.DefinePlugin({
