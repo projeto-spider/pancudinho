@@ -1,40 +1,38 @@
 <template>
-  <div class="aligner">
-    <div v-if="ligthNovel">
-      <visualNovel
-        :closeVisualNovel="closeNovel"
-        :talks="talks"
-      ></visualNovel>
+  <visualNovel
+    v-if="ligthNovel"
+    :closeVisualNovel="closeNovel"
+    :talks="talks"
+  ></visualNovel>
+
+  <div v-else>
+    <div class="goalarea">
+      <goal
+        :goal="goal"
+      >
+      </goal>
     </div>
-    <div v-else>
-      <div class="goalarea">
-        <goal
-          :goal="goal"
-        >
-        </goal>
-      </div>
-      <div class="dragdroparea">
-        <draggable
-          :option="options[1]"
-        ></draggable>
-        <droppable
-          ref="el"
-        ></droppable>
-      </div>
-      <div style="margin: -5em -10em 0em 30em;">
-        <tips
-          :tip="tip"
-        ></tips>
-        <template>
-          <button v-if="gameFinished" @click="closeGame">Continue</button>
-          <button v-else @click="avaluateAnswer">Submit</button>
-        </template>
-      </div>
+    <div class="dragdroparea">
+      <draggable
+        :option="options[1]"
+      ></draggable>
+      <droppable
+        ref="el"
+      ></droppable>
+    </div>
+    <div style="margin: -5em -10em 0em 30em;">
+      <tips
+        :tip="tip"
+      ></tips>
+      <template>
+        <button v-if="gameFinished" @click="closeGame">Continue</button>
+        <button v-else @click="avaluateAnswer">Submit</button>
+      </template>
     </div>
   </div>
 </template>
 
-<script type="text/javascript">
+<script>
 import Tips from './Tips.vue'
 import VisualNovel from './VisualNovel.vue'
 import Draggable from './Draggable.vue'
@@ -105,7 +103,7 @@ export default {
   width: 100%;
   height: 100%;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 .goalarea {
   margin: 1px 0px -2px -180px

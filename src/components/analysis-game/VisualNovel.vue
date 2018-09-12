@@ -1,30 +1,49 @@
 <template>
-<div class="VisualNovel">
-  <div  v-if="Talk==false">
-    <div class="box character"> personal </div>
-      <div class="box balloon" v-if="nextTalk==false">
-        <div class="text"> {{talks[0].task}} </div>
-        <button class="next" @click="Talk=true">>></button>
-      </div>
-      <div class="box balloon" v-if="nextTalk==true">
-        <div class="text"> {{talks[2].task}} </div>
-        <button class="next">>></button>
-      </div>
+  <div class="aligner" v-if="currentTalk">
+    <div class="character">
+      <img :src="characters[currentTalk.character][currentTalk.emotion]">
+    </div>
+
+    <Panel class="box balloon" @click.native="next">
+      {{currentTalk.task}}
+    </Panel>
+
+    <!-- <div class="box balloon" v-if="nextTalk==false">
+      <div class="text"> {{talks[0].task}} </div>
+      <button class="next" @click="Talk=true">>></button>
+    </div> -->
   </div>
-  <div v-if="Talk==true">
+
+  <div v-else class="aligner">
     <div class="box character"> pancud </div>
       <div class="box balloon">
         <div class="text"> {{talks[1].task}} </div>
         <button class="next" @click.prevent="(nextTalk=true)" @click="closeVisualNovel" >>></button>
       </div>
   </div>
-</div>
 </template>
 
-<script type="text/javascript">
+<script>
+import Panel from '../ui/Panel.vue'
+
+const characters = {
+  pancudinho: {
+    smile: require('../../assets/pancudinho-smile.png'),
+    blushing: require('../../assets/pancudinho-blushing.png'),
+    normal: require('../../assets/pancudinho-normal.png'),
+    puzzled: require('../../assets/pancudinho-puzzled.png'),
+    unhappy: require('../../assets/pancudinho-unhappy.png')
+  },
+
+  coach: {
+    normal: require('../../assets/coach-normal.png')
+  }
+}
 
 export default {
   name: 'VisualNovel',
+
+  components: { Panel },
 
   props: {
     closeVisualNovel: {
@@ -39,9 +58,26 @@ export default {
   },
 
   data: () => ({
-    Talk: false,
-    nextTalk: false
-  })
+    characters,
+    nextTalk: false,
+    currentTalkId: 0
+  }),
+
+  computed: {
+    currentTalk () {
+      if (this.talks.length <= this.currentTalkId) {
+        return false
+      }
+
+      return this.talks[this.currentTalkId]
+    }
+  },
+
+  methods: {
+    next () {
+      this.currentTalkId++
+    }
+  }
 }
 </script>
 
@@ -60,21 +96,26 @@ export default {
 }
 
 .box.balloon{
-  width: 800px;
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+  width: 90%;
+  height: 200px;
+  left: 5%;
+  font-size: 1.5em;
+  cursor: pointer;
+  /* width: 100%;
   height: 100px;
-  margin-top:100px;
-  padding: 0.1em 1em;
-  background: plum;
-  border-radius: 5px;
-  text-align: center;
-  color: rgb(245, 245, 245);
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
-  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+  margin: 0 30px;
+  /* padding: 15px; */
+  /* font-size: 1.15em; */
 }
 
-.box.character{
-  width: 100px;
+.character{
+  max-height: 100vh;
+  z-index: 1;
+  /* position: absolute2; */
+  /* width: 100px;
   height: 100px;
   margin-top:90px;
   background: plum;
@@ -83,7 +124,7 @@ export default {
   color: rgb(255, 255, 255);
   border-radius: 100px;
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.8); */
 }
 
 </style>

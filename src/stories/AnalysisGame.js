@@ -12,6 +12,8 @@ import Droppable from '../components/analysis-game/Droppable.vue'
 import Goal from '../components/analysis-game/Goal.vue'
 import AnalysisGame from '../components/analysis-game/Game.vue'
 
+import Background from '../components/ui/Background.vue'
+
 const stories = storiesOf('Analysis Game', module)
 
 stories
@@ -53,25 +55,49 @@ stories
     } })
   }))
   .add('Game', (h) => ({
-    render: h => h(AnalysisGame, { props: {
-      options: {
-        '1': 'Loren inpsun dolor',
-        '2': 'sit amet est',
-        '3': 'pro ne alterum'
-      },
-      goal: 'Prepare yourself!',
-      tip: 'Magic is everything!',
-      answer: 'Loren inpsun dolor',
-      talks: [
-        {
-          task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'
+    render: h => h(Background, { props: {
+    } }, [
+      h(AnalysisGame, { props: {
+        options: {
+          '1': 'Loren inpsun dolor',
+          '2': 'sit amet est',
+          '3': 'pro ne alterum'
         },
-        {
-          task: 'Usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'
-        },
-        {
-          task: 'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'
-        }
-      ]
-    } })
+        goal: 'Prepare yourself!',
+        tip: 'Magic is everything!',
+        answer: 'Loren inpsun dolor',
+        talks: [
+          {
+            character: 'coach',
+            emotion: 'normal',
+            task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'
+          },
+          {
+            character: 'pancudinho',
+            emotion: 'normal',
+            task: 'Usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt.'
+          },
+          {
+            character: 'coach',
+            emotion: 'normal',
+            task: 'Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum.'
+          },
+          {
+            character: 'pancudinho',
+            emotion: 'normal',
+            task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'
+          },
+          {
+            character: 'pancudinho',
+            emotion: 'puzzled',
+            task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'
+          },
+          {
+            character: 'pancudinho',
+            emotion: 'smile',
+            task: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie.'
+          }
+        ]
+      } })
+    ])
   }))
