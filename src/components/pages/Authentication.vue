@@ -2,16 +2,19 @@
   <div>
     <div class="centered">
       <h1>Authentication</h1><br>
+
       <h2>User</h2><br>
+
       <input v-model="typedUser"><br>
+
       <h2>Password</h2><br>
+
       <input type="password" v-model="typedPassword"><br><br><br>
+
       <button @click="verifyUsers" @click.prevent="login">Login</button><br>
-      <div class="centered" v-if="displayNotRealUser">
-        <h4>This user doesn't exist</h4>
-      </div>
-      <div class="centered" v-if="displayWrongPassword">
-        <h4>Wrong Password</h4>
+
+      <div class="centered" v-if="loginFail">
+        <h4>Wrong credentials</h4>
       </div>
     </div>
   </div>
@@ -25,8 +28,7 @@ export default {
     typedPassword: '',
     realUser: false,
     loginPermission: false,
-    displayNotRealUser: false,
-    displayWrongPassword: false,
+    loginFail: false,
     users: [
       {
         id: 1,
@@ -55,16 +57,15 @@ export default {
         }
       }
     },
+
     login () {
+      this.loginFail = false
+
       if (this.realUser && this.loginPermission) {
-        this.state.authenticate(this.typedUser)
-      } else if (this.realUser && !this.loginPermission) {
-        this.displayWrongPassword = true
-        this.displayNotRealUser = false
-      } else {
-        this.displayNotRealUser = true
-        this.displayWrongPassword = false
+        return this.state.authenticate(this.typedUser)
       }
+
+      this.loginFail = true
     }
   }
 }
