@@ -29,7 +29,7 @@ export default {
 
   data () {
     const $vm = this
-    let block, pancudinho, flag
+    let barraEstadiometro, estadiometro, pancudinho, flag
     function resize (width, height) {
       if (width === undefined) { width = this.sys.game.config.width }
       if (height === undefined) { height = this.sys.game.config.height }
@@ -47,31 +47,39 @@ export default {
         },
         scene: {
           preload () {
-            this.load.image('block', require('../../assets/red_panel.png'))
+            this.load.image('barra-estadiometro', require('../../assets/barra-estadiometro.png'))
+            this.load.image('estadiometro', require('../../assets/estadiometro.png'))
             this.load.image('pancudinho', require('../../assets/pancudinho.png'))
           },
 
           create () {
             this.events.on('resize', resize, this)
 
-
             const camera = this.cameras.main
             camera.setBackgroundColor('#bdbdbd')
 
-            block=this.physics.add.image(400, 70, 'block')
-            pancudinho=this.physics.add.image(400, 400, 'pancudinho')
-            block.setCollideWorldBounds(true)
-            pancudinho.setCollideWorldBounds(true)
-            block.setInteractive()
+            estadiometro=this.physics.add.image(400, 230, 'estadiometro')
+            barraEstadiometro=this.physics.add.image(400, 70, 'barra-estadiometro')
+            pancudinho=this.physics.add.image(390, 395, 'pancudinho')
+            barraEstadiometro.setCollideWorldBounds(true)
+            //pancudinho.setCollideWorldBounds(true)
+            barraEstadiometro.setInteractive()
             pancudinho.setInteractive()
-            block.setVelocity(0,Math.floor((Math.random()*700)+300))
-            flag=this.physics.add.collider(pancudinho, block)
-            console.log(flag.active)
+            barraEstadiometro.setVelocity(0,Math.floor((Math.random()*700)+300))
+            flag=this.physics.add.collider(pancudinho, barraEstadiometro)
+            /*console.log(flag.active)
             this.input.on('pointerdown', function(){
               block.setVelocity(0,0)
+            }, this);*/
+            this.input.on('pointerdown', function(){
+              this.scene.pause();
+
             }, this);
-
-
+            this.physics.add.overlap(barraEstadiometro, pancudinho, function(){
+              alert('Tente novamente!')
+              this.scene.pause();
+            }, null, this);
+            console.log(barraEstadiometro.body.speed)
 
 
           },
