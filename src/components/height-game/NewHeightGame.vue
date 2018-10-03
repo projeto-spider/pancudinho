@@ -29,7 +29,7 @@ export default {
 
   data () {
     const $vm = this
-    let barraEstadiometro, estadiometro, pancudinho, flag
+    let barraEstadiometro, estadiometro, pancudinho, text
     function resize (width, height) {
       if (width === undefined) { width = this.sys.game.config.width }
       if (height === undefined) { height = this.sys.game.config.height }
@@ -60,27 +60,33 @@ export default {
 
             estadiometro=this.physics.add.image(400, 230, 'estadiometro')
             barraEstadiometro=this.physics.add.image(400, 70, 'barra-estadiometro')
-            pancudinho=this.physics.add.image(390, 395, 'pancudinho')
+            pancudinho=this.physics.add.image(400, 420, 'pancudinho')
+            pancudinho.setImmovable()
             barraEstadiometro.setCollideWorldBounds(true)
-            //pancudinho.setCollideWorldBounds(true)
             barraEstadiometro.setInteractive()
             pancudinho.setInteractive()
             barraEstadiometro.setVelocity(0,Math.floor((Math.random()*700)+300))
-            flag=this.physics.add.collider(pancudinho, barraEstadiometro)
+            // flag=this.physics.add.collider(pancudinho, barraEstadiometro)
             /*console.log(flag.active)
             this.input.on('pointerdown', function(){
               block.setVelocity(0,0)
             }, this);*/
             this.input.on('pointerdown', function(){
-              this.scene.pause();
+              if (barraEstadiometro.y<200){
+                text=this.add.text(200, 200, 'NICE TRY', { fontSize: '60px', fill: '#000' })
+              } else if (barraEstadiometro.y>=200 && barraEstadiometro.y<280){
+                text=this.add.text(200, 200, 'GOOD', { fontSize: '60px', fill: '#000' })
+              } else if (barraEstadiometro.y>=270 && barraEstadiometro.y<=310) {
+                text=this.add.text(200, 200, 'EXCELLENT', { fontSize: '60px', fill: '#000' })
+              }
 
+              barraEstadiometro.setVelocity(0,0)
             }, this);
             this.physics.add.overlap(barraEstadiometro, pancudinho, function(){
-              alert('Tente novamente!')
               this.scene.pause();
+              text=this.add.text(200, 200, 'TRY AGAIN', { fontSize: '60px', fill: '#000' })
             }, null, this);
-            console.log(barraEstadiometro.body.speed)
-
+            console.log(barraEstadiometro)
 
           },
           update () {
