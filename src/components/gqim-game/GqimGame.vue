@@ -39,6 +39,8 @@ export default {
 
   data () {
     const $vm = this
+    let showCounter=90
+    let text
 
     function resize (width, height) {
       if (width === undefined) { width = this.sys.game.config.width }
@@ -66,6 +68,16 @@ export default {
             camera.setBackgroundColor('#bdbdbd')
 
             const tree = $vm.tree
+
+
+            text=this.add.text(-450, -80, 'Tempo: ', { fontSize: '40px', fill: '#000' })
+            for (var i=1;i<=90;i++){
+              setTimeout(function(){
+                 showCounter--;
+              }, 1000*i)
+            }
+
+            if (showCounter==0) this.scene.stop()
 
             let canDrag = true
             const draggableNodes = []
@@ -311,7 +323,9 @@ export default {
               dropZones.forEach(dropZone => dropZone.revealStatus())
             }, this)
           },
-          update () {},
+          update () {
+            text.setText('Tempo: ' + showCounter);
+          },
           resize
         }
       }
