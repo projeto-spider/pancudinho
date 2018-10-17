@@ -1,8 +1,8 @@
 <template>
   <div>
     <div @contextmenu.prevent="$refs.ctxMenu.open">
-      <div class="Card" :class="classes" @click="handleClick">
-        <div v-if="flip">{{ content }}</div>
+      <div class="Card" :class="classes" @click="() => !isSelected && handleClick()">
+        <div v-if="flip || isSelected">{{ content }}</div>
       </div>
     </div>
 
@@ -26,6 +26,11 @@ export default {
   components: { ContextMenu },
 
   props: {
+    isSelected: {
+      type: Boolean,
+      default: false
+    },
+
     flip: {
       type: Boolean,
       default: false
@@ -49,7 +54,7 @@ export default {
   computed: {
     classes () {
       return {
-        flipped: this.flip
+        flipped: this.flip || this.isSelected
       }
     }
   }

@@ -5,6 +5,7 @@
       :key="card.id"
       :flip="card.flip"
       :content="card.content"
+      :isSelected="selectedCards.includes(card.id)"
       :handle-click="() => handleClickCard(card)"
     ></Card>
   </Panel>
@@ -21,6 +22,11 @@ export default {
 
   props: {
     cards: {
+      type: Array,
+      default: () => []
+    },
+
+    selectedCards: {
       type: Array,
       default: () => []
     },
