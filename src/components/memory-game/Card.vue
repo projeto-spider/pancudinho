@@ -81,6 +81,7 @@ export default {
 
 .Card.flipped {
   background-color: #fff;
+  font-size: 14px;
 }
 
 .context-menu {
@@ -117,4 +118,5 @@ export default {
   width: 330px;
   height: 460px;
 }
+
 </style>
