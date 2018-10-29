@@ -15,7 +15,7 @@ const style = {
   fontFamily: 'kenvector_future'
 }
 
-export default withPanel(class GqimNode extends Phaser.GameObjects.Text {
+export default class GqimNode extends withPanel(Phaser.GameObjects.Text) {
   constructor (scene, x, y, text) {
     super(scene, x, y, text, style)
     this.setOrigin()
@@ -54,4 +54,4 @@ export default withPanel(class GqimNode extends Phaser.GameObjects.Text {
       this.setData('droppedIn', false)
     }
   }
-})
+}
