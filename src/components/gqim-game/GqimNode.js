@@ -15,13 +15,15 @@ const style = {
   fontFamily: 'kenvector_future'
 }
 
-export default class GqimNode extends withPanel(Phaser.GameObjects.Text) {
+export default class GqimNode extends withPanel(Phaser.GameObjects.Text, 'grey') {
   constructor (scene, x, y, text) {
     super(scene, x, y, text, style)
     this.setOrigin()
     scene.add.existing(this).setInteractive()
     scene.physics.add.existing(this)
-    scene.input.setDraggable(this)
+    scene.input.setDraggable(this, false)
+    this.style.setFill(FILL_DARK)
+    this.isDraggable = false
   }
 
   setDepth = (value) => {
@@ -31,6 +33,7 @@ export default class GqimNode extends withPanel(Phaser.GameObjects.Text) {
 
   setDraggable (value = true) {
     this.scene.input.setDraggable(this, value)
+    this.isDraggable = value
 
     if (!value) {
       this.panel.setPanel('grey')

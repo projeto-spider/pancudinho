@@ -85,6 +85,7 @@ export default {
 
             const createDraggableNode = element => {
               const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
+              node.setDraggable(true)
               node.setData('id', element.id)
               node.setData('edges', element.edges)
 
@@ -103,7 +104,6 @@ export default {
                 return dropZone
               } else {
                 const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
-                node.setDraggable(false)
                 node.setData('id', element.id)
                 node.setData('edges', element.edges)
                 return node
