@@ -262,7 +262,7 @@ export default {
             this.input.on('dragstart', function dragstart (pointer, gameObject) {
               if (canDrag) {
                 draggableNodes.forEach(node => {
-                  node.setDepth(node === gameObject ? 15 : 10)
+                  node.setDepth(node === gameObject ? 15 : 11)
                 })
 
                 paddingDrag.x = pointer.x - gameObject.x
