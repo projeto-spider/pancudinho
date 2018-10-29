@@ -126,6 +126,8 @@ export default {
             const NODE_VERTICAL_MARGIN = 100
 
             centralizeVerticallyGroups([goalNode], questionNodes, indicatorNodes, metricNodes)
+            // Reposition goalNode planel
+            goalNode.setPosition(goalNode.x, goalNode.y)
             centralizeHorizontalyNodes(questionNodes)
             centralizeHorizontalyNodes(indicatorNodes)
             centralizeHorizontalyNodes(metricNodes)
