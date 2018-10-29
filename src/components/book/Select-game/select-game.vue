@@ -8,21 +8,21 @@
         Select Mode
         </div>
       <p class="fairy-letter">
-        Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius
+        {{text[0].text1}}
         <span v-if= "input===false" class="box" @click.prevent="(words[0].selected_gap = true) && (showOptions = true)">
           {{words[0].word_in_the_gap}}</span>
         <input v-if="input===true" v-model="words[0].typedAnswer" class="text"> <span class="check" v-if="(words[0].showCheck) && inputOn">✓</span> <span class="X" v-if="words[0].showX && inputOn">X</span>
-        reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,
+        {{text[1].text1}}
         <span v-if= "input===false" class="box" @click.prevent="(words[1].selected_gap = true) && (showOptions = true)">
           {{words[1].word_in_the_gap}}</span>
         <input v-if="input===true" v-model="words[1].typedAnswer" class="text"> <span class="check" v-if="(words[1].showCheck) && inputOn">✓</span> <span class="X" v-if="words[1].showX && inputOn">X</span>
-        mei eros civibus lobortis ne. Lorem feugiat
+        {{text[2].text1}}
         <span v-if= "input===false" class="box" @click.prevent="(words[2].selected_gap = true) && (showOptions = true)">
           {{words[2].word_in_the_gap}}</span>
         <input v-if="input===true" v-model="words[2].typedAnswer" class="text"> <span class="check" v-if="(words[2].showCheck) && inputOn">✓</span> <span class="X" v-if="words[2].showX && inputOn">X</span>
-        sanctus nam no,et equidem conclusionemque cum. Sit in soleat fastidii dissentiunt, per facete veritus ne.
+        {{text[3].text1}}
       </p>
-      <div v-if="inputOn" class="box five" @click="(verifyAnswers())">
+      <div v-if="inputOn" class="box five" @click="verifyAnswers()">
         Submit
       </div>
       <div class="box five" v-if="!inputOn"  @click="delet()">
@@ -56,6 +56,18 @@
 <script type="text/javascript">
 export default {
   name: 'BookselectGame',
+
+  props: {
+    words: {
+      type: Array,
+      default: () => []
+    },
+    text: {
+      type: Array,
+      default: () => []
+    }
+  },
+
   data: () => ({
     word1: 'Lorem',
     word2: 'Praesent blandit',
@@ -63,36 +75,7 @@ export default {
     showOptions: false,
     showTips: false,
     input: true,
-    inputOn: true,
-    words: [
-      {
-        word1: 'lorem',
-        selected_word: false,
-        selected_gap: false,
-        word_in_the_gap: '?',
-        typedAwnser: '',
-        showCheck: false,
-        showX: false
-      },
-      {
-        word1: 'praesent blandit',
-        selected_word: false,
-        selected_gap: false,
-        word_in_the_gap: '?',
-        typedAnswer: '',
-        showCheck: false,
-        showX: false
-      },
-      {
-        word1: 'nullam et',
-        selected_word: false,
-        selected_gap: false,
-        word_in_the_gap: '?',
-        typedAwnser: '',
-        showCheck: false,
-        showX: false
-      }
-    ]
+    inputOn: true
   }),
   methods: {
     select () {
@@ -138,8 +121,8 @@ export default {
 </script>
 <style type="text/css">
 .book {
-  padding: 1.6em 2.3em 1.4em;
-  margin: 4.6em 20em;
+  padding: 1.6em 6.3em 1.4em;
+  margin: 5.9em 40em;
   border : 4mm ridge rgb(170, 50, 220, .6);
   border-radius: 3px;
   text-align: left;
@@ -204,14 +187,15 @@ export default {
 }
 
 .box.five{
-  width: 90px;
+  width: 110px;
   border-radius: 10px;
-  margin-left: 3.8cm;
+  margin-left: 205px;
   background: MediumOrchid;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
   font: 30px 'Arizonia', Helvetica, sans-serif;
   color: black;
   text-align: center;
+  padding: 0.3em 0.3em;
 }
 
 button{

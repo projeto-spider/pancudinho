@@ -1,5 +1,5 @@
 <template>
-  <div class="game">
+  <div class="aligner">
     <div v-if="ligthNovel">
       <visualNovel
         :closeVisualNovel="closeNovel"
@@ -25,7 +25,10 @@
         <tips
           :tip="tip"
         ></tips>
-        <button @click="avaluateAnswer">Submit</button>
+        <template>
+          <button v-if="gameFinished" @click="closeGame">Continue</button>
+          <button v-else @click="avaluateAnswer">Submit</button>
+        </template>
       </div>
     </div>
   </div>
@@ -50,6 +53,10 @@ export default {
   },
 
   props: {
+    state: {
+      type: Object,
+      required: true
+    },
     options: {
       type: Object,
       required: true
@@ -73,7 +80,8 @@ export default {
   },
 
   data: () => ({
-    ligthNovel: true
+    ligthNovel: true,
+    gameFinished: false
   }),
 
   methods: {
@@ -82,14 +90,25 @@ export default {
     },
     avaluateAnswer () {
       this.$refs.el.avaluateAswer(this.answer)
+      this.gameFinished = true
+    },
+    closeGame () {
+      this.state.closeGame()
     }
   }
 }
 </script>
 
 <style type="text/css">
+.aligner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
 .goalarea {
-  margin: 1em 0em -2em -20em
+  margin: 1px 0px -2px -180px
 },
 .tiparea {
   margin: -5em -10em 0em 30em

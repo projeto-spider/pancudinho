@@ -5,21 +5,35 @@
         <GameMemory
           v-if="currentGame.type === 'memory-game'"
           :cards="currentGame.data.cards"
+          :state="state"
         ></GameMemory>
 
         <GameGqim
           v-if="currentGame.type === 'gqim-game'"
           :tree="currentGame.data.tree"
+          :state="state"
         ></GameGqim>
 
         <GameAnalysis
           v-if="currentGame.type === 'analysis-game'"
+          :state="state"
           :options="currentGame.data.options"
           :goal="currentGame.data.goal"
           :tip="currentGame.data.tip"
           :answer="currentGame.data.answer"
           :talks="currentGame.data.talks"
         ></GameAnalysis>
+
+        <GameBookDragAndDrop
+          v-if="currentGame.type === 'book-drag-and-drop-game'"
+          :state="state"
+          :items="currentGame.data.items"
+        ></GameBookDragAndDrop>
+
+        <GameBookSelectFillGame
+          v-if="currentGame.type === 'book-select-fill-game'"
+          :state="state"
+        ></GameBookSelectFillGame>
       </div>
 
       <div v-else>
@@ -56,6 +70,8 @@ import Sidebar from './ui/Sidebar.vue'
 import GameMemory from './memory-game/Game.vue'
 import GameGqim from './gqim-game/GqimGame.vue'
 import GameAnalysis from './analysis-game/Game.vue'
+import GameBookDragAndDrop from './book/drag-drop-game/Game.vue'
+import GameBookSelectFillGame from './book/select-fill-game/SelectFillGame.vue'
 
 import PageStart from './pages/Start.vue'
 import PageAbout from './pages/About.vue'
@@ -71,6 +87,8 @@ export default {
     GameMemory,
     GameGqim,
     GameAnalysis,
+    GameBookDragAndDrop,
+    GameBookSelectFillGame,
 
     PageStart,
     PageAbout,

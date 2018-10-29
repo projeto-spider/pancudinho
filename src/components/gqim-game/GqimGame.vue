@@ -2,9 +2,14 @@
   <div class="aligner">
     <Panel class="ScenePanel">
       <Scene v-if="config" :config="config" ref="scene"></Scene>
-      <Button color="blue" class="submit-button" @click.native="submit">
-        Submit
-      </Button>
+        <template>
+          <Button v-if="gameFinished" color="blue" class="submit-button" @click.native="closeGame">
+            Continue
+          </Button>
+          <Button v-else color="blue" class="submit-button" @click.native="submit">
+            Submit
+          </Button>
+      </template>>
     </Panel>
   </div>
 </template>
@@ -31,6 +36,11 @@ export default {
   },
 
   props: {
+    state: {
+      type: Object,
+      required: true
+    },
+
     tree: {
       type: Object,
       required: true
@@ -328,7 +338,8 @@ export default {
           },
           resize
         }
-      }
+      },
+      gameFinished: false
     }
   },
 
@@ -337,6 +348,12 @@ export default {
       const { scene } = this.$refs
 
       scene.game.events.emit('submit')
+
+      this.gameFinished = true
+    },
+
+    closeGame () {
+      this.state.closeGame()
     }
   }
 }

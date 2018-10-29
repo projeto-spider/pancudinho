@@ -15,7 +15,7 @@
         <button type="button" @click="submitAnswers">Submit</button>
       </div>
       <div v-else>
-        <button type="button">Finalizar</button>
+        <button type="button" @click="closeGame">Finalizar</button>
       </div>
     </div>
     <div class="draggablearea">
@@ -46,6 +46,11 @@ export default {
   components: { Draggable, BookPage, TipButton },
 
   props: {
+    state: {
+      type: Object,
+      required: true
+    },
+
     items: {
       type: Array,
       default: () => []
@@ -96,6 +101,10 @@ export default {
 
     handleDropLeave (item) {
       this.answers[item.id] = null
+    },
+
+    closeGame () {
+      this.state.closeGame()
     }
   }
 }

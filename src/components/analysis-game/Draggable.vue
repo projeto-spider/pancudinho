@@ -55,18 +55,18 @@ export default {
   margin: 0.4em 0.4em;
   background: plum;
   border-radius: 50%;
-  width: 9em;
-  height: 9em;
+  width: 100px;
+  height: 150px;
   cursor: move;
   position: relative
 }
 .dragging {
-  padding: 0.1em 0.8em;
+  padding: 0.1em 0.2em;
   margin: 0.2em 0.2em;
   background: #fbd9f4;
   border-radius: 50%;
-  width: 8em;
-  height: 8em;
+  width: 100px;
+  height: 150px;
   opacity: 0.4;
   position: relative;
 }

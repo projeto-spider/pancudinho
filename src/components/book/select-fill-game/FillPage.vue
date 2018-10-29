@@ -22,10 +22,15 @@
           <span class="fairy-letter">{{option.text}}</span>
         </div>
     </div>
-    <p style="text-align:center;">
-      <button @click="doAgain">Reset</button><br>
-      <button @click="checkAnswers">Submit</button>
-    </p>
+    <div style="text-align:center;">
+      <div v-if="revealAnswer">
+        <button @click="closeGame">Continue</button><br>
+      </div>
+      <template v-else>
+        <button @click="doAgain">Reset</button><br>
+        <button @click="checkAnswers">Submit</button>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -43,6 +48,13 @@ export default {
         acc[option.id] = null
         return acc
       }, {})
+  },
+
+  props: {
+    state: {
+      type: Object,
+      required: true
+    }
   },
 
   computed: {
@@ -102,6 +114,7 @@ export default {
 
   methods: {
     checkAnswers () {
+      this.revealAnswer = true
       for (var i = 1; i < this.options.length; i += 2) {
         if (this.options[i].typedAnswer.toLowerCase() === this.options[i].text) {
           this.options[i].right = true
@@ -129,6 +142,10 @@ export default {
       answer = answer.toLowerCase()
       var obj = this.items.filter(e => e.text === answer)
       this.answers[id] = [answer, obj[0]]
+    },
+
+    closeGame () {
+      this.state.closeGame()
     }
   }
 }
