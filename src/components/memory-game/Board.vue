@@ -6,6 +6,7 @@
       :flip="card.flip"
       :content="card.content"
       :isSelected="selectedCards.includes(card.id)"
+      :color="card.color"
       :handle-click="() => handleClickCard(card)"
     ></Card>
   </Panel>
@@ -21,6 +22,12 @@ export default {
   components: { Panel, Card },
 
   props: {
+
+    vetorzinho: {
+      type: Array,
+      default: () => []
+    },
+
     cards: {
       type: Array,
       default: () => []
