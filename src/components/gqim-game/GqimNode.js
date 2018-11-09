@@ -39,6 +39,12 @@ export default class GqimNode extends withPanel(Phaser.GameObjects.Text, 'grey')
   setDepth = (value) => {
     this.constructor.prototype.setDepth.call(this, value)
     this.panel.setDepth(value - 1)
+
+    // Calling with the same depth BUT after the node depth
+    // is set will make it be on the front.
+    if (this.nodeTimer) {
+      this.nodeTimer.setDepth(value)
+    }
   }
 
   setDraggable (value = true) {
