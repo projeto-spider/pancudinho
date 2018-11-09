@@ -79,6 +79,7 @@ export default {
               fontSize: '40px',
               fill: '#000'
             })
+            this.timerText.setScrollFactor(0)
 
             this.timerInterval = setInterval(() => {
               this.timer--
