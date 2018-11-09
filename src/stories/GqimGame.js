@@ -1,7 +1,7 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { object, withKnobs } from '@storybook/addon-knobs/vue'
+import { object, number, withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 
 import Background from '../components/ui/Background.vue'
@@ -56,6 +56,8 @@ stories
   .add('Game', (h) => ({
     render: h => h(Background, { props: {} }, [
       h(GqimGame, { props: {
+        timeLimit: number('Time Limit', 130),
+
         tree: object('Tree', {
           goal: {
             id: 'goal-1',
@@ -103,8 +105,8 @@ stories
             },
             {
               toDrop: true,
-              timer: 60,
-              waitBeforeTimer: 30,
+              timer: 30,
+              waitBeforeTimer: 5,
               id: 'indicator-naocmd',
               label: 'NAOCMD – Nota do aluno obtida em cada módulo da disciplina',
               edges: [
@@ -128,7 +130,7 @@ stories
             {
               toDrop: true,
               timer: 10,
-              waitBeforeTimer: 60,
+              waitBeforeTimer: 10,
               id: 'metric-2',
               label: 'Frequência'
             }

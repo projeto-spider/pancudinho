@@ -31,6 +31,12 @@ export default {
   },
 
   props: {
+    timeLimit: {
+      type: Number,
+      default: 100,
+      required: true
+    },
+
     tree: {
       type: Object,
       required: true
@@ -39,8 +45,6 @@ export default {
 
   data () {
     const $vm = this
-    let showCounter=90
-    let text
 
     function resize (width, height) {
       if (width === undefined) { width = this.sys.game.config.width }
@@ -68,16 +72,24 @@ export default {
             camera.setBackgroundColor('#bdbdbd')
 
             const tree = $vm.tree
+            const timeLimit = $vm.timeLimit
 
+            this.timer = timeLimit
+            this.timerText = this.add.text(10, 10, `Tempo: ${this.timer}`, {
+              fontSize: '40px',
+              fill: '#000'
+            })
 
-            text=this.add.text(-450, -80, 'Tempo: ', { fontSize: '40px', fill: '#000' })
-            for (var i=1;i<=90;i++){
-              setTimeout(function(){
-                 showCounter--;
-              }, 1000*i)
-            }
+            this.timerInterval = setInterval(() => {
+              this.timer--
 
-            if (showCounter==0) this.scene.stop()
+              if (this.timer <= 0) {
+                clearInterval(this.timerInterval)
+                finishGame()
+              }
+
+              this.timerText.setText(`Tempo: ${this.timer}`);
+            }, 1000)
 
             let canDrag = true
             const draggableNodes = []
@@ -324,13 +336,14 @@ export default {
               dropZone.onDropIn(gameObject)
             })
 
-            this.sys.game.events.addListener('submit', () => {
+            this.sys.game.events.addListener('submit', finishGame, this)
+
+            function finishGame () {
               canDrag = false
               dropZones.forEach(dropZone => dropZone.revealStatus())
-            }, this)
+            }
           },
           update () {
-            text.setText('Tempo: ' + showCounter);
           },
           resize
         }
