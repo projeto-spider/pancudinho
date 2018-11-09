@@ -19,7 +19,7 @@
             <div v-if="color === 'orange'" class="orange">
               {{ content }}
             </div>
-            <div v-if="color === 'pink'" class="pink">
+            <div v-if="color === 'brown'" class="brown">
               {{ content }}
             </div>
             <div v-if="color === 'purple'" class="purple">
@@ -74,6 +74,11 @@ export default {
       required: true
     },
 
+    id: {
+      type: Number,
+      required: true
+    },
+
     handleClick: {
       type: Function,
       default: () => ({})
@@ -101,10 +106,10 @@ export default {
   height: 160px;
   border: 1px solid #666;
   border-radius: .3em;
-  padding: .4em;
-  margin: 0 .8em .8em 0;
+  padding: .3em;
+  margin: 0 .3em .3em 0;
   text-align: center;
-  font-size: 0.8em;
+  font-size: 1.2em;
   font-weight: normal;
   font-family: Arial, sans-serif;
   position: relative;
@@ -152,8 +157,12 @@ export default {
   height: 460px;
 }
 
-.yellow {
-  color: yellow
+.text{
+  font-size: 11.8px;
+}
+
+.violet {
+  color: #2a3c67
 }
 
 .red {
@@ -172,8 +181,8 @@ export default {
   color: orange
 }
 
-.pink {
-  color: pink
+.brown {
+  color: brown
 }
 
 .purple {
