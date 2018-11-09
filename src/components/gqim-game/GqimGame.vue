@@ -49,7 +49,7 @@ export default {
 
   data () {
     const $vm = this
-    let showCounter=90
+    let showCounter = 90
     let text
 
     function resize (width, height) {
@@ -79,15 +79,14 @@ export default {
 
             const tree = $vm.tree
 
-
-            text=this.add.text(-450, -80, 'Tempo: ', { fontSize: '40px', fill: '#000' })
-            for (var i=1;i<=90;i++){
-              setTimeout(function(){
-                 showCounter--;
-              }, 1000*i)
+            text = this.add.text(-450, -80, 'Tempo: ', { fontSize: '40px', fill: '#000' })
+            for (var i = 1; i <= 90; i++) {
+              setTimeout(function () {
+                showCounter--
+              }, 1000 * i)
             }
 
-            if (showCounter==0) this.scene.stop()
+            if (showCounter === 0) this.scene.stop()
 
             let canDrag = true
             const draggableNodes = []
@@ -334,7 +333,7 @@ export default {
             }, this)
           },
           update () {
-            text.setText('Tempo: ' + showCounter);
+            text.setText('Tempo: ' + showCounter)
           },
           resize
         }

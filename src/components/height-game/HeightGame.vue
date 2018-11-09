@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import Phaser from 'phaser'
 import Background from '../ui/Background.vue'
 import Panel from '../ui/Panel.vue'
 import Button from '../ui/Button.vue'
@@ -28,10 +27,7 @@ export default {
   },
 
   data () {
-    const $vm = this
-    let block
     let yellowblocks
-    let counter=0
     function resize (width, height) {
       if (width === undefined) { width = this.sys.game.config.width }
       if (height === undefined) { height = this.sys.game.config.height }
@@ -39,7 +35,6 @@ export default {
       if (this.cameras) {
         this.cameras.resize(width, height)
       }
-
     }
 
     return {
@@ -49,7 +44,6 @@ export default {
         },
         scene: {
           preload () {
-            this.load.image('block', require('../../assets/red_panel.png'))
             this.load.image('pancudinho', require('../../assets/pancudinho.png'))
             this.load.image('yellowblock', require('../../assets/yellow_panel.png'))
           },
@@ -57,41 +51,32 @@ export default {
           create () {
             this.events.on('resize', resize, this)
 
-
             const camera = this.cameras.main
             camera.setBackgroundColor('#bdbdbd')
 
-
-            yellowblocks=[
-              this.physics.add.image(0,70,'yellowblock'),
-              this.physics.add.image(200,70,'yellowblock'),
-              this.physics.add.image(400,70,'yellowblock'),
-              this.physics.add.image(600,70,'yellowblock'),
-              this.physics.add.image(800,70,'yellowblock'),
-              this.physics.add.image(1000,70,'yellowblock')
+            yellowblocks = [
+              this.physics.add.image(0, 70, 'yellowblock'),
+              this.physics.add.image(200, 70, 'yellowblock'),
+              this.physics.add.image(400, 70, 'yellowblock'),
+              this.physics.add.image(600, 70, 'yellowblock'),
+              this.physics.add.image(800, 70, 'yellowblock'),
+              this.physics.add.image(1000, 70, 'yellowblock')
             ]
 
+            this.add.image(200, 405, 'pancudinho')
 
-            var pancudinho = this.add.image(200, 405, 'pancudinho')
-
-
-            for (let yellowblock of yellowblocks){
-              yellowblock.setVelocity(750,0)
+            for (let yellowblock of yellowblocks) {
+              yellowblock.setVelocity(750, 0)
               yellowblock.setInteractive()
-              yellowblock.on('pointerdown', function(){
-                counter++
+              yellowblock.on('pointerdown', function () {
                 yellowblock.setVelocity(0, 1000)
                 yellowblock.setCollideWorldBounds(true)
                 this.physics.add.collider(yellowblock, yellowblocks)
-                /*if (counter==3){
-                  this.scene.pause()
-                }*/
-              }, this);
+              }, this)
             }
-
           },
           update () {
-            this.physics.world.wrap(yellowblocks, 90);
+            this.physics.world.wrap(yellowblocks, 90)
           },
           resize
         }
