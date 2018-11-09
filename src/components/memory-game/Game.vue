@@ -1,7 +1,8 @@
 <template>
   <div>
+      <h1 style='text-align: center'>{{ counter }}</h1>
+      <h2 v-if='showScore'>Score: {{ score }}</h2>
     <div class="MemoryGame">
-      <h2>{{ counter }}</h2>
       <Board
         :cards="cardsInGame"
         :handle-click-card="handleClickCard"
@@ -36,6 +37,10 @@ export default {
   },
 
   data: () => ({
+    score: 0,
+
+    showScore: false,
+
     isPaired: false,
 
     counter: 5,
@@ -64,7 +69,10 @@ export default {
       for (var i=1;i<=5;i++){
         setTimeout(() => {
           this.counter--
-          if (this.counter==0) this.counter=''
+          if (this.counter==0){
+            this.showScore=true
+            this.counter=''
+          }
         }, 1000*i)
       }
       setTimeout(() => {
@@ -122,8 +130,8 @@ export default {
           cardB.color='red'
           break
         case 3:
-          cardA.color='yellow'
-          cardB.color='yellow'
+          cardA.color='violet'
+          cardB.color='violet'
           break
         case 4:
           cardA.color='purple'
@@ -134,8 +142,8 @@ export default {
           cardB.color='orange'
           break
         case 6:
-          cardA.color='pink'
-          cardB.color='pink'
+          cardA.color='brown'
+          cardB.color='brown'
           break
       }
     },
@@ -153,6 +161,7 @@ export default {
       this.firstCardFlipped=false
       const [cardA, cardB] = this.clickedCards
       if (cardA.group === cardB.group) {
+        this.score+=1000;
         this.pairedCards.push(cardA.group)
         this.setCardColor(cardA, cardB)
         alert(this.cardA.color)
@@ -164,10 +173,10 @@ export default {
         }, FLIP_WAIT_TIME)
       } else {
         setTimeout(() => {
+          if (this.score>0) this.score-=100
           for (let card of this.clickedCards) {
             card.flip = false
           }
-
           this.clickedCards = []
         }, FLIP_WAIT_TIME)
       }
