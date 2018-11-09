@@ -17,7 +17,7 @@ const style = {
 }
 
 export default class GqimNode extends withPanel(Phaser.GameObjects.Text, 'grey') {
-  constructor (scene, x, y, text) {
+  constructor (scene, x, y, text, timer = 60){
     super(scene, x, y, text, style)
     this.setOrigin()
     scene.add.existing(this).setInteractive()
@@ -25,7 +25,7 @@ export default class GqimNode extends withPanel(Phaser.GameObjects.Text, 'grey')
     scene.input.setDraggable(this, false)
     this.style.setFill(FILL_DARK)
     this.isDraggable = false
-    this.timer = 3
+    this.timer = timer
     this.interval = false
     this.nodeTimer = false
   }

@@ -84,10 +84,14 @@ export default {
             const dropZones = []
 
             const createDraggableNode = element => {
-              const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
-              node.setDraggable(true)
+              const node = new GqimNode(this, 0, 0, element.label, element.timer) // eslint-disable-line
+
               node.setData('id', element.id)
               node.setData('edges', element.edges)
+
+              setTimeout(() => {
+                node.setDraggable(true)
+              }, (element.waitBeforeTimer || 0) * 1000)
 
               draggableNodes.push(node)
             }

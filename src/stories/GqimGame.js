@@ -70,6 +70,7 @@ stories
           questions: [
             {
               toDrop: true,
+              timer: 60,
               id: 'question-1',
               label: 'Qual a média dos alunos?',
               edges: [
@@ -102,6 +103,8 @@ stories
             },
             {
               toDrop: true,
+              timer: 60,
+              waitBeforeTimer: 30,
               id: 'indicator-naocmd',
               label: 'NAOCMD – Nota do aluno obtida em cada módulo da disciplina',
               edges: [
@@ -124,6 +127,8 @@ stories
             },
             {
               toDrop: true,
+              timer: 10,
+              waitBeforeTimer: 60,
               id: 'metric-2',
               label: 'Frequência'
             }
