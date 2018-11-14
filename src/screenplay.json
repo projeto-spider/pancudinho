@@ -327,6 +327,22 @@
   },
   {
     "id": 6,
+    "type": "analysis-game",
+    "data": {
+      "talks": [
+        {
+          "name": "Treinador",
+          "task": "Eu já coloquei o nosso objetivo de melhorar a qualidade de vida do pançudinho no topo da árvore."
+        },
+        {
+          "name": "Treinador",
+          "task": "E agora, peço que apenas aponte as perguntas, indicadores e métricas que melhor se alinhem com este objetivo."
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -403,7 +419,7 @@
     }
   },
   {
-    "id": 7,
+    "id": 8,
     "type": "analysis-game",
     "data": {
       "options": {
@@ -428,7 +444,7 @@
     }
   },
   {
-    "id": 8,
+    "id": 9,
     "type": "book-drag-and-drop-game",
     "data": {
       "items": [
@@ -467,7 +483,7 @@
     }
   },
   {
-    "id": 9,
+    "id": 10,
     "type": "book-select-fill-game",
     "data": {
     }
