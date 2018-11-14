@@ -119,6 +119,15 @@ export default {
     currentGame () {
       return this.state.getGame()
     }
+  },
+
+  watch: {
+    currentGame (currentGame) {
+      // TODO
+      if (currentGame.type === 'transition') {
+        setTimeout(() => this.state.closeGame(), 1)
+      }
+    }
   }
 }
 </script>
