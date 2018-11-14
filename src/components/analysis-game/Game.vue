@@ -97,6 +97,10 @@ export default {
   methods: {
     closeNovel () {
       this.ligthNovel = false
+
+      if (!this.goal) {
+        this.closeGame()
+      }
     },
     avaluateAnswer () {
       this.$refs.el.avaluateAswer(this.answer)

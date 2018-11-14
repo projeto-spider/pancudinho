@@ -1,24 +1,11 @@
 <template>
-<div class="VisualNovel">
-  <div  v-if="Talk==false">
-    <div class="box character"> personal </div>
-      <div class="box balloon" v-if="nextTalk==false">
-        <div class="text"> {{talks[0].task}} </div>
-        <button class="next" @click="Talk=true">>></button>
-      </div>
-      <div class="box balloon" v-if="nextTalk==true">
-        <div class="text"> {{talks[2].task}} </div>
-        <button class="next">>></button>
-      </div>
+  <div class="VisualNovel">
+    <div v-if="currentTalk.name" class="box character">{{ currentTalk.name }}</div>
+    <div class="box balloon" @click="handleNext">
+      <div class="text">{{ currentTalk.task }}</div>
+      <button class="next" @click="handleNext">>></button>
+    </div>
   </div>
-  <div v-if="Talk==true">
-    <div class="box character"> pancud </div>
-      <div class="box balloon">
-        <div class="text"> {{talks[1].task}} </div>
-        <button class="next" @click.prevent="(nextTalk=true)" @click="closeVisualNovel" >>></button>
-      </div>
-  </div>
-</div>
 </template>
 
 <script type="text/javascript">
@@ -40,8 +27,25 @@ export default {
 
   data: () => ({
     Talk: false,
-    nextTalk: false
-  })
+    nextTalk: false,
+    currentTalkIndex: 0
+  }),
+
+  computed: {
+    currentTalk () {
+      return this.talks[this.currentTalkIndex]
+    }
+  },
+
+  methods: {
+    handleNext () {
+      this.currentTalkIndex++
+
+      if (!this.currentTalk) {
+        this.closeVisualNovel()
+      }
+    }
+  }
 }
 </script>
 

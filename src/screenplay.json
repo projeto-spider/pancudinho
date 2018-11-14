@@ -1,26 +1,230 @@
 [
   {
     "id": 1,
-    "type": "memory-game",
+    "type": "visual-novel",
     "data": {
-      "cards": [
+    }
+  },
+  {
+    "id": 2,
+    "type": "analysis-game",
+    "data": {
+      "talks": [
         {
-          "id": 1,
-          "flip": false,
-          "content": "A(0)",
-          "group": 0
+          "name": "Treinador",
+          "task": "Huh, huh, hah."
         },
         {
-          "id": 14,
-          "flip": false,
-          "content": "N(0)",
-          "group": 0
+          "name": "Treinador",
+          "task": "Oi, eu sou o treinador. E juntos vamos descobrir a importância de se medir para alcançar um resultado."
+        },
+        {
+          "name": "Treinador",
+          "task": "Primeiro, vamos entender alguns conceitos."
+        },
+        {
+          "name": "Treinador",
+          "task": "O que é Medição?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Medição de software é uma avaliação quantitativa de qualquer aspecto dos processos e produtos de software, que permite seu melhor entendimento e, com isso, auxilia o planejamento, controle e melhoria do que se produz e de como é produzido"
+        },
+        {
+          "name": "Treinador",
+          "task": "Qual é o propósito da Medição?"
+        },
+        {
+          "name": "Treinador",
+          "task": "O propósito do processo Medição é coletar, armazenar, analisar e relatar os dados relativos a um objeto de medição, de forma a apoiar a tomada de decisão"
+        },
+        {
+          "name": "Treinador",
+          "task": "Qual a importância da Medição?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Não se pode controlar o que não se pode medir. E não se pode predizer o que não se pode medir."
+        },
+        {
+          "name": "Treinador",
+          "task": "O que são Medidas?"
+        },
+        {
+          "name": "Treinador",
+          "task": "O elemento básico da medição são as medidas. Medidas caracterizam, em termos quantitativos, uma propriedade de um objeto e fornecem informações quantitativas capazes de apoiar tomadas de decisão técnicas e de negócios."
+        },
+        {
+          "name": "Treinador",
+          "task": "O que são Medidas Básicas?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Medida básica é aquela definida em termos de um único atributo por método de medição, sendo funcionalmente independente de outras medidas, por exemplo, peso, altura, LOC (sigla do termo em inglês para linhas de código - Lines of Code), horas trabalhadas etc."
+        },
+        {
+          "name": "Treinador",
+          "task": "O que são Medidas Derivadas?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Medida derivada é aquela definida em função de dois ou mais valores de medidas básicas ou derivadas. Por exemplo, índice de massa corporal = peso / (altura)2 , produtividade = LOC / horas trabalhadas"
+        },
+        {
+          "name": "Treinador",
+          "task": "O que são Indicadores?"
+        },
+        {
+          "name": "Treinador",
+          "task": "medida utilizada para analisar o alcance a objetivos. Ou seja, um indicador é uma estimativa ou avaliação que provê uma base para a tomada de decisão"
         }
       ]
     }
   },
   {
-    "id": 2,
+    "id": 3,
+    "type": "memory-game",
+    "data": {
+      "cards": [
+        {
+          "id": 1,
+          "flip": true,
+          "content": "O que é Medição?",
+          "group": 0,
+          "color": ""
+        },
+        {
+          "id": 2,
+          "flip": true,
+          "content": "Qual é o propósito da Medição?",
+          "group": 1,
+          "color": ""
+        },
+        {
+          "id": 3,
+          "flip": true,
+          "content": "Qual a importância da Medição?",
+          "group": 2,
+          "color": ""
+        },
+        {
+          "id": 4,
+          "flip": true,
+          "content": "O que são Medidas?",
+          "group": 3,
+          "color": ""
+        },
+        {
+          "id": 5,
+          "flip": true,
+          "content": "O que são Medidas Básicas?",
+          "group": 4,
+          "color": ""
+        },
+        {
+          "id": 6,
+          "flip": true,
+          "content": "O que são Medidas Derivadas?",
+          "group": 5,
+          "color": ""
+        },
+        {
+          "id": 7,
+          "flip": true,
+          "content": "O que são Indicadores?",
+          "group": 6,
+          "color": ""
+        },
+        {
+          "id": 8,
+          "flip": true,
+          "content": "Medição é uma avaliação quantitativa de qualquer aspecto ou fenômeno de uma entidade mensurável.",
+          "group": 0,
+          "color": ""
+        },
+        {
+          "id": 9,
+          "flip": true,
+          "content": "O propósito da Medição é coletar, armazenar, analisar e relatar os dados de um objeto de medição, visando a tomada de decisão.",
+          "group": 1,
+          "color": ""
+        },
+        {
+          "id": 10,
+          "flip": true,
+          "content": "Não se pode controlar o que não se pode medir. E não se pode predizer o que não se pode medir.",
+          "group": 2,
+          "color": ""
+        },
+        {
+          "id": 11,
+          "flip": true,
+          "content": "Elemento base da medição. Caracterizam, em termos quantitativos, um atributo de um objeto e fornecem informações importantes na tomada de decisão.",
+          "group": 3,
+          "color": ""
+        },
+        {
+          "id": 12,
+          "flip": true,
+          "content": "Medida definida em termos de um único atributo, sendo independente de outras medidas, por exemplo, massa corporal",
+          "group": 4,
+          "color": ""
+        },
+        {
+          "id": 13,
+          "flip": true,
+          "content": "Medida definida em função de dois ou mais valores de medidas básicas ou derivadas. Por exemplo, IMC=massa/\n(altura)^2.",
+          "group": 5,
+          "color": ""
+        },
+        {
+          "id": 14,
+          "flip": true,
+          "content": "Medida utilizada para analisar o alcance a objetivos, sendo uma estimativa que provê uma base para a tomada de decisão.",
+          "group": 6,
+          "color": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "type": "analysis-game",
+    "data": {
+      "talks": [
+        {
+          "name": "Treinador",
+          "task": "Agora que entendemos os conceitos de medição, vamos planeja-lá."
+        },
+        {
+          "name": "Treinador",
+          "task": "E para isso, vamos utilizar o paradigma GQIM."
+        },
+        {
+          "name": "Treinador",
+          "task": "O GQIM divide o planejamento da medição em 4 partes."
+        },
+        {
+          "name": "Treinador",
+          "task": "A 1° nível - Goal (Objetivo): no topo da arvore fica o objetivo que você quer alcançar. Como exemplo, vamos utilizar o Objetivo de Melhorar o desempenho do acadêmico do aluno."
+        },
+        {
+          "name": "Treinador",
+          "task": "Já o 2° nível - Question (Perguntas): é onde o objetivo ou os objetivos são derivados em perguntas que respondam aos mesmos. Seguindo o exemplo: Para Melhorar o desempenho acadêmico do aluno, nós podemos fazer as seguintes perguntas: Qual a média do aluno? Quais notas obtidas em cada módulo da disciplina? Qual é a frequência do aluno?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Enquanto o 3° nível - Indicators (Indicadores): como visto no jogo da memória, os indicadores são pontos para a tomada de decisão. Como exemplo, a frequência do aluno, se estiver acima de 70% está OK e nada precisa ser feito. Já se estiver entre o intervalo de 60% à 70% é um estado de alerta, ou seja, é bom aluno analisar a causa e tentar abonar algumas falta com a instituição. E abaixo de 60% é crítico, onde o aluno urgentemente deve abonar faltas para não ser reprovado."
+        },
+        {
+          "name": "Treinador",
+          "task": "E por fim, o 4° nível - Metrics (Métricas): exatamente aquilo que vamos medir. Como mostrado no exemplo, Média do aluno, Nota do aluno obtida em cada módulo da disciplina e Frequência do aluno."
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -60,7 +264,7 @@
         "indicators": [
           {
             "id": "indicator-ma",
-            "label": "MA – Média dos alunos",
+            "label": "Média dos alunos",
             "edges": [
               "metric-1"
             ]
@@ -68,101 +272,128 @@
           {
             "toDrop": true,
             "id": "indicator-naocmd",
-            "label": "NAOCMD – Nota do aluno obtida em cada módulo da disciplina",
+            "label": "Nota do aluno obtida em cada módulo da disciplina",
             "edges": [
-              "metric-1"
+              "metric-2"
             ]
           },
           {
             "id": "indicator-fa",
-            "label": "FA – Frequência do aluno",
+            "label": "Frequência do aluno",
             "edges": [
-              "metric-2"
+              "metric-3"
             ]
           }
         ],
         "metrics": [
           {
             "id": "metric-1",
-            "label": "Nota"
+            "label": "Média dos alunos"
+          },
+          {
+            "id": "metric-2",
+            "label": "Nota do aluno obtida em cada módulo da disciplina"
           },
           {
             "toDrop": true,
-            "id": "metric-2",
-            "label": "Frequência"
+            "id": "metric-3",
+            "label": "Frequência do aluno"
           }
         ]
       }
     }
   },
   {
-    "id": 3,
+    "id": 6,
     "type": "analysis-game",
     "data": {
-      "options": {
-        "1": "Loren inpsun dolor",
-        "2": "sit amet est",
-        "3": "pro ne alterum"
-      },
-      "goal": "Prepare yourself!",
-      "tip": "Magic is everything!",
-      "answer": "Loren inpsun dolor",
       "talks": [
         {
-          "task": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia risus ut orci hendrerit rhoncus. Etiam imperdiet, sapien non feugiat molestie."
+          "name": "Treinador",
+          "task": "Eu já coloquei o nosso objetivo de melhorar a qualidade de vida do pançudinho no topo da árvore."
         },
         {
-          "task": "Usce efficitur posuere elit, varius gravid dolor feugiat eget. Vestibulum condimentum odio ac erat fermentum tincidunt."
-        },
-        {
-          "task": "Quisque tempor, tortor at maximus finibus, tellus felis fermentum ligula, ut hendrerit magna ex non ipsum. Ut bibendum dui id diam luctus elementum."
+          "name": "Treinador",
+          "task": "E agora, peço que apenas aponte as perguntas, indicadores e métricas que melhor se alinhem com este objetivo."
         }
       ]
     }
   },
   {
-    "id": 4,
-    "type": "book-drag-and-drop-game",
+    "id": 7,
+    "type": "gqim-game",
     "data": {
-      "items": [
-        {
-          "id": 1,
-          "text": "Lorem ipsum dolor sit amet,"
+      "tree": {
+        "goal": {
+          "id": "goal-1",
+          "label": "Melhorar a qualidade de Vida do Pançudinho",
+          "edges": [
+            "question-1",
+            "question-2",
+            "question-3"
+          ]
         },
-        {
-          "id": 2,
-          "text": "Lurest farm",
-          "isAnswer": true
-        },
-        {
-          "id": 3,
-          "text": "id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo."
-        },
-        {
-          "id": 4,
-          "text": "Loren impsun",
-          "isAnswer": true
-        },
-        {
-          "id": 5,
-          "text": "Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad."
-        },
-        {
-          "id": 6,
-          "text": "Tomes net",
-          "isAnswer": true
-        },
-        {
-          "id": 7,
-          "text": "id quo paulo scaevola"
-        }
-      ]
-    }
-  },
-  {
-    "id": 5,
-    "type": "book-select-fill-game",
-    "data": {
+        "questions": [
+          {
+            "id": "question-1",
+            "label": "Qual é o peso do Pançudinho?",
+            "edges": [
+              "indicator-1"
+            ]
+          },
+          {
+            "id": "question-2",
+            "label": "Qual é o IMC do Pançudinho?",
+            "edges": [
+              "indicator-2"
+            ]
+          },
+          {
+            "id": "question-3",
+            "label": "Qual é a altura do pançudinho?",
+            "edges": [
+              "indicator-3"
+            ]
+          }
+        ],
+        "indicators": [
+          {
+            "toDrop": true,
+            "id": "indicator-1",
+            "label": "Peso",
+            "edges": [
+              "metric-1"
+            ]
+          },
+          {
+            "toDrop": true,
+            "id": "indicator-2",
+            "label": "Peso/Altura²",
+            "edges": [
+              "metric-2"
+            ]
+          },
+          {
+            "toDrop": true,
+            "id": "indicator-3",
+            "label": "Altura",
+            "edges": [
+            ]
+          }
+        ],
+        "metrics": [
+          {
+            "toDrop": true,
+            "id": "metric-1",
+            "label": "x <= 80Kg"
+          },
+          {
+            "toDrop": true,
+            "id": "metric-2",
+            "label": "x <= 25"
+          }
+        ]
+      }
     }
   }
 ]
