@@ -3,6 +3,7 @@
     <div class="MemoryGame" style="width: 90%; height: 80%">
       <Board
         :cards="cardsInGame"
+        :selectedCards="selectedCards"
         :handle-click-card="handleClickCard"
       ></Board>
 
@@ -54,6 +55,8 @@ export default {
 
   data: () => ({
     cardsInGame: [],
+
+    selectedCards: [],
 
     cardsInDeck: [],
 
@@ -107,8 +110,7 @@ export default {
       if (cardA.group === cardB.group) {
         this.cardsInDeck.push([cardA, cardB])
         setTimeout(() => {
-          this.cardsInGame = this.cardsInGame
-            .filter(card => card.id !== cardA.id && card.id !== cardB.id)
+          this.selectedCards.push(cardA.id, cardB.id)
 
           this.clickedCards = []
         }, FLIP_WAIT_TIME)
