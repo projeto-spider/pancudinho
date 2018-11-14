@@ -17,6 +17,7 @@ function loadStories() {
   require('../src/stories/HeightGame')
   require('../src/stories/Select-Game')
   require('../src/stories/SeesawGame')
+  require('../src/stories/VisualNovel')
 }
 
 configure(loadStories, module);
