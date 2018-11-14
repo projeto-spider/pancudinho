@@ -2,32 +2,31 @@
   <div>
     <div @contextmenu.prevent="$refs.ctxMenu.open">
       <div class="Card" :class="classes" @click="() => !isSelected && handleClick()">
-        <div v-if="flip || isSelected">{{ content }}</div>
-          <div v-if="flip">
-            <div v-if="color === 'yellow'" class="yellow">
-              {{ content }}
-            </div>
-            <div v-if="color === 'red'" class="red">
-              {{ content }}
-            </div>
-            <div v-if="color === 'blue'" class="blue">
-              {{ content }}
-            </div>
-            <div v-if="color === 'green'" class="green">
-              {{ content }}
-            </div>
-            <div v-if="color === 'orange'" class="orange">
-              {{ content }}
-            </div>
-            <div v-if="color === 'brown'" class="brown">
-              {{ content }}
-            </div>
-            <div v-if="color === 'purple'" class="purple">
-              {{ content }}
-            </div>
-            <div v-if="color === ''">
-              {{ content }}
-            </div>
+        <div v-if="flip">
+          <div v-if="color === 'yellow'" class="yellow">
+            {{ content }}
+          </div>
+          <div v-if="color === 'red'" class="red">
+            {{ content }}
+          </div>
+          <div v-if="color === 'blue'" class="blue">
+            {{ content }}
+          </div>
+          <div v-if="color === 'green'" class="green">
+            {{ content }}
+          </div>
+          <div v-if="color === 'orange'" class="orange">
+            {{ content }}
+          </div>
+          <div v-if="color === 'brown'" class="brown">
+            {{ content }}
+          </div>
+          <div v-if="color === 'purple'" class="purple">
+            {{ content }}
+          </div>
+          <div v-if="color === ''">
+            {{ content }}
+          </div>
         </div>
       </div>
     </div>
