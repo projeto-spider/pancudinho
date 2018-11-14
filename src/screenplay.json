@@ -1,6 +1,34 @@
 [
   {
     "id": 1,
+    "type": "analysis-game",
+    "data": {
+      "talks": [
+        {
+          "name": "Pançudinho",
+          "task": "Olá, eu sou o pançudinho!"
+        },
+        {
+          "name": "Pançudinho",
+          "task": "Hoje, com a ajuda de vocês, vou começar meu primeiro dia dia de academia. "
+        },
+        {
+          "name": "Pançudinho",
+          "task": "Mas antes, preciso medir meu peso, altura e IMC. Para saber como anda minha saúde."
+        },
+        {
+          "name": "Pançudinho",
+          "task": "E assim, podermos acompanhar a melhoria da minha saúde."
+        },
+        {
+          "name": "Pançudinho",
+          "task": "A importância do processo de medição é coletar, armazenar, analisar e relatar dados. E com esta informação, usa-lá como base para a tomada de decisão. "
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
     "type": "memory-game",
     "data": {
       "cards": [
@@ -106,7 +134,7 @@
     }
   },
   {
-    "id": 2,
+    "id": 3,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -186,7 +214,7 @@
     }
   },
   {
-    "id": 3,
+    "id": 4,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -263,7 +291,7 @@
     }
   },
   {
-    "id": 4,
+    "id": 5,
     "type": "analysis-game",
     "data": {
       "options": {
@@ -288,7 +316,7 @@
     }
   },
   {
-    "id": 5,
+    "id": 6,
     "type": "book-drag-and-drop-game",
     "data": {
       "items": [
@@ -327,7 +355,7 @@
     }
   },
   {
-    "id": 6,
+    "id": 7,
     "type": "book-select-fill-game",
     "data": {
     }
