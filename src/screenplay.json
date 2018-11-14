@@ -211,6 +211,42 @@
   },
   {
     "id": 4,
+    "type": "analysis-game",
+    "data": {
+      "talks": [
+        {
+          "name": "Treinador",
+          "task": "Agora que entendemos os conceitos de medição, vamos planeja-lá."
+        },
+        {
+          "name": "Treinador",
+          "task": "E para isso, vamos utilizar o paradigma GQIM."
+        },
+        {
+          "name": "Treinador",
+          "task": "O GQIM divide o planejamento da medição em 4 partes."
+        },
+        {
+          "name": "Treinador",
+          "task": "A 1° nível - Goal (Objetivo): no topo da arvore fica o objetivo que você quer alcançar. Como exemplo, vamos utilizar o Objetivo de Melhorar o desempenho do acadêmico do aluno."
+        },
+        {
+          "name": "Treinador",
+          "task": "Já o 2° nível - Question (Perguntas): é onde o objetivo ou os objetivos são derivados em perguntas que respondam aos mesmos. Seguindo o exemplo: Para Melhorar o desempenho acadêmico do aluno, nós podemos fazer as seguintes perguntas: Qual a média do aluno? Quais notas obtidas em cada módulo da disciplina? Qual é a frequência do aluno?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Enquanto o 3° nível - Indicators (Indicadores): como visto no jogo da memória, os indicadores são pontos para a tomada de decisão. Como exemplo, a frequência do aluno, se estiver acima de 70% está OK e nada precisa ser feito. Já se estiver entre o intervalo de 60% à 70% é um estado de alerta, ou seja, é bom aluno analisar a causa e tentar abonar algumas falta com a instituição. E abaixo de 60% é crítico, onde o aluno urgentemente deve abonar faltas para não ser reprovado."
+        },
+        {
+          "name": "Treinador",
+          "task": "E por fim, o 4° nível - Metrics (Métricas): exatamente aquilo que vamos medir. Como mostrado no exemplo, Média do aluno, Nota do aluno obtida em cada módulo da disciplina e Frequência do aluno."
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -290,7 +326,7 @@
     }
   },
   {
-    "id": 5,
+    "id": 6,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -367,7 +403,7 @@
     }
   },
   {
-    "id": 6,
+    "id": 7,
     "type": "analysis-game",
     "data": {
       "options": {
@@ -392,7 +428,7 @@
     }
   },
   {
-    "id": 7,
+    "id": 8,
     "type": "book-drag-and-drop-game",
     "data": {
       "items": [
@@ -431,7 +467,7 @@
     }
   },
   {
-    "id": 8,
+    "id": 9,
     "type": "book-select-fill-game",
     "data": {
     }
