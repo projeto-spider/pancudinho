@@ -13,6 +13,8 @@
             :tips-choice="currentTip"
             :handle-close="changeTip"
           ></Pancudinho>
+
+          <button v-if="gameFinished" @click="closeGame">Continue</button>
         </div>
       </div>
     </div>
@@ -31,6 +33,11 @@ export default {
   components: { Pancudinho, Board },
 
   props: {
+    state: {
+      type: Object,
+      required: true
+    },
+
     cards: {
       type: Array,
       default: () => []
@@ -84,6 +91,11 @@ export default {
       }, 5000)
 
       return null
+    },
+
+    gameFinished () {
+      const allGroups = Array.from(this.cards.map(card => card.group))
+      return allGroups.every(groupId => this.pairedCards.includes(groupId))
     }
   },
 
@@ -187,8 +199,11 @@ export default {
 
     changeTip () {
       this.currentTip = `tip${Math.round(Math.random() * (4 - 1) + 1)}`
-    }
+    },
 
+    closeGame () {
+      this.state.closeGame()
+    }
   }
 }
 </script>
