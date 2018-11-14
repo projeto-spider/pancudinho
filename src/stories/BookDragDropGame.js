@@ -67,47 +67,46 @@ stories
     } })
   }))
 
-
   .add('Book Page with background', (h) => ({
     render: h => h(Background, { props: {
     } }, [
-    h(BookPage, { props: {
-      items: object('Items', [
-        {
-          id: 1,
-          text: 'Lorem ipsum dolor sit amet,'
-        },
-        {
-          id: 2,
-          text: 'Lurest farm',
-          isAnswer: true
-        },
-        {
-          id: 3,
-          text: 'id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.'
-        },
-        {
-          id: 4,
-          text: 'Loren impsun',
-          isAnswer: true
-        },
-        {
-          id: 5,
-          text: 'Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.'
-        },
-        {
-          id: 6,
-          text: 'Tomes net',
-          isAnswer: true
-        },
-        {
-          id: 7,
-          text: 'id quo paulo scaevola'
-        }
-      ])
-    }})
-  ])
-}))
+      h(BookPage, { props: {
+        items: object('Items', [
+          {
+            id: 1,
+            text: 'Lorem ipsum dolor sit amet,'
+          },
+          {
+            id: 2,
+            text: 'Lurest farm',
+            isAnswer: true
+          },
+          {
+            id: 3,
+            text: 'id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.'
+          },
+          {
+            id: 4,
+            text: 'Loren impsun',
+            isAnswer: true
+          },
+          {
+            id: 5,
+            text: 'Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.'
+          },
+          {
+            id: 6,
+            text: 'Tomes net',
+            isAnswer: true
+          },
+          {
+            id: 7,
+            text: 'id quo paulo scaevola'
+          }
+        ])
+      }})
+    ])
+  }))
 
   .add('Tip', (h) => ({
     render: h => h(Tip, { props: {
@@ -117,23 +116,20 @@ stories
     } })
   }))
 
-
-
   .add('Tip with background', (h) => ({
     render: h => h(Background, { props: {
     } }, [
-    h(Tip, { props: {
-      tip: text('Tip', 'Lorem ipsum dolor sit amet, an pro eruditi prodesset tincidunt.'),
-      showTip: boolean('Show tip', false),
-      closeTip: action('Closing window')
-    }})
-  ])
-}))
+      h(Tip, { props: {
+        tip: text('Tip', 'Lorem ipsum dolor sit amet, an pro eruditi prodesset tincidunt.'),
+        showTip: boolean('Show tip', false),
+        closeTip: action('Closing window')
+      }})
+    ])
+  }))
 
   .add('Tip Button', (h) => ({
     render: h => h(TipButton, { props: {} })
   }))
-
 
   .add('Game', (h) => ({
     render: h => h(BookDragDropGame, { props: {
@@ -177,39 +173,39 @@ stories
     render: h => h(Background, { props: {
     } }, [
       h(BookDragDropGame, { props: {
-      items: object('Items', [
-        {
-          id: 1,
-          text: 'Lorem ipsum dolor sit amet,'
-        },
-        {
-          id: 2,
-          text: 'Lurest farm',
-          isAnswer: true
-        },
-        {
-          id: 3,
-          text: 'id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.'
-        },
-        {
-          id: 4,
-          text: 'Loren impsun',
-          isAnswer: true
-        },
-        {
-          id: 5,
-          text: 'Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.'
-        },
-        {
-          id: 6,
-          text: 'Tomes net',
-          isAnswer: true
-        },
-        {
-          id: 7,
-          text: 'id quo paulo scaevola'
-        }
-      ])
-    }})
-  ])
-}))
+        items: object('Items', [
+          {
+            id: 1,
+            text: 'Lorem ipsum dolor sit amet,'
+          },
+          {
+            id: 2,
+            text: 'Lurest farm',
+            isAnswer: true
+          },
+          {
+            id: 3,
+            text: 'id quo paulo scaevola. Eu everti feugait vel, utamur discere ne duo.'
+          },
+          {
+            id: 4,
+            text: 'Loren impsun',
+            isAnswer: true
+          },
+          {
+            id: 5,
+            text: 'Ex odio adhuc comprehensam eos, cum dicunt maiestatis ad.'
+          },
+          {
+            id: 6,
+            text: 'Tomes net',
+            isAnswer: true
+          },
+          {
+            id: 7,
+            text: 'id quo paulo scaevola'
+          }
+        ])
+      }})
+    ])
+  }))
