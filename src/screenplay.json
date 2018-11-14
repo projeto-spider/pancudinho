@@ -29,6 +29,82 @@
   },
   {
     "id": 2,
+    "type": "analysis-game",
+    "data": {
+      "talks": [
+        {
+          "name": "Treinador",
+          "task": "Huh, huh, hah."
+        },
+        {
+          "name": "Treinador",
+          "task": "Oi, eu sou o treinador. E juntos vamos descobrir a importância de se medir para alcançar um resultado."
+        },
+        {
+          "name": "Treinador",
+          "task": "Primeiro, vamos entender alguns conceitos."
+        },
+        {
+          "name": "Treinador",
+          "task": "O que é Medição?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Medição de software é uma avaliação quantitativa de qualquer aspecto dos processos e produtos de software, que permite seu melhor entendimento e, com isso, auxilia o planejamento, controle e melhoria do que se produz e de como é produzido"
+        },
+        {
+          "name": "Treinador",
+          "task": "Qual é o propósito da Medição?"
+        },
+        {
+          "name": "Treinador",
+          "task": "O propósito do processo Medição é coletar, armazenar, analisar e relatar os dados relativos a um objeto de medição, de forma a apoiar a tomada de decisão"
+        },
+        {
+          "name": "Treinador",
+          "task": "Qual a importância da Medição?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Não se pode controlar o que não se pode medir. E não se pode predizer o que não se pode medir."
+        },
+        {
+          "name": "Treinador",
+          "task": "O que são Medidas?"
+        },
+        {
+          "name": "Treinador",
+          "task": "O elemento básico da medição são as medidas. Medidas caracterizam, em termos quantitativos, uma propriedade de um objeto e fornecem informações quantitativas capazes de apoiar tomadas de decisão técnicas e de negócios."
+        },
+        {
+          "name": "Treinador",
+          "task": "O que são Medidas Básicas?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Medida básica é aquela definida em termos de um único atributo por método de medição, sendo funcionalmente independente de outras medidas, por exemplo, peso, altura, LOC (sigla do termo em inglês para linhas de código - Lines of Code), horas trabalhadas etc."
+        },
+        {
+          "name": "Treinador",
+          "task": "O que são Medidas Derivadas?"
+        },
+        {
+          "name": "Treinador",
+          "task": "Medida derivada é aquela definida em função de dois ou mais valores de medidas básicas ou derivadas. Por exemplo, índice de massa corporal = peso / (altura)2 , produtividade = LOC / horas trabalhadas"
+        },
+        {
+          "name": "Treinador",
+          "task": "O que são Indicadores?"
+        },
+        {
+          "name": "Treinador",
+          "task": "medida utilizada para analisar o alcance a objetivos. Ou seja, um indicador é uma estimativa ou avaliação que provê uma base para a tomada de decisão"
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
     "type": "memory-game",
     "data": {
       "cards": [
@@ -134,7 +210,7 @@
     }
   },
   {
-    "id": 3,
+    "id": 4,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -214,7 +290,7 @@
     }
   },
   {
-    "id": 4,
+    "id": 5,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -291,7 +367,7 @@
     }
   },
   {
-    "id": 5,
+    "id": 6,
     "type": "analysis-game",
     "data": {
       "options": {
@@ -316,7 +392,7 @@
     }
   },
   {
-    "id": 6,
+    "id": 7,
     "type": "book-drag-and-drop-game",
     "data": {
       "items": [
@@ -355,7 +431,7 @@
     }
   },
   {
-    "id": 7,
+    "id": 8,
     "type": "book-select-fill-game",
     "data": {
     }
