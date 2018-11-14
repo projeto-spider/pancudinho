@@ -14,50 +14,49 @@
       <div v-if='index === 3'>
         <img src="../../assets/Quadro4.jpg">
       </div>
-      <div v-if='index==4'>
+      <div v-if='index===4'>
         <img src="../../assets/Quadro5.jpg">
       </div>
-      <div v-if='index==5'>
+      <div v-if='index===5'>
         <img src="../../assets/Quadro6.jpg">
       </div>
-      <div v-if='index==6'>
+      <div v-if='index===6'>
         <img src="../../assets/Quadro7.jpg">
       </div>
-      <div v-if='index==7'>
+      <div v-if='index===7'>
         <img src="../../assets/Quadro8.jpg">
       </div>
-      <div v-if='index==8'>
+      <div v-if='index===8'>
         <img src="../../assets/Quadro9.jpg">
       </div>
-      <div v-if='index==9'>
+      <div v-if='index===9'>
         <img src="../../assets/Quadro10.jpg">
       </div>
-      <div v-if='index==10'>
+      <div v-if='index===10'>
         <img src="../../assets/Quadro11.jpg">
       </div>
-      <div v-if='index==11'>
+      <div v-if='index===11'>
         <img src="../../assets/Quadro12.jpg">
       </div>
-      <div v-if='index==12'>
+      <div v-if='index===12'>
         <img src="../../assets/Quadro13.jpg">
       </div>
-      <div v-if='index==13'>
+      <div v-if='index===13'>
         <img src="../../assets/Quadro14.jpg">
       </div>
-      <div v-if='index==14'>
+      <div v-if='index===14'>
         <img src="../../assets/Quadro15.jpg">
       </div>
-      <div v-if='index==15'>
+      <div v-if='index===15'>
         <img src="../../assets/Quadro16.jpg">
       </div>
-      <div v-if='index==0 || index==5 || index==8 || index==9 || index==10 || index==11' class='text2'> {{scene.text}} </div>
+      <div v-if='index===0 || index===5 || index===8 || index===9 || index===10 || index===11' class='text2'> {{scene.text}} </div>
       <div v-else class='text'> {{scene.text}} </div>
     </div>
     <div class='btn' @click="nextText()" @click.prevent="displayText()">>></div>
   </Panel>
 
 </template>
-
 
 <script>
 import Panel from '../ui/Panel.vue'
@@ -136,12 +135,12 @@ export default {
     counter2: 0
   }),
   methods: {
-    nextText(){
+    nextText () {
       this.counter++
-      if (this.counter==this.scenes.length) this.counter=0
-      for (let i=0;i<this.scenes.length;i++) {
-        if (i==this.counter) this.scenes[i].showScene=true
-        else this.scenes[i].showScene=false
+      if (this.counter === this.scenes.length) this.counter = 0
+      for (let i = 0; i < this.scenes.length; i++) {
+        if (i === this.counter) this.scenes[i].showScene = true
+        else this.scenes[i].showScene = false
       }
     }
   }

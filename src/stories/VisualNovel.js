@@ -1,7 +1,7 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { number, withKnobs } from '@storybook/addon-knobs/vue'
+import { withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 
 import VisualNovel from '../components/visual-novel/VisualNovel.vue'
@@ -17,4 +17,3 @@ stories
     render: h => h(VisualNovel, { props: {
     } })
   }))
-
