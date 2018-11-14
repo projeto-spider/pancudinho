@@ -12,7 +12,7 @@
     <div class="margin-layout">
       <div v-if="!revealAnswers">
         <tipButton></tipButton>
-        <button type="button" @click="submitAnswers">Submit</button>
+        <Button :label="'Submit'" :handle-click="submitAnswers"></Button>
       </div>
       <div v-else>
         <button type="button" @click="closeGame">Finalizar</button>
@@ -39,11 +39,12 @@
 import Draggable from './Draggable.vue'
 import BookPage from './BookPage.vue'
 import TipButton from './TipButton.vue'
+import Button from '../../ui/Button.vue'
 
 export default {
   name: 'BookDragDropGame',
 
-  components: { Draggable, BookPage, TipButton },
+  components: { Draggable, BookPage, TipButton, Button },
 
   props: {
     state: {
