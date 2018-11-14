@@ -6,15 +6,101 @@
       "cards": [
         {
           "id": 1,
-          "flip": false,
-          "content": "A(0)",
-          "group": 0
+          "flip": true,
+          "content": "O que é Medição?",
+          "group": 0,
+          "color": ""
+        },
+        {
+          "id": 2,
+          "flip": true,
+          "content": "Qual é o propósito da Medição?",
+          "group": 1,
+          "color": ""
+        },
+        {
+          "id": 3,
+          "flip": true,
+          "content": "Qual a importância da Medição?",
+          "group": 2,
+          "color": ""
+        },
+        {
+          "id": 4,
+          "flip": true,
+          "content": "O que são Medidas?",
+          "group": 3,
+          "color": ""
+        },
+        {
+          "id": 5,
+          "flip": true,
+          "content": "O que são Medidas Básicas?",
+          "group": 4,
+          "color": ""
+        },
+        {
+          "id": 6,
+          "flip": true,
+          "content": "O que são Medidas Derivadas?",
+          "group": 5,
+          "color": ""
+        },
+        {
+          "id": 7,
+          "flip": true,
+          "content": "O que são Indicadores?",
+          "group": 6,
+          "color": ""
+        },
+        {
+          "id": 8,
+          "flip": true,
+          "content": "Medição é uma avaliação quantitativa de qualquer aspecto ou fenômeno de uma entidade mensurável.",
+          "group": 0,
+          "color": ""
+        },
+        {
+          "id": 9,
+          "flip": true,
+          "content": "O propósito da Medição é coletar, armazenar, analisar e relatar os dados de um objeto de medição, visando a tomada de decisão.",
+          "group": 1,
+          "color": ""
+        },
+        {
+          "id": 10,
+          "flip": true,
+          "content": "Não se pode controlar o que não se pode medir. E não se pode predizer o que não se pode medir.",
+          "group": 2,
+          "color": ""
+        },
+        {
+          "id": 11,
+          "flip": true,
+          "content": "Elemento base da medição. Caracterizam, em termos quantitativos, um atributo de um objeto e fornecem informações importantes na tomada de decisão.",
+          "group": 3,
+          "color": ""
+        },
+        {
+          "id": 12,
+          "flip": true,
+          "content": "Medida definida em termos de um único atributo, sendo independente de outras medidas, por exemplo, massa corporal",
+          "group": 4,
+          "color": ""
+        },
+        {
+          "id": 13,
+          "flip": true,
+          "content": "Medida definida em função de dois ou mais valores de medidas básicas ou derivadas. Por exemplo, IMC=massa/\n(altura)^2.",
+          "group": 5,
+          "color": ""
         },
         {
           "id": 14,
-          "flip": false,
-          "content": "N(0)",
-          "group": 0
+          "flip": true,
+          "content": "Medida utilizada para analisar o alcance a objetivos, sendo uma estimativa que provê uma base para a tomada de decisão.",
+          "group": 6,
+          "color": ""
         }
       ]
     }
