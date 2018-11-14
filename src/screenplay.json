@@ -7,82 +7,6 @@
   },
   {
     "id": 2,
-    "type": "analysis-game",
-    "data": {
-      "talks": [
-        {
-          "name": "Treinador",
-          "task": "Huh, huh, hah."
-        },
-        {
-          "name": "Treinador",
-          "task": "Oi, eu sou o treinador. E juntos vamos descobrir a importância de se medir para alcançar um resultado."
-        },
-        {
-          "name": "Treinador",
-          "task": "Primeiro, vamos entender alguns conceitos."
-        },
-        {
-          "name": "Treinador",
-          "task": "O que é Medição?"
-        },
-        {
-          "name": "Treinador",
-          "task": "Medição de software é uma avaliação quantitativa de qualquer aspecto dos processos e produtos de software, que permite seu melhor entendimento e, com isso, auxilia o planejamento, controle e melhoria do que se produz e de como é produzido"
-        },
-        {
-          "name": "Treinador",
-          "task": "Qual é o propósito da Medição?"
-        },
-        {
-          "name": "Treinador",
-          "task": "O propósito do processo Medição é coletar, armazenar, analisar e relatar os dados relativos a um objeto de medição, de forma a apoiar a tomada de decisão"
-        },
-        {
-          "name": "Treinador",
-          "task": "Qual a importância da Medição?"
-        },
-        {
-          "name": "Treinador",
-          "task": "Não se pode controlar o que não se pode medir. E não se pode predizer o que não se pode medir."
-        },
-        {
-          "name": "Treinador",
-          "task": "O que são Medidas?"
-        },
-        {
-          "name": "Treinador",
-          "task": "O elemento básico da medição são as medidas. Medidas caracterizam, em termos quantitativos, uma propriedade de um objeto e fornecem informações quantitativas capazes de apoiar tomadas de decisão técnicas e de negócios."
-        },
-        {
-          "name": "Treinador",
-          "task": "O que são Medidas Básicas?"
-        },
-        {
-          "name": "Treinador",
-          "task": "Medida básica é aquela definida em termos de um único atributo por método de medição, sendo funcionalmente independente de outras medidas, por exemplo, peso, altura, LOC (sigla do termo em inglês para linhas de código - Lines of Code), horas trabalhadas etc."
-        },
-        {
-          "name": "Treinador",
-          "task": "O que são Medidas Derivadas?"
-        },
-        {
-          "name": "Treinador",
-          "task": "Medida derivada é aquela definida em função de dois ou mais valores de medidas básicas ou derivadas. Por exemplo, índice de massa corporal = peso / (altura)2 , produtividade = LOC / horas trabalhadas"
-        },
-        {
-          "name": "Treinador",
-          "task": "O que são Indicadores?"
-        },
-        {
-          "name": "Treinador",
-          "task": "medida utilizada para analisar o alcance a objetivos. Ou seja, um indicador é uma estimativa ou avaliação que provê uma base para a tomada de decisão"
-        }
-      ]
-    }
-  },
-  {
-    "id": 3,
     "type": "memory-game",
     "data": {
       "cards": [
@@ -188,43 +112,7 @@
     }
   },
   {
-    "id": 4,
-    "type": "analysis-game",
-    "data": {
-      "talks": [
-        {
-          "name": "Treinador",
-          "task": "Agora que entendemos os conceitos de medição, vamos planeja-lá."
-        },
-        {
-          "name": "Treinador",
-          "task": "E para isso, vamos utilizar o paradigma GQIM."
-        },
-        {
-          "name": "Treinador",
-          "task": "O GQIM divide o planejamento da medição em 4 partes."
-        },
-        {
-          "name": "Treinador",
-          "task": "A 1° nível - Goal (Objetivo): no topo da arvore fica o objetivo que você quer alcançar. Como exemplo, vamos utilizar o Objetivo de Melhorar o desempenho do acadêmico do aluno."
-        },
-        {
-          "name": "Treinador",
-          "task": "Já o 2° nível - Question (Perguntas): é onde o objetivo ou os objetivos são derivados em perguntas que respondam aos mesmos. Seguindo o exemplo: Para Melhorar o desempenho acadêmico do aluno, nós podemos fazer as seguintes perguntas: Qual a média do aluno? Quais notas obtidas em cada módulo da disciplina? Qual é a frequência do aluno?"
-        },
-        {
-          "name": "Treinador",
-          "task": "Enquanto o 3° nível - Indicators (Indicadores): como visto no jogo da memória, os indicadores são pontos para a tomada de decisão. Como exemplo, a frequência do aluno, se estiver acima de 70% está OK e nada precisa ser feito. Já se estiver entre o intervalo de 60% à 70% é um estado de alerta, ou seja, é bom aluno analisar a causa e tentar abonar algumas falta com a instituição. E abaixo de 60% é crítico, onde o aluno urgentemente deve abonar faltas para não ser reprovado."
-        },
-        {
-          "name": "Treinador",
-          "task": "E por fim, o 4° nível - Metrics (Métricas): exatamente aquilo que vamos medir. Como mostrado no exemplo, Média do aluno, Nota do aluno obtida em cada módulo da disciplina e Frequência do aluno."
-        }
-      ]
-    }
-  },
-  {
-    "id": 5,
+    "id": 3,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -304,23 +192,11 @@
     }
   },
   {
-    "id": 6,
-    "type": "analysis-game",
-    "data": {
-      "talks": [
-        {
-          "name": "Treinador",
-          "task": "Eu já coloquei o nosso objetivo de melhorar a qualidade de vida do pançudinho no topo da árvore."
-        },
-        {
-          "name": "Treinador",
-          "task": "E agora, peço que apenas aponte as perguntas, indicadores e métricas que melhor se alinhem com este objetivo."
-        }
-      ]
-    }
+    "id": 4,
+    "type": "transition"
   },
   {
-    "id": 7,
+    "id": 5,
     "type": "gqim-game",
     "data": {
       "tree": {
