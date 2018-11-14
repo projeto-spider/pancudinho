@@ -146,7 +146,7 @@
         "indicators": [
           {
             "id": "indicator-ma",
-            "label": "MA – Média dos alunos",
+            "label": "Média dos alunos",
             "edges": [
               "metric-1"
             ]
@@ -154,28 +154,32 @@
           {
             "toDrop": true,
             "id": "indicator-naocmd",
-            "label": "NAOCMD – Nota do aluno obtida em cada módulo da disciplina",
+            "label": "Nota do aluno obtida em cada módulo da disciplina",
             "edges": [
-              "metric-1"
+              "metric-2"
             ]
           },
           {
             "id": "indicator-fa",
-            "label": "FA – Frequência do aluno",
+            "label": "Frequência do aluno",
             "edges": [
-              "metric-2"
+              "metric-3"
             ]
           }
         ],
         "metrics": [
           {
             "id": "metric-1",
-            "label": "Nota"
+            "label": "Média dos alunos"
+          },
+          {
+            "id": "metric-2",
+            "label": "Nota do aluno obtida em cada módulo da disciplina"
           },
           {
             "toDrop": true,
-            "id": "metric-2",
-            "label": "Frequência"
+            "id": "metric-3",
+            "label": "Frequência do aluno"
           }
         ]
       }
