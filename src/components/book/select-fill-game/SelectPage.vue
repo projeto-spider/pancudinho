@@ -15,11 +15,11 @@
     </div>
     <div style="text-align:center;">
       <div v-if="revealAnswers">
-        <button @click="closeGame">Continuar</button><br>
+        <Button :handle-click="closeGame" :label="'Continue'"></Button><br>
       </div>
       <template v-else>
-        <button @click="doAgain">Reset</button><br>
-        <button @click="submit">Submit</button>
+        <Button :handle-click="doAgain" :label="'Reset'"></Button><br>
+        <Button :handle-click="submit" :label="'Submit'"></Button>
       </template>
     </div>
   </div>
@@ -27,10 +27,12 @@
 
 <script>
 import Selectable from './Selectable.vue'
+import Button from '../../ui/Button.vue'
+
 export default {
   name: 'SelectPage',
 
-  components: {Selectable},
+  components: {Selectable, Button},
 
   created () {
     this.items = this.options

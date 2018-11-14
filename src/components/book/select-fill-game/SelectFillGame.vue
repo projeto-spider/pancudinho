@@ -2,9 +2,10 @@
 <div>
   <br>
   <p style="text-align:center;">
-    <button v-if="selectMode" @click="selectMode=false">Input Mode</button>
-    <button v-else @click="selectMode=true">Select Mode</button>
-  </p>
+
+    <Button v-if="selectMode" :handle-click="() => selectMode = false" :label="'Input Mode'"></Button>
+    <Button v-else :handle-click="() => selectMode = true" :label="'Select Mode'"></Button>
+
   <div v-if="selectMode">
     <SelectPage :state="state"></SelectPage>
   </div>
@@ -18,11 +19,12 @@
 
 import FillPage from './FillPage.vue'
 import SelectPage from './SelectPage.vue'
+import Button from '../../ui/Button.vue'
 
 export default {
   name: 'BookSelectManual',
 
-  components: { FillPage, SelectPage },
+  components: { FillPage, SelectPage, Button },
 
   props: {
     state: {
