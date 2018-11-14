@@ -63,6 +63,14 @@ import Panel from '../ui/Panel.vue'
 
 export default {
   components: {Panel},
+
+  props: {
+    state: {
+      type: Object,
+      required: true
+    }
+  },
+
   data: () => ({
     scenes: [
       {
@@ -134,10 +142,15 @@ export default {
     counter: 0,
     counter2: 0
   }),
+
   methods: {
     nextText () {
       this.counter++
-      if (this.counter === this.scenes.length) this.counter = 0
+
+      if (this.counter === this.scenes.length) {
+        this.state.closeGame()
+      }
+
       for (let i = 0; i < this.scenes.length; i++) {
         if (i === this.counter) this.scenes[i].showScene = true
         else this.scenes[i].showScene = false
