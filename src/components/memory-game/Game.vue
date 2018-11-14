@@ -1,16 +1,12 @@
 <template>
-  <div class="aligner">
-    <div class="MemoryGame" style="width: 90%; height: 80%">
+  <div>
+      <h1 style='text-align: center'>{{ counter }}</h1>
+      <h2 v-if='showScore'>Score: {{ score }}</h2>
+    <div class="MemoryGame">
       <Board
         :cards="cardsInGame"
-        :selectedCards="selectedCards"
         :handle-click-card="handleClickCard"
-      ></Board>
-
-      <div class="MemoryGame-Aside">
-        <div class="deck-wrapper">
-          <Deck :n-cards="Math.max(cardsInDeck.length, 1)"></Deck>
-        </div>
+      > {{ gameStart }} </Board>
 
         <div class="row pancudinho-block">
           <Pancudinho
@@ -20,43 +16,41 @@
         </div>
       </div>
     </div>
-
-    <Button
-      v-if="gameFinished"
-      @click.native="closeGame"
-    >Continue</Button>
-  </div>
 </template>
 
 <script>
-import Board from './Board.vue'
-import Deck from './Deck.vue'
+/* eslint-disable */
 import Pancudinho from './Pancudinho.vue'
-import Button from '../ui/Button.vue'
+import Board from './Board.vue'
 
-const FLIP_WAIT_TIME = 1500
+const FLIP_WAIT_TIME = 1000
 
 export default {
   name: 'MemoryGame',
 
-  components: { Board, Deck, Pancudinho, Button },
+  components: { Pancudinho, Board },
 
   props: {
     cards: {
       type: Array,
       default: () => []
-    },
-
-    state: {
-      type: Object,
-      required: true
     }
   },
 
   data: () => ({
-    cardsInGame: [],
+    score: 0,
 
-    selectedCards: [],
+    showScore: false,
+
+    isPaired: false,
+
+    counter: 5,
+
+    isGameStart: true,
+
+    pairedCards: [],
+
+    cardsInGame: [],
 
     cardsInDeck: [],
 
@@ -72,26 +66,88 @@ export default {
   },
 
   computed: {
-    canClick () {
-      return this.clickedCards.length < 2
-    },
+    gameStart () {
+      for (var i = 1; i <= 5; i++) {
+        setTimeout(() => {
+          this.counter--
+          if (this.counter == 0) {
+            this.showScore = true
+            this.counter = ''
+          }
+        }, 1000 * i)
+      }
+      setTimeout(() => {
+        for (var i = 0; i < this.cardsInGame.length; i++) {
+          this.cardsInGame[i].flip = false
+          this.isGameStart = false
+        }
+      }, 5000)
 
-    gameFinished () {
-      return !this.cardsInGame.length
+      return null
     }
   },
 
   methods: {
     handleClickCard (card) {
-      if (!this.canClick) return
+      if (!this.isGameStart) {
+        if (!this.canClick(card)) this.clickedCards = []
 
-      const countClickedCards = this.clickedCards.length
-      if (countClickedCards === 0) {
-        this.handleClickOne(card)
-      } else if (countClickedCards === 1) {
-        this.handleClickTwo(card)
-      } else {
-        console.error('Failed to count card clicks')
+        var countClickedCards = this.clickedCards.length
+
+        for (var i = 0; i < this.pairedCards.length; i++) {
+          if (card.group === this.pairedCards[i]) {
+            this.isPaired = true
+          }
+        }
+
+        if (this.isPaired) {
+          if (countClickedCards === 1) this.clickedCards[0].flip = false
+          this.isPaired = false
+          this.clickedCards = []
+        } else if (countClickedCards === 0) {
+          this.handleClickOne(card)
+        } else if (countClickedCards === 1) {
+          this.handleClickTwo(card)
+        } else {
+          console.error('Failed to count card clicks')
+        }
+      }
+    },
+
+    canClick (card) {
+      return (this.clickedCards.length < 2)
+    },
+
+    setCardColor (cardA, cardB) {
+      switch (cardA.group) {
+        case 0:
+          cardA.color = 'blue'
+          cardB.color = 'blue'
+          break
+        case 1:
+          cardA.color = 'green'
+          cardB.color = 'green'
+          break
+        case 2:
+          cardA.color = 'red'
+          cardB.color = 'red'
+          break
+        case 3:
+          cardA.color = 'violet'
+          cardB.color = 'violet'
+          break
+        case 4:
+          cardA.color = 'purple'
+          cardB.color = 'purple'
+          break
+        case 5:
+          cardA.color = 'orange'
+          cardB.color = 'orange'
+          break
+        case 6:
+          cardA.color = 'brown'
+          cardB.color = 'brown'
+          break
       }
     },
 
@@ -105,21 +161,25 @@ export default {
 
       card.flip = !card.flip
       this.clickedCards.push(card)
-
+      this.firstCardFlipped = false
       const [cardA, cardB] = this.clickedCards
       if (cardA.group === cardB.group) {
-        this.cardsInDeck.push([cardA, cardB])
+        this.score += 1000
+        this.pairedCards.push(cardA.group)
+        this.setCardColor(cardA, cardB)
+        alert(this.cardA.color)
         setTimeout(() => {
-          this.selectedCards.push(cardA.id, cardB.id)
-
+          for (let card of this.clickedCards) {
+            card.flip = true
+          }
           this.clickedCards = []
         }, FLIP_WAIT_TIME)
       } else {
         setTimeout(() => {
+          if (this.score > 0) this.score -= 100
           for (let card of this.clickedCards) {
             card.flip = false
           }
-
           this.clickedCards = []
         }, FLIP_WAIT_TIME)
       }
@@ -127,11 +187,8 @@ export default {
 
     changeTip () {
       this.currentTip = `tip${Math.round(Math.random() * (4 - 1) + 1)}`
-    },
-
-    closeGame () {
-      this.state.closeGame()
     }
+
   }
 }
 </script>
@@ -177,17 +234,5 @@ html, body {
 
 .deck-wrapper > * {
   left: 44%
-}
-
-.aligner {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-.Panel.grey{
-  z-index: 1;
 }
 </style>

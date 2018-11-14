@@ -3,6 +3,32 @@
     <div @contextmenu.prevent="$refs.ctxMenu.open">
       <div class="Card" :class="classes" @click="() => !isSelected && handleClick()">
         <div v-if="flip || isSelected">{{ content }}</div>
+          <div v-if="flip">
+            <div v-if="color === 'yellow'" class="yellow">
+              {{ content }}
+            </div>
+            <div v-if="color === 'red'" class="red">
+              {{ content }}
+            </div>
+            <div v-if="color === 'blue'" class="blue">
+              {{ content }}
+            </div>
+            <div v-if="color === 'green'" class="green">
+              {{ content }}
+            </div>
+            <div v-if="color === 'orange'" class="orange">
+              {{ content }}
+            </div>
+            <div v-if="color === 'brown'" class="brown">
+              {{ content }}
+            </div>
+            <div v-if="color === 'purple'" class="purple">
+              {{ content }}
+            </div>
+            <div v-if="color === ''">
+              {{ content }}
+            </div>
+        </div>
       </div>
     </div>
 
@@ -12,7 +38,9 @@
 
     <div class="zoom" v-show="inZoom">
       <div class="foreground" @click="inZoom = false"></div>
-      <div class="Card flipped">{{ content }}</div>
+      <div class="Card flipped">
+        {{ content }}
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +69,16 @@ export default {
       required: true
     },
 
+    color: {
+      type: String,
+      required: true
+    },
+
+    id: {
+      type: Number,
+      required: true
+    },
+
     handleClick: {
       type: Function,
       default: () => ({})
@@ -64,12 +102,12 @@ export default {
 <style scoped>
 .Card {
   display: inline-block;
-  width: 100px;
-  height: 140px;
+  width: 120px;
+  height: 160px;
   border: 1px solid #666;
   border-radius: .3em;
-  padding: .25em;
-  margin: 0 .5em .5em 0;
+  padding: .3em;
+  margin: 0 .3em .3em 0;
   text-align: center;
   font-size: 1.2em;
   font-weight: normal;
@@ -81,6 +119,7 @@ export default {
 
 .Card.flipped {
   background-color: #fff;
+  font-size: 14px;
 }
 
 .context-menu {
@@ -117,4 +156,37 @@ export default {
   width: 330px;
   height: 460px;
 }
+
+.text{
+  font-size: 11.8px;
+}
+
+.violet {
+  color: #2a3c67
+}
+
+.red {
+  color: red
+}
+
+.green {
+  color: green
+}
+
+.blue {
+  color: blue
+}
+
+.orange {
+  color: orange
+}
+
+.brown {
+  color: brown
+}
+
+.purple {
+  color: purple
+}
+
 </style>
