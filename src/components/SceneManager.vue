@@ -14,6 +14,11 @@
           :state="state"
         ></GameGqim>
 
+        <GameVisualNovel
+          v-if="currentGame.type === 'visual-novel'"
+          :state="state"
+        ></GameVisualNovel>
+
         <GameAnalysis
           v-if="currentGame.type === 'analysis-game'"
           :state="state"
@@ -70,6 +75,7 @@ import Sidebar from './ui/Sidebar.vue'
 import GameMemory from './memory-game/Game.vue'
 import GameGqim from './gqim-game/GqimGame.vue'
 import GameAnalysis from './analysis-game/Game.vue'
+import GameVisualNovel from './visual-novel/VisualNovel.vue'
 import GameBookDragAndDrop from './book/drag-drop-game/Game.vue'
 import GameBookSelectFillGame from './book/select-fill-game/SelectFillGame.vue'
 
@@ -87,6 +93,7 @@ export default {
     GameMemory,
     GameGqim,
     GameAnalysis,
+    GameVisualNovel,
     GameBookDragAndDrop,
     GameBookSelectFillGame,
 

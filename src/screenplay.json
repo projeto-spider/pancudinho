@@ -1,30 +1,8 @@
 [
   {
     "id": 1,
-    "type": "analysis-game",
+    "type": "visual-novel",
     "data": {
-      "talks": [
-        {
-          "name": "Pançudinho",
-          "task": "Olá, eu sou o pançudinho!"
-        },
-        {
-          "name": "Pançudinho",
-          "task": "Hoje, com a ajuda de vocês, vou começar meu primeiro dia dia de academia. "
-        },
-        {
-          "name": "Pançudinho",
-          "task": "Mas antes, preciso medir meu peso, altura e IMC. Para saber como anda minha saúde."
-        },
-        {
-          "name": "Pançudinho",
-          "task": "E assim, podermos acompanhar a melhoria da minha saúde."
-        },
-        {
-          "name": "Pançudinho",
-          "task": "A importância do processo de medição é coletar, armazenar, analisar e relatar dados. E com esta informação, usa-lá como base para a tomada de decisão. "
-        }
-      ]
     }
   },
   {
