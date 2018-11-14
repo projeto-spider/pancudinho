@@ -26,14 +26,14 @@
           :tip="tip"
         ></tips>
         <template>
-          <Button 
-            v-if="gameFinished" 
-            :label="'Continuar'" 
+          <Button
+            v-if="gameFinished"
+            :label="'Continuar'"
             :handle-click="closeGame"
           ></Button>
-          <Button 
-            v-else 
-            :label="'Enviar'" 
+          <Button
+            v-else
+            :label="'Enviar'"
             :handle-click="avaluateAnswer"
           ></Button>
         </template>
