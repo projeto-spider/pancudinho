@@ -9,6 +9,7 @@ import Background from '../components/ui/Background.vue'
 import Panel from '../components/ui/Panel.vue'
 import Tip from '../components/ui/Tip.vue'
 import Button from '../components/ui/Button.vue'
+import Placer from '../components/ui/Placer.vue'
 
 const stories = storiesOf('UI', module)
 stories
@@ -77,6 +78,17 @@ stories
       h(Button, { props: {
         handleClick: action('Button Pressed'),
         label: text('Button Name', 'CLICK ME!')
+      }})
+    ])
+  }))
+  .add('Placer', (h) => ({
+    render: h => h(Placer, { props: {
+    }})
+  }))
+  .add('Placer with Background', (h) => ({
+    render: h => h(Background, { props: {
+    } }, [
+      h(Placer, { props: {
       }})
     ])
   }))
