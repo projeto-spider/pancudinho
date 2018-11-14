@@ -187,6 +187,83 @@
   },
   {
     "id": 3,
+    "type": "gqim-game",
+    "data": {
+      "tree": {
+        "goal": {
+          "id": "goal-1",
+          "label": "Melhorar a qualidade de Vida do Pançudinho",
+          "edges": [
+            "question-1",
+            "question-2",
+            "question-3"
+          ]
+        },
+        "questions": [
+          {
+            "id": "question-1",
+            "label": "Qual é o peso do Pançudinho?",
+            "edges": [
+              "indicator-1"
+            ]
+          },
+          {
+            "id": "question-2",
+            "label": "Qual é o IMC do Pançudinho?",
+            "edges": [
+              "indicator-2"
+            ]
+          },
+          {
+            "id": "question-3",
+            "label": "Qual é a altura do pançudinho?",
+            "edges": [
+              "indicator-3"
+            ]
+          }
+        ],
+        "indicators": [
+          {
+            "toDrop": true,
+            "id": "indicator-1",
+            "label": "Peso",
+            "edges": [
+              "metric-1"
+            ]
+          },
+          {
+            "toDrop": true,
+            "id": "indicator-2",
+            "label": "Peso/Altura²",
+            "edges": [
+              "metric-2"
+            ]
+          },
+          {
+            "toDrop": true,
+            "id": "indicator-3",
+            "label": "Altura",
+            "edges": [
+            ]
+          }
+        ],
+        "metrics": [
+          {
+            "toDrop": true,
+            "id": "metric-1",
+            "label": "x <= 80Kg"
+          },
+          {
+            "toDrop": true,
+            "id": "metric-2",
+            "label": "x <= 25"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": 4,
     "type": "analysis-game",
     "data": {
       "options": {
@@ -211,7 +288,7 @@
     }
   },
   {
-    "id": 4,
+    "id": 5,
     "type": "book-drag-and-drop-game",
     "data": {
       "items": [
@@ -250,7 +327,7 @@
     }
   },
   {
-    "id": 5,
+    "id": 6,
     "type": "book-select-fill-game",
     "data": {
     }
