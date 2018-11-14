@@ -19,6 +19,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Pancudinho from './Pancudinho.vue'
 import Board from './Board.vue'
 
@@ -27,7 +28,7 @@ const FLIP_WAIT_TIME = 1000
 export default {
   name: 'MemoryGame',
 
-  components: {  Pancudinho, Board },
+  components: { Pancudinho, Board },
 
   props: {
     cards: {
@@ -65,42 +66,44 @@ export default {
   },
 
   computed: {
-    gameStart(){
-      for (var i=1;i<=5;i++){
+    gameStart () {
+      for (var i = 1; i <= 5; i++) {
         setTimeout(() => {
           this.counter--
-          if (this.counter==0){
-            this.showScore=true
-            this.counter=''
+          if (this.counter == 0) {
+            this.showScore = true
+            this.counter = ''
           }
-        }, 1000*i)
+        }, 1000 * i)
       }
       setTimeout(() => {
-        for (var i=0;i<this.cardsInGame.length;i++){
-          this.cardsInGame[i].flip=false;
-          this.isGameStart=false
+        for (var i = 0; i < this.cardsInGame.length; i++) {
+          this.cardsInGame[i].flip = false
+          this.isGameStart = false
         }
       }, 5000)
+
+      return null
     }
   },
 
   methods: {
     handleClickCard (card) {
-      if (!this.isGameStart){
-        if (!this.canClick(card)) this.clickedCards=[]
+      if (!this.isGameStart) {
+        if (!this.canClick(card)) this.clickedCards = []
 
         var countClickedCards = this.clickedCards.length
 
-        for (var i=0;i<this.pairedCards.length;i++){
-          if (card.group===this.pairedCards[i]){
-            this.isPaired=true
+        for (var i = 0; i < this.pairedCards.length; i++) {
+          if (card.group === this.pairedCards[i]) {
+            this.isPaired = true
           }
         }
 
-        if (this.isPaired){
-          if (countClickedCards===1) this.clickedCards[0].flip=false
-          this.isPaired=false
-          this.clickedCards=[]
+        if (this.isPaired) {
+          if (countClickedCards === 1) this.clickedCards[0].flip = false
+          this.isPaired = false
+          this.clickedCards = []
         } else if (countClickedCards === 0) {
           this.handleClickOne(card)
         } else if (countClickedCards === 1) {
@@ -115,35 +118,35 @@ export default {
       return (this.clickedCards.length < 2)
     },
 
-    setCardColor(cardA, cardB){
-      switch (cardA.group){
+    setCardColor (cardA, cardB) {
+      switch (cardA.group) {
         case 0:
-          cardA.color='blue'
-          cardB.color='blue'
+          cardA.color = 'blue'
+          cardB.color = 'blue'
           break
         case 1:
-          cardA.color='green'
-          cardB.color='green'
+          cardA.color = 'green'
+          cardB.color = 'green'
           break
         case 2:
-          cardA.color='red'
-          cardB.color='red'
+          cardA.color = 'red'
+          cardB.color = 'red'
           break
         case 3:
-          cardA.color='violet'
-          cardB.color='violet'
+          cardA.color = 'violet'
+          cardB.color = 'violet'
           break
         case 4:
-          cardA.color='purple'
-          cardB.color='purple'
+          cardA.color = 'purple'
+          cardB.color = 'purple'
           break
         case 5:
-          cardA.color='orange'
-          cardB.color='orange'
+          cardA.color = 'orange'
+          cardB.color = 'orange'
           break
         case 6:
-          cardA.color='brown'
-          cardB.color='brown'
+          cardA.color = 'brown'
+          cardB.color = 'brown'
           break
       }
     },
@@ -158,10 +161,10 @@ export default {
 
       card.flip = !card.flip
       this.clickedCards.push(card)
-      this.firstCardFlipped=false
+      this.firstCardFlipped = false
       const [cardA, cardB] = this.clickedCards
       if (cardA.group === cardB.group) {
-        this.score+=1000;
+        this.score += 1000
         this.pairedCards.push(cardA.group)
         this.setCardColor(cardA, cardB)
         alert(this.cardA.color)
@@ -173,7 +176,7 @@ export default {
         }, FLIP_WAIT_TIME)
       } else {
         setTimeout(() => {
-          if (this.score>0) this.score-=100
+          if (this.score > 0) this.score -= 100
           for (let card of this.clickedCards) {
             card.flip = false
           }
