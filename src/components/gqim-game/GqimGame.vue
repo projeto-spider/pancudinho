@@ -119,7 +119,12 @@ export default {
               }
             }
 
-            const goalNode = createNode(tree.goal)
+            const goalData = {
+              ...tree.goal,
+              toDrop: true // for the demo
+            }
+
+            const goalNode = createNode(goalData)
             const questionNodes = tree.questions.map(createNode)
             const indicatorNodes = tree.indicators.map(createNode)
             const metricNodes = tree.metrics.map(createNode)
