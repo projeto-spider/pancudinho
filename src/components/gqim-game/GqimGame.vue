@@ -296,8 +296,9 @@ export default {
 
             this.sys.canvas.onmousewheel = function onmousewheel ({ deltaY }) {
               if ((camera.zoom - (deltaY / 2000)) >= 0) {
-                camera.setZoom(
-                  camera.zoom - (deltaY / 2000)
+                camera.zoomTo(
+                  camera.zoom - (deltaY / 2000),
+                  10
                 )
               }
             }
