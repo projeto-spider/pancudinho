@@ -76,6 +76,7 @@ export default {
 
             const camera = this.cameras.main
             camera.setBackgroundColor('#bdbdbd')
+            camera.setZoom(0.1)
 
             const tree = $vm.tree
 
