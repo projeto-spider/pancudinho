@@ -155,42 +155,41 @@ export default {
   },
   methods: {
     nextText () {
-      if (this.changeScene){
+      if (this.changeScene) {
         this.counter++
-        if (this.counter === this.scenes.length){
+        if (this.counter === this.scenes.length) {
           this.counter = 0
           for (let i = 0; i < this.scenes.length; i++) {
-            this.scenes[i].showText=''
+            this.scenes[i].showText = ''
           }
         }
         for (let i = 0; i < this.scenes.length; i++) {
           if (i === this.counter) this.scenes[i].showScene = true
           else this.scenes[i].showScene = false
         }
-        this.changeScene=false
+        this.changeScene = false
         this.letters()
       }
     },
-    letters(){
-      this.showButton=false
-      for (let i=0;i<this.scenes.length;i++){
-        if (this.scenes[i].showScene){
-          let text=this.scenes[i].text
-          let showText=this.scenes[i].showText
-          let counter=this.counter2
-          let vm=this
-          let changeScene=false
-          let interval=setInterval(function(){
-            showText=showText+text[counter]
-            vm.scenes[vm.counter].showText=showText
+    letters () {
+      this.showButton = false
+      for (let i = 0; i < this.scenes.length; i++) {
+        if (this.scenes[i].showScene) {
+          let text = this.scenes[i].text
+          let showText = this.scenes[i].showText
+          let counter = this.counter2
+          let vm = this
+          let interval = setInterval(function () {
+            showText = showText + text[counter]
+            vm.scenes[vm.counter].showText = showText
             counter++
-            if (counter==text.length){
+            if (counter === text.length) {
               clearInterval(interval)
-              vm.changeScene=true
+              vm.changeScene = true
             }
           }, 50)
         }
-        this.counter2=0
+        this.counter2 = 0
       }
     }
   }
