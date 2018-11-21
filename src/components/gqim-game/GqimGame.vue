@@ -152,6 +152,19 @@ export default {
             connectBetweenTreeLevels(this, questionNodes, indicatorNodes)
             connectBetweenTreeLevels(this, indicatorNodes, metricNodes)
 
+            const TIME_TO_FOCUS_GOAL = 1000
+            camera.pan(goalNode.x, goalNode.y, TIME_TO_FOCUS_GOAL)
+            camera.zoomTo(0.8, TIME_TO_FOCUS_GOAL)
+
+            const goalDraggableNode = draggableNodes[0]
+
+            setTimeout(() => {
+              goalDraggableNode.setPosition(goalNode.x, goalNode.y)
+              goalNode.onDropIn(goalDraggableNode)
+
+              setTimeout(goalNode.revealStatus, 300)
+            }, TIME_TO_FOCUS_GOAL + 300)
+
             function connectBetweenTreeLevels (scene, topNodes, bottomNodes) {
               topNodes.forEach(topNode => {
                 if (!topNode) return
@@ -287,7 +300,7 @@ export default {
               }
             })
             this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-              if (canDrag) {
+              if (canDrag && gameObject !== goalDraggableNode) {
                 isDraggingSomething = true
                 const { x, y } = camera.getWorldPoint(pointer.position.x, pointer.position.y)
                 gameObject.setPosition(x, y)
