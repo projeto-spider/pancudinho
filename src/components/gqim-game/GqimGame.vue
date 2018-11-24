@@ -16,6 +16,7 @@
 
 <script>
 import Phaser from 'phaser'
+import { Plugin as NineSlicePlugin } from 'phaser3-nineslice'
 import Background from '../ui/Background.vue'
 import Panel from '../ui/Panel.vue'
 import Button from '../ui/Button.vue'
@@ -66,6 +67,9 @@ export default {
         physics: {
           default: 'arcade'
         },
+        plugins: {
+          global: [ NineSlicePlugin.DefaultCfg ]
+        },
         scene: {
           preload () {
             preloadGqimGame(this)
@@ -94,7 +98,12 @@ export default {
             const dropZones = []
 
             const createDraggableNode = element => {
-              const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
+              const node = new GqimNode(this, 0, 0, element.label, true)
+              this.add.existing(node)
+              node.setInteractive()
+              this.physics.add.existing(node)
+              this.input.setDraggable(node)
+
               node.setData('id', element.id)
               node.setData('edges', element.edges)
 
@@ -103,7 +112,7 @@ export default {
 
             const createNode = element => {
               if (element.toDrop) {
-                const dropZone = new DropZone(this, 0, 0) // eslint-disable-line
+                const dropZone = new DropZone(this, 0, 0)
                 dropZone.setData('id', element.id)
                 dropZone.setData('edges', element.edges)
                 dropZones.push(dropZone)
@@ -112,8 +121,8 @@ export default {
 
                 return dropZone
               } else {
-                const node = new GqimNode(this, 0, 0, element.label) // eslint-disable-line
-                node.setDraggable(false)
+                const node = new GqimNode(this, 0, 0, element.label)
+                this.add.existing(node)
                 node.setData('id', element.id)
                 node.setData('edges', element.edges)
                 return node
