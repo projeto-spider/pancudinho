@@ -146,6 +146,22 @@ export default {
               metricNodes
             }
 
+            const highestDraggableNodeWidth = Math.max(
+              ...draggableNodes.map(node => node.width)
+            )
+            const highestDraggableNodeHeight = Math.max(
+              ...draggableNodes.map(node => node.height)
+            )
+
+            const dropZonePadding = 5
+
+            for (let dropZone of dropZones) {
+              dropZone.setSize(
+                highestDraggableNodeWidth + 2 * dropZonePadding,
+                highestDraggableNodeHeight + 2 * dropZonePadding
+              )
+            }
+
             const NODE_HORIZONTAL_MARGIN = 100
             const NODE_VERTICAL_MARGIN = 100
 
@@ -169,7 +185,7 @@ export default {
 
             setTimeout(() => {
               goalDraggableNode.setPosition(goalNode.x, goalNode.y)
-              goalNode.onDropIn(goalDraggableNode)
+              goalNode.zoneObject.onDropIn(goalDraggableNode)
 
               setTimeout(goalNode.revealStatus, 300)
             }, TIME_TO_FOCUS_GOAL + 300)

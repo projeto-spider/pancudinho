@@ -1,4 +1,7 @@
 import Phaser from 'phaser'
+const { Container, Graphics, Zone } = Phaser.GameObjects
+
+const DEFAULT_SIDE_SIZE = 100
 
 const WAITING = 0
 const SUCCESS = 1
@@ -10,34 +13,49 @@ const colors = {
   [FAIL]: 0xd63031
 }
 
-export default class DropZone extends Phaser.GameObjects.Zone {
+export default class DropZone extends Container {
   constructor (scene, x, y) {
-    super(scene, x, y, 400, 100)
-    this.setDropZone()
+    super(scene, x, y, [])
 
     this.status = WAITING
-    this.graphics = new Phaser.GameObjects.Graphics(scene)
 
-    scene.add.existing(this)
-    scene.add.existing(this.graphics)
+    this.zoneObject = new GqimZone(scene, this)
 
+    this.graphicsObject = new Graphics(scene)
+
+    // Make the container size
+    this.setSize(DEFAULT_SIDE_SIZE, DEFAULT_SIDE_SIZE)
+
+    // Add to container
+    this.add(this.zoneObject)
+    this.add(this.graphicsObject)
+
+    this.scene.add.existing(this)
+    this.setInteractive()
+  }
+
+  setSize = (width, height) => {
+    this.constructor.prototype.setSize.call(this, width, height)
+    this.zoneObject.setSize(width, height)
     this.updateGraphics()
   }
 
-  // `this` sucks
-  setPosition = (x, y) => {
-    this.constructor.prototype.setPosition.call(this, x, y)
-    this.updateGraphics()
-  }
+  updateGraphics = () => {
+    this.zoneObject.setPosition(0, 0)
+    const bounds = this.getBounds()
 
-  updateGraphics () {
-    this.graphics.clear()
-    this.graphics.lineStyle(2, colors[this.status])
-    this.graphics.strokeRect(this.x + this.input.hitArea.x, this.y + this.input.hitArea.y, this.input.hitArea.width, this.input.hitArea.height)
+    this.graphicsObject.clear()
+    this.graphicsObject.lineStyle(2, colors[this.status])
+    this.graphicsObject.strokeRect(
+      -(bounds.width / 2),
+      -(bounds.height / 2),
+      bounds.width,
+      bounds.height
+    )
   }
 
   revealStatus = () => {
-    const dropped = this.getData('dropped')
+    const dropped = this.zoneObject.getData('dropped')
 
     this.status =
       dropped && dropped.getData('id') === this.getData('id')
@@ -45,6 +63,17 @@ export default class DropZone extends Phaser.GameObjects.Zone {
         : FAIL
 
     this.updateGraphics()
+  }
+}
+
+class GqimZone extends Zone {
+  constructor (scene, parent) {
+    super(scene, 0, 0, DEFAULT_SIDE_SIZE, DEFAULT_SIDE_SIZE)
+
+    this.parent = parent
+
+    this.setDropZone()
+    this.setOrigin(0.5)
   }
 
   isEmpty = () => {
@@ -55,6 +84,7 @@ export default class DropZone extends Phaser.GameObjects.Zone {
     if (this.isEmpty()) {
       node.enterDropZone(this)
       this.setData('dropped', node)
+      node.setPosition(this.parent.x, this.parent.y)
     }
   }
 

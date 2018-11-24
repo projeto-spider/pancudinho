@@ -62,7 +62,6 @@ export default class Node extends Phaser.GameObjects.Container {
 
   enterDropZone (dropZone) {
     this.setData('droppedIn', dropZone)
-    this.setPosition(dropZone.x, dropZone.y)
   }
 
   leaveDropZone () {
