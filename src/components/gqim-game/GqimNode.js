@@ -1,4 +1,6 @@
 import Phaser from 'phaser'
+import NodeTimer from './NodeTimer'
+
 const { Text } = Phaser.GameObjects
 
 const FILL_DARK = '#b2b2b2'
@@ -18,8 +20,15 @@ const style = {
 }
 
 export default class Node extends Phaser.GameObjects.Container {
-  constructor (scene, x, y, text, isDraggable = false) {
+  constructor (scene, x, y, text, config = {}) {
     super(scene, x, y, [])
+
+    const {
+      isDraggable = false,
+      hasTimer = false,
+      timerCount = 60,
+      timeToActivate = false
+    } = config
 
     // Creates text
     this.textObject = new Text(scene, 0, 0, text, style)
@@ -37,6 +46,19 @@ export default class Node extends Phaser.GameObjects.Container {
 
     // Set the container size so we can make it draggable
     this.setSize(realWidth, realHeight)
+
+    // Create timer
+    this.interval = false
+    this.timerCount = timerCount
+    this.timeToActivate = timeToActivate
+
+    if (hasTimer) {
+      const timerX = textBounds.x + realWidth - 20
+      const timerY = textBounds.y + realHeight - 20
+      this.timerObject = new NodeTimer(this.scene, timerX, timerY, 10)
+    } else {
+      this.timerObject = null
+    }
 
     // Sets the textObject fill and generates panelObject
     this.setDraggable(isDraggable)
@@ -82,6 +104,30 @@ export default class Node extends Phaser.GameObjects.Container {
     this.panelObject.setOrigin()
 
     this.addAt(this.panelObject, 0)
+  }
+
+  startTimer = () => {
+    this.add(this.timerObject)
+
+    this.interval = setInterval(() => {
+      if (this.timerCount > 0) {
+        return this.timerObject.setCount(this.timerCount--)
+      }
+
+      this.stopTimer()
+    }, 1000)
+  }
+
+  stopTimer = () => {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
+
+    this.setDraggable(false)
+    try {
+      this.scene.input.setDraggable(this, false)
+    } catch (_) {}
+    this.remove(this.timerObject)
   }
 
   enterDropZone (dropZone) {

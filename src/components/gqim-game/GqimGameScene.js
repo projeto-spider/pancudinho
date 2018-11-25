@@ -25,9 +25,7 @@ export default class GqimGameScene extends Scene {
   }
 
   create () {
-    if (!this.tree) {
-      return
-    }
+    this.gameFinished = false
 
     this.events.on('resize', this.resize, this)
 
@@ -51,7 +49,10 @@ export default class GqimGameScene extends Scene {
     const dropZones = []
 
     const createDraggableNode = element => {
-      const node = new GqimNode(this, 0, 0, element.label, false)
+      const node = new GqimNode(this, 0, 0, element.label, {
+        hasTimer: true,
+        timerCount: element.timerCount
+      })
       this.add.existing(node)
 
       node.setData('id', element.id)
@@ -134,11 +135,26 @@ export default class GqimGameScene extends Scene {
     const goalDraggableNode = draggableNodes[0]
     this.enableDrag(goalDraggableNode)
 
+    this.activateNodesInterval = null
+    this.activatedNodes = new Set()
+
     setTimeout(() => {
       goalDraggableNode.setPosition(goalNode.x, goalNode.y)
       goalNode.zoneObject.onDropIn(goalDraggableNode)
 
       setTimeout(goalNode.revealStatus, 300)
+
+      draggableNodes.slice(1).forEach((node, i) => {
+        const timeToActivate = (node.timeToActivate || i * 10) * 1000
+
+        setTimeout(() => {
+          if (this.gameFinished) {
+            return
+          }
+
+          this.enableDrag(node)
+        }, timeToActivate)
+      })
     }, TIME_TO_FOCUS_GOAL + 300)
 
     function connectBetweenTreeLevels (scene, topNodes, bottomNodes) {
@@ -324,8 +340,10 @@ export default class GqimGameScene extends Scene {
     })
 
     this.sys.game.events.addListener('submit', () => {
+      this.gameFinished = true
       canDrag = false
       dropZones.forEach(dropZone => dropZone.revealStatus())
+      draggableNodes.forEach(node => node.stopTimer())
     }, this)
   }
 
@@ -334,7 +352,8 @@ export default class GqimGameScene extends Scene {
   }
 
   enableDrag = (node) => {
-    node.setDraggable(true)
     this.input.setDraggable(node)
+    node.setDraggable(true)
+    node.startTimer()
   }
 }
