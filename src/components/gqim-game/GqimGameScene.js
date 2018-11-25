@@ -15,8 +15,6 @@ export default class GqimGameScene extends Scene {
 
   init (data) {
     this.resize = data.resize || (() => {})
-    this.text = ''
-    this.showCounter = 90
     this.tree = data.tree
   }
 
@@ -27,6 +25,8 @@ export default class GqimGameScene extends Scene {
   create () {
     this.gameFinished = false
 
+    this.scene.launch('UiScene')
+
     this.events.on('resize', this.resize, this)
 
     const camera = this.cameras.main
@@ -35,18 +35,11 @@ export default class GqimGameScene extends Scene {
 
     const tree = this.tree
 
-    this.text = this.add.text(-450, -80, 'Tempo: ', { fontSize: '40px', fill: '#000' })
-    for (var i = 1; i <= 90; i++) {
-      setTimeout(function () {
-        this.showCounter--
-      }, 1000 * i)
-    }
-
-    if (this.showCounter === 0) this.scene.stop()
-
     let canDrag = true
     const draggableNodes = []
     const dropZones = []
+    this.draggableNodes = draggableNodes
+    this.dropZones = dropZones
 
     const createDraggableNode = element => {
       const node = new GqimNode(this, 0, 0, element.label, {
@@ -340,20 +333,29 @@ export default class GqimGameScene extends Scene {
     })
 
     this.sys.game.events.addListener('submit', () => {
-      this.gameFinished = true
       canDrag = false
-      dropZones.forEach(dropZone => dropZone.revealStatus())
-      draggableNodes.forEach(node => node.stopTimer())
+      this.finishGame()
+      this.events.emit('revealed')
     }, this)
-  }
 
-  update () {
-    this.text.setText('Tempo: ' + this.showCounter)
+    const uiScene = this.scene.get('UiScene')
+
+    uiScene.events.on('timeout', this.timeout)
   }
 
   enableDrag = (node) => {
     this.input.setDraggable(node)
     node.setDraggable(true)
     node.startTimer()
+  }
+
+  timeout = () => {
+    this.finishGame()
+  }
+
+  finishGame = () => {
+    this.gameFinished = true
+    this.dropZones.forEach(dropZone => dropZone.revealStatus())
+    this.draggableNodes.forEach(node => node.stopTimer())
   }
 }

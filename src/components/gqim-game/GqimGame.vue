@@ -28,6 +28,7 @@ import Scene from '../phaser/Scene.vue'
 import PhaserGame from '../phaser/PhaserGame.vue'
 
 import GqimGameScene from './GqimGameScene'
+import UiScene from './UiScene'
 
 export default {
   name: 'GqimGame',
@@ -61,7 +62,7 @@ export default {
         plugins: {
           global: [ NineSlicePlugin.DefaultCfg ]
         },
-        scene: [GqimGameScene]
+        scene: [GqimGameScene, UiScene]
       },
       gameFinished: false
     }
