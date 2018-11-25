@@ -51,11 +51,8 @@ export default class GqimGameScene extends Scene {
     const dropZones = []
 
     const createDraggableNode = element => {
-      const node = new GqimNode(this, 0, 0, element.label, true)
+      const node = new GqimNode(this, 0, 0, element.label, false)
       this.add.existing(node)
-      node.setInteractive()
-      this.physics.add.existing(node)
-      this.input.setDraggable(node)
 
       node.setData('id', element.id)
       node.setData('edges', element.edges)
@@ -135,6 +132,7 @@ export default class GqimGameScene extends Scene {
     camera.zoomTo(0.8, TIME_TO_FOCUS_GOAL)
 
     const goalDraggableNode = draggableNodes[0]
+    this.enableDrag(goalDraggableNode)
 
     setTimeout(() => {
       goalDraggableNode.setPosition(goalNode.x, goalNode.y)
@@ -333,5 +331,10 @@ export default class GqimGameScene extends Scene {
 
   update () {
     this.text.setText('Tempo: ' + this.showCounter)
+  }
+
+  enableDrag = (node) => {
+    node.setDraggable(true)
+    this.input.setDraggable(node)
   }
 }

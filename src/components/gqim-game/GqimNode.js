@@ -3,8 +3,6 @@ const { Text } = Phaser.GameObjects
 
 const FILL_DARK = '#b2b2b2'
 const FILL_LIGHT = '#fff'
-const DEFALT_WIDTH = 320
-const DEFALT_HEIGHT = 200
 const STATIC_PANEL = 'greyPanel'
 const DRAGGABLE_PANEL = 'bluePanel'
 const PANEL_OFFSET = 10
@@ -20,44 +18,70 @@ const style = {
 }
 
 export default class Node extends Phaser.GameObjects.Container {
-  constructor (scene, x, y, text, draggableStyle = false) {
+  constructor (scene, x, y, text, isDraggable = false) {
     super(scene, x, y, [])
 
-    const [
-      panelTexture,
-      textColor
-    ] = draggableStyle
-      ? [DRAGGABLE_PANEL, FILL_LIGHT]
-      : [STATIC_PANEL, FILL_DARK]
+    // Creates text
+    this.textObject = new Text(scene, 0, 0, text, style)
 
-    this.panelObject = scene.make.nineslice(
-      0,
-      0,
-      DEFALT_WIDTH,
-      DEFALT_HEIGHT,
-      panelTexture,
-      PANEL_OFFSET
-    )
-    this.textObject = new Text(scene, 0, 0, text, {...style, fill: textColor})
+    // Put origin at center
+    this.textObject.setOrigin()
+
+    // Add to container
+    this.add(this.textObject)
 
     // Get the container size
     const textBounds = this.textObject.getBounds()
     const realWidth = textBounds.width + 2 * PANEL_PADDING
     const realHeight = textBounds.height + 2 * PANEL_PADDING
 
-    // Resize the panel to fit
-    this.panelObject.setSize(realWidth, realHeight)
-
     // Set the container size so we can make it draggable
     this.setSize(realWidth, realHeight)
 
-    // Put origin at center
-    this.panelObject.setOrigin()
-    this.textObject.setOrigin()
+    // Sets the textObject fill and generates panelObject
+    this.setDraggable(isDraggable)
 
-    // Add to container
-    this.add(this.panelObject)
-    this.add(this.textObject)
+    // Prepare for possible drag
+    this.setInteractive()
+    scene.physics.add.existing(this)
+  }
+
+  setDraggable = (isDraggable) => {
+    if (isDraggable === this.isDraggable) {
+      return
+    }
+
+    this.isDraggable = isDraggable
+
+    const [
+      panelTexture,
+      fill
+    ] = isDraggable
+      ? [DRAGGABLE_PANEL, FILL_LIGHT]
+      : [STATIC_PANEL, FILL_DARK]
+
+    this.rerenderPanelObject(panelTexture)
+    this.textObject.setFill(fill)
+  }
+
+  rerenderPanelObject = (texture) => {
+    if (this.panelObject) {
+      this.remove(this.panelObject)
+      this.panelObject.destroy()
+    }
+
+    this.panelObject = this.scene.make.nineslice(
+      0,
+      0,
+      this.width,
+      this.height,
+      texture,
+      PANEL_OFFSET
+    )
+
+    this.panelObject.setOrigin()
+
+    this.addAt(this.panelObject, 0)
   }
 
   enterDropZone (dropZone) {
