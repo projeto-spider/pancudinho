@@ -4,9 +4,13 @@
       <div>
         <img :src="images[index]">
       </div>
-      <button class='btn2' v-if='showButton' @click='letters()'>Iniciar a Visual Novel</button>
-      <div v-if='index==0 || index==5 || index==8 || index==9 || index==10 || index==11' class='text2'> {{scene.showText}} </div>
-      <div v-else class='text'> {{scene.showText}} </div>
+
+      <div
+        class='text'
+        :class="{ 'text-fix': [0, 5, 8, 9, 10, 11].includes(index) }"
+      >
+        {{ scene.text }}
+      </div>
     </div>
     <div v-if='!showButton' class='btn' @click="nextText()">>></div>
   </Panel>
@@ -186,7 +190,7 @@ export default {
   font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
 }
 
-.text{
+.text {
   color: black;
   position: absolute;
   margin-top: -130px;
@@ -194,12 +198,10 @@ export default {
   font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
 }
 
-.text2{
-  color: black;
-  position: absolute;
+/* Since ballons are on the image, we need this hack */
+.text-fix {
   margin-top: -100px;
   margin-left: 100px;
-  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
 }
 
 .btn{
