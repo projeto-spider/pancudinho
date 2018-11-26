@@ -1,6 +1,6 @@
 <template>
   <Panel>
-    <div v-for="(scene, index) in scenes" :key="scene.id" v-if="scene.showScene">
+    <div v-for="(scene, index) in scenes" :key="scene.id" v-show="scene.showScene">
       <div>
         <img :src="images[index]">
       </div>
