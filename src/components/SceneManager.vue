@@ -17,6 +17,7 @@
         <GameVisualNovel
           v-if="currentGame.type === 'visual-novel'"
           :state="state"
+          :scenes="currentGame.data.scenes"
         ></GameVisualNovel>
 
         <GameAnalysis
