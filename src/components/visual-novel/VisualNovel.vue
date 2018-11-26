@@ -12,7 +12,7 @@
         {{ showText }}
       </div>
     </div>
-    <div v-if='!showButton' class='btn' @click="nextText()">>></div>
+    <div class='btn' @click="handleClick()" @click.prevent="displayText()">>></div>
   </Panel>
 
 </template>
@@ -112,12 +112,23 @@ export default {
   },
 
   methods: {
+    handleClick () {
+      if (this.currentScene.text === this.showText) {
+        return this.nextText()
+      }
+
+      this.skipWrittingText()
+    },
+
+    skipWrittingText () {
+      this.clearShowTextInterval()
+      this.showText = this.currentScene.text
+    },
+
     nextText () {
       this.counter++
 
-      if (this.showTextInterval) {
-        clearInterval(this.showTextInterval)
-      }
+      this.clearShowTextInterval()
 
       if (this.counter === this.scenes.length) {
         this.state.closeGame()
@@ -130,11 +141,17 @@ export default {
         const nextChar = this.currentScene.text[this.showTextDigitCount++]
 
         if (!nextChar) {
-          return clearInterval(this.showTextInterval)
+          return this.clearShowTextInterval()
         }
 
         this.showText += nextChar
       }, 50)
+    },
+
+    clearShowTextInterval () {
+      if (this.showTextInterval) {
+        clearInterval(this.showTextInterval)
+      }
     }
   }
 }
