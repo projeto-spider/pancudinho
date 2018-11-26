@@ -1,53 +1,8 @@
 <template>
   <Panel>
     <div v-for="(scene, index) in scenes" :key="scene.id" v-if="scene.showScene">
-      <div v-if='index === 0'>
-        <img src="../../assets/Quadro1.jpg">
-      </div>
-      <div v-if='index === 1'>
-        <img src="../../assets/Quadro2.jpg">
-      </div>
-      <div v-if='index === 2'>
-        <img src="../../assets/Quadro3.jpg">
-      </div>
-      <div v-if='index === 3'>
-        <img src="../../assets/Quadro4.jpg">
-      </div>
-      <div v-if='index==4'>
-        <img src="../../assets/Quadro5.jpg">
-      </div>
-      <div v-if='index==5'>
-        <img src="../../assets/Quadro6.jpg">
-      </div>
-      <div v-if='index==6'>
-        <img src="../../assets/Quadro7.jpg">
-      </div>
-      <div v-if='index==7'>
-        <img src="../../assets/Quadro8.jpg">
-      </div>
-      <div v-if='index==8'>
-        <img src="../../assets/Quadro9.jpg">
-      </div>
-      <div v-if='index==9'>
-        <img src="../../assets/Quadro10.jpg">
-      </div>
-      <div v-if='index==10'>
-        <img src="../../assets/Quadro11.jpg">
-      </div>
-      <div v-if='index==11'>
-        <img src="../../assets/Quadro12.jpg">
-      </div>
-      <div v-if='index==12'>
-        <img src="../../assets/Quadro13.jpg">
-      </div>
-      <div v-if='index==13'>
-        <img src="../../assets/Quadro14.jpg">
-      </div>
-      <div v-if='index==14'>
-        <img src="../../assets/Quadro15.jpg">
-      </div>
-      <div v-if='index==15'>
-        <img src="../../assets/Quadro16.jpg">
+      <div>
+        <img :src="images[index]">
       </div>
       <button class='btn2' v-if='showButton' @click='letters()'>Iniciar a Visual Novel</button>
       <div v-if='index==0 || index==5 || index==8 || index==9 || index==10 || index==11' class='text2'> {{scene.showText}} </div>
@@ -67,92 +22,98 @@ export default {
     scenes: [
       {
         text: 'Olá, eu sou Pançudinho.',
+        image: 'Quadro1.jpg',
         showText: '',
         showScene: true
       },
       {
         text: 'Eu sei que a minha estética está ótima do jeito que está.',
-        showText: '',
+        image: 'Quadro2.jpg',
         showScene: false
       },
       {
         text: 'Mas notei que tenho me alimentado de um jeito bem deprimente.',
-        showText: '',
+        image: 'Quadro3.jpg',
         showScene: false
       },
       {
         text: 'Então decidi que a partir de hoje minha vida vai mudar.',
-        showText: '',
+        image: 'Quadro4.jpg',
         showScene: false
       },
       {
         text: 'Com alimentação saudável e exercícios físicos. Mas preciso de ajuda para isso.',
-        showText: '',
+        image: 'Quadro5.jpg',
         showScene: false
       },
       {
         text: 'Venha comigo se você quiser viver. Eu sou O TREINADOR.',
-        showText: '',
+        image: 'Quadro6.jpg',
         showScene: false
       },
       {
         text: 'Mas não é um caminho tão fácil como você pensa. Existem conceitos obscuros que você não conhece...',
-        showText: '',
+        image: 'Quadro7.jpg',
         showScene: false
       },
       {
         text: 'Mas como eu sou muito bondoso, eu posso ensinar para você.',
-        showText: '',
+        image: 'Quadro8.jpg',
         showScene: false
       },
       {
         text: 'Primeiro, temos que aprender a trabalhar com medidas, pois elas são essenciais para o nosso progresso.',
-        showText: '',
+        image: 'Quadro9.jpg',
         showScene: false
       },
       {
         text: 'Então, te apresento a medição. Com ela, nós vamos coletar, armazenar e relatar dados para que...',
-        showText: '',
+        image: 'Quadro10.jpg',
         showScene: false
       },
       {
         text: 'P: Balela isso! \n T: Como é?',
-        showText: '',
+        image: 'Quadro11.jpg',
         showScene: false
       },
       {
         text: 'P: Sei que você só ta fazendo isso pra levar meu dinheiro!',
-        showText: '',
+        image: 'Quadro12.jpg',
         showScene: false
       },
       {
         text: 'Mas quando falo que vou te ajudar, eu não tô mentindo.',
-        showText: '',
+        image: 'Quadro13.jpg',
         showScene: false
       },
       {
         text: 'Com a medição, você pode tomar decisões mais precisas e evidenciar melhor os pontos que quer melhorar.',
-        showText: '',
+        image: 'Quadro14.jpg',
         showScene: false
       },
       {
         text: 'P: Ok, ok...vamos ver o que você pode fazer \n T: Boa, garoto!',
-        showText: '',
+        image: 'Quadro15.jpg',
         showScene: false
       },
       {
         text: 'Agora, VAMOS COMEÇAR ESSA JORNADA!',
-        showText: '',
+        image: 'Quadro16.jpg',
         showScene: false
       }
     ],
     showButton: true,
     counter: 0,
     counter2: 0,
-    changeScene: false
+    images: []
   }),
-  computed: {
+
+  created () {
+    this.images = this.scenes.map(scene => {
+      return require(`../../assets/${scene.image}`)
+    })
   },
+
   methods: {
     nextText () {
       if (this.changeScene) {
