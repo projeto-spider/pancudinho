@@ -151,7 +151,7 @@ export default class GqimGameScene extends Scene {
           }, 300)
 
           draggableNodes.slice(1).forEach((node, i) => {
-            const timeToActivate = (node.timeToActivate || i * 10) * 1000
+            const timeToActivate = (node.timeToActivate || 0) * 1000
 
             setTimeout(() => {
               if (this.gameFinished) {
