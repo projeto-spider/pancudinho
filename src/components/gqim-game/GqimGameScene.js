@@ -132,21 +132,31 @@ export default class GqimGameScene extends Scene {
     this.activatedNodes = new Set()
 
     setTimeout(() => {
-      goalDraggableNode.setPosition(goalNode.x, goalNode.y)
-      goalNode.zoneObject.onDropIn(goalDraggableNode)
+      this.tweens.add({
+        targets: [goalDraggableNode],
+        x: goalNode.x,
+        y: goalNode.y,
+        ease: 'Power1',
+        onComplete: () => {
+          goalNode.zoneObject.onDropIn(goalDraggableNode)
 
-      setTimeout(goalNode.revealStatus, 300)
+          setTimeout(() => {
+            goalNode.revealStatus()
+            goalDraggableNode.stopTimer()
+          }, 300)
 
-      draggableNodes.slice(1).forEach((node, i) => {
-        const timeToActivate = (node.timeToActivate || i * 10) * 1000
+          draggableNodes.slice(1).forEach((node, i) => {
+            const timeToActivate = (node.timeToActivate || i * 10) * 1000
 
-        setTimeout(() => {
-          if (this.gameFinished) {
-            return
-          }
+            setTimeout(() => {
+              if (this.gameFinished) {
+                return
+              }
 
-          this.enableDrag(node)
-        }, timeToActivate)
+              this.enableDrag(node)
+            }, timeToActivate)
+          })
+        }
       })
     }, TIME_TO_FOCUS_GOAL + 300)
 
