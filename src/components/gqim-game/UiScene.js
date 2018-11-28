@@ -2,13 +2,24 @@ import Phaser from 'phaser'
 
 const { Scene } = Phaser
 
-const textStyle = {
+const timerTextStyle = {
   fontSize: 18,
   align: 'center',
   wordWrap: {
     width: 300
   },
   fontFamily: 'kenvector_future'
+}
+
+const dialogTextStyle = {
+  fontSize: '18px',
+  padding: { x: 10, y: 5 },
+  backgroundColor: '#ffffff',
+  fill: '#000000',
+  wordWrap: {
+    width: 500
+  }
+  // fontFamily: 'kenvector_future'
 }
 
 export default class UiScene extends Scene {
@@ -22,17 +33,19 @@ export default class UiScene extends Scene {
   create () {
     this.timerCount = 120
 
-    this.text = this.add.text(10, 10, '', textStyle)
+    this.timerText = this.add.text(10, 10, '', timerTextStyle)
+    this.dialogText = null
 
     this.interval = setInterval(this.updateTimer, 1000)
 
     const gameScene = this.scene.get('GqimGameScene')
 
     gameScene.events.on('revealed', this.stopTimer)
+    gameScene.events.on('ui:text', this.showText)
   }
 
   updateTimer = () => {
-    this.text.setText(`Tempo: ${this.timerCount--}`)
+    this.timerText.setText(`Tempo: ${this.timerCount--}`)
 
     if (this.timerCount < 0) {
       clearInterval(this.interval)
@@ -46,5 +59,33 @@ export default class UiScene extends Scene {
 
   timeout = () => {
     this.events.emit('timeout')
+  }
+
+  showText = ({ text, time }) => {
+    const x = this.sys.game.config.width / 2
+    const y = 100
+    this.dialogText = this.add.text(x, y, text, dialogTextStyle)
+    this.dialogText.alpha = 0
+    this.dialogText.setOrigin()
+
+    this.tweens.add({
+      targets: [this.dialogText],
+      alpha: 1,
+      ease: 'Power1',
+      onComplete: () => {
+        if (time) {
+          setTimeout(() => {
+            this.tweens.add({
+              targets: [this.dialogText],
+              alpha: 0,
+              ease: 'Power1',
+              onComplete: () => {
+                this.dialogText.destroy()
+              }
+            })
+          }, time * 1000)
+        }
+      }
+    })
   }
 }

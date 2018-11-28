@@ -132,6 +132,11 @@ export default class GqimGameScene extends Scene {
     this.activatedNodes = new Set()
 
     setTimeout(() => {
+      this.events.emit('ui:text', {
+        text: 'Puxe nós azuis às lacunas enquanto há tempo',
+        time: 5
+      })
+
       this.tweens.add({
         targets: [goalDraggableNode],
         x: goalNode.x,
