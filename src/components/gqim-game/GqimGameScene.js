@@ -356,6 +356,7 @@ export default class GqimGameScene extends Scene {
     const uiScene = this.scene.get('UiScene')
 
     uiScene.events.on('timeout', this.timeout)
+    uiScene.events.on('main:finish', this.handleFinish)
   }
 
   enableDrag = (node) => {
@@ -372,5 +373,30 @@ export default class GqimGameScene extends Scene {
     this.gameFinished = true
     this.dropZones.forEach(dropZone => dropZone.revealStatus())
     this.draggableNodes.forEach(node => node.stopTimer())
+  }
+
+  handleFinish = ({ time }) => {
+    const pointsByTime = Math.ceil((time / 120) * 200)
+
+    const nodesCount = this.draggableNodes.length - 1
+    const pointsPerNode = Math.trunc(800 / nodesCount)
+
+    const correctNodes = this.draggableNodes
+      .slice(1) // ignore goal
+      .filter(node => node.isCorrect())
+
+    const pointsByNodes = correctNodes
+      .map(node =>
+        Math.ceil((node.timerCount / node.totalTime) * pointsPerNode)
+      )
+      .reduce((a, b) => a + b, 0)
+
+    const points = correctNodes.length === 0
+      ? 0
+      : pointsByNodes + pointsByTime
+
+    this.events.emit('ui:text', {
+      text: `Sua pontuação foi de (${points}/1000)`
+    })
   }
 }

@@ -54,10 +54,18 @@ export default class UiScene extends Scene {
 
   stopTimer = () => {
     clearInterval(this.interval)
+    this.finishGame()
   }
 
   timeout = () => {
     this.events.emit('timeout')
+    this.finishGame()
+  }
+
+  finishGame = () => {
+    this.events.emit('main:finish', {
+      time: this.timerCount
+    })
   }
 
   showText = ({ text, time }) => {

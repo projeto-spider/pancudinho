@@ -49,6 +49,7 @@ export default class Node extends Phaser.GameObjects.Container {
 
     // Create timer
     this.interval = false
+    this.totalTime = timerCount
     this.timerCount = timerCount
     this.timeToActivate = timeToActivate
 
@@ -141,5 +142,15 @@ export default class Node extends Phaser.GameObjects.Container {
       currentDropZone.onDropOut(this)
       this.setData('droppedIn', false)
     }
+  }
+
+  isCorrect = () => {
+    const currentDropZone = this.getData('droppedIn')
+
+    if (!currentDropZone) {
+      return false
+    }
+
+    return this.getData('id') === currentDropZone.parent.getData('id')
   }
 }
