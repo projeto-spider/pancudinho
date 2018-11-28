@@ -34,7 +34,6 @@ export default class UiScene extends Scene {
     this.timerCount = 120
 
     this.timerText = this.add.text(10, 10, '', timerTextStyle)
-    this.dialogText = null
 
     this.interval = setInterval(this.updateTimer, 1000)
 
@@ -64,23 +63,23 @@ export default class UiScene extends Scene {
   showText = ({ text, time }) => {
     const x = this.sys.game.config.width / 2
     const y = 100
-    this.dialogText = this.add.text(x, y, text, dialogTextStyle)
-    this.dialogText.alpha = 0
-    this.dialogText.setOrigin()
+    const dialogText = this.add.text(x, y, text, dialogTextStyle)
+    dialogText.alpha = 0
+    dialogText.setOrigin()
 
     this.tweens.add({
-      targets: [this.dialogText],
+      targets: [dialogText],
       alpha: 1,
       ease: 'Power1',
       onComplete: () => {
         if (time) {
           setTimeout(() => {
             this.tweens.add({
-              targets: [this.dialogText],
+              targets: [dialogText],
               alpha: 0,
               ease: 'Power1',
               onComplete: () => {
-                this.dialogText.destroy()
+                dialogText.destroy()
               }
             })
           }, time * 1000)
