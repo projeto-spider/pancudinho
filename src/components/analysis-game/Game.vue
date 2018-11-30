@@ -123,7 +123,8 @@ export default {
 }
 .goalarea {
   margin: 1px 0px -2px -180px
-},
+}
+
 .tiparea {
   margin: -5em -10em 0em 30em
 }
