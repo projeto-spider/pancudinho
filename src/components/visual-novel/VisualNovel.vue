@@ -67,15 +67,7 @@ export default {
     passAuto () {
       if (this.auto) {
         if (this.currentScene.text === this.showText) {
-          let vm = this
-
-          setTimeout (
-            function () {
-              if (!vm.autoManualPass){
-                return vm.nextText()
-              }
-              vm.autoManualPass = false
-            } , 1000)
+          return this.autoPassing()
         }
       }
     }
@@ -83,18 +75,26 @@ export default {
 
   methods: {
 
+    autoPassing () {
+      let vm = this
+      setTimeout(
+        function () {
+          if (!vm.autoManualPass) {
+            return vm.nextText()
+          }
+          vm.autoManualPass = false
+        }, 1000)
+    },
+
     handleClick () {
-
-
       if (this.currentScene.text === this.showText) {
-        if (this.auto){
+        if (this.auto) {
           this.autoManualPass = true
         }
         return this.nextText()
       }
 
       this.skipWrittingText()
-
     },
 
     skipWrittingText () {
@@ -123,10 +123,7 @@ export default {
 
         this.showText += nextChar
       }, 50)
-
-
     },
-
     clearShowTextInterval () {
       if (this.showTextInterval) {
         clearInterval(this.showTextInterval)
