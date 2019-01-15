@@ -114,6 +114,7 @@ export default {
   position: relative;
   background-color: #003570;
   box-shadow: .2em .2em .5em #333;
+  background-image: '../../assets/PancudinhoVitruviano.jpg';
 }
 
 .Card.flipped {

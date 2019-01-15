@@ -12,6 +12,13 @@
         {{ showText }}
       </div>
     </div>
+    {{passAuto}}
+    <div v-if='auto'>
+      <div class='btn' style='color: green; ' @click="auto=!auto">Auto</div><br>
+    </div>
+    <div v-else>
+      <div class='btn' style='color: red;' @click="auto=!auto">Auto</div><br>
+    </div>
     <div class='btn' @click="handleClick()" @click.prevent="displayText()">>></div>
   </Panel>
 
@@ -37,6 +44,8 @@ export default {
 
   data: () => ({
     counter: -1,
+    auto: false,
+    autoManualPass: false,
     showText: '',
     showTextDigitCount: 0,
     showTextInterval: null,
@@ -54,12 +63,34 @@ export default {
   computed: {
     currentScene () {
       return this.scenes[this.counter]
+    },
+    passAuto () {
+      if (this.auto) {
+        if (this.currentScene.text === this.showText) {
+          return this.autoPassing()
+        }
+      }
     }
   },
 
   methods: {
+
+    autoPassing () {
+      let vm = this
+      setTimeout(
+        function () {
+          if (!vm.autoManualPass) {
+            return vm.nextText()
+          }
+          vm.autoManualPass = false
+        }, 1000)
+    },
+
     handleClick () {
       if (this.currentScene.text === this.showText) {
+        if (this.auto) {
+          this.autoManualPass = true
+        }
         return this.nextText()
       }
 
@@ -93,7 +124,6 @@ export default {
         this.showText += nextChar
       }, 50)
     },
-
     clearShowTextInterval () {
       if (this.showTextInterval) {
         clearInterval(this.showTextInterval)

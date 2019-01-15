@@ -1,36 +1,60 @@
 <template>
-  <div>
+<div>
+    <div v-if='visualNovel'>
+      <Panel>
+        <div v-if='(counter2 === 2) || (counter2 === 3)'>
+          <p class='center'>
+            <img src="../../assets/Par1.jpg">
+            <img src="../../assets/Par2.jpg">
+          </p>
+        </div>
+        <div v-else>
+          <p class='center'><img src="../../assets/PancudinhoVitruviano.jpg"></p>
+        </div>
+        <div class='balloon'>
+        <div class='text' v-for='item in tutorial' :key="item.id" v-if='item.showText'>
+          {{item.text}}
+          </div>
+          <div class='text' @click="nextText()">>></div>
+        </div>
+      </Panel>
+      </div>
+
+    <div v-if='!visualNovel'>
       <h1 style='text-align: center'>{{ counter }}</h1>
       <h2 v-if='showScore'>Score: {{ score }}</h2>
-    <div class="MemoryGame">
-      <Board
-        :cards="cardsInGame"
-        :handle-click-card="handleClickCard"
-      > {{ gameStart }} </Board>
+      <div class="MemoryGame">
+        <Board
+          :cards="cardsInGame"
+          :handle-click-card="handleClickCard"
+        > {{ gameStart }} </Board>
 
-        <div class="row pancudinho-block">
-          <Pancudinho
-            :tips-choice="currentTip"
-            :handle-close="changeTip"
-          ></Pancudinho>
+          <div class="row pancudinho-block">
+            <Pancudinho
+              :tips-choice="currentTip"
+              :handle-close="changeTip"
+            ></Pancudinho>
 
-          <button v-if="gameFinished" @click="closeGame">Continue</button>
+            <button v-if="gameFinished" @click="closeGame">Continue</button>
         </div>
       </div>
     </div>
+</div>
 </template>
 
 <script>
 /* eslint-disable */
 import Pancudinho from './Pancudinho.vue'
 import Board from './Board.vue'
+import Card from './Card.vue'
+import Panel from '../ui/Panel.vue'
 
 const FLIP_WAIT_TIME = 1000
 
 export default {
   name: 'MemoryGame',
 
-  components: { Pancudinho, Board },
+  components: { Pancudinho, Board, Card, Panel },
 
   props: {
     state: {
@@ -45,6 +69,37 @@ export default {
   },
 
   data: () => ({
+
+    visualNovel: true,
+
+    tutorial: [
+        {
+          text: 'Esse é o jogo da memória.',
+          displayedText: '',
+          showText: true
+        },
+        {
+          text: 'Aqui teremos cartas viradas para baixo com palavras relacionadas à medição e seus conceitos.',
+          showText: false
+        },
+        {
+          text: 'Seu objetivo é parear as cartas corretamente, ou seja, cada palavra com cada conceito.',
+          showText: false
+        },
+        {
+          text: 'Você terá 5 segundos no início com todas as cartas viradas para cima.',
+          showText: false
+        },
+        {
+          text: 'Pronto?',
+          showText: false
+        },
+        {
+          text: 'Vamos começar!',
+          showText: false
+        }
+    ],
+
     score: 0,
 
     showScore: false,
@@ -63,6 +118,8 @@ export default {
 
     clickedCards: [],
 
+    counter2: 0,
+
     // As we don't have real tips, we are mocking this
     currentTip: 'tip1'
   }),
@@ -73,6 +130,11 @@ export default {
   },
 
   computed: {
+
+    randomFunction(){
+      alert('oi')
+    },
+
     gameStart () {
       for (var i = 1; i <= 5; i++) {
         setTimeout(() => {
@@ -100,6 +162,21 @@ export default {
   },
 
   methods: {
+     nextText() {
+
+      this.counter2++
+      if (this.counter2 >= this.tutorial.length) {
+        this.counter2 = 0
+        this.visualNovel = false
+      }
+      for (let i = 0; i < this.tutorial.length; i++) {
+        if (this.tutorial[i].showText) {
+          this.tutorial[i].showText = false
+        }
+      }
+      this.tutorial[this.counter2].showText = true
+    },
+
     handleClickCard (card) {
       if (!this.isGameStart) {
         if (!this.canClick(card)) this.clickedCards = []
@@ -250,4 +327,28 @@ html, body {
 .deck-wrapper > * {
   left: 44%
 }
+
+.balloon{
+  width: 800px;
+  height: 100px;
+  margin-top:100px;
+  padding: 0.1em 1em;
+  background: #00ace6;
+  border-radius: 5px;
+  text-align: flex-start;
+  color: rgb(245, 245, 245);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+}
+
+.text{
+  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+  color: white
+}
+
+.center{
+  text-align: center;
+}
+
 </style>
