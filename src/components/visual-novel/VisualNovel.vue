@@ -12,14 +12,33 @@
         {{ showText }}
       </div>
     </div>
+
     {{passAuto}}
+
     <div v-if='auto'>
       <div class='btn' style='color: green; ' @click="auto=!auto">Auto</div><br>
     </div>
     <div v-else>
       <div class='btn' style='color: red;' @click="auto=!auto">Auto</div><br>
     </div>
+
     <div class='btn' @click="handleClick()" @click.prevent="displayText()">>></div>
+
+    <div v-if="currentScene && currentScene.question" v-show="showingOptions" class="option-area">
+      <ul>
+        <li
+          v-for="(option, i) in currentScene.options"
+          :key="i"
+        >
+          <button
+            :class="{ 'option-correct': selectedAnswer && option.correct, 'option-incorrect': selectedAnswer === option && !option.correct}"
+            @click="selectOption(option)"
+          >{{option.text}}</button>
+        </li>
+      </ul>
+
+      <button v-if="selectedAnswer" @click="continueFromOptions()" class="hide-options-button">Continuar</button>
+    </div>
   </Panel>
 
 </template>
@@ -49,7 +68,11 @@ export default {
     showText: '',
     showTextDigitCount: 0,
     showTextInterval: null,
-    images: []
+    images: [],
+    showingOptions: false,
+    autoWasOnBeforeOptions: false,
+    selectedAnswer: false,
+    correctAnswer: false
   }),
 
   created () {
@@ -124,9 +147,41 @@ export default {
         this.showText += nextChar
       }, 50)
     },
+
     clearShowTextInterval () {
       if (this.showTextInterval) {
         clearInterval(this.showTextInterval)
+        this.showOptions()
+      }
+    },
+
+    showOptions () {
+      if (!this.currentScene.question) {
+        return false
+      }
+
+      this.showingOptions = true
+      this.autoWasOnBeforeOptions = this.auto
+      this.auto = false
+    },
+
+    selectOption (option) {
+      if (this.selectedAnswer) {
+        return
+      }
+
+      this.selectedAnswer = option
+      this.correctAnswer = option.correct
+    },
+
+    continueFromOptions () {
+      this.selectedAnswer = false
+      this.auto = this.autoWasOnBeforeOptions
+      this.correctAnswer = false
+      this.showingOptions = false
+
+      if (!this.auto) {
+        this.nextText()
       }
     }
   }
@@ -192,4 +247,49 @@ export default {
   font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
 }
 
+.option-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100000;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.option-area ul {
+  list-style: none;
+  width: 75%;
+  padding: 0;
+  margin: 30px auto;
+}
+
+.option-area li {
+  width: 100%;
+  margin: 10px;
+}
+
+.option-area li button {
+  width: 100%;
+  min-height: 32px;
+  text-align: left;
+}
+
+.option-correct {
+  border-color: green;
+}
+
+.option-incorrect {
+  border-color: red;
+}
+
+.hide-options-button  {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 30px;
+}
 </style>
