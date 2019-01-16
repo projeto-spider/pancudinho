@@ -84,3 +84,29 @@ stories
       ])
     } })
   }))
+  .add('With questions', (h) => ({
+    render: h => h(VisualNovel, { props: {
+      scenes: object('Script', [
+        {
+          question: true,
+          text: 'Uma pergunta aleatória.',
+          image: 'Quadro1.jpg',
+          options: [
+            {
+              text: 'Para a frente a Brigada Ligeira!',
+              correct: true
+            },
+            {
+              text: 'Carreguem contra as armas!”, disse ele.'
+            },
+            {
+              text: 'Para o Vale da Morte.'
+            },
+            {
+              text: 'cavalgaram os seiscentos.'
+            }
+          ]
+        }
+      ])
+    } })
+  }))
