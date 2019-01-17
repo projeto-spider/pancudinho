@@ -1,7 +1,7 @@
 import Vue from 'vue' // eslint-disable-line
 
 import { storiesOf } from '@storybook/vue'
-import { withKnobs, object } from '@storybook/addon-knobs/vue'
+import { withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 
 import SelectFillGame from '../components/book/select-fill-game/SelectFillGame.vue'
