@@ -90,6 +90,7 @@ export default class Node extends Phaser.GameObjects.Container {
 
     this.rerenderPanelObject(panelTexture)
     this.textObject.setFill(fill)
+    this.renderLeaves(isDraggable ? false : 'alive')
   }
 
   rerenderPanelObject = (texture) => {
@@ -118,7 +119,7 @@ export default class Node extends Phaser.GameObjects.Container {
     const realHeight = textBounds.height + 2
 
     this.textObject.setBackgroundColor(
-      type === 'alive'
+      type === 'alive' || !type
         ? COLOR_ALIVE
         : COLOR_DEAD
     )
@@ -126,6 +127,10 @@ export default class Node extends Phaser.GameObjects.Container {
     for (let leaf of this.leaves) {
       this.remove(leaf)
       leaf.destroy()
+    }
+
+    if (!type) {
+      return
     }
 
     const leaves =

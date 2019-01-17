@@ -63,6 +63,10 @@ export default class DropZone extends Container {
         : FAIL
 
     this.updateGraphics()
+
+    if (dropped && this.status === SUCCESS) {
+      dropped.renderLeaves('alive')
+    }
   }
 }
 
