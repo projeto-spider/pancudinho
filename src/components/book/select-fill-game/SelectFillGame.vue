@@ -1,69 +1,214 @@
 <template>
-<div>
-  <br>
-  <p style="text-align:center;">
+  <div>
+    <h2>Arraste as resposta para as lacunas</h2>
 
-    <Button v-if="selectMode" :handle-click="() => selectMode = false" :label="'Input Mode'"></Button>
-    <Button v-else :handle-click="() => selectMode = true" :label="'Select Mode'"></Button>
+    <div class="book">
+      <table>
+        <tr v-for="(row, i) in rows" :key="i">
+          <td v-if="row.indent" style="width: 10%"></td>
 
-  <div v-if="selectMode">
-    <SelectPage :state="state"></SelectPage>
+          <td :colspan="row.indent ? 1 : 2">{{row.text}}</td>
+
+          <td v-if="row.answer">
+            <drop
+              v-if="!row.filled"
+              drop-effect="move"
+              @drop="handleDrop(row, ...arguments)"
+            >
+              <span
+                class="fillable"
+                :class="{ [row.status]: true }"
+              >?</span>
+            </drop>
+
+            <span
+              v-else
+              class="fillable"
+              :class="{ [row.status]: true }"
+              @click="dropout(row)"
+            >
+              {{ row.filled.answer }}
+            </span>
+          </td>
+        </tr>
+      </table>
+
+      <div class="option-list">
+        <drag
+          v-for="(option, i) in availableOptions"
+          :key="i"
+          :transfer-data="option"
+        >
+          <span class="filler">{{ option.answer }}</span>
+        </drag>
+      </div>
+
+      <Button v-if="!reveal" @click.native="submit">
+        Corrigir
+      </Button>
+
+      <Button v-else @click.native="nextGame">
+        Avançar
+      </Button>
+    </div>
   </div>
-  <div v-else>
-    <FillPage :state="state"></FillPage>
-  </div>
-</div>
 </template>
 
-<script type="text/javascript">
-
-import FillPage from './FillPage.vue'
-import SelectPage from './SelectPage.vue'
+<script>
+import { Drag, Drop } from 'vue-drag-drop'
 import Button from '../../ui/Button.vue'
 
 export default {
   name: 'BookSelectManual',
 
-  components: { FillPage, SelectPage, Button },
+  components: {
+    Button,
+    Drag,
+    Drop
+  },
 
   props: {
     state: {
       type: Object,
       required: true
+    },
+
+    chunks: {
+      type: Array,
+      required: true
     }
   },
 
   data: () => ({
-    options: [
-      {
-        text: 'Lorem ipsum dolor sit amet, est nullam discere intellegam ne, pro ne alterum facilisi, tibique deseruisse id per. Moderatius',
-        words: 'lorem',
-        id: 1
-      },
-
-      {
-        text: 'reprehendunt has eu. Aperiri definitiones conclusionemque vix eu, atqui velit pertinacia no his,',
-        words: 'ipsum',
-        id: 2
-      }
-    ],
+    reveal: false,
+    rows: [],
+    options: [],
+    selectedOptions: {},
     input: false,
     defocus: false,
     selectMode: true
-  })
+  }),
+
+  created () {
+    this.rows = this.chunks.map(chunk => ({
+      ...chunk,
+      filled: null,
+      status: 'unknown'
+    }))
+    this.options = this.chunks
+      .filter(row => row.answer)
+      .sort(() =>
+        Math.random() - Math.random()
+      )
+      .map(chunk => ({
+        ...chunk,
+        filling: false
+      }))
+  },
+
+  computed: {
+    availableOptions () {
+      return this.options.filter(option =>
+        !option.filling
+      )
+    }
+  },
+
+  methods: {
+    handleDrop (where, who) {
+      if (this.reveal) {
+        return
+      }
+
+      for (let row of Object.values(this.rows)) {
+        if (row.filled === who) {
+          row.filled = null
+        }
+      }
+
+      who.filling = true
+      where.filled = who
+    },
+
+    dropout (row) {
+      if (this.reveal) {
+        return
+      }
+
+      row.filled.filling = false
+      row.filled = false
+    },
+
+    submit () {
+      this.reveal = true
+
+      for (let row of this.rows) {
+        row.status =
+          row.filled && row.answer === row.filled.answer
+            ? 'correct'
+            : 'incorrect'
+      }
+    },
+
+    nextGame () {
+      this.state.closeGame()
+    }
+  }
 }
 </script>
 
-<style type="text/css" scoped>
+<style scoped>
+.book {
+  display: block;
+  width: 700px;
+  min-height: 300px;
+  background-color: white;
+  padding: 30px;
+  box-shadow: 0 10px 10px -5px;
+  margin: 0 auto;
+}
 
-.book{
+.book table {
+  width: 100%;
+}
+
+.book table td {
+  width: 50%;
+}
+
+.fillable, .filler {
+  background-color: #dedede;
+  width: 100%;
+  display: block;
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin: 0 10px;
+  padding: 3px 1px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.filler, .filled {
+  border-color: purple;
+  margin: 10px 0;
+}
+
+.fillable.correct {
+  border-color: green;
+}
+
+.fillable.incorrect {
+  border-color: red;
+}
+
+/* .book{
   padding: 5em 3em 3em 3em;
   margin: 1em 5em;
   border-radius: 3px;
   text-align: left;
-  background: #fff6d1; /*Alternative color: #f3eded*/
+  background: #fff6d1; /*Alternative color: #f3ede
   box-shadow: .2em .2em .5em #333
-}
+} */
 
 .box {
   /*
