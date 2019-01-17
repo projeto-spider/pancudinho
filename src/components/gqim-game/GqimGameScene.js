@@ -30,7 +30,7 @@ export default class GqimGameScene extends Scene {
     this.events.on('resize', this.resize, this)
 
     const camera = this.cameras.main
-    camera.setBackgroundColor('#bdbdbd')
+    camera.setBackgroundColor('#e9efe8')
     camera.setZoom(0.1)
 
     const tree = this.tree
@@ -46,6 +46,7 @@ export default class GqimGameScene extends Scene {
         hasTimer: true,
         timerCount: element.timerCount
       })
+      node.renderLeaves(false)
       this.add.existing(node)
 
       node.setData('id', element.id)
@@ -377,8 +378,11 @@ export default class GqimGameScene extends Scene {
 
   finishGame = () => {
     this.gameFinished = true
+    this.draggableNodes.forEach(node => {
+      node.stopTimer()
+      node.renderLeaves('dead')
+    })
     this.dropZones.forEach(dropZone => dropZone.revealStatus())
-    this.draggableNodes.forEach(node => node.stopTimer())
   }
 
   handleFinish = ({ time }) => {
