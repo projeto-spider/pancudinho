@@ -39,6 +39,7 @@
         <GameBookSelectFillGame
           v-if="currentGame.type === 'book-select-fill-game'"
           :state="state"
+          :chunks="currentGame.data.chunks"
         ></GameBookSelectFillGame>
       </div>
 
