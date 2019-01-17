@@ -174,11 +174,17 @@ export default class GqimGameScene extends Scene {
           const id = bottomNode.getData('id')
 
           if (edges.includes(id)) {
-            const graphics = scene.add.graphics({ lineStyle: { width: 3, color: 0xaa00aa } })
+            const graphics = scene.add.graphics({
+              lineStyle: {
+                width: 15,
+                color: 0x894e2e
+              }
+            })
+            graphics.setDepth(-1)
 
             const line = new Phaser.Geom.Line(
               topNode.x,
-              topNode.y + topNode.height / 2,
+              topNode.y + topNode.height / 2 - 10,
               bottomNode.x,
               bottomNode.y - bottomNode.height / 2
             )
