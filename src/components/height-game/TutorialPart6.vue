@@ -1,6 +1,7 @@
 <template>
   <div class="aligner">
     <Panel class="ScenePanel">
+      <Tutorial class="tutorial"></Tutorial>
       <Scene v-if="config" :config="config" ref="scene">
       </Scene>
       <Button color="blue" class="submit-button" @click.native="submit">
@@ -15,6 +16,7 @@ import Background from '../ui/Background.vue'
 import Panel from '../ui/Panel.vue'
 import Button from '../ui/Button.vue'
 import Scene from '../phaser/Scene.vue'
+import Tutorial from './Tutorial4.vue'
 
 export default {
   name: 'HeightGame',
@@ -23,7 +25,8 @@ export default {
     Background,
     Panel,
     Button,
-    Scene
+    Scene,
+    Tutorial
   },
 
   data () {
@@ -67,7 +70,7 @@ export default {
 
             text = this.add.text(450, 50, '', { fontSize: '100px', fill: '#000' })
 
-            setTimeout(function () {
+            /*setTimeout(function () {
               showCounter = 3
             }, 1000)
 
@@ -105,7 +108,7 @@ export default {
               this.scene.pause()
               this.add.text(200, 200, 'TRY AGAIN', { fontSize: '60px', fill: '#000' })
             }, null, this)
-            console.log(barraEstadiometro)
+            console.log(barraEstadiometro)*/
           },
           update () {
             text.setText(showCounter)
@@ -115,6 +118,8 @@ export default {
       }
     }
   },
+
+
 
   methods: {
     submit () {
@@ -154,6 +159,12 @@ export default {
   background-color: rgba(0, 0, 0, .7);
   display: table;
   transition: opacity .3s ease;
+}
+
+.tutorial {
+  position: fixed;
+  top: -250px;
+  left: 20px;
 }
 
 </style>
