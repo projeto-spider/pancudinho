@@ -15,6 +15,7 @@ const leavePositions = [DOWN_LEFT, DOWN_RIGHT, UP_LEFT, UP_RIGHT]
 
 export default function preloadGqimGame (scene) {
   scene.load.image('background', require('../../assets/gqim-game/background.png'))
+  scene.load.image('arrow', require('../../assets/gqim-game/arrow.png'))
 
   Object.entries(textures)
     .forEach(([key, url]) =>

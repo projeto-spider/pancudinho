@@ -122,6 +122,8 @@ export default class GqimGameScene extends Scene {
     connectBetweenTreeLevels(this, questionNodes, indicatorNodes)
     connectBetweenTreeLevels(this, indicatorNodes, metricNodes)
 
+    this.addArrows(treeNodes)
+
     const TIME_TO_FOCUS_GOAL = 1000
     camera.pan(goalNode.x, goalNode.y, TIME_TO_FOCUS_GOAL)
     camera.zoomTo(0.8, TIME_TO_FOCUS_GOAL)
@@ -364,6 +366,31 @@ export default class GqimGameScene extends Scene {
 
     uiScene.events.on('timeout', this.timeout)
     uiScene.events.on('main:finish', this.handleFinish)
+  }
+
+  addArrows = (treeNodes) => {
+    const allNodes = Object.values(treeNodes)
+      .reduce((acc, xs) => acc.concat(xs), [])
+
+    const leftMostPosition = allNodes
+      .map(node => node.getBounds().x)
+      .reduce((a, b) => Math.min(a, b))
+
+    const ARROW_WIDTH = 512
+    const ARROW_MARGIN = 20
+    const x = leftMostPosition - ARROW_WIDTH - ARROW_MARGIN
+
+    for (let row of Object.values(treeNodes)) {
+      console.log({row, treeNodes})
+      const elements = Array.isArray(row) ? row : [row]
+
+      const element = elements[0]
+      const bounds = element.getBounds()
+      const y = bounds.y + (bounds.height / 2)
+
+      this.add.image(x, y, 'arrow')
+        .setOrigin(0.5)
+    }
   }
 
   enableDrag = (node) => {
