@@ -1,44 +1,64 @@
 <template>
 <div>
     <div v-if='visualNovel'>
-      <Panel>
-        <div v-if='(counter2 === 2) || (counter2 === 3)'>
-          <p class='center'>
-            <img src="../../assets/Par1.jpg">
-            <img src="../../assets/Par2.jpg">
-          </p>
-        </div>
-        <div v-else>
-          <p class='center'><img src="../../assets/PancudinhoVitruviano.jpg"></p>
-        </div>
-        <div class='balloon'>
-        <div class='text' v-for='item in tutorial' :key="item.id" v-if='item.showText'>
-          {{item.text}}
+
+            <div v-if='((counter2==3) || (counter2==4))'>
+              <div class='text'> {{showText}} </div>
+              <div class='text' @click="handleClick()">>></div>
+            </div>
+
+            <div v-if='tutorialExample1'>
+              <h2>Score: 1000</h2>
+            </div>
+            <div v-if='tutorialExample2'>
+              <h2>Score: 900</h2>
+            </div>
+
+            <div class="MemoryGame">
+
+                  <div>
+
+                  <Board
+                    :cards="cardsInGame"
+                    :handle-click-card="handleClickCard"
+                  ></Board>
+
+                  <div v-if='((counter2==0) || (counter2==1) || (counter2==2) || (counter2==5) || (counter2==6))' class='MemoryGame balloon'>
+                    <div class='text'> {{showText}} </div>
+                    <div class='text2' @click="handleClick()">>></div>
+                  </div>
+
+                  <Pancudinho
+                    :tips-choice="currentTip"
+                    :handle-close="changeTip"
+                  ></Pancudinho>
+
+                  <button v-if="gameFinished" @click="closeGame">Continue</button>
+
+                  </div>
           </div>
-          <div class='text' @click="nextText()">>></div>
-        </div>
-      </Panel>
       </div>
 
-    <div v-if='!visualNovel'>
-      <h1 style='text-align: center'>{{ counter }}</h1>
-      <h2 v-if='showScore'>Score: {{ score }}</h2>
-      <div class="MemoryGame">
-        <Board
-          :cards="cardsInGame"
-          :handle-click-card="handleClickCard"
-        > {{ gameStart }} </Board>
+      <div v-else>
 
-          <div class="row pancudinho-block">
-            <Pancudinho
-              :tips-choice="currentTip"
-              :handle-close="changeTip"
-            ></Pancudinho>
+        <h2 v-if='showScore'>Score: {{ score }}</h2>
+        <div class="MemoryGame">
+          <Board
+            :cards="cardsInGame"
+            :handle-click-card="handleClickCard"
+          > </Board>
 
-            <button v-if="gameFinished" @click="closeGame">Continue</button>
+            <div class="row pancudinho-block">
+              <Pancudinho
+                :tips-choice="currentTip"
+                :handle-close="changeTip"
+              ></Pancudinho>
+
+              <button v-if="gameFinished" @click="closeGame">Continue</button>
+          </div>
         </div>
       </div>
-    </div>
+
 </div>
 </template>
 
@@ -49,7 +69,7 @@ import Board from './Board.vue'
 import Card from './Card.vue'
 import Panel from '../ui/Panel.vue'
 
-const FLIP_WAIT_TIME = 1000
+const FLIP_WAIT_TIME = 5000
 
 export default {
   name: 'MemoryGame',
@@ -74,31 +94,43 @@ export default {
 
     tutorial: [
         {
-          text: 'Esse é o jogo da memória.',
-          displayedText: '',
-          showText: true
+          text: 'Esse é o jogo da memória.'
         },
         {
-          text: 'Aqui teremos cartas viradas para baixo com palavras relacionadas à medição e seus conceitos.',
-          showText: false
+          text: 'Aqui teremos cartas viradas para baixo com palavras relacionadas à medição e seus conceitos.'
         },
         {
-          text: 'Seu objetivo é parear as cartas corretamente, ou seja, cada palavra com cada conceito.',
-          showText: false
+          text: 'Seu objetivo é parear as cartas corretamente, ou seja, cada palavra com cada conceito.'
         },
         {
-          text: 'Você terá 5 segundos no início com todas as cartas viradas para cima.',
-          showText: false
+          text: 'Caso você consiga fazer um par correto, ganha 1000 pontos.'
         },
         {
-          text: 'Pronto?',
-          showText: false
+          text: 'Caso contrário, perde 100.'
         },
         {
-          text: 'Vamos começar!',
-          showText: false
+          text: 'Está Pronto?'
+        },
+        {
+          text: 'Vamos começar!'
         }
     ],
+
+    tutorialExample1: false,
+
+    tutorialExample2: false,
+
+    indexPaired: 0,
+
+    indexNotPaired1: 0,
+
+    indexNotPaired2: 0,
+
+    showTextInterval: 0,
+
+    showTextDigitCount: 0,
+
+    showText: '',
 
     score: 0,
 
@@ -118,43 +150,22 @@ export default {
 
     clickedCards: [],
 
-    counter2: 0,
+    counter2: -1,
 
     // As we don't have real tips, we are mocking this
     currentTip: 'tip1'
   }),
 
   created () {
+
     this.cardsInGame = this.cards
       .sort(() => Math.random() - Math.random())
+
+    this.flipDownCards()
+    this.nextText()
   },
 
   computed: {
-
-    randomFunction(){
-      alert('oi')
-    },
-
-    gameStart () {
-      for (var i = 1; i <= 5; i++) {
-        setTimeout(() => {
-          this.counter--
-          if (this.counter == 0) {
-            this.showScore = true
-            this.counter = ''
-          }
-        }, 1000 * i)
-      }
-      setTimeout(() => {
-        for (var i = 0; i < this.cardsInGame.length; i++) {
-          this.cardsInGame[i].flip = false
-          this.isGameStart = false
-        }
-      }, 5000)
-
-      return null
-    },
-
     gameFinished () {
       const allGroups = Array.from(this.cards.map(card => card.group))
       return allGroups.every(groupId => this.pairedCards.includes(groupId))
@@ -162,24 +173,121 @@ export default {
   },
 
   methods: {
-     nextText() {
+
+     handleClick () {
+
+      if (this.tutorial[this.counter2].text === this.showText) {
+        this.nextText()
+      } else {
+        this.skipWrittingText()
+      }
+
+    },
+
+    nextText() {
 
       this.counter2++
+
+      if (this.upTutorialEnd()) {
+        this.finishUpTutorial()
+      }
+
       if (this.counter2 >= this.tutorial.length) {
         this.counter2 = 0
         this.visualNovel = false
+        this.isGameStart = false
+        this.showScore = true
       }
-      for (let i = 0; i < this.tutorial.length; i++) {
-        if (this.tutorial[i].showText) {
-          this.tutorial[i].showText = false
+
+      this.showText = ''
+      this.showTextDigitCount = 0
+
+      this.showTextInterval = setInterval(() => {
+        const nextChar = this.tutorial[this.counter2].text[this.showTextDigitCount++]
+
+        if (!nextChar) {
+          this.tutorialScenes()
+          this.clearShowTextInterval()
+        } else {
+          this.showText += nextChar
+        }
+
+      }, 50)
+
+    },
+
+    skipWrittingText () {
+      this.clearShowTextInterval()
+      this.tutorialScenes()
+      this.showText = this.tutorial[this.counter2].text
+    },
+
+    clearShowTextInterval () {
+      if (this.showTextInterval) {
+        clearInterval(this.showTextInterval)
+      }
+    },
+
+
+    tutorialScenes () {
+      if (this.counter2 === 3) {
+        this.tutorialExample1 = true
+        this.tutorialExample2 = false
+        this.tutorialScene1()
+      } else if (this.counter2 === 4) {
+        this.tutorialExample1 = false
+        this.tutorialExample2 = true
+        this.tutorialScene2()
+      }
+    },
+
+    tutorialScene1 () {
+      for (let i = 1; i < this.cardsInGame.length; i++) {
+        if (this.cardsInGame[0].group === this.cardsInGame[i].group) {
+          this.indexPaired = i
         }
       }
-      this.tutorial[this.counter2].showText = true
+      this.cardsInGame[0].flip = true
+      this.cardsInGame[this.indexPaired].flip = true
+      this.setCardColor(this.cardsInGame[0], this.cardsInGame[this.indexPaired])
+    },
+
+    tutorialScene2 () {
+      for (let i = 1; i < this.cardsInGame.length; i++) {
+        if (i != this.indexPaired) {
+          this.indexNotPaired1 = i
+          break
+        }
+      }
+      for (let i = 1; i < this.cardsInGame.length; i++) {
+        if (i != this.indexNotPaired1 && i != this.indexPaired && this.cardsInGame[this.indexNotPaired1].group != this.cardsInGame[i].group) {
+          this.indexNotPaired2 = i
+          break
+        }
+      }
+      this.cardsInGame[this.indexNotPaired1].flip = true
+      this.cardsInGame[this.indexNotPaired2].flip = true
+    },
+
+    upTutorialEnd() {
+      if (this.counter2 === 5) {
+        return true
+      }
+    },
+
+    finishUpTutorial() {
+      this.tutorialScene2 = false
+      this.flipDownCards()
     },
 
     handleClickCard (card) {
+
       if (!this.isGameStart) {
-        if (!this.canClick(card)) this.clickedCards = []
+
+        if (!this.canClick(card)){
+          this.card.flip = false
+          this.clickedCards = []
+        }
 
         var countClickedCards = this.clickedCards.length
 
@@ -198,6 +306,7 @@ export default {
         } else if (countClickedCards === 1) {
           this.handleClickTwo(card)
         } else {
+          alert('oi')
           console.error('Failed to count card clicks')
         }
       }
@@ -205,6 +314,15 @@ export default {
 
     canClick (card) {
       return (this.clickedCards.length < 2)
+    },
+
+    flipDownCards () {
+      for (let card of this.cardsInGame) {
+        if (card.flip){
+          card.flip = false
+          card.color = ''
+        }
+      }
     },
 
     setCardColor (cardA, cardB) {
@@ -222,8 +340,8 @@ export default {
           cardB.color = 'red'
           break
         case 3:
-          cardA.color = 'violet'
-          cardB.color = 'violet'
+          cardA.color = 'brown'
+          cardB.color = 'brown'
           break
         case 4:
           cardA.color = 'purple'
@@ -256,20 +374,21 @@ export default {
         this.score += 1000
         this.pairedCards.push(cardA.group)
         this.setCardColor(cardA, cardB)
-        alert(this.cardA.color)
+        this.clickedCards = []
         setTimeout(() => {
           for (let card of this.clickedCards) {
             card.flip = true
           }
-          this.clickedCards = []
+          vm.clickedCards = []
         }, FLIP_WAIT_TIME)
       } else {
+        let vm = this
         setTimeout(() => {
           if (this.score > 0) this.score -= 100
           for (let card of this.clickedCards) {
             card.flip = false
           }
-          this.clickedCards = []
+          vm.clickedCards = []
         }, FLIP_WAIT_TIME)
       }
     },
@@ -331,9 +450,12 @@ html, body {
 .balloon{
   width: 800px;
   height: 100px;
-  margin-top:100px;
+  top: 80px;
+  left: 80px;
+  margin-top: 100px;
   padding: 0.1em 1em;
-  background: #00ace6;
+  position: absolute;
+  background: #FFD700;
   border-radius: 5px;
   text-align: flex-start;
   color: rgb(245, 245, 245);
@@ -342,9 +464,17 @@ html, body {
   font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
 }
 
-.text{
+.text {
   font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
-  color: white
+  color: black;
+}
+
+.text2 {
+  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+  color: black;
+  position: fixed;
+  left: 900px;
+  top: 250px;
 }
 
 .center{

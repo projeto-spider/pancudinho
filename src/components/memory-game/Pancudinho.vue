@@ -11,29 +11,23 @@
 
 <script>
 import Message from './Message.vue'
-
 export default {
   name: 'Pancudinho',
-
   components: { Message },
-
   props: {
     tipsChoice: {
       type: String
     },
-
     handleClose: {
       type: Function,
       default: () => {}
     }
   },
-
   data () {
     return {
       open: false
     }
   },
-
   methods: {
     closeMessage () {
       this.open = false
@@ -45,6 +39,9 @@ export default {
 
 <style scoped>
 .Pancudinho img {
+  position: fixed;
+  top: 30px;
+  right: 150px;
   transform: scaleX(-1);
 }
 </style>
