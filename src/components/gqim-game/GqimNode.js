@@ -3,20 +3,22 @@ import NodeTimer from './NodeTimer'
 
 const { Text } = Phaser.GameObjects
 
-const FILL_DARK = '#b2b2b2'
-const FILL_LIGHT = '#fff'
+const FILL_DARK = '#4D210F'
+const FILL_LIGHT = '#243310'
 const STATIC_PANEL = 'greyPanel'
 const DRAGGABLE_PANEL = 'bluePanel'
-const PANEL_OFFSET = 10
-const PANEL_PADDING = 20
+// const PANEL_OFFSET = 10
+const PANEL_PADDING = 25
+const COLOR_ALIVE = '#C9F4C1'
+const COLOR_DEAD = '#f28f65'
 
 const style = {
+  padding: PANEL_PADDING,
   fontSize: 18,
   align: 'center',
   wordWrap: {
     width: 300
-  },
-  fontFamily: 'kenvector_future'
+  }
 }
 
 export default class Node extends Phaser.GameObjects.Container {
@@ -41,8 +43,11 @@ export default class Node extends Phaser.GameObjects.Container {
 
     // Get the container size
     const textBounds = this.textObject.getBounds()
-    const realWidth = textBounds.width + 2 * PANEL_PADDING
-    const realHeight = textBounds.height + 2 * PANEL_PADDING
+    const realWidth = textBounds.width + 2 //* PANEL_PADDING
+    const realHeight = textBounds.height + 2 //* PANEL_PADDING
+
+    this.leaves = []
+    this.renderLeaves('alive')
 
     // Set the container size so we can make it draggable
     this.setSize(realWidth, realHeight)
@@ -54,8 +59,8 @@ export default class Node extends Phaser.GameObjects.Container {
     this.timeToActivate = timeToActivate
 
     if (hasTimer) {
-      const timerX = textBounds.x + realWidth - 20
-      const timerY = textBounds.y + realHeight - 20
+      const timerX = textBounds.x + (realWidth / 2)
+      const timerY = textBounds.y + realHeight
       this.timerObject = new NodeTimer(this.scene, timerX, timerY, 10)
     } else {
       this.timerObject = null
@@ -85,26 +90,78 @@ export default class Node extends Phaser.GameObjects.Container {
 
     this.rerenderPanelObject(panelTexture)
     this.textObject.setFill(fill)
+    this.renderLeaves(isDraggable ? false : 'alive')
   }
 
   rerenderPanelObject = (texture) => {
-    if (this.panelObject) {
-      this.remove(this.panelObject)
-      this.panelObject.destroy()
-    }
+    // if (this.panelObject) {
+    //   this.remove(this.panelObject)
+    //   this.panelObject.destroy()
+    // }
 
-    this.panelObject = this.scene.make.nineslice(
-      0,
-      0,
-      this.width,
-      this.height,
-      texture,
-      PANEL_OFFSET
+    // this.panelObject = this.scene.make.nineslice(
+    //   0,
+    //   0,
+    //   this.width,
+    //   this.height,
+    //   texture,
+    //   PANEL_OFFSET
+    // )
+
+    // this.panelObject.setOrigin()
+
+    // this.addAt(this.panelObject, 0)
+  }
+
+  renderLeaves = (type = 'dead') => {
+    const textBounds = this.textObject.getBounds()
+    const realWidth = textBounds.width + 2
+    const realHeight = textBounds.height + 2
+
+    this.textObject.setBackgroundColor(
+      type === 'alive' || !type
+        ? COLOR_ALIVE
+        : COLOR_DEAD
     )
 
-    this.panelObject.setOrigin()
+    for (let leaf of this.leaves) {
+      this.remove(leaf)
+      leaf.destroy()
+    }
 
-    this.addAt(this.panelObject, 0)
+    if (!type) {
+      return
+    }
+
+    const leaves =
+      [
+        this.scene.add.image(
+          -(realWidth / 2),
+          (realHeight / 2),
+          `${type}/down-left`
+        ),
+        this.scene.add.image(
+          -(realWidth / 2) + 20,
+          -(realHeight / 2) + 20,
+          `${type}/up-left`
+        ),
+        this.scene.add.image(
+          (realWidth / 2),
+          (realHeight / 2),
+          `${type}/down-right`
+        ),
+        this.scene.add.image(
+          (realWidth / 2) - 30,
+          -(realHeight / 2) + 20,
+          `${type}/up-right`
+        )
+      ]
+
+    for (let leaf of leaves) {
+      this.add(leaf)
+    }
+
+    this.leaves = leaves
   }
 
   startTimer = () => {

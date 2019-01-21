@@ -30,7 +30,7 @@ export default class GqimGameScene extends Scene {
     this.events.on('resize', this.resize, this)
 
     const camera = this.cameras.main
-    camera.setBackgroundColor('#bdbdbd')
+    camera.setBackgroundColor('#e9efe8')
     camera.setZoom(0.1)
 
     const tree = this.tree
@@ -46,6 +46,7 @@ export default class GqimGameScene extends Scene {
         hasTimer: true,
         timerCount: element.timerCount
       })
+      node.renderLeaves(false)
       this.add.existing(node)
 
       node.setData('id', element.id)
@@ -121,6 +122,8 @@ export default class GqimGameScene extends Scene {
     connectBetweenTreeLevels(this, questionNodes, indicatorNodes)
     connectBetweenTreeLevels(this, indicatorNodes, metricNodes)
 
+    this.addArrows(treeNodes)
+
     const TIME_TO_FOCUS_GOAL = 1000
     camera.pan(goalNode.x, goalNode.y, TIME_TO_FOCUS_GOAL)
     camera.zoomTo(0.8, TIME_TO_FOCUS_GOAL)
@@ -174,11 +177,17 @@ export default class GqimGameScene extends Scene {
           const id = bottomNode.getData('id')
 
           if (edges.includes(id)) {
-            const graphics = scene.add.graphics({ lineStyle: { width: 3, color: 0xaa00aa } })
+            const graphics = scene.add.graphics({
+              lineStyle: {
+                width: 15,
+                color: 0x894e2e
+              }
+            })
+            graphics.setDepth(-1)
 
             const line = new Phaser.Geom.Line(
               topNode.x,
-              topNode.y + topNode.height / 2,
+              topNode.y + topNode.height / 2 - 10,
               bottomNode.x,
               bottomNode.y - bottomNode.height / 2
             )
@@ -359,6 +368,31 @@ export default class GqimGameScene extends Scene {
     uiScene.events.on('main:finish', this.handleFinish)
   }
 
+  addArrows = (treeNodes) => {
+    const allNodes = Object.values(treeNodes)
+      .reduce((acc, xs) => acc.concat(xs), [])
+
+    const leftMostPosition = allNodes
+      .map(node => node.getBounds().x)
+      .reduce((a, b) => Math.min(a, b))
+
+    const ARROW_WIDTH = 512
+    const ARROW_MARGIN = 20
+    const x = leftMostPosition - ARROW_WIDTH - ARROW_MARGIN
+
+    for (let row of Object.values(treeNodes)) {
+      console.log({row, treeNodes})
+      const elements = Array.isArray(row) ? row : [row]
+
+      const element = elements[0]
+      const bounds = element.getBounds()
+      const y = bounds.y + (bounds.height / 2)
+
+      this.add.image(x, y, 'arrow')
+        .setOrigin(0.5)
+    }
+  }
+
   enableDrag = (node) => {
     this.input.setDraggable(node)
     node.setDraggable(true)
@@ -371,8 +405,11 @@ export default class GqimGameScene extends Scene {
 
   finishGame = () => {
     this.gameFinished = true
+    this.draggableNodes.forEach(node => {
+      node.stopTimer()
+      node.renderLeaves('dead')
+    })
     this.dropZones.forEach(dropZone => dropZone.revealStatus())
-    this.draggableNodes.forEach(node => node.stopTimer())
   }
 
   handleFinish = ({ time }) => {
