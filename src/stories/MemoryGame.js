@@ -11,6 +11,8 @@ import Deck from '../components/memory-game/Deck.vue'
 import Pancudinho from '../components/memory-game/Pancudinho.vue'
 import Message from '../components/memory-game/Message.vue'
 import Game from '../components/memory-game/Game.vue'
+import Game2 from '../components/memory-game/Game2.vue'
+import Game3 from '../components/memory-game/Game3.vue'
 
 const stories = storiesOf('Memory Game', module)
 
@@ -127,6 +129,34 @@ storiesOf('Memory Game', module)
       cards: Array.from(['O que é Medição?', 'Qual é o propósito da Medição?', 'Qual a importância da Medição?', 'O que são Medidas?', 'O que são Medidas Básicas?', 'O que são Medidas Derivadas?', 'O que são Indicadores?', 'Medição é uma avaliação quantitativa de qualquer aspecto ou fenômeno de uma entidade mensurável.', 'O propósito da Medição é coletar, armazenar, analisar e relatar os dados de um objeto de medição, visando a tomada de decisão.', 'Não se pode controlar o que não se pode medir. E não se pode predizer o que não se pode medir.', 'Elemento base da medição. Caracterizam, em termos quantitativos, um atributo de um objeto e fornecem informações importantes na tomada de decisão.', 'Medida definida em termos de um único atributo, sendo independente de outras medidas, por exemplo, massa corporal', 'Medida definida em função de dois ou mais valores de medidas básicas ou derivadas. Por exemplo, IMC=massa/\n(altura)^2.', 'Medida utilizada para analisar o alcance a objetivos, sendo uma estimativa que provê uma base para a tomada de decisão.'], (k, i) => ({
         id: i + 1,
         flip: true,
+        content: k,
+        group: Math.floor(i % 7),
+        color: ''
+      }))
+    } })
+  }))
+
+storiesOf('Memory Game', module)
+  .addDecorator(withKnobs)
+  .add('Game2', (h) => ({
+    render: h => h(Game2, { props: {
+      cards: Array.from(['O que é Medição?', 'Qual é o propósito da Medição?', 'Qual a importância da Medição?', 'O que são Medidas?', 'O que são Medidas Básicas?', 'O que são Medidas Derivadas?', 'O que são Indicadores?', 'Medição é uma avaliação quantitativa de qualquer aspecto ou fenômeno de uma entidade mensurável.', 'O propósito da Medição é coletar, armazenar, analisar e relatar os dados de um objeto de medição, visando a tomada de decisão.', 'Não se pode controlar o que não se pode medir. E não se pode predizer o que não se pode medir.', 'Elemento base da medição. Caracterizam, em termos quantitativos, um atributo de um objeto e fornecem informações importantes na tomada de decisão.', 'Medida definida em termos de um único atributo, sendo independente de outras medidas, por exemplo, massa corporal', 'Medida definida em função de dois ou mais valores de medidas básicas ou derivadas. Por exemplo, IMC=massa/\n(altura)^2.', 'Medida utilizada para analisar o alcance a objetivos, sendo uma estimativa que provê uma base para a tomada de decisão.'], (k, i) => ({
+        id: i + 1,
+        flip: false,
+        content: k,
+        group: Math.floor(i % 7),
+        color: ''
+      }))
+    } })
+  }))
+
+storiesOf('Memory Game', module)
+  .addDecorator(withKnobs)
+  .add('Game3', (h) => ({
+    render: h => h(Game3, { props: {
+      cards: Array.from(['O que é Medição?', 'Qual é o propósito da Medição?', 'Qual a importância da Medição?', 'O que são Medidas?', 'O que são Medidas Básicas?', 'O que são Medidas Derivadas?', 'O que são Indicadores?', 'Medição é uma avaliação quantitativa de qualquer aspecto ou fenômeno de uma entidade mensurável.', 'O propósito da Medição é coletar, armazenar, analisar e relatar os dados de um objeto de medição, visando a tomada de decisão.', 'Não se pode controlar o que não se pode medir. E não se pode predizer o que não se pode medir.', 'Elemento base da medição. Caracterizam, em termos quantitativos, um atributo de um objeto e fornecem informações importantes na tomada de decisão.', 'Medida definida em termos de um único atributo, sendo independente de outras medidas, por exemplo, massa corporal', 'Medida definida em função de dois ou mais valores de medidas básicas ou derivadas. Por exemplo, IMC=massa/\n(altura)^2.', 'Medida utilizada para analisar o alcance a objetivos, sendo uma estimativa que provê uma base para a tomada de decisão.'], (k, i) => ({
+        id: i + 1,
+        flip: false,
         content: k,
         group: Math.floor(i % 7),
         color: ''

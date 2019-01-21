@@ -7,6 +7,7 @@ import Centered from '@storybook/addon-centered'
 import Background from '../components/ui/Background.vue'
 import HeightGame from '../components/height-game/HeightGame.vue'
 import NewHeightGame from '../components/height-game/NewHeightGame.vue'
+import Tutorial from '../components/height-game/Tutorial.vue'
 
 const stories = storiesOf('Height Game', module)
 
@@ -24,6 +25,12 @@ stories
   .add('New Height Game', (h) => ({
     render: h => h(Background, { props: {} }, [
       h(NewHeightGame, { props: {
+      } })
+    ])
+  }))
+  .add('Tutorial', (h) => ({
+    render: h => h(Background, { props: {} }, [
+      h(Tutorial, { props: {
       } })
     ])
   }))
