@@ -12,9 +12,7 @@
           <p class='center'><img src="../../assets/PancudinhoVitruviano.jpg"></p>
         </div>
         <div class='balloon'>
-        <div class='text' v-for='item in tutorial' :key="item.id" v-if='item.showText'>
-          {{item.text}}
-          </div>
+          <div class='text'> {{showText2}} </div>
           <div class='text' @click="nextText()">>></div>
         </div>
       </Panel>
@@ -74,31 +72,30 @@ export default {
 
     tutorial: [
         {
-          text: 'Esse é o jogo da memória.',
-          displayedText: '',
-          showText: true
+          text: 'Esse é o jogo da memória.'
         },
         {
-          text: 'Aqui teremos cartas viradas para baixo com palavras relacionadas à medição e seus conceitos.',
-          showText: false
+          text: 'Aqui teremos cartas viradas para baixo com palavras relacionadas à medição e seus conceitos.'
         },
         {
-          text: 'Seu objetivo é parear as cartas corretamente, ou seja, cada palavra com cada conceito.',
-          showText: false
+          text: 'Seu objetivo é parear as cartas corretamente, ou seja, cada palavra com cada conceito.'
         },
         {
-          text: 'Você terá 5 segundos no início com todas as cartas viradas para cima.',
-          showText: false
+          text: 'Você terá 5 segundos no início com todas as cartas viradas para cima.'
         },
         {
-          text: 'Pronto?',
-          showText: false
+          text: 'Pronto?'
         },
         {
-          text: 'Vamos começar!',
-          showText: false
+          text: 'Vamos começar!'
         }
     ],
+
+    showTextInterval: 0,
+
+    showTextDigitCount: 0,
+
+    showText2: '',
 
     score: 0,
 
@@ -118,7 +115,7 @@ export default {
 
     clickedCards: [],
 
-    counter2: 0,
+    counter2: -1,
 
     // As we don't have real tips, we are mocking this
     currentTip: 'tip1'
@@ -127,6 +124,8 @@ export default {
   created () {
     this.cardsInGame = this.cards
       .sort(() => Math.random() - Math.random())
+
+    this.nextText()
   },
 
   computed: {
@@ -165,19 +164,34 @@ export default {
      nextText() {
 
       this.counter2++
+
+      //this.clearShowTextInterval()
+
       if (this.counter2 >= this.tutorial.length) {
         this.counter2 = 0
         this.visualNovel = false
       }
-      for (let i = 0; i < this.tutorial.length; i++) {
-        if (this.tutorial[i].showText) {
-          this.tutorial[i].showText = false
+
+      this.showText2 = ''
+      this.showTextDigitCount = 0
+
+      this.showTextInterval = setInterval(() => {
+        const nextChar = this.tutorial[this.counter2].text[this.showTextDigitCount++]
+        if (!nextChar) {
+          clearInterval(this.showTextInterval)
         }
-      }
-      this.tutorial[this.counter2].showText = true
+
+        this.showText2 += nextChar
+
+      }, 50)
+
+
     },
 
+
+
     handleClickCard (card) {
+
       if (!this.isGameStart) {
         if (!this.canClick(card)) this.clickedCards = []
 
