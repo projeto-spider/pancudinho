@@ -1,35 +1,47 @@
 <template>
   <div>
     <div @contextmenu.prevent="$refs.ctxMenu.open">
-      <div class="Card" :class="classes" @click="() => !isSelected && handleClick()">
-        <div v-if="flip">
-          <div v-if="color === 'yellow'" class="yellow">
-            {{ content }}
-          </div>
-          <div v-if="color === 'red'" class="red">
-            {{ content }}
-          </div>
-          <div v-if="color === 'blue'" class="blue">
-            {{ content }}
-          </div>
-          <div v-if="color === 'green'" class="green">
-            {{ content }}
-          </div>
-          <div v-if="color === 'orange'" class="orange">
-            {{ content }}
-          </div>
-          <div v-if="color === 'brown'" class="brown">
-            {{ content }}
-          </div>
-          <div v-if="color === 'purple'" class="purple">
-            {{ content }}
-          </div>
-          <div v-if="color === ''">
-            {{ content }}
+      <div v-if='!flip'>
+        <div class="Card"
+          :class="classes"
+          @click="() => !isSelected && handleClick()"
+          :style="`background-image: url(${require('../../assets/PancudinhoVitruvian.png')})`"
+          >
+        </div>
+      </div>
+      <div v-else>
+        <div class="Card"
+          :class="classes"
+          @click="() => !isSelected && handleClick()"
+          style='background-color: white;'
+          >
+            <div v-if="color === 'yellow'" class="yellow">
+              {{ content }}
+            </div>
+            <div v-if="color === 'red'" class="red">
+              {{ content }}
+            </div>
+            <div v-if="color === 'blue'" class="blue">
+              {{ content }}
+            </div>
+            <div v-if="color === 'green'" class="green">
+              {{ content }}
+            </div>
+            <div v-if="color === 'orange'" class="orange">
+              {{ content }}
+            </div>
+            <div v-if="color === 'brown'" class="brown">
+              {{ content }}
+            </div>
+            <div v-if="color === 'purple'" class="purple">
+              {{ content }}
+            </div>
+            <div v-if="color === ''">
+              {{ content }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
     <context-menu ref="ctxMenu" class="context-menu">
       <button @click="inZoom = true">View</button>
@@ -42,6 +54,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -117,7 +130,7 @@ export default {
   background-image: '../../assets/PancudinhoVitruviano.jpg';
 }
 
-.Card.flipped {
+.flipped {
   background-color: #fff;
   font-size: .73em;
 }
