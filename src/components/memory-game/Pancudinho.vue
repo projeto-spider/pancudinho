@@ -45,6 +45,9 @@ export default {
 
 <style scoped>
 .Pancudinho img {
+  position: fixed;
+  top: 30px;
+  right: 150px;
   transform: scaleX(-1);
 }
 </style>

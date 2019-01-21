@@ -57,6 +57,7 @@ export default {
 }
 
 .Message .popup {
+  position: fixed;
   z-index: 101;
   margin: auto;
   width: 70%;

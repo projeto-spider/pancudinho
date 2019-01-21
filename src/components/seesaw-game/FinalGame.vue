@@ -18,13 +18,16 @@ import Panel from '../ui/Panel.vue'
 import Button from '../ui/Button.vue'
 import Scene from '../phaser/Scene.vue'
 import Platform from './Platform'
+import Tutorial from './Tutorial.vue'
+
 export default {
   name: 'SeesawGame',
   components: {
     Background,
     Panel,
     Button,
-    Scene
+    Scene,
+    Tutorial
   },
   props: {
     state: {
