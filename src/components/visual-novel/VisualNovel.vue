@@ -1,28 +1,30 @@
 <template>
-  <Panel>
-    <div v-for="(scene, index) in scenes" :key="scene.id" v-show="index === counter">
-      <div>
-        <img :src="images[index]">
+  <div
+    class="background"
+    :style="`background-image: url(${images[counter]});`"
+  >
+    <div
+      class='balloon-wrapper'
+      @click="handleClick()"
+    >
+      <div class="balloon">
+        <div v-if="currentScene && currentScene.name" class="balloon-name">
+          {{ currentScene.name }}
+        </div>
+        {{ showText.length ? showText : '&nbsp;' }}
       </div>
 
-      <div
-        class='text'
-        :class="{ 'text-fix': [0, 5, 8, 9, 10, 11].includes(index) }"
-      >
-        {{ showText }}
+      <div class="btn-wrapper">
+        <div
+          class='btn btn-auto'
+          :class="{ 'btn-auto-on': auto }"
+          @click.stop="auto = !auto"
+        >Auto</div>
+        <div class='btn' @click.stop="handleClick()">>></div>
       </div>
     </div>
 
-    {{passAuto}}
-
-    <div v-if='auto'>
-      <div class='btn' style='color: green; ' @click="auto=!auto">Auto</div><br>
-    </div>
-    <div v-else>
-      <div class='btn' style='color: red;' @click="auto=!auto">Auto</div><br>
-    </div>
-
-    <div class='btn' @click="handleClick()" @click.prevent="displayText()">>></div>
+    <img v-for="(scene, index) in scenes" :key="index" :src="images[index]" v-show="false">
 
     <div v-if="currentScene && currentScene.question" v-show="showingOptions" class="option-area">
       <ul>
@@ -39,8 +41,7 @@
 
       <button v-if="selectedAnswer" @click="continueFromOptions()" class="hide-options-button">Continuar</button>
     </div>
-  </Panel>
-
+  </div>
 </template>
 
 <script>
@@ -72,7 +73,8 @@ export default {
     showingOptions: false,
     autoWasOnBeforeOptions: false,
     selectedAnswer: false,
-    correctAnswer: false
+    correctAnswer: false,
+    interval: false
   }),
 
   created () {
@@ -80,35 +82,31 @@ export default {
       return require(`../../assets/${scene.image}`)
     })
 
+    this.interval = setInterval(() => {
+      if (this.auto && this.currentScene.text === this.showText) {
+        this.auto = false
+
+        setTimeout(() => {
+          this.nextText()
+          this.auto = true
+        }, 1000)
+      }
+    })
+
     this.nextText()
+  },
+
+  destroyed () {
+    clearInterval(this.interval)
   },
 
   computed: {
     currentScene () {
       return this.scenes[this.counter]
-    },
-    passAuto () {
-      if (this.auto) {
-        if (this.currentScene.text === this.showText) {
-          return this.autoPassing()
-        }
-      }
     }
   },
 
   methods: {
-
-    autoPassing () {
-      let vm = this
-      setTimeout(
-        function () {
-          if (!vm.autoManualPass) {
-            return vm.nextText()
-          }
-          vm.autoManualPass = false
-        }, 1000)
-    },
-
     handleClick () {
       if (this.currentScene.text === this.showText) {
         if (this.auto) {
@@ -156,7 +154,7 @@ export default {
     },
 
     showOptions () {
-      if (!this.currentScene.question) {
+      if (!this.currentScene || !this.currentScene.question) {
         return false
       }
 
@@ -190,7 +188,17 @@ export default {
 </script>
 
 <style scoped>
-.next{
+.background {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .4);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.nexat{
   width: 100px;
   border: none;
   margin-top:0.1px;
@@ -200,13 +208,13 @@ export default {
   border-radius: 15px;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.0);
   text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
-  font: 400 30px/1.3 'Arizonia', Helvetica, sans-serif;
 }
 
-.box.balloon{
+.box.aballoon{
   width: 800px;
   height: 100px;
   margin-top: 50px;
+  margin-bottom: 10px;
   padding: 0.2em 2em;
   background: #70a1ff;
   border-radius: 5px;
@@ -214,15 +222,64 @@ export default {
   color: rgb(245, 245, 245);
   box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+}
+
+.balloon-wrapper {
+  position: fixed;
+  bottom: 0;
+  /* padding: 20px; */
+  width: 100%;
+}
+
+.balloon {
+  position: relative;
+  width: 90%;
+  margin: 20px auto;
+  cursor: pointer;
+  color: black;
+  background-color: #E6E6D3;
+  text-align: left;
+  min-height: 50px;
+  font-size: 1.3em;
+  background-color: #E6E6D3;
+  border: solid 2px #000;
+  border-radius: 15px;
+  padding: 18px 20px;
+  font-family: none;
+  font-weight: bold;
+  user-select: none;
+}
+
+.balloon-name {
+  position: absolute;
+  left: 0;
+  top: -25px;
+  background-color: #D6BAF7;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
 }
 
 .text {
-  color: black;
   position: absolute;
-  margin-top: -130px;
-  margin-left: 95px;
-  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+  bottom: 10px;
+  text-align: left;
+  width: 100%;
+  margin: 0 10px;
+  /* border-style: solid;
+  box-sizing: border-box;
+  user-select: none;
+
+  border-width: 69px 73px 73px; */
+
+  /* min-height: 50px;
+
+  border: solid 2px #000;
+  border-radius: 15px;
+  padding: 3px 10px;
+  text-align: center;
+  font-family: none;
+  font-weight: bold; */
 }
 
 /* Since ballons are on the image, we need this hack */
@@ -231,12 +288,31 @@ export default {
   margin-left: 100px;
 }
 
-.btn{
-  color: black;
+.balloon-wrapper .btn-wrapper {
   position: absolute;
-  margin-top: -80px;
-  margin-left: 900px;
-  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+  left: 92%;
+  bottom: -5px;
+  width: 100px;
+}
+
+.balloon-wrapper .btn-wrapper .btn {
+  margin: 20px auto;
+  cursor: pointer;
+  color: black;
+  background-color: #E6E6D3;
+  text-align: center;
+  font-size: 1.3em;
+  background-color: #E6E6D3;
+  border: solid 2px #000;
+  border-radius: 15px;
+  padding: 6px;
+  font-family: none;
+  font-weight: bold;
+  user-select: none;
+}
+
+.balloon-wrapper .btn-wrapper .btn.btn-auto.btn-auto-on {
+  background-color: antiquewhite;
 }
 
 .btn2{
