@@ -13,29 +13,25 @@
             <div v-if='tutorialExample2'>
               <h2>Score: 900</h2>
             </div>
+            <div>
+              <div class="MemoryGame">
 
-            <div class="MemoryGame">
+                    <div>
 
-                  <div>
+                    <Board
+                      :cards="cardsInGame"
+                      :handle-click-card="handleClickCard"
+                    ></Board>
 
-                  <Board
-                    :cards="cardsInGame"
-                    :handle-click-card="handleClickCard"
-                  ></Board>
+                    <div v-if='((counter2==0) || (counter2==1) || (counter2==2) || (counter2==5) || (counter2==6))' class='MemoryGame balloon'>
+                      <div class='text'> {{showText}} </div>
+                      <div class='text2' @click="handleClick()">>></div>
+                    </div>
 
-                  <div v-if='((counter2==0) || (counter2==1) || (counter2==2) || (counter2==5) || (counter2==6))' class='MemoryGame balloon'>
-                    <div class='text'> {{showText}} </div>
-                    <div class='text2' @click="handleClick()">>></div>
-                  </div>
+                    <button v-if="gameFinished" @click="closeGame">Continue</button>
 
-                  <Pancudinho
-                    :tips-choice="currentTip"
-                    :handle-close="changeTip"
-                  ></Pancudinho>
-
-                  <button v-if="gameFinished" @click="closeGame">Continue</button>
-
-                  </div>
+                    </div>
+            </div>
           </div>
       </div>
 
@@ -43,19 +39,23 @@
 
         <h2 v-if='showScore'>Score: {{ score }}</h2>
         <div class="MemoryGame">
-          <Board
-            :cards="cardsInGame"
-            :handle-click-card="handleClickCard"
-          > </Board>
 
-            <div class="row pancudinho-block">
+          <div>
+
+            <Board
+              style='position: absolute;'
+              :cards="cardsInGame"
+              :handle-click-card="handleClickCard"
+            > </Board>
+          </div>
+
               <Pancudinho
-                :tips-choice="currentTip"
-                :handle-close="changeTip"
-              ></Pancudinho>
+                    :tips-choice="currentTip"
+                    :handle-close="changeTip"
+                  ></Pancudinho>
 
               <button v-if="gameFinished" @click="closeGame">Continue</button>
-          </div>
+
         </div>
       </div>
 

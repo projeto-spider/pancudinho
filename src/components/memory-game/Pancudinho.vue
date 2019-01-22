@@ -1,6 +1,6 @@
 <template>
   <div class="Pancudinho">
-    <img @click="open = true" src="../../assets/pancudinho.png">
+    <img @click="open = true" src="../../assets/pancudinho_dicas.png">
     <Message
       :open="open"
       :tips-choice="tipsChoice"
@@ -41,7 +41,7 @@ export default {
 .Pancudinho img {
   position: fixed;
   top: 30px;
-  right: 150px;
+  right: 100px;
   transform: scaleX(-1);
 }
 </style>
