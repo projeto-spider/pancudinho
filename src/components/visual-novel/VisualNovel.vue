@@ -11,7 +11,7 @@
         <div v-if="currentScene && currentScene.name" class="balloon-name">
           {{ currentScene.name }}
         </div>
-        {{ showText.length ? showText : '&nbsp;' }}
+        <span>{{ showText.length ? showText : '&nbsp;' }}</span>
       </div>
 
       <div class="btn-wrapper">
@@ -248,6 +248,13 @@ export default {
   font-family: none;
   font-weight: bold;
   user-select: none;
+  min-height: 100px;
+  display: flex;
+}
+
+.balloon > span {
+  align-self: center;
+  max-width: 90%;
 }
 
 .balloon-name {
@@ -291,7 +298,7 @@ export default {
 .balloon-wrapper .btn-wrapper {
   position: absolute;
   left: 92%;
-  bottom: -5px;
+  bottom: 20px;
   width: 100px;
 }
 
