@@ -487,6 +487,49 @@
   },
   {
     "id": 8,
+    "type": "visual-novel",
+    "data": {
+      "scenes": [
+        {
+          "text": "Bom, estudando isso aqui descobri que agora que eu tenho métricas eu preciso.",
+          "name": "Pançudinho",
+          "image": "part-iv/1.png"
+        },
+        {
+          "text": "Descrever a medida explicando o que ela representa.",
+          "name": "Pançudinho",
+          "image": "part-iv/2.png"
+        },
+        {
+          "text": "Especificar com qual frequência o dado vai ser coletado e com qual frequência esse dado vai ser analisado...",
+          "name": "Pançudinho",
+          "image": "part-iv/3.png"
+        },
+        {
+          "text": "Como os dados vão ser coletados, como vão ser detalhados entre o limite: ok, alerta e crítico.",
+          "name": "Pançudinho",
+          "image": "part-iv/4.png"
+        },
+        {
+          "text": "E quem vai coletar e quem serão os interessados. E só.",
+          "name": "Pançudinho",
+          "image": "part-iv/4.png"
+        },
+        {
+          "text": "A-ha! Aí que você se engana. Ainda falta especificar a comunicação, ou seja como os dados serão relatados.",
+          "name": "Treinador",
+          "image": "part-iv/5.png"
+        },
+        {
+          "text": "Como você errou, vou precisar te testar.",
+          "name": "Treinador",
+          "image": "part-iv/5.png"
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
     "type": "book-select-fill-game",
     "data": {
       "title": "Peso",
@@ -534,11 +577,11 @@
     }
   },
   {
-    "id": 9,
+    "id": 10,
     "type": "transition"
   },
   {
-    "id": 10,
+    "id": 11,
     "type": "book-select-fill-game",
     "data": {
       "title": "IMC",
@@ -586,7 +629,7 @@
     }
   },
   {
-    "id": 11,
+    "id": 12,
     "type": "visual-novel",
     "data": {
       "scenes": [
