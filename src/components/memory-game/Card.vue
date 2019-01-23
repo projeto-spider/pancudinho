@@ -113,6 +113,7 @@ export default {
 
 <style scoped>
 .Card {
+  position: relative;
   display: inline-block;
   width: 120px;
   height: 160px;
@@ -124,7 +125,6 @@ export default {
   font-size: 1.2em;
   font-weight: normal;
   font-family: Arial, sans-serif;
-  position: relative;
   background-color: #003570;
   box-shadow: .2em .2em .5em #333;
   background-image: '../../assets/PancudinhoVitruviano.jpg';

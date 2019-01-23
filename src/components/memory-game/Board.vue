@@ -1,6 +1,7 @@
 <template>
   <Panel class="Board">
     <Card
+      style='position: static;'
       v-for="card in cards"
       :key="card.id"
       :flip="card.flip"
