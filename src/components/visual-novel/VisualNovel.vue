@@ -4,11 +4,11 @@
     :style="`background-image: url(${images[counter]});`"
   >
     <div
-      class='balloon-wrapper'
+      class='speach-balloon-wrapper'
       @click="handleClick()"
     >
-      <div class="balloon">
-        <div v-if="currentScene && currentScene.name" class="balloon-name">
+      <div class="speach-balloon">
+        <div v-if="currentScene && currentScene.name" class="speach-balloon-name">
           {{ currentScene.name }}
         </div>
         <span>{{ showText.length ? showText : '&nbsp;' }}</span>
@@ -224,14 +224,14 @@ export default {
   text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
 
-.balloon-wrapper {
+.speach-balloon-wrapper {
   position: fixed;
   bottom: 0;
   /* padding: 20px; */
   width: 100%;
 }
 
-.balloon {
+.speach-balloon {
   position: relative;
   width: 90%;
   margin: 20px auto;
@@ -252,12 +252,12 @@ export default {
   display: flex;
 }
 
-.balloon > span {
+.speach-balloon > span {
   align-self: center;
   max-width: 90%;
 }
 
-.balloon-name {
+.speach-balloon-name {
   position: absolute;
   left: 0;
   top: -25px;
@@ -295,14 +295,14 @@ export default {
   margin-left: 100px;
 }
 
-.balloon-wrapper .btn-wrapper {
+.speach-balloon-wrapper .btn-wrapper {
   position: absolute;
   left: 92%;
   bottom: 20px;
   width: 100px;
 }
 
-.balloon-wrapper .btn-wrapper .btn {
+.speach-balloon-wrapper .btn-wrapper .btn {
   margin: 20px auto;
   cursor: pointer;
   color: black;
@@ -318,7 +318,7 @@ export default {
   user-select: none;
 }
 
-.balloon-wrapper .btn-wrapper .btn.btn-auto.btn-auto-on {
+.speach-balloon-wrapper .btn-wrapper .btn.btn-auto.btn-auto-on {
   background-color: antiquewhite;
 }
 
