@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 v-if="title">{{ title }}</h1>
     <h2>Arraste as resposta para as lacunas</h2>
 
     <div class="book">
@@ -7,7 +8,7 @@
         <tr v-for="(row, i) in rows" :key="i">
           <td v-if="row.indent" style="width: 10%"></td>
 
-          <td :colspan="row.indent ? 1 : 2">{{row.text}}</td>
+          <td :colspan="row.indent ? 1 : 2" style="text-align: left">{{row.text}}</td>
 
           <td v-if="row.answer">
             <drop
@@ -71,6 +72,11 @@ export default {
     state: {
       type: Object,
       required: true
+    },
+
+    title: {
+      type: String,
+      required: false
     },
 
     chunks: {
