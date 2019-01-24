@@ -29,5 +29,6 @@ export default {
   z-index: 0;
   background-size: cover;
   background-repeat: repeat-y;
+  overflow-y: auto;
 }
 </style>
