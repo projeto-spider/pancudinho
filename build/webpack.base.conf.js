@@ -32,7 +32,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', '.vert', '.frag', '.ogg', '.mp3'],
     alias: {
       '@': resolve('src'),
     }
@@ -60,9 +60,8 @@ module.exports = {
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
-          limit: 10000,
           name: utils.assetsPath('media/[name].[hash:7].[ext]')
         }
       },
