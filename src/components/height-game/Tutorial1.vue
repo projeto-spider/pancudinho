@@ -109,7 +109,7 @@ export default {
 .balloon{
   width: 800px;
   height: 100px;
-  top: 400px;
+  top: 120px;
   left: 250px;
   margin-top: 100px;
   padding: 0.1em 1em;
@@ -131,6 +131,6 @@ export default {
   color: black;
   position: fixed;
   left: 1000px;
-  top: 310px;
+  top: 290px;
 }
 </style>

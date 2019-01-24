@@ -32,7 +32,7 @@ export default {
     showTextInterval: 0,
     tutorial: [
         {
-          text: 'Para evitar que isso ocorra, clique com o botão esquerdo do mouse em qualquer lugar da tela para parar a barra'
+          text: 'Para evitar que isso ocorra, clique com o botão esquerdo do mouse em qualquer lugar da tela para parar a barra.'
         },
         {
           text: 'Quanto mais você se aproximar da altura do Pançudinho, melhor será sua pontuação!'
@@ -122,6 +122,6 @@ export default {
   color: black;
   position: fixed;
   left: 1000px;
-  top: 310px;
+  top: 570px;
 }
 </style>

@@ -44,7 +44,7 @@ export default {
         },
         scene: {
           preload () {
-            this.load.image('pancudinho', require('../../assets/pancudinho.png'))
+            this.load.image('pancudinho', require('../../assets/pancudinho_medidas.png'))
             this.load.image('yellowblock', require('../../assets/yellow_panel.png'))
           },
 
