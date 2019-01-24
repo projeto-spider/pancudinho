@@ -47,7 +47,7 @@ export default class Node extends Phaser.GameObjects.Container {
     const realHeight = textBounds.height + 2 //* PANEL_PADDING
 
     this.leaves = []
-    this.renderLeaves('alive')
+    this.renderLeaves('dead')
 
     // Set the container size so we can make it draggable
     this.setSize(realWidth, realHeight)
@@ -134,28 +134,51 @@ export default class Node extends Phaser.GameObjects.Container {
     }
 
     const leaves =
-      [
-        this.scene.add.image(
-          -(realWidth / 2),
-          (realHeight / 2),
-          `${type}/down-left`
-        ),
-        this.scene.add.image(
-          -(realWidth / 2) + 20,
-          -(realHeight / 2) + 20,
-          `${type}/up-left`
-        ),
-        this.scene.add.image(
-          (realWidth / 2),
-          (realHeight / 2),
-          `${type}/down-right`
-        ),
-        this.scene.add.image(
-          (realWidth / 2) - 30,
-          -(realHeight / 2) + 20,
-          `${type}/up-right`
-        )
-      ]
+      type && type === 'dead'
+        ? [
+          this.scene.add.image(
+            -(realWidth / 2),
+            (realHeight / 2),
+            `${type}/down-left`
+          ),
+          this.scene.add.image(
+            -(realWidth / 2) + 30,
+            -(realHeight / 2) + 30,
+            `${type}/up-left`
+          ),
+          this.scene.add.image(
+            (realWidth / 2),
+            (realHeight / 2),
+            `${type}/down-right`
+          ),
+          this.scene.add.image(
+            (realWidth / 2) - 35,
+            -(realHeight / 2) + 30,
+            `${type}/up-right`
+          )
+        ]
+        : [
+          this.scene.add.image(
+            -(realWidth / 2),
+            (realHeight / 2),
+            `${type}/down-left`
+          ),
+          this.scene.add.image(
+            -(realWidth / 2) + 20,
+            -(realHeight / 2) + 20,
+            `${type}/up-left`
+          ),
+          this.scene.add.image(
+            (realWidth / 2),
+            (realHeight / 2),
+            `${type}/down-right`
+          ),
+          this.scene.add.image(
+            (realWidth / 2) - 30,
+            -(realHeight / 2) + 20,
+            `${type}/up-right`
+          )
+        ]
 
     for (let leaf of leaves) {
       this.add(leaf)
