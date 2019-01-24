@@ -327,90 +327,6 @@
       "tree": {
         "goal": {
           "id": "goal-1",
-          "label": "Melhorar o desempenho do aluno",
-          "edges": [
-            "question-1",
-            "question-2",
-            "question-3"
-          ]
-        },
-        "questions": [
-          {
-            "toDrop": true,
-            "id": "question-1",
-            "label": "Qual a média dos alunos?",
-            "edges": [
-              "indicator-ma"
-            ]
-          },
-          {
-            "id": "question-2",
-            "label": "Quais notas obtidas em cada módulo da disciplina?",
-            "edges": [
-              "indicator-naocmd"
-            ]
-          },
-          {
-            "id": "question-3",
-            "label": "Qual é a frequência do aluno?",
-            "edges": [
-              "indicator-fa"
-            ]
-          }
-        ],
-        "indicators": [
-          {
-            "id": "indicator-ma",
-            "label": "Média dos alunos",
-            "edges": [
-              "metric-1"
-            ]
-          },
-          {
-            "toDrop": true,
-            "id": "indicator-naocmd",
-            "label": "Nota do aluno obtida em cada módulo da disciplina",
-            "edges": [
-              "metric-2"
-            ]
-          },
-          {
-            "id": "indicator-fa",
-            "label": "Frequência do aluno",
-            "edges": [
-              "metric-3"
-            ]
-          }
-        ],
-        "metrics": [
-          {
-            "id": "metric-1",
-            "label": "Média dos alunos"
-          },
-          {
-            "id": "metric-2",
-            "label": "Nota do aluno obtida em cada módulo da disciplina"
-          },
-          {
-            "toDrop": true,
-            "id": "metric-3",
-            "label": "Frequência do aluno"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "id": 5,
-    "type": "transition"
-  },
-  {
-    "id": 6,
-    "type": "gqim-game",
-    "data": {
-      "tree": {
-        "goal": {
-          "id": "goal-1",
           "label": "Melhorar a qualidade de Vida do Pançudinho",
           "edges": [
             "question-1",
@@ -482,11 +398,11 @@
     }
   },
   {
-    "id": 7,
+    "id": 5,
     "type": "transition"
   },
   {
-    "id": 8,
+    "id": 6,
     "type": "visual-novel",
     "data": {
       "scenes": [
@@ -529,7 +445,7 @@
     }
   },
   {
-    "id": 9,
+    "id": 7,
     "type": "book-select-fill-game",
     "data": {
       "title": "Peso",
@@ -577,11 +493,11 @@
     }
   },
   {
-    "id": 10,
+    "id": 8,
     "type": "transition"
   },
   {
-    "id": 11,
+    "id": 9,
     "type": "book-select-fill-game",
     "data": {
       "title": "IMC",
@@ -629,7 +545,7 @@
     }
   },
   {
-    "id": 12,
+    "id": 10,
     "type": "visual-novel",
     "data": {
       "scenes": [
@@ -682,20 +598,20 @@
     }
   },
   {
-    "id": 13,
+    "id": 11,
     "type": "seesaw-game",
     "data": {
       "weight": 120
     }
   },
   {
-    "id": 14,
+    "id": 12,
     "type": "height-game",
     "data": {
     }
   },
   {
-    "id": 15,
+    "id": 13,
     "type": "visual-novel",
     "data": {
       "scenes": [
