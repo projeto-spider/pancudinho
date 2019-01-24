@@ -616,6 +616,67 @@
     "data": {
       "scenes": [
         {
+          "text": "Como acabamos de coletar as medidas, vamos analisar os resultados delas.",
+          "name": "Treinador",
+          "image": "analysis-game/background.png"
+        },
+        {
+          "text": "E vamos escolher uma ação para cada medida coletada baseado nos dados levantados.",
+          "name": "Treinador",
+          "image": "analysis-game/background.png"
+        },
+        {
+          "text": "Começando pelo peso e depois pelo IMC.",
+          "name": "Treinador",
+          "image": "analysis-game/background.png"
+        },
+        {
+          "question": true,
+          "text": "Sobre o seu peso.",
+          "image": "analysis-game/background.png",
+          "options": [
+            {
+              "text": "Crítico (X > 90): Aumentar os exercícios e o rigor da dieta.",
+              "correct": true
+            },
+            {
+              "text": "Alerta (80Kg < X <= 90): Aumentar os exercícios."
+            },
+            {
+              "text": "OK ( X <= 80Kg): Manter a dieta com os exercícios."
+            }
+          ]
+        },
+        {
+          "question": true,
+          "text": "Sobre o seu IMC.",
+          "image": "analysis-game/background.png",
+          "options": [
+            {
+              "text": "Crítico (Acima de 30): Aumentar os exercícios e o rigor da dieta.",
+              "correct": true
+            },
+            {
+              "text": "Alerta ( Entre 25 e 29,99): Aumentar os exercícios."
+            },
+            {
+              "text": "OK ( Entre 18,5 e 24,99): Manter a dieta com os exercícios."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "type": "transition"
+  },
+  {
+    "id": 15,
+    "type": "visual-novel",
+    "data": {
+      "scenes": [
+        {
           "text": "Alguns meses depois...",
           "image": "part-end-of-eva/final-01.png"
         },
