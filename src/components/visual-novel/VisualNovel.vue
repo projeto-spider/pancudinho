@@ -8,7 +8,11 @@
       @click="handleClick()"
     >
       <div class="speach-balloon">
-        <div v-if="currentScene && currentScene.name" class="speach-balloon-name">
+        <div
+          v-if="currentScene && currentScene.name"
+          class="speach-balloon-name"
+          :style="`color: ${colorForName(currentScene.name)}`"
+        >
           {{ currentScene.name }}
         </div>
         <span>{{ showText.length ? showText : '&nbsp;' }}</span>
@@ -180,6 +184,16 @@ export default {
 
       if (!this.auto) {
         this.nextText()
+      }
+    },
+
+    colorForName (name) {
+      if (name === 'Pançudinho') {
+        return 'rgb(255, 230, 0)'
+      }
+
+      if (name === 'Treinador') {
+        return '#0C0A39'
       }
     }
   }
