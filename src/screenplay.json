@@ -634,6 +634,31 @@
     "data": {
       "scenes": [
         {
+          "text": "Agora que sabemos como e quando coletar, e como calcular a métrica. Nós iremos, de fato, coletar as mesmas.",
+          "name": "Treinador",
+          "image": "part-v/1.png"
+        },
+        {
+          "text": "Começando pelo peso.",
+          "name": "Treinador",
+          "image": "part-v/2.png"
+        }
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "type": "seesaw-game",
+    "data": {
+      "weight": 120
+    }
+  },
+  {
+    "id": 14,
+    "type": "visual-novel",
+    "data": {
+      "scenes": [
+        {
           "text": "Alguns meses depois...",
           "image": "part-end-of-eva/final-01.png"
         },

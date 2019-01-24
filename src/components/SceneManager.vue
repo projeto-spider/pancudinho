@@ -42,6 +42,12 @@
           :title="currentGame.data.title"
           :chunks="currentGame.data.chunks"
         ></GameBookSelectFillGame>
+
+        <GameSeesaw
+          v-if="currentGame.type === 'seesaw-game'"
+          :state="state"
+          :weight="currentGame.data.weight"
+        ></GameSeesaw>
       </div>
 
       <div v-else>
@@ -81,6 +87,7 @@ import GameAnalysis from './analysis-game/Game.vue'
 import GameVisualNovel from './visual-novel/VisualNovel.vue'
 import GameBookDragAndDrop from './book/drag-drop-game/Game.vue'
 import GameBookSelectFillGame from './book/select-fill-game/SelectFillGame.vue'
+import GameSeesaw from './seesaw-game/SeesawGame.vue'
 
 import PageStart from './pages/Start.vue'
 import PageAbout from './pages/About.vue'
@@ -99,6 +106,7 @@ export default {
     GameVisualNovel,
     GameBookDragAndDrop,
     GameBookSelectFillGame,
+    GameSeesaw,
 
     PageStart,
     PageAbout,
