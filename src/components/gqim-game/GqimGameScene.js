@@ -380,8 +380,17 @@ export default class GqimGameScene extends Scene {
     const ARROW_MARGIN = 20
     const x = leftMostPosition - ARROW_WIDTH - ARROW_MARGIN
 
-    for (let row of Object.values(treeNodes)) {
-      console.log({row, treeNodes})
+    const rows = Object.values(treeNodes)
+    const labels = [
+      'Goal',
+      'Questions',
+      'Indicators',
+      'Metrics'
+    ]
+
+    const pairs = labels.map((label, i) => [label, rows[i]])
+
+    for (let [label, row] of pairs) {
       const elements = Array.isArray(row) ? row : [row]
 
       const element = elements[0]
@@ -389,6 +398,11 @@ export default class GqimGameScene extends Scene {
       const y = bounds.y + (bounds.height / 2)
 
       this.add.image(x, y, 'arrow')
+        .setOrigin(0.5)
+      this.add.text(x - 90, y - 10, label, {
+        fontSize: 50,
+        align: 'center'
+      })
         .setOrigin(0.5)
     }
   }
