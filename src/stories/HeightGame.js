@@ -5,7 +5,6 @@ import { withKnobs } from '@storybook/addon-knobs/vue'
 import Centered from '@storybook/addon-centered'
 
 import Background from '../components/ui/Background.vue'
-import HeightGame from '../components/height-game/HeightGame.vue'
 import TutorialPart1 from '../components/height-game/TutorialPart1.vue'
 import TutorialPart2 from '../components/height-game/TutorialPart2.vue'
 import TutorialPart3 from '../components/height-game/TutorialPart3.vue'
@@ -21,12 +20,6 @@ stories
   .addDecorator(Centered)
 
 stories
-  .add('Height Game', (h) => ({
-    render: h => h(Background, { props: {} }, [
-      h(HeightGame, { props: {
-      } })
-    ])
-  }))
   .add('Tutorial Part 1', (h) => ({
     render: h => h(Background, { props: {} }, [
       h(TutorialPart1, { props: {
