@@ -1,7 +1,7 @@
 <template>
   <div
     class="background"
-    :style="`background-image: url(${images[counter]});`"
+    :style="`background-image: url(${images[counter]}); background-size: ${currentScene.isTutorial ? 'auto' : 'cover'}`"
   >
     <div
       class='speach-balloon-wrapper'

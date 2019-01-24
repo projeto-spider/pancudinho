@@ -642,6 +642,41 @@
           "text": "Começando pelo peso.",
           "name": "Treinador",
           "image": "part-v/2.png"
+        },
+        {
+          "isTutorial": true,
+          "text": "Bem vindo ao jogo da balança!",
+          "image": "seesaw-game/tutorial-balança.png"
+        },
+        {
+          "isTutorial": true,
+          "text": "Nesse jogo, seu objetivo é medir o peso do Pançudinho.",
+          "image": "seesaw-game/tutorial-balança.png"
+        },
+        {
+          "isTutorial": true,
+          "text": "Mantendo o clique do mouse pressionado sobre a bigorna lado direito da balança, sua massa irá aumentar.",
+          "image": "seesaw-game/tutorial-balança-2.png"
+        },
+        {
+          "isTutorial": true,
+          "text": "Caso solte o clique, essa massa irá diminuir novamente.",
+          "image": "seesaw-game/tutorial-balança.png"
+        },
+        {
+          "isTutorial": true,
+          "text": "Para vencer, você precisa igualar a massa da bigorna e do Pançudinho por exatamente 3 segundos.",
+          "image": "seesaw-game/tutorial-balança-3.png"
+        },
+        {
+          "isTutorial": true,
+          "text": "Está Pronto?",
+          "image": "seesaw-game/tutorial-balança-3.png"
+        },
+        {
+          "isTutorial": true,
+          "text": "Vamos começar!",
+          "image": "seesaw-game/tutorial-balança-3.png"
         }
       ]
     }
