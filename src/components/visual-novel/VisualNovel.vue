@@ -140,6 +140,10 @@ export default {
       this.showTextDigitCount = 0
 
       this.showTextInterval = setInterval(() => {
+        if (!this.currentScene) {
+          return clearInterval(this.showTextInterval)
+        }
+
         const nextChar = this.currentScene.text[this.showTextDigitCount++]
 
         if (!nextChar) {
