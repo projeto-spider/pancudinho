@@ -172,6 +172,7 @@ export default {
   padding: 30px;
   box-shadow: 0 10px 10px -5px;
   margin: 0 auto;
+  user-select: none;
 }
 
 .book table {
