@@ -48,6 +48,11 @@
           :state="state"
           :weight="currentGame.data.weight"
         ></GameSeesaw>
+
+        <GameHeight
+          v-if="currentGame.type === 'height-game'"
+          :state="state"
+        ></GameHeight>
       </div>
 
       <div v-else>
@@ -88,6 +93,7 @@ import GameVisualNovel from './visual-novel/VisualNovel.vue'
 import GameBookDragAndDrop from './book/drag-drop-game/Game.vue'
 import GameBookSelectFillGame from './book/select-fill-game/SelectFillGame.vue'
 import GameSeesaw from './seesaw-game/SeesawGame.vue'
+import GameHeight from './height-game/NewHeightGame.vue'
 
 import PageStart from './pages/Start.vue'
 import PageAbout from './pages/About.vue'
@@ -107,6 +113,7 @@ export default {
     GameBookDragAndDrop,
     GameBookSelectFillGame,
     GameSeesaw,
+    GameHeight,
 
     PageStart,
     PageAbout,

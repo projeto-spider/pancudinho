@@ -655,6 +655,12 @@
   },
   {
     "id": 14,
+    "type": "height-game",
+    "data": {
+    }
+  },
+  {
+    "id": 15,
     "type": "visual-novel",
     "data": {
       "scenes": [
