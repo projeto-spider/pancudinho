@@ -17,7 +17,7 @@ export default {
 
   components: {
     Background,
-    Panel,
+    Panel
   },
   props: {
     finishTutorial: {
@@ -31,12 +31,12 @@ export default {
     showTextDigitCount: 0,
     showTextInterval: 0,
     tutorial: [
-        {
-          text: 'Para evitar que isso ocorra, clique com o botão esquerdo do mouse em qualquer lugar da tela para parar a barra.'
-        },
-        {
-          text: 'Quanto mais você se aproximar da altura do Pançudinho, melhor será sua pontuação!'
-        }
+      {
+        text: 'Para evitar que isso ocorra, clique com o botão esquerdo do mouse em qualquer lugar da tela para parar a barra.'
+      },
+      {
+        text: 'Quanto mais você se aproximar da altura do Pançudinho, melhor será sua pontuação!'
+      }
     ]
   }),
   created () {
@@ -50,7 +50,7 @@ export default {
         this.skipWrittingText()
       }
     },
-    nextText() {
+    nextText () {
       this.counter2++
       if (this.counter2 < this.tutorial.length) {
         this.showText = ''
@@ -59,14 +59,12 @@ export default {
           const nextChar = this.tutorial[this.counter2].text[this.showTextDigitCount++]
           if (!nextChar) {
             this.clearShowTextInterval()
-            return
           } else {
             this.showText += nextChar
           }
         }, 50)
       } else {
         this.finishTutorial()
-        return
       }
     },
     skipWrittingText () {
@@ -77,7 +75,7 @@ export default {
       if (this.showTextInterval) {
         clearInterval(this.showTextInterval)
       }
-    },
+    }
   }
 }
 </script>

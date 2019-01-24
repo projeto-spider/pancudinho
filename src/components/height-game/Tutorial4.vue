@@ -17,7 +17,7 @@ export default {
 
   components: {
     Background,
-    Panel,
+    Panel
   },
   props: {
     finishTutorial: {
@@ -31,9 +31,9 @@ export default {
     showTextDigitCount: 0,
     showTextInterval: 0,
     tutorial: [
-        {
-          text: 'Sem mais enrolações (...) vamos começar!'
-        }
+      {
+        text: 'Sem mais enrolações (...) vamos começar!'
+      }
     ]
   }),
   created () {
@@ -47,7 +47,7 @@ export default {
         this.skipWrittingText()
       }
     },
-    nextText() {
+    nextText () {
       this.counter2++
       if (this.counter2 < this.tutorial.length) {
         this.showText = ''
@@ -56,14 +56,12 @@ export default {
           const nextChar = this.tutorial[this.counter2].text[this.showTextDigitCount++]
           if (!nextChar) {
             this.clearShowTextInterval()
-            return
           } else {
             this.showText += nextChar
           }
         }, 50)
       } else {
         this.finishTutorial()
-        return
       }
     },
     skipWrittingText () {
@@ -74,7 +72,7 @@ export default {
       if (this.showTextInterval) {
         clearInterval(this.showTextInterval)
       }
-    },
+    }
   }
 }
 </script>

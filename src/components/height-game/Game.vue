@@ -2,9 +2,6 @@
   <div class="aligner">
       <Scene v-if="config" :config="config" ref="scene">
       </Scene>
-      <Button color="blue" class="submit-button" @click.native="submit">
-        Submit
-      </Button>
   </div>
 </template>
 
@@ -45,7 +42,7 @@ export default {
             this.load.image('pancudinho', require('../../assets/pancudinho_medidas.png'))
           },
           create () {
-            this.add.image(500, 190, 'consultorio')
+            this.add.image(700, 190, 'consultorio')
             this.events.on('resize', resize, this)
             const camera = this.cameras.main
             camera.setBackgroundColor('#bdbdbd')
@@ -77,9 +74,9 @@ export default {
             this.input.on('pointerdown', function () {
               if (barraEstadiometro.y < 270 && flag === 1) {
                 this.add.text(200, 200, 'BOA TENTATIVA!', { fontSize: '60px', fill: '#000' })
-              } else if (barraEstadiometro.y >= 270 && barraEstadiometro.y < 300) {
+              } else if (barraEstadiometro.y >= 270 && barraEstadiometro.y < 305) {
                 this.add.text(200, 200, 'BOM!', { fontSize: '60px', fill: '#000' })
-              } else if (barraEstadiometro.y >= 300 && barraEstadiometro.y <= 320) {
+              } else if (barraEstadiometro.y >= 305 && barraEstadiometro.y <= 321) {
                 this.add.text(200, 200, 'EXCELENTE!', { fontSize: '60px', fill: '#000' })
               }
               barraEstadiometro.setVelocity(0, 0)
@@ -87,6 +84,7 @@ export default {
             this.physics.add.overlap(barraEstadiometro, pancudinho, function () {
               this.scene.pause()
               this.add.text(200, 200, 'TENTE NOVAMENTE!', { fontSize: '60px', fill: '#000' })
+              console.log(barraEstadiometro)
             }, null, this)
             console.log(barraEstadiometro)
           },

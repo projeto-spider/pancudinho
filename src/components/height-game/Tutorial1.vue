@@ -22,7 +22,7 @@ export default {
   props: {
     nextTutorial: {
       type: Function
-    },
+    }
   },
   data: () => ({
     counter2: -1,
@@ -30,21 +30,21 @@ export default {
     showTextDigitCount: 0,
     showTextInterval: 0,
     tutorial: [
-        {
-          text: 'Bem vindo ao jogo da altura!'
-        },
-        {
-          text: 'Nesse jogo, seu objetivo é medir a altura do Pançudinho.'
-        },
-        {
-          text: 'Para isso, você contará com a ajuda de um aparelho denominado de estadiômetro.'
-        },
-        {
-          text: 'A barra do estadiômetro irá cair e você precisa evitar que caia sobre a cabeça do Pançudinho.'
-        },
-        {
-          text: 'Caso isso ocorra, é fim de jogo!'
-        }
+      {
+        text: 'Bem vindo ao jogo da altura!'
+      },
+      {
+        text: 'Nesse jogo, seu objetivo é medir a altura do Pançudinho.'
+      },
+      {
+        text: 'Para isso, você contará com a ajuda de um aparelho denominado de estadiômetro.'
+      },
+      {
+        text: 'A barra do estadiômetro irá cair e você precisa evitar que caia sobre a cabeça do Pançudinho.'
+      },
+      {
+        text: 'Caso isso ocorra, é fim de jogo!'
+      }
     ]
   }),
   created () {
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     handleClick () {
-      if (this.counter2 >= this.tutorial.length){
+      if (this.counter2 >= this.tutorial.length) {
         this.nextTutorial()
       } else if (this.tutorial[this.counter2].text === this.showText) {
         this.nextText()
@@ -60,7 +60,7 @@ export default {
         this.skipWrittingText()
       }
     },
-    nextText() {
+    nextText () {
       this.counter2++
       if (this.counter2 < this.tutorial.length) {
         this.showText = ''
@@ -69,13 +69,10 @@ export default {
           const nextChar = this.tutorial[this.counter2].text[this.showTextDigitCount++]
           if (!nextChar) {
             this.clearShowTextInterval()
-            return
           } else {
             this.showText += nextChar
           }
         }, 50)
-      } else {
-        return
       }
     },
     skipWrittingText () {
@@ -86,7 +83,7 @@ export default {
       if (this.showTextInterval) {
         clearInterval(this.showTextInterval)
       }
-    },
+    }
   }
 }
 </script>
