@@ -1,13 +1,20 @@
 <template>
-  <div class="Background">
+  <div
+    class="Background"
+    :style="`background-image: url('${WoodPng}')`"
+  >
     <slot></slot>
-    <div class="clouds"></div>
   </div>
 </template>
 
 <script>
+import WoodPng from '../../assets/wood.png'
+
 export default {
-  name: 'Background'
+  name: 'Background',
+  data: () => ({
+    WoodPng
+  })
 }
 </script>
 
@@ -20,22 +27,7 @@ export default {
   width: 100vw;
   height: 100vh;
   z-index: 0;
-}
-
-.clouds {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 400px;
-  background-position: bottom;
-  background-repeat: repeat-x;
-  background-image: url('../../assets/bg-clouds.png');
-  animation: animatedBackground 40s linear infinite;
-  z-index: 1;
-}
-
-@keyframes animatedBackground {
-  from { background-position: 0 bottom; }
-  to { background-position: 100% bottom; }
+  background-size: cover;
+  background-repeat: repeat-y;
 }
 </style>
