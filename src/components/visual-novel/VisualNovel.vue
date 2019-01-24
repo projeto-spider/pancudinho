@@ -1,7 +1,7 @@
 <template>
   <div
     class="background"
-    :style="`background-image: url(${images[counter]}); background-size: ${currentScene.isTutorial ? 'auto' : 'cover'}`"
+    :style="`background-image: url(${images[counter]}); background-size: ${currentScene && currentScene.isTutorial ? 'auto' : 'cover'}`"
   >
     <div
       class='speach-balloon-wrapper'
@@ -87,7 +87,7 @@ export default {
     })
 
     this.interval = setInterval(() => {
-      if (this.auto && this.currentScene.text === this.showText) {
+      if (!this.showingOptions && this.auto && this.currentScene.text === this.showText) {
         this.auto = false
 
         setTimeout(() => {
@@ -186,9 +186,7 @@ export default {
       this.correctAnswer = false
       this.showingOptions = false
 
-      if (!this.auto) {
-        this.nextText()
-      }
+      this.nextText()
     },
 
     colorForName (name) {
