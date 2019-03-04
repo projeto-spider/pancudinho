@@ -20,7 +20,46 @@
           :class="{ 'btn-auto-on': auto }"
           @click.stop="auto = !auto"
         >Auto</div>
-        <div class='btn' @click.stop="handleClick()">>></div>
+        <div class='btn' @click.stop="handleClick()">>></div><br>
+      </div>
+    </div>
+
+    <div>
+      <button v-if='configPanel === false' @click='configPanel = true' @click.prevent='clearShowTextInterval()'>CONFIGURAÇÕES</button>
+      <div v-if='configPanel' class='balloon'>
+        <h1> CONFIGURAÇÕES </h1>
+        <h1> VELOCIDADE DO TEXTO : </h1>
+        <button @click='lowVelocity()'>
+           <div v-if='textVelocity == 110' style='color: green;'>
+            BAIXA
+           </div>
+           <div v-else>
+             BAIXA
+           </div>
+        </button>
+        <button @click='mediumVelocity()'>
+          <div v-if='textVelocity == 65' style='color: green;'>
+            MÉDIA
+           </div>
+           <div v-else>
+             MÉDIA
+           </div>
+        </button>
+        <button @click='highVelocity()'>
+          <div v-if='textVelocity == 35' style='color: green;'>
+            ALTA
+           </div>
+           <div v-else>
+             ALTA
+           </div>
+        </button> <br>
+        <h1> EFEITOS SONOROS: </h1>
+          <button v-if='speeches' @click='speeches = !speeches' style='color: green;'>ON</button>
+          <button v-else @click='speeches = !speeches' style='color: red;'>OFF</button>
+        <h1> FALAS: </h1>
+          <button v-if='soundEffects' @click='soundEffects = !soundEffects' style='color: green;'>ON</button>
+          <button v-else @click='soundEffects = !soundEffects' style='color: red;'>OFF</button> <br><br>
+        <button v-if='configPanel === true' @click='configPanel = false' @click.prevent='buildingText()'> SAIR DAS CONFIGURAÇÕES </button>
       </div>
     </div>
 
@@ -64,6 +103,10 @@ export default {
 
   data: () => ({
     counter: -1,
+    textVelocity: 65,
+    speeches: true,
+    soundEffects: true,
+    configPanel: false,
     auto: false,
     autoManualPass: false,
     showText: '',
@@ -123,6 +166,24 @@ export default {
       this.showText = this.currentScene.text
     },
 
+    lowVelocity () {
+      this.textVelocity = 110
+      //  this.clearShowTextInterval()
+      //  this.buildingText()
+    },
+
+    highVelocity () {
+      this.textVelocity = 35
+      //  this.clearShowTextInterval()
+      //  this.buildingText()
+    },
+
+    mediumVelocity () {
+      this.textVelocity = 65
+      //  this.clearShowTextInterval()
+      //  this.buildingText()
+    },
+
     nextText () {
       this.counter++
 
@@ -135,6 +196,10 @@ export default {
       this.showText = ''
       this.showTextDigitCount = 0
 
+      this.buildingText()
+    },
+
+    buildingText () {
       this.showTextInterval = setInterval(() => {
         const nextChar = this.currentScene.text[this.showTextDigitCount++]
 
@@ -143,7 +208,7 @@ export default {
         }
 
         this.showText += nextChar
-      }, 50)
+      }, this.textVelocity)
     },
 
     clearShowTextInterval () {
@@ -375,4 +440,19 @@ export default {
   right: 0;
   margin: 30px;
 }
+
+.balloon{
+  width: 600px;
+  height: 550px;
+  padding: 0.1em 1em;
+  position: absolute;
+  background: white;
+  border-radius: 5px;
+  text-align: flex-start;
+  color: rgb(245, 245, 245);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.8);
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
+}
+
 </style>
