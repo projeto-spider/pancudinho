@@ -35,6 +35,8 @@ export default {
       }
 
       window.addEventListener('resize', this.resize, false)
+
+      this.game.events.on('control:result', console.log)
     }
   },
 

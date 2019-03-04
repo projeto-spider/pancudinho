@@ -16,6 +16,7 @@ export default class GqimGameScene extends Scene {
   init (data) {
     this.resize = data.resize || (() => {})
     this.tree = data.tree
+    this.finish = data.finish
   }
 
   preload () {
@@ -449,5 +450,6 @@ export default class GqimGameScene extends Scene {
     this.events.emit('ui:text', {
       text: `Sua pontuação foi de (${points}/1000)`
     })
+    this.finish(points / 10)
   }
 }

@@ -82,6 +82,11 @@ export default {
     chunks: {
       type: Array,
       required: true
+    },
+
+    finishGame: {
+      type: Function,
+      default: () => {}
     }
   },
 
@@ -157,7 +162,16 @@ export default {
     },
 
     nextGame () {
-      this.state.closeGame()
+      const correctRows = this.rows
+        .filter(
+          row => row.status === 'correct'
+        )
+        .length
+      const rowCount = this.options.length
+
+      const correctness = correctRows / rowCount
+      console.log({correctRows, correctness, rowCount})
+      this.finishGame(correctness * 100)
     }
   }
 }

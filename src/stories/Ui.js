@@ -10,6 +10,7 @@ import Panel from '../components/ui/Panel.vue'
 import Tip from '../components/ui/Tip.vue'
 import Button from '../components/ui/Button.vue'
 import Placer from '../components/ui/Placer.vue'
+import Rewards from '../components/ui/Rewards.vue'
 
 const stories = storiesOf('UI', module)
 stories
@@ -91,4 +92,10 @@ stories
       h(Placer, { props: {
       }})
     ])
+  }))
+  .add('Rewards', (h) => ({
+    render: h => h(Rewards, { props: {
+      open: true,
+      realPercentage: 70
+    } })
   }))

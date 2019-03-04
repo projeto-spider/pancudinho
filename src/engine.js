@@ -100,7 +100,8 @@ export class State {
     return this.currentlyInGame && screenplay.find(({ id }) => id === this.currentStage)
   }
 
-  closeGame () {
+  closeGame (reward = 0) {
+    this.reward = reward
     this.currentStage++
   }
 }

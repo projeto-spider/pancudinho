@@ -12,6 +12,7 @@
           v-if="currentGame.type === 'gqim-game'"
           :tree="currentGame.data.tree"
           :state="state"
+          :finish-game="finishGame"
         ></GameGqim>
 
         <GameVisualNovel
@@ -41,6 +42,7 @@
           :state="state"
           :title="currentGame.data.title"
           :chunks="currentGame.data.chunks"
+          :finish-game="finishGame"
         ></GameBookSelectFillGame>
 
         <GameSeesaw
@@ -77,6 +79,12 @@
         ></Sidebar>
       </div>
     </template>
+
+    <Rewards
+      :open="rewardsOpen"
+      :real-percentage="rewardsPercentage"
+      :on-continue="rewardsOnContinue"
+    ></Rewards>
   </Background>
 </template>
 
@@ -85,6 +93,7 @@ import * as engine from '../engine'
 
 import Background from './ui/Background.vue'
 import Sidebar from './ui/Sidebar.vue'
+import Rewards from './ui/Rewards.vue'
 
 import GameMemory from './memory-game/Game.vue'
 import GameGqim from './gqim-game/GqimGame.vue'
@@ -105,6 +114,7 @@ export default {
   components: {
     Background,
     Sidebar,
+    Rewards,
 
     GameMemory,
     GameGqim,
@@ -128,9 +138,21 @@ export default {
   },
 
   data: () => ({
+    rewardsOpen: false,
+    rewardsPercentage: 0
   }),
 
   methods: {
+    finishGame (points) {
+      this.rewardsPercentage = points
+      this.rewardsOpen = true
+    },
+
+    rewardsOnContinue () {
+      this.rewardsOpen = false
+      this.rewardsPercentage = 0
+      this.state.closeGame()
+    }
   },
 
   computed: {

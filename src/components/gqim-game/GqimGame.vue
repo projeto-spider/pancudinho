@@ -50,11 +50,18 @@ export default {
     tree: {
       type: Object,
       required: true
+    },
+
+    finishGame: {
+      type: Function,
+      default: () => {}
     }
   },
 
   data () {
     return {
+      points: 0,
+
       config: {
         physics: {
           default: 'arcade'
@@ -64,12 +71,14 @@ export default {
         },
         scene: [GqimGameScene, UiScene]
       },
+
       gameFinished: false
     }
   },
 
   mounted () {
     this.game.scene.start('GqimGameScene', {
+      finish: this.finish,
       tree: this.tree,
       resize
     })
@@ -96,8 +105,12 @@ export default {
       this.gameFinished = true
     },
 
+    finish (points) {
+      this.points = points
+    },
+
     closeGame () {
-      this.state.closeGame()
+      this.finishGame(this.points)
     }
   }
 }

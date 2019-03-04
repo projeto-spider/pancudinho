@@ -606,12 +606,6 @@
   },
   {
     "id": 12,
-    "type": "height-game",
-    "data": {
-    }
-  },
-  {
-    "id": 13,
     "type": "visual-novel",
     "data": {
       "scenes": [
@@ -668,11 +662,11 @@
     }
   },
   {
-    "id": 14,
+    "id": 13,
     "type": "transition"
   },
   {
-    "id": 15,
+    "id": 14,
     "type": "visual-novel",
     "data": {
       "scenes": [
