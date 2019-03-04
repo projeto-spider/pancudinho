@@ -56,7 +56,7 @@
         <h1> EFEITOS SONOROS: </h1>
           <button v-if='speeches' @click='speeches = !speeches' style='color: green;'>ON</button>
           <button v-else @click='speeches = !speeches' style='color: red;'>OFF</button>
-        <h1> FALAS: </h1>
+        <h1> Voz: </h1>
           <button v-if='soundEffects' @click='soundEffects = !soundEffects' style='color: green;'>ON</button>
           <button v-else @click='soundEffects = !soundEffects' style='color: red;'>OFF</button> <br><br>
         <button v-if='configPanel === true' @click='configPanel = false' @click.prevent='buildingText()'> SAIR DAS CONFIGURAÇÕES </button>
