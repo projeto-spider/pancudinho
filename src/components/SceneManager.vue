@@ -19,6 +19,7 @@
           v-if="currentGame.type === 'visual-novel'"
           :state="state"
           :scenes="currentGame.data.scenes"
+          :on-end="() => state.closeGame()"
         ></GameVisualNovel>
 
         <GameAnalysis

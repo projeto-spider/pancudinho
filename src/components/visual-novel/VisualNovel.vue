@@ -102,6 +102,16 @@ export default {
     scenes: {
       type: Array,
       required: true
+    },
+
+    onNext: {
+      type: Function,
+      default: () => {}
+    },
+
+    onEnd: {
+      type: Function,
+      default: () => {}
     }
   },
 
@@ -126,7 +136,7 @@ export default {
 
   created () {
     this.images = this.scenes.map(scene => {
-      return require(`../../assets/${scene.image}`)
+      return scene.image && require(`../../assets/${scene.image}`)
     })
 
     this.interval = setInterval(() => {
@@ -194,13 +204,14 @@ export default {
       this.clearShowTextInterval()
 
       if (this.counter === this.scenes.length) {
-        this.state.closeGame()
+        this.onEnd()
       }
 
       this.showText = ''
       this.showTextDigitCount = 0
 
       this.buildingText()
+      this.onNext()
     },
 
     buildingText () {
