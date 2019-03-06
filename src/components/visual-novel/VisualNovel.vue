@@ -126,7 +126,7 @@ export default {
 
   created () {
     this.images = this.scenes.map(scene => {
-      return require(`../../assets/${scene.image}`)
+      return scene.image && require(`../../assets/${scene.image}`)
     })
 
     this.interval = setInterval(() => {
