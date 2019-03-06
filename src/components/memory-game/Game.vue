@@ -1,18 +1,6 @@
 <template>
 <div>
-    <div v-if='visualNovel'>
-
-            <div v-if='((counter2==3) || (counter2==4))'>
-              <div class='text'> {{showText}} </div>
-              <div class='text' @click="handleClick()">>></div>
-            </div>
-
-            <div v-if='tutorialExample1'>
-              <h2>Score: 1000</h2>
-            </div>
-            <div v-if='tutorialExample2'>
-              <h2>Score: 900</h2>
-            </div>
+    <div v-if='false'>
             <div>
               <div class="MemoryGame">
 
@@ -23,11 +11,6 @@
                       :handle-click-card="handleClickCard"
                     ></Board>
 
-                    <div v-if='((counter2==0) || (counter2==1) || (counter2==2) || (counter2==5) || (counter2==6))' class='MemoryGame balloon'>
-                      <div class='text'> {{showText}} </div>
-                      <div class='text2' @click="handleClick()">>></div>
-                    </div>
-
                     <button v-if="gameFinished" @click="closeGame">Continue</button>
 
                     </div>
@@ -35,9 +18,10 @@
           </div>
       </div>
 
-      <div v-else>
+      <div>
 
-        <h2 v-if='showScore'>Score: {{ score }}</h2>
+        <h2>Score: {{ score }}</h2>
+
         <div class="MemoryGame">
 
           <div>
@@ -50,6 +34,7 @@
           </div>
 
               <Pancudinho
+                v-if="!inTutorial"
                     :tips-choice="currentTip"
                     :handle-close="changeTip"
                   ></Pancudinho>
@@ -59,6 +44,13 @@
         </div>
       </div>
 
+  <GameVisualNovel
+    v-if="inTutorial"
+    :state="state"
+    :scenes="scenes"
+    :on-next="onNextText"
+    :on-end="finishUpTutorial"
+  ></GameVisualNovel>
 </div>
 </template>
 
@@ -68,13 +60,14 @@ import Pancudinho from './Pancudinho.vue'
 import Board from './Board.vue'
 import Card from './Card.vue'
 import Panel from '../ui/Panel.vue'
+import GameVisualNovel from '../visual-novel/VisualNovel.vue'
 
 const FLIP_WAIT_TIME = 5000
 
 export default {
   name: 'MemoryGame',
 
-  components: { Pancudinho, Board, Card, Panel },
+  components: { Pancudinho, Board, Card, Panel, GameVisualNovel },
 
   props: {
     state: {
@@ -92,45 +85,33 @@ export default {
 
     visualNovel: true,
 
-    tutorial: [
-        {
-          text: 'Esse é o jogo da memória.'
-        },
-        {
-          text: 'Aqui teremos cartas viradas para baixo com palavras relacionadas à medição e seus conceitos.'
-        },
-        {
-          text: 'Seu objetivo é parear as cartas corretamente, ou seja, cada palavra com cada conceito.'
-        },
-        {
-          text: 'Caso você consiga fazer um par correto, ganha 1000 pontos.'
-        },
-        {
-          text: 'Caso contrário, perde 100.'
-        },
-        {
-          text: 'Está Pronto?'
-        },
-        {
-          text: 'Vamos começar!'
-        }
+    inTutorial: true,
+
+    currentText: -1,
+
+    scenes: [
+      {
+        text: 'Esse é o jogo da memória.'
+      },
+      {
+        text: 'Aqui teremos cartas viradas para baixo com palavras relacionadas à medição e seus conceitos.'
+      },
+      {
+        text: 'Seu objetivo é parear as cartas corretamente, ou seja, cada palavra com cada conceito.'
+      },
+      {
+        text: 'Caso você consiga fazer um par correto, ganha 1000 pontos.'
+      },
+      {
+        text: 'Caso contrário, perde 100.'
+      },
+      {
+        text: 'Está Pronto?'
+      },
+      {
+        text: 'Vamos começar!'
+      }
     ],
-
-    tutorialExample1: false,
-
-    tutorialExample2: false,
-
-    indexPaired: 0,
-
-    indexNotPaired1: 0,
-
-    indexNotPaired2: 0,
-
-    showTextInterval: 0,
-
-    showTextDigitCount: 0,
-
-    showText: '',
 
     score: 0,
 
@@ -138,9 +119,7 @@ export default {
 
     isPaired: false,
 
-    counter: 5,
-
-    isGameStart: true,
+    isGameStart: false,
 
     pairedCards: [],
 
@@ -150,19 +129,15 @@ export default {
 
     clickedCards: [],
 
-    counter2: -1,
-
     // As we don't have real tips, we are mocking this
     currentTip: 'tip1'
   }),
 
   created () {
-
     this.cardsInGame = this.cards
       .sort(() => Math.random() - Math.random())
 
     this.flipDownCards()
-    this.nextText()
   },
 
   computed: {
@@ -173,117 +148,15 @@ export default {
   },
 
   methods: {
-
-     handleClick () {
-
-      if (this.tutorial[this.counter2].text === this.showText) {
-        this.nextText()
-      } else {
-        this.skipWrittingText()
-      }
-
-    },
-
-    nextText() {
-
-      this.counter2++
-
-      if (this.upTutorialEnd()) {
-        this.finishUpTutorial()
-      }
-
-      if (this.counter2 >= this.tutorial.length) {
-        this.counter2 = 0
-        this.visualNovel = false
-        this.isGameStart = false
-        this.showScore = true
-      }
-
-      this.showText = ''
-      this.showTextDigitCount = 0
-
-      this.showTextInterval = setInterval(() => {
-        const nextChar = this.tutorial[this.counter2].text[this.showTextDigitCount++]
-
-        if (!nextChar) {
-          this.tutorialScenes()
-          this.clearShowTextInterval()
-        } else {
-          this.showText += nextChar
-        }
-
-      }, 50)
-
-    },
-
-    skipWrittingText () {
-      this.clearShowTextInterval()
-      this.tutorialScenes()
-      this.showText = this.tutorial[this.counter2].text
-    },
-
-    clearShowTextInterval () {
-      if (this.showTextInterval) {
-        clearInterval(this.showTextInterval)
-      }
-    },
-
-
-    tutorialScenes () {
-      if (this.counter2 === 3) {
-        this.tutorialExample1 = true
-        this.tutorialExample2 = false
-        this.tutorialScene1()
-      } else if (this.counter2 === 4) {
-        this.tutorialExample1 = false
-        this.tutorialExample2 = true
-        this.tutorialScene2()
-      }
-    },
-
-    tutorialScene1 () {
-      for (let i = 1; i < this.cardsInGame.length; i++) {
-        if (this.cardsInGame[0].group === this.cardsInGame[i].group) {
-          this.indexPaired = i
-        }
-      }
-      this.cardsInGame[0].flip = true
-      this.cardsInGame[this.indexPaired].flip = true
-      this.setCardColor(this.cardsInGame[0], this.cardsInGame[this.indexPaired])
-    },
-
-    tutorialScene2 () {
-      for (let i = 1; i < this.cardsInGame.length; i++) {
-        if (i != this.indexPaired) {
-          this.indexNotPaired1 = i
-          break
-        }
-      }
-      for (let i = 1; i < this.cardsInGame.length; i++) {
-        if (i != this.indexNotPaired1 && i != this.indexPaired && this.cardsInGame[this.indexNotPaired1].group != this.cardsInGame[i].group) {
-          this.indexNotPaired2 = i
-          break
-        }
-      }
-      this.cardsInGame[this.indexNotPaired1].flip = true
-      this.cardsInGame[this.indexNotPaired2].flip = true
-    },
-
-    upTutorialEnd() {
-      if (this.counter2 === 5) {
-        return true
-      }
-    },
-
     finishUpTutorial() {
-      this.tutorialScene2 = false
+      this.score = 0
       this.flipDownCards()
+      this.inTutorial = false
+      this.isGameStart = true
     },
 
     handleClickCard (card) {
-
-      if (!this.isGameStart) {
-
+      if (this.isGameStart) {
         if (!this.canClick(card)){
           this.card.flip = false
           this.clickedCards = []
@@ -306,7 +179,6 @@ export default {
         } else if (countClickedCards === 1) {
           this.handleClickTwo(card)
         } else {
-          alert('oi')
           console.error('Failed to count card clicks')
         }
       }
@@ -395,6 +267,44 @@ export default {
 
     changeTip () {
       this.currentTip = `tip${Math.round(Math.random() * (4 - 1) + 1)}`
+    },
+
+    onNextText () {
+      this.currentText++
+
+      const firstCard = this.cardsInGame[0]
+
+      // combina um par e ganha 1000 pts
+      if (this.currentText === 3) {
+        this.score = 1000
+
+        // vira a primeira carta e seu par
+        const otherCard = this.cardsInGame.find(card =>
+          card.id !== firstCard.id && card.group === firstCard.group
+        )
+
+        firstCard.flip = true
+        otherCard.flip = true
+
+        this.setCardColor(firstCard, otherCard)
+      }
+
+      // erra um par e perde 100 pts
+      if (this.currentText === 4) {
+        // encontra um par errado que não esteja para cima
+        const otherCards = this.cardsInGame
+          .filter(card => card.group !== firstCard.group)
+
+        const cardA = otherCards[0]
+        const cardB = otherCards.find(card =>
+          card.group !== cardA.group
+        )
+
+        cardA.flip = true
+        cardB.flip = true
+
+        this.score = 900
+      }
     },
 
     closeGame () {
