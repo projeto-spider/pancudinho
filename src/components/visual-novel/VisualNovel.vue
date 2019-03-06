@@ -102,6 +102,16 @@ export default {
     scenes: {
       type: Array,
       required: true
+    },
+
+    onNext: {
+      type: Function,
+      default: () => {}
+    },
+
+    onEnd: {
+      type: Function,
+      default: () => {}
     }
   },
 
@@ -194,13 +204,14 @@ export default {
       this.clearShowTextInterval()
 
       if (this.counter === this.scenes.length) {
-        this.state.closeGame()
+        this.onEnd()
       }
 
       this.showText = ''
       this.showTextDigitCount = 0
 
       this.buildingText()
+      this.onNext()
     },
 
     buildingText () {
