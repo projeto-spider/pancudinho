@@ -101,42 +101,66 @@
         {
           "text": "Medição é uma avaliação quantitativa de qualquer aspecto de um processo que auxilia no entendimento, no planejamento, controle e melhoria.",
           "name": "Treinador",
-          "image": "part-ii/1.png"
+          "image": "part-ii/1.png",
+          "handbook": {
+            "Medição": "Medição"
+          }
         },
         {
           "text": "Esse conceito se aplica muito bem em diversas áreas das nossas vidas como por exemplo, ao processo de perda de peso ou ao processo de produção de softwares.",
           "name": "Treinador",
-          "image": "part-ii/2.png"
+          "image": "part-ii/2.png",
+          "handbook": {
+            "peso": "Peso"
+          }
         },
         {
           "text": "E o propósito de toda a medição é o de coletar...",
           "name": "Treinador",
-          "image": "part-ii/6.png"
+          "image": "part-ii/6.png",
+          "handbook": {
+            "coletar...": "Coletar"
+          }
         },
         {
           "text": "armazenar...",
           "name": "Treinador",
-          "image": "part-ii/7.png"
+          "image": "part-ii/7.png",
+          "handbook": {
+            "armazenar...": "Armazenar"
+          }
         },
         {
           "text": "analisar...",
           "name": "Treinador",
-          "image": "part-ii/8.png"
+          "image": "part-ii/8.png",
+          "handbook": {
+            "analisar...": "Analisar"
+          }
         },
         {
           "text": "...relatar os objetos de medição de forma a ajudar na tomada de decisão.",
           "name": "Treinador",
-          "image": "part-ii/9.png"
+          "image": "part-ii/9.png",
+          "handbook": {
+            "...relatar": "Relatar"
+          }
         },
         {
           "text": "É importante falar sobre as medidas aqui. Medidas são os elementos básicos da medição. Elas caracterizam, em termos quantitativos, uma propriedade de um objeto.",
           "name": "Treinador",
-          "image": "part-ii/5.png"
+          "image": "part-ii/5.png",
+          "handbook": {
+            "medidas": "Medida"
+          }
         },
         {
           "text": "As medidas podem ser divididas em básicas, que são medidas em um único atributo por método de medição e são idependesntes de outras medidas.",
           "name": "Treinador",
-          "image": "part-ii/3.png"
+          "image": "part-ii/3.png",
+          "handbook": {
+            "básicas,": "Medidas Básicas"
+          }
         },
         {
           "text": "Podemos citar o exemplo do peso da altura, entre outros.",
@@ -146,15 +170,21 @@
         {
           "text": "E existem as medidas derivadas, que são definidas como funções de dois ou mais valores de medidas básicas ou derivadas, como por exemplo o índice de massa corporal.",
           "name": "Treinador",
-          "image": "part-ii/4.png"
+          "image": "part-ii/4.png",
+          "handbook": {
+            "derivadas,": "Medidas Derivadas"
+          }
         },
         {
           "text": "Por fim, temos os indicadores, estes são utilizados para analisar o alcance de objetivos.",
           "name": "Treinador",
-          "image": "part-ii/10.png"
+          "image": "part-ii/10.png",
+          "handbook": {
+            "indicadores,": "Indicador"
+          }
         },
         {
-          "text": "Ele pode ser entendido como uma estimativa ou avaliação  que provê uma base para a tomada de decisão.",
+          "text": "Ele pode ser entendido como uma estimativa ou avaliação que provê uma base para a tomada de decisão.",
           "name": "Treinador",
           "image": "part-ii/10.png"
         }

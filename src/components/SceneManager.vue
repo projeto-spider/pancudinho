@@ -20,6 +20,7 @@
           :state="state"
           :scenes="currentGame.data.scenes"
           :on-end="() => state.closeGame()"
+          :open-hand-book="word => $refs.handbook.openHandBook(word)"
         ></GameVisualNovel>
 
         <GameAnalysis
@@ -86,6 +87,20 @@
       :real-percentage="rewardsPercentage"
       :on-continue="rewardsOnContinue"
     ></Rewards>
+
+    <HandBook
+      ref="handbook"
+    ></HandBook>
+
+    <div class="button-corner">
+      <button
+        class="open-handbook"
+        @click="() => $refs.handbook.openHandBook()"
+      >
+        LIVRO
+      </button>
+    </div>
+
   </Background>
 </template>
 
@@ -95,6 +110,7 @@ import * as engine from '../engine'
 import Background from './ui/Background.vue'
 import Sidebar from './ui/Sidebar.vue'
 import Rewards from './ui/Rewards.vue'
+import HandBook from './ui/HandBook.vue'
 
 import GameMemory from './memory-game/Game.vue'
 import GameGqim from './gqim-game/GqimGame.vue'
@@ -116,6 +132,7 @@ export default {
     Background,
     Sidebar,
     Rewards,
+    HandBook,
 
     GameMemory,
     GameGqim,
@@ -172,3 +189,21 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.button-corner {
+  position: fixed;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  top: 10px;
+  left: 30px;
+  z-index: 100;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
