@@ -15,7 +15,23 @@
         >
           {{ currentScene.name }}
         </div>
-        <span>{{ showText.length ? showText : '&nbsp;' }}</span>
+
+        <p class="balloon-paragraph">
+          <span
+            v-for="(word, i) in currentText"
+            :key="i"
+          >
+            <span
+              v-if="word.keyword"
+              @click.stop="() => openHandBook(word.keyword)"
+              class="keyword-letter"
+            >{{ renderLetters(word) }}</span>
+
+            <span
+              v-else
+            >{{ renderLetters(word) }}</span>
+          </span>
+        </p>
       </div>
 
       <div class="btn-wrapper">
@@ -112,6 +128,11 @@ export default {
     onEnd: {
       type: Function,
       default: () => {}
+    },
+
+    openHandBook: {
+      type: Function,
+      default: () => {}
     }
   },
 
@@ -123,7 +144,6 @@ export default {
     configPanel: false,
     auto: false,
     autoManualPass: false,
-    showText: '',
     showTextDigitCount: 0,
     showTextInterval: null,
     images: [],
@@ -140,7 +160,7 @@ export default {
     })
 
     this.interval = setInterval(() => {
-      if (!this.showingOptions && this.auto && this.currentScene.text === this.showText) {
+      if (!this.showingOptions && this.auto && this.showTextDigitCount === this.currentTextLength) {
         this.auto = false
 
         setTimeout(() => {
@@ -160,12 +180,56 @@ export default {
   computed: {
     currentScene () {
       return this.scenes[this.counter]
+    },
+
+    currentText () {
+      if (!this.currentScene) {
+        return []
+      }
+
+      let curentLetterIndex = 0
+      const keywords = this.currentScene.handbook || {}
+      const words = this.currentScene.text.split(' ')
+
+      // take the list of words
+      // create a list of words with separate letters
+      // each letter with its own index to point out the rendering order
+      // point out if the words are keywords
+      return words.reduce((acc, word) => {
+        const keyword = keywords[word]
+
+        const letters = word
+          .split('')
+          .map(letter => ({
+            letter,
+            index: curentLetterIndex++
+          }))
+
+        return acc
+          // add the current word
+          .concat({
+            keyword,
+            letters
+          })
+          // add a blank space word
+          .concat({
+            keyword: false,
+            letters: [{ letter: ' ', index: curentLetterIndex++ }]
+          })
+      }, [])
+    },
+
+    currentTextLength () {
+      return this.currentText.reduce((acc, word) => {
+        acc += word.letters.length
+        return acc
+      }, 0)
     }
   },
 
   methods: {
     handleClick () {
-      if (this.currentScene.text === this.showText) {
+      if (this.showTextDigitCount === this.currentTextLength) {
         if (this.auto) {
           this.autoManualPass = true
         }
@@ -177,25 +241,19 @@ export default {
 
     skipWrittingText () {
       this.clearShowTextInterval()
-      this.showText = this.currentScene.text
+      this.showTextDigitCount = this.currentTextLength
     },
 
     lowVelocity () {
       this.textVelocity = 110
-      //  this.clearShowTextInterval()
-      //  this.buildingText()
     },
 
     highVelocity () {
       this.textVelocity = 35
-      //  this.clearShowTextInterval()
-      //  this.buildingText()
     },
 
     mediumVelocity () {
       this.textVelocity = 65
-      //  this.clearShowTextInterval()
-      //  this.buildingText()
     },
 
     nextText () {
@@ -207,7 +265,6 @@ export default {
         this.onEnd()
       }
 
-      this.showText = ''
       this.showTextDigitCount = 0
 
       this.buildingText()
@@ -225,8 +282,6 @@ export default {
         if (!nextChar) {
           return this.clearShowTextInterval()
         }
-
-        this.showText += nextChar
       }, this.textVelocity)
     },
 
@@ -273,6 +328,17 @@ export default {
       if (name === 'Treinador') {
         return '#0C0A39'
       }
+    },
+
+    renderLetters (word) {
+      const { letters } = word
+
+      return letters
+        // only show if counter past it
+        .filter(({ index }) => index <= this.showTextDigitCount)
+        // map to letters
+        .map(({ letter }) => letter)
+        .join('')
     }
   }
 }
@@ -482,4 +548,13 @@ export default {
   font: 400 20px/1.3 'Arizonia', Helvetica, sans-serif;
 }
 
+.balloon-paragraph {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.keyword-letter {
+  cursor: pointer;
+  color: blue;
+}
 </style>
