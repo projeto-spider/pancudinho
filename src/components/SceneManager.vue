@@ -6,6 +6,7 @@
           v-if="currentGame.type === 'memory-game'"
           :cards="currentGame.data.cards"
           :state="state"
+          :finish-game="finishGame"
         ></GameMemory>
 
         <GameGqim

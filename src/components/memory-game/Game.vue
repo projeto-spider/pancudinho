@@ -78,6 +78,11 @@ export default {
     cards: {
       type: Array,
       default: () => []
+    },
+
+    finishGame: {
+      type: Function,
+      default: () => {}
     }
   },
 
@@ -312,7 +317,13 @@ export default {
     },
 
     closeGame () {
-      this.state.closeGame()
+      const cardCount = this.cards.length
+      const pairCount = Math.round(cardCount / 2)
+
+      const maxScore = pairCount * 1000
+
+      const finalScore = Math.ceil(100 * (this.score / maxScore))
+      this.finishGame(finalScore)
     }
   }
 }
