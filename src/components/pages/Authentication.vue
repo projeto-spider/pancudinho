@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form @submit="verifyUsers" @submit.prevent="login">
     <div class="centered">
       <h1>Authentication</h1><br>
 
@@ -11,13 +11,13 @@
 
       <input type="password" v-model="typedPassword"><br><br><br>
 
-      <button @click="verifyUsers" @click.prevent="login">Login</button><br>
+      <button type="submit">Login</button><br>
 
       <div class="centered" v-if="loginFail">
         <h4>Wrong credentials</h4>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
