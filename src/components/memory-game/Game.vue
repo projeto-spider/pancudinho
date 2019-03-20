@@ -134,9 +134,7 @@ export default {
   }),
 
   created () {
-    this.cardsInGame = this.cards
-      .sort(() => Math.random() - Math.random())
-
+    this.shuffleCards()
     this.flipDownCards()
   },
 
@@ -152,6 +150,7 @@ export default {
       this.score = 0
       this.flipDownCards()
       this.inTutorial = false
+      this.shuffleCards()
       this.isGameStart = true
     },
 
@@ -305,6 +304,11 @@ export default {
 
         this.score = 900
       }
+    },
+
+    shuffleCards () {
+      this.cardsInGame = this.cards
+        .sort(() => Math.random() - Math.random())
     },
 
     closeGame () {
