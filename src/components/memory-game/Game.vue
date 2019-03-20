@@ -62,7 +62,7 @@ import Card from './Card.vue'
 import Panel from '../ui/Panel.vue'
 import GameVisualNovel from '../visual-novel/VisualNovel.vue'
 
-const FLIP_WAIT_TIME = 5000
+const FLIP_WAIT_TIME = 3500
 
 export default {
   name: 'MemoryGame',
