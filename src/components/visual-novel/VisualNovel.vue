@@ -39,8 +39,13 @@
           class='btn btn-auto'
           :class="{ 'btn-auto-on': auto }"
           @click.stop="auto = !auto"
+          title="Passar o texto automaticamente"
         >Auto</div>
-        <div class='btn' @click.stop="handleClick()">>></div><br>
+        <div
+          class='btn'
+          @click.stop="handleClick()"
+          title="Próximo texto"
+        >>></div><br>
       </div>
     </div>
 
