@@ -8,10 +8,10 @@
       ></PhaserGame>
 
       <template>
-        <Button v-if="gameFinished" color="blue" class="submit-button" @click.native="closeGame">
+        <Button v-if="gameFinished && !hideContinue" color="blue" class="submit-button" @click.native="closeGame">
           Continuar
         </Button>
-        <Button v-else color="blue" class="submit-button" @click.native="submit">
+        <Button v-else-if="!hideContinue" color="blue" class="submit-button" @click.native="submit">
           Avaliar
         </Button>
       </template>
@@ -72,7 +72,8 @@ export default {
         scene: [GqimGameScene, UiScene]
       },
 
-      gameFinished: false
+      gameFinished: false,
+      hideContinue: false
     }
   },
 
@@ -110,6 +111,7 @@ export default {
     },
 
     closeGame () {
+      this.hideContinue = true
       this.finishGame(this.points)
     }
   }
