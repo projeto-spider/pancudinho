@@ -15,11 +15,12 @@
     ></iframe>
 
     <audio
+      ref="audio"
       v-if="currentBackground"
       :src="currentBackground"
       loop
       autoplay
-
+      :volume="realVolume"
     ></audio>
   </div>
 </template>
@@ -36,6 +37,11 @@ import BgSidekickMp3 from '../assets/audio/02 Sidekick.mp3'
 
 export default {
   name: 'Mixer',
+
+  props: {
+    mute: Boolean,
+    volume: Number
+  },
 
   data: () => ({
     currentBackground: false,
@@ -54,6 +60,32 @@ export default {
   methods: {
     setBackground (key) {
       this.currentBackground = this.files[key]
+    },
+
+    updateVolume () {
+      const ref = this.$refs.audio
+
+      if (!ref) {
+        return
+      }
+
+      ref.volume = this.realVolume
+    }
+  },
+
+  computed: {
+    realVolume () {
+      return this.mute ? 0 : this.volume / 100
+    }
+  },
+
+  watch: {
+    volume () {
+      this.updateVolume()
+    },
+
+    mute () {
+      this.updateVolume()
     }
   }
 }

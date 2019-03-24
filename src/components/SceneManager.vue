@@ -95,6 +95,13 @@
 
     <div class="button-corner">
       <button
+        @click="showSettings = !showSettings"
+      >
+        {{ showSettings ? 'FECHAR' : 'CONFIGURAÇÕES' }}
+      </button>
+
+      <button
+        v-if="!showSettings"
         class="open-handbook"
         @click="() => $refs.handbook.openHandBook()"
       >
@@ -102,7 +109,67 @@
       </button>
     </div>
 
-    <Mixer ref="mixer"></Mixer>
+    <Mixer
+      ref="mixer"
+      :volume="volume"
+      :mute="mute"
+    ></Mixer>
+
+    <div v-if='showSettings' class="settings-container">
+      <div class='balloon'>
+        <h2>CONFIGURAÇÕES</h2>
+
+        <h2>VELOCIDADE DO TEXTO</h2>
+
+        <button @click.stop="setSpeed(110)">
+          <div :style="`color: ${textSpeed === 110 ? 'green' : 'red'}`">
+            BAIXA
+          </div>
+        </button>
+
+        <button @click.stop='setSpeed(65)'>
+          <div :style="`color: ${textSpeed === 65 ? 'green' : 'red'}`">
+            MÉDIA
+          </div>
+        </button>
+
+        <button @click.stop='setSpeed(35)'>
+          <div :style="`color: ${textSpeed === 35 ? 'green' : 'red'}`">
+            ALTA
+          </div>
+        </button>
+
+        <br>
+
+        <h2>Volume</h2>
+
+        <button @click.stop="setVolume(50)">
+          <div :style="`color: ${volume === 50 ? 'green' : 'red'}`">
+            BAIXA
+          </div>
+        </button>
+
+        <button @click.stop='setVolume(75)'>
+          <div :style="`color: ${volume === 75 ? 'green' : 'red'}`">
+            MÉDIA
+          </div>
+        </button>
+
+        <button @click.stop='setVolume(100)'>
+          <div :style="`color: ${volume === 100 ? 'green' : 'red'}`">
+            ALTA
+          </div>
+        </button>
+
+        <br>
+
+        <h2> EFEITOS SONOROS: </h2>
+        <button
+          @click.stop="mute = !mute"
+          :style="`color: ${mute ? 'red' : 'green'};`"
+        >{{ mute ? 'OFF' : 'ON' }}</button>
+      </div>
+    </div>
   </Background>
 </template>
 
@@ -163,7 +230,13 @@ export default {
 
   data: () => ({
     rewardsOpen: false,
-    rewardsPercentage: 0
+    rewardsPercentage: 0,
+    // Settings
+    showSettings: false,
+    mute: false,
+    volume: 50,
+    // Visual Novel related
+    textSpeed: 65
   }),
 
   methods: {
@@ -186,6 +259,14 @@ export default {
       }
 
       this.$refs.mixer.setBackground('BgSchoolOfQuirksBearOgg')
+    },
+
+    setSpeed (speed) {
+      this.textSpeed = speed
+    },
+
+    setVolume (volume) {
+      this.volume = volume
     }
   },
 
@@ -218,12 +299,25 @@ export default {
   font-family: Tahoma, Geneva, sans-serif;
   font-weight: bold;
   text-align: center;
-  width: 30px;
   height: 30px;
-  top: 10px;
-  left: 30px;
-  z-index: 100;
+  top: 5px;
+  left: 75px;
+  z-index: 50;
   margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-corner > * {
+  margin-right: 5px;
+}
+
+.settings-container {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

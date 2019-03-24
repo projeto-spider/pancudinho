@@ -49,48 +49,6 @@
       </div>
     </div>
 
-    <div>
-      <button v-if='configPanel === false' @click='configPanel = true' @click.prevent='clearShowTextInterval()'>CONFIGURAÇÕES</button>
-
-      <div v-if='configPanel' style="position: fixed; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center;">
-        <div class='balloon'>
-          <h1> CONFIGURAÇÕES </h1>
-          <h1> VELOCIDADE DO TEXTO : </h1>
-          <button @click='lowVelocity()'>
-            <div v-if='textVelocity == 110' style='color: green;'>
-              BAIXA
-            </div>
-            <div v-else>
-              BAIXA
-            </div>
-          </button>
-          <button @click='mediumVelocity()'>
-            <div v-if='textVelocity == 65' style='color: green;'>
-              MÉDIA
-            </div>
-            <div v-else>
-              MÉDIA
-            </div>
-          </button>
-          <button @click='highVelocity()'>
-            <div v-if='textVelocity == 35' style='color: green;'>
-              ALTA
-            </div>
-            <div v-else>
-              ALTA
-            </div>
-          </button> <br>
-          <h1> EFEITOS SONOROS: </h1>
-            <button v-if='speeches' @click='speeches = !speeches' style='color: green;'>ON</button>
-            <button v-else @click='speeches = !speeches' style='color: red;'>OFF</button>
-          <h1> Voz: </h1>
-            <button v-if='soundEffects' @click='soundEffects = !soundEffects' style='color: green;'>ON</button>
-            <button v-else @click='soundEffects = !soundEffects' style='color: red;'>OFF</button> <br><br>
-          <button v-if='configPanel === true' @click='configPanel = false' @click.prevent='buildingText()'> SAIR DAS CONFIGURAÇÕES </button>
-        </div>
-      </div>
-    </div>
-
     <img v-for="(scene, index) in scenes" :key="index" :src="images[index]" v-show="false">
 
     <div v-if="currentScene && currentScene.question" v-show="showingOptions" class="option-area">
