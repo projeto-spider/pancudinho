@@ -15,13 +15,13 @@
       >Continuar</Button>
     </div>
 
-    <audio preload="auto" autoplay="false" :src="CongratulationsOgg"></audio>
+    <audio preload="auto" autoplay="false" :src="WonWav"></audio>
   </div>
 </template>
 
 <script>
 import Button from './Button.vue'
-import CongratulationsOgg from '../../assets/audio/congratulations_male.ogg'
+import WonWav from '../../assets/audio/Won.wav'
 
 export default {
   name: 'Rewards',
@@ -46,7 +46,7 @@ export default {
   },
 
   data: () => ({
-    CongratulationsOgg,
+    WonWav,
 
     percentage: 0
   }),
@@ -84,7 +84,7 @@ export default {
     },
 
     playCongratulations () {
-      const audio = new Audio(this.CongratulationsOgg)
+      const audio = new Audio(this.WonWav)
       audio.play()
     }
   }
