@@ -102,11 +102,14 @@
       </button>
     </div>
 
+    <Mixer ref="mixer"></Mixer>
   </Background>
 </template>
 
 <script>
 import * as engine from '../engine'
+
+import Mixer from './Mixer.vue'
 
 import Background from './ui/Background.vue'
 import Sidebar from './ui/Sidebar.vue'
@@ -130,6 +133,8 @@ export default {
   name: 'SceneManager',
 
   components: {
+    Mixer,
+
     Background,
     Sidebar,
     Rewards,
@@ -171,7 +176,21 @@ export default {
       this.rewardsOpen = false
       this.rewardsPercentage = 0
       this.state.closeGame()
+    },
+
+    updateBgm () {
+      if (this.currentGame) {
+        const key = this.currentGame.data.bgm || 'BgSchoolOfQuirksBearOgg'
+
+        return this.$refs.mixer.setBackground(key)
+      }
+
+      this.$refs.mixer.setBackground('BgSchoolOfQuirksBearOgg')
     }
+  },
+
+  mounted () {
+    this.updateBgm()
   },
 
   computed: {
@@ -186,6 +205,8 @@ export default {
       if (currentGame.type === 'transition') {
         setTimeout(() => this.state.closeGame(), 1)
       }
+
+      this.updateBgm()
     }
   }
 }

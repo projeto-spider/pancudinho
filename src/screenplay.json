@@ -3,6 +3,7 @@
     "id": 1,
     "type": "visual-novel",
     "data": {
+      "bgm": "BgHoneyBearOgg",
       "scenes": [
         {
           "text": "Olá, eu sou Pançudinho.",
@@ -92,7 +93,20 @@
         {
           "text": "Agora, VAMOS COMEÇAR ESSA JORNADA!",
           "image": "part-i/Quadro16.jpg"
-        },
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "type": "transition"
+  },
+  {
+    "id": 3,
+    "type": "visual-novel",
+    "data": {
+      "bgm": "BgMenuSongWav",
+      "scenes": [
         {
           "text": "Bom, antes de começar nosso trabalho, precisamos entender alguns conceitos.",
           "name": "Treinador",
@@ -192,9 +206,10 @@
     }
   },
   {
-    "id": 2,
+    "id": 4,
     "type": "memory-game",
     "data": {
+      "bgm": "BgModernCastleAtmosphereOgg",
       "cards": [
         {
           "id": 1,
@@ -298,9 +313,10 @@
     }
   },
   {
-    "id": 3,
+    "id": 5,
     "type": "visual-novel",
     "data": {
+      "bgm": "BgHoneyBearOgg",
       "scenes": [
         {
           "text": "Agora que entendemos os conceitos de medição, vamos planejá-la. Aqui vamos usar GQIM.",
@@ -351,7 +367,7 @@
     }
   },
   {
-    "id": 4,
+    "id": 6,
     "type": "gqim-game",
     "data": {
       "tree": {
@@ -428,13 +444,14 @@
     }
   },
   {
-    "id": 5,
+    "id": 7,
     "type": "transition"
   },
   {
-    "id": 6,
+    "id": 8,
     "type": "visual-novel",
     "data": {
+      "bgm": "BgHoneyBearOgg",
       "scenes": [
         {
           "text": "Bom, estudando isso aqui descobri que agora que eu tenho métricas eu preciso.",
@@ -475,9 +492,10 @@
     }
   },
   {
-    "id": 7,
+    "id": 9,
     "type": "book-select-fill-game",
     "data": {
+      "bgm": "BgMenuSongWav",
       "title": "Peso",
       "chunks": [
         {
@@ -523,13 +541,14 @@
     }
   },
   {
-    "id": 8,
+    "id": 10,
     "type": "transition"
   },
   {
-    "id": 9,
+    "id": 11,
     "type": "book-select-fill-game",
     "data": {
+      "bgm": "BgMenuSongWav",
       "title": "IMC",
       "chunks": [
         {
@@ -575,9 +594,10 @@
     }
   },
   {
-    "id": 10,
+    "id": 12,
     "type": "visual-novel",
     "data": {
+      "bgm": "BgHoneyBearOgg",
       "scenes": [
         {
           "text": "Agora que sabemos como e quando coletar, e como calcular a métrica. Nós iremos, de fato, coletar as mesmas.",
@@ -628,16 +648,18 @@
     }
   },
   {
-    "id": 11,
+    "id": 13,
     "type": "seesaw-game",
     "data": {
+      "bgm": "BgJumpAndRunTropicsOgg",
       "weight": 120
     }
   },
   {
-    "id": 12,
+    "id": 14,
     "type": "visual-novel",
     "data": {
+      "bgm": "BgSidekickMp3",
       "scenes": [
         {
           "text": "Como acabamos de coletar as medidas, vamos analisar os resultados delas.",
@@ -692,13 +714,14 @@
     }
   },
   {
-    "id": 13,
+    "id": 15,
     "type": "transition"
   },
   {
-    "id": 14,
+    "id": 16,
     "type": "visual-novel",
     "data": {
+      "bgm": "BgHoneyBearOgg",
       "scenes": [
         {
           "text": "Alguns meses depois...",
